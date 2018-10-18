@@ -33,8 +33,10 @@ Feature:  History regression
     Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
     Then save postage message panel tracking number
     Then navigate to history
-    Then click container label on history filter panel
+    Then expand eligible for on history filter panel
+    Then select container label on history filter panel eligible for
     Then select row 1 on history grid
+
     Then expect print details on history is present
     Then expect return to on print details contains Test User2
     Then expect return to on print details contains El Segundo, CA

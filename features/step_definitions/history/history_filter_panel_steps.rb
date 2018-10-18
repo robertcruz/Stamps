@@ -189,4 +189,25 @@ Then /^expect all count on history filter panel is greater than (\d+)$/ do |num|
   expect(date_printed.all_count.text.to_i).to be > num.to_i
 end
 
+#Eligible For
+Then /^expand eligible for on history filter panel$/ do
+  SdcHistory.filter_panel.eligible_for.after_eligible_for_tool.click
+  expect(SdcHistory.filter_panel.eligible_for.refund).to be_present
+end
 
+Then /^select refund on history filter panel eligible for$/ do
+  refund = SdcHistory.filter_panel.eligible_for.refund
+  refund.select
+  step 'wait while loading history grid'
+  begin
+    SdcPage.browser.wait_until(timeout: 5) { refund.selected? }
+  rescue
+    # ignore
+  end
+  expect(date_printed.past_7_days.selected?).to be true
+end
+
+Then /^expect refund is selected on history filter panel eligible for$/ do
+  date_printed = SdcHistory.filter_panel.date_printed
+  expect(date_printed.past_7_days.selected?).to be true
+end
