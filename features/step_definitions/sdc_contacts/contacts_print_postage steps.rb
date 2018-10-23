@@ -79,3 +79,37 @@
     actual_value=advanced_options.text_field
     expect(actual_value.text_value.to_s).to eql(cost_code.to_s)
   end
+
+
+  Then /^expect domestic address text area is present$/ do
+    mail_to = SdcMail::SdcPrintForm::MailToContainer::MailTo.new
+    expect(mail_to.text_area.present?).to be(true)
+  end
+
+  Then /^expect domestic address text area is not present$/ do
+    mail_to = SdcMail::SdcPrintForm::MailToContainer::MailTo.new
+    expect(mail_to.text_area.present?).to be(false)
+  end
+
+  Then /^expect international address fields are not present$/ do
+    mail_to = SdcMail::SdcPrintForm::MailToContainer::MailTo.new
+    expect(mail_to.name.present?).to be(false)
+    expect(mail_to.company.present?).to be(false)
+    expect(mail_to.address1.present?).to be(false)
+    expect(mail_to.address2.present?).to be(false)
+    expect(mail_to.city.present?).to be(false)
+    expect(mail_to.province.present?).to be(false)
+    expect(mail_to.postal_code.present?).to be(false)
+    expect(mail_to.phone.present?).to be(false)
+  end
+
+  Then /^expect international address fields are present$/ do
+    mail_to = SdcMail::SdcPrintForm::MailToContainer::MailTo.new
+    expect(mail_to.name.present?).to be(true)
+    expect(mail_to.company.present?).to be(true)
+    expect(mail_to.address1.present?).to be(true)
+    expect(mail_to.address2.present?).to be(true)
+    expect(mail_to.city.present?).to be(true)
+    expect(mail_to.province.present?).to be(true)
+    expect(mail_to.postal_code.present?).to be(true)
+  end

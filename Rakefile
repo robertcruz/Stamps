@@ -64,6 +64,17 @@ end
 
 #CONTACTS
 #
+#
+Cucumber::Rake::Task.new(:sdc_contacts_print_stamps_media_international) do |t|
+  t.profile = 'sdc_contacts_print_stamps_media_international'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:sdc_contacts_print_stamps_media_domestic) do |t|
+  t.profile = 'sdc_contacts_print_stamps_media_domestic'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:sdc_contact_top_nav_print_postage) do |t|
   t.profile = 'sdc_contact_top_nav_print_postage'
   t.cucumber_opts = "-p cuke_reports"

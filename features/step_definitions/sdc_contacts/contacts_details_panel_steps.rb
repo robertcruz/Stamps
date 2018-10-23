@@ -93,10 +93,17 @@ Then /^set contact details to$/ do |table|
   step "set contact details country to #{country}"
   step "set contact details street address to #{street_address}"
   step "set contact details city to #{city}"
-  if state.empty?
+
+  if country == 'United States'
+    if state.empty?
+    else
+      step "set contact details state to #{state}"
+    end
   else
-    step "set contact details state to #{state}"
+    step "set contact details province to #{state}"
   end
+
+
 
   step "set contact details postal code to #{postal_code}"
   step "set contact details email to #{email}"
