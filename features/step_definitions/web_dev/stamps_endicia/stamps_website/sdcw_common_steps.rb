@@ -139,6 +139,7 @@ Then /^SDCW: click learn more --> small office mailers link$/ do
       common_page.learn_more.click
     else
       common_page.learn_more.hover
+      common_page.learn_more.click if TestSession.env.local_browser == :gc_iPad
     end
     common_page.small_office_mailers.click
   end
@@ -167,6 +168,7 @@ Then /^SDCW: click learn more --> online sellers link$/ do
       common_page.learn_more.click
     else
       common_page.learn_more.hover
+      common_page.learn_more.click if TestSession.env.local_browser == :gc_iPad
     end
     common_page.online_sellers.click
   end
@@ -194,6 +196,7 @@ Then /^SDCW: click learn more --> warehouse shippers link$/ do
       common_page.learn_more.click
     else
       common_page.learn_more.hover
+      common_page.learn_more.click if TestSession.env.local_browser == :gc_iPad
     end
     common_page.warehouse_shippers.click
   end
@@ -224,6 +227,7 @@ Then /^SDCW: click learn more --> corporate postage solutions link$/ do
       common_page.corporate_postage_solutions.click
     else
       common_page.learn_more.hover
+      common_page.learn_more.click if TestSession.env.local_browser == :gc_iPad
       common_page.corporate_postage_solutions.click
     end
   end

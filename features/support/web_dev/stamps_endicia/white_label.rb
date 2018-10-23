@@ -28,6 +28,35 @@ module WhiteLabel
     page_object(:stamps_logo) {{id: 'sdc-logo'}}
     page_object(:usps_logo) {{xpath: '//div[@id="nav-usps-vendor"]'}}
 
+    ######### profile page mobile ########
+    page_object(:profile_bread_crumb_xs) { {xpath: '//li[@id="breadcrumb_Profile"]/span'} }
+    page_object(:header_xs) { {xpath: '//div[@id="page"]/div/div/h1'} }
+    page_object(:side_acct_header_xs) { {xpath: '//h3[(contains(text(), "Why do I need to create an account?"))]'} }
+    page_object(:side_acct_text_xs) {{xpath: '//li[@id="sideaccount"]/p'}}
+    page_object(:side_opt_in_header_xs) { {xpath: '//h3[(contains(text(), "Money-saving offers and new products"))]'} }
+    page_object(:side_opt_in_text_xs) {{xpath: '//li[@id="sideoptin"]/div/div/label/span'}}
+    page_object(:money_saving_offers_checkbox_chooser_xs) { {xpath: '//li[@id="sideoptin"]/div/div'} }
+    page_object(:money_saving_offers_checkbox_verify_xs) { {id: 'sideoptin'} }
+    checkbox(:money_saving_offers_checkbox_xs, :money_saving_offers_checkbox_chooser_xs, :money_saving_offers_checkbox_verify_xs, 'class', 'checked')
+    text_field(:email_xs, tag: :text_field, required: true) { { id: 'email' } }
+    page_objects(:email_tooltip_xs,  index: 0) { {xpath: '//*[@id="email"]/div/div/div/div/span'} }
+    text_field(:username_xs, tag: :text_field, required: true) { { id: 'username' } }
+    page_objects(:username_tooltip_xs,  index: 0) { {xpath: '//*[@id="accountinfo"]/div/div/div/span'} }
+    text_field(:password_xs, tag: :text_field, required: true) { { id: 'password' } }
+    page_objects(:password_tooltip_xs,  index: 1) { {xpath: '//*[@id="accountinfo"]/div/div/div/span'} }
+    text_field(:confirm_password_xs, tag: :text_field, required: true) { { id: 'confirmPassword' } }
+    page_objects(:confirm_password_tooltip_xs,  index: 2) { {xpath: '//*[@id="accountinfo"]/div/div/div/span'} }
+    link(:promo_code_link_xs) { { id: 'showPromoCode' } }
+    text_field(:promo_code_xs, tag: :text_field, required: true) { { id: 'promoCode' } }
+    text_field(:promo_code_hidden_xs, tag: :text_field, required: true) { { id: 'promoCodeHidden' } }
+    page_objects(:promo_code_tooltip_xs,  index: 0) { {xpath: '//*[@id="promocode"]/div/div/div/div/span'} }
+    page_object(:survey_xs) {{xpath: '//button[contains(@class, "dropdown-toggle")][@data-id="usageType"]'}}
+    page_object(:referrer_name_xs) {{xpath: '//button[contains(@class, "dropdown-toggle")][@data-id="referrerName"]'}}
+    page_objects(:money_saving_offers_xs,  index: 0) { {id: "optIn"} }
+    button(:continue_xs) {{id: 'next'}}
+    page_object(:stamps_logo_xs) {{id: 'sdc-logo'}}
+    page_object(:usps_logo_xs) {{xpath: '//div[@id="nav-usps-vendor"]'}}
+
     def survey_selection(str, name = :survey_element)
       page_object(name) { {xpath: "//span[contains(text(), \" #{str} \")]" } }
     end

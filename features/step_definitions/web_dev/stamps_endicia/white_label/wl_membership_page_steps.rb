@@ -126,6 +126,12 @@ Then /^WL: click membership page address$/ do
   step 'pause for 1 second'
 end
 
+Then /WL: select membership page address autocomplete index count to be (\d+)$/ do |count|
+  membership_page = WhiteLabel.membership_page
+  index_count = membership_page.address_auto_complete.count
+  expect(index_count).to eql(count)
+end
+
 Then /WL: select membership page address autocomplete index (\d+)$/ do |index|
   membership_page = WhiteLabel.membership_page
   address_auto_complete = membership_page.address_auto_complete[index-1]
@@ -337,7 +343,10 @@ Then /^WL: expect membership page credit card number is (?:correct|(.*))$/ do |s
 end
 
 Then /^WL: expect membership page credit card number tooltip to be (.*)$/ do |str|
-  expect(WhiteLabel.membership_page.cc_number_help_block.text_value.strip).to eql(str)
+  cc_number_help_block = WhiteLabel.membership_page.cc_number_help_block
+  cc_number_help_block.wait_until_presnet(timeout: 5)
+  text = WhiteLabel.membership_page.cc_number_help_block.text_value.strip
+  expect(text).to eql(str)
 end
 
 Then /^WL: expect membership page credit card visa is present$/ do
@@ -675,7 +684,7 @@ end
 
 Then /^WL: check if address standardized is present then click continue$/ do
   addr_std_continue = WhiteLabel.membership_page.addr_std_continue
-  addr_std_continue.wait_until_present(timeout: 5) rescue false
+  addr_std_continue.wait_until_present(timeout: 25) rescue false
   if addr_std_continue.present? == true
     addr_std_continue.click
   else
@@ -698,7 +707,7 @@ end
 Then /^WL: check if postage meter address is present then set the value$/ do
   membership_page = WhiteLabel.membership_page
   if TestData.hash[:street_address].include? 'PO Box'
-    membership_page.meter_street.wait_until_present(timeout: 5)
+    membership_page.meter_street.wait_until_present(timeout: 25)
     step 'WL: set postage meter address in zone 8'
     step 'WL: click membership page submit button'
   else

@@ -99,6 +99,7 @@ Feature: Stamps WebReg: Header Footer Validation
 
     #Choose Supplies Page
     Then WL: check choose supplies page is present then verify the page and click place order button
+    Then pause for 3 seconds
 
     #Security Question Page
     Then WL: expect security questions header to be Before you start printing postage, make sure your account is protected.

@@ -1,5 +1,5 @@
 
-default: --backtrace --profile alex_history
+default: --backtrace --profile kaushal_cc
 
 cuke_reports: --format json --out report.json --backtrace -f pretty -r features --format pretty --format html --out reports
 
@@ -18,7 +18,16 @@ sauce_browser: --tags @authentication URL=stg USR=bvtstgw7ff8 PW=pass111 SELENIU
 #mhossain1_cc: --tags @pp_header_favicons_browser_mobile JENKINS=true URL=qacc BROWSER=gc BROWSER_MOBILE_EMULATOR=gc,'iPhone X' USR=wteam@stamps.com PW=password1 WEB_DEV=true
 #mhossain1_cc: --tags @pp_log_in_page_validation JENKINS=true URL=stg BROWSER=ff USR=wteam@stamps.com PW=password1 FIREFOX_PROFILE=true WEB_DEV=true
 mhossain1_cc: --tags @ewwr_security_question_page_validation URL=stg BROWSER=gc_web_dev LOG_LEVEL=info #USR=wteam@stamps.com PW=password1
-kaushal_cc: --tags @ewwr_security_question_page_validation URL=stg BROWSER=edge #USR=qawebdevelopment@stamps.com PW=password1
+
+kaushal_cc_mob: --tags @sdcwr_profile_page_ui_validation URL=stg BROWSER=gc_iPhone_X LOG_LEVEL=info #USR=qawebdevelopment@stamps.com PW=password1
+
+kaushal_cc: --tags @sdcwr_security_question_page_validation URL=cc BROWSER=edge LOG_LEVEL=info
+
+sauce_mobile: --tags @mail_authentication_mobile URL=stg USR=sauce0020 PW=pass111 SELENIUM_DEVICE='iPhone X Simulator' SELENIUM_PLATFORM=iOS SELENIUM_BROWSER=Safari SELENIUM_VERSION=11.3TUNNEL_IDENTIFIER=rob LOG_LEVEL=info
+ks_sauce_mobile:  --tags @sdcw_postage_online_page_validation_mobile URL=stg SELENIUM_DEVICE='iPhone X Simulator' SELENIUM_PLATFORM=Android SELENIUM_BROWSER=chrome SELENIUM_VERSION=latest TUNNEL_IDENTIFIER=kaushal LOG_LEVEL=info
+
+ks_saucelab: --tags @ewwr_offer_707_workflow URL=stg BROWSER=edge LOG_LEVEL=info SELENIUM_BROWSER=MicrosoftEdge SELENIUM_VERSION=latest SELENIUM_PLATFORM='Windows 10' TUNNEL_IDENTIFIER=kaushal WINDOW_SIZE=1920x1080 LOG_LEVEL=info
+
 web_apps_dev: --tags @bvt_new_order USR=default PW=pass111 URL=tcarney-win7-3.corp.stamps.com --guess BROWSER=ff MAX_WINDOW=false
 eli_dev: --tags @mail_bvt_stamps --guess JENKINS=false WEB_APP=mail URL=stg BROWSER=ff USR=stgld1uw4sroe7 PW=pass111 PRINTER=factory
 ray_dev: --tags @rates_parcel_select_ground --guess JENKINS=false URL=stg BROWSER=ff USR=default PW=pass111

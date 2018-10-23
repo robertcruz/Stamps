@@ -39,7 +39,7 @@ module SdcCore
   end
 
   class SQLServerClient
-    #require 'tiny_tds'
+    require 'tiny_tds'
 
     attr_reader :host, :database, :username, :password, :port, :azure, :connection
 

@@ -230,6 +230,10 @@ Feature: Stamps WebReg: Membership Page
     Then WL: expect membership page terms and conditions modal is present
     Then WL: click membership page terms & conditions modal x button
 
+    Then WL: set membership page credit card number to 5417122242000949
+    Then WL: click membership page submit button
+    Then WL: expect membership page credit card number tooltip to be Stamps.com was unable to complete your registration because your payment method failed verification. Please correct your payment information.
+
   @sdcwr_membership_page_addr_validation
   Scenario: Membership Page Address Validation
     Then WL: navigates to default registration page for stamps with the following offer id 721
@@ -238,6 +242,28 @@ Feature: Stamps WebReg: Membership Page
     Then WL: set profile page promo code to empty
     Then WL: click profile page continue button
     Then WL: set membership page default values
+
+    #Exact Address not Found
+    Then WL: set membership page address to 5211 Pacific Concourse Dr
+    Then WL: set membership page city to Los Angeles
+    Then WL: select membership page state CA
+    Then WL: set membership page zip to 90045
+    Then WL: click membership page submit button
+    Then WL: expect membership page exact addr modal header to be Exact address not found
+    Then WL: expect membership page exact addr modal paragraph to be
+    """
+    The USPS address standardization system could not find your exact address. Select an address from the list below that best matches it:
+    """
+    Then WL: select membership page exact addr modal radio button index 2
+    Then WL: click modal continue button
+    Then WL: set username taken username to an existing username from db
+    Then WL: click username taken continue button
+    Then WL: click membership page standardized addr modal x button
+    Then pause for 1 second
+    Then WL: expect membership page address is 5211 Pacific Concourse Dr Apt 1102
+    Then WL: expect membership page city is Los Angeles
+    Then WL: expect membership page state is CA
+    Then WL: expect membership page zip is 90045-6908
 
     #Autocomplete Profile Address
     Then pause for 1 second
@@ -277,6 +303,17 @@ Feature: Stamps WebReg: Membership Page
     Then WL: expect membership page city is Arroyo Grande
     Then WL: expect membership page state is CA
     Then WL: expect membership page zip is 93420
+
+    # perfect address match
+    Then WL: set membership page address to 610 Lairport St, El Segundo, CA
+    Then WL: click membership page address
+
+    Then WL: select membership page address autocomplete index count to be 1
+    Then WL: select membership page address autocomplete index 1
+    Then WL: expect membership page address is 610 Lairport St
+    Then WL: expect membership page city is El Segundo
+    Then WL: expect membership page state is CA
+    Then WL: expect membership page zip is 90245
 
     #Autocomplete Billing Address
     Then WL: uncheck membership page billing address same as mailing address
@@ -354,27 +391,6 @@ Feature: Stamps WebReg: Membership Page
     """
     Then WL: click modal x button
 
-    #Exact Address not Found
-    Then WL: set membership page address to 5211 Pacific Concourse Dr
-    Then WL: set membership page city to Los Angeles
-    Then WL: select membership page state CA
-    Then WL: set membership page zip to 90045
-    Then WL: click membership page submit button
-    Then WL: expect membership page exact addr modal header to be Exact address not found
-    Then WL: expect membership page exact addr modal paragraph to be
-    """
-    The USPS address standardization system could not find your exact address. Select an address from the list below that best matches it:
-    """
-    Then WL: select membership page exact addr modal radio button index 2
-    Then WL: click modal continue button
-    Then WL: set username taken username to an existing username from db
-    Then WL: click username taken continue button
-    Then WL: click membership page standardized addr modal x button
-    Then WL: expect membership page address is 5211 Pacific Concourse Dr Apt 1102
-    Then WL: expect membership page city is Los Angeles
-    Then WL: expect membership page state is CA
-    Then WL: expect membership page zip is 90045-6908
-
     #Standardize Address Modal
     Then WL: set membership page address to PO Box 2951 US-41
     Then WL: set membership page city to Inverness
@@ -426,7 +442,6 @@ Feature: Stamps WebReg: Membership Page
     Then WL: click membership page submit button
 
     Then WL: expect username taken header to be Username Taken
-
 
   @sdcwr_membership_page_username_taken_validation
   Scenario: Membership Page Username Taken Validation

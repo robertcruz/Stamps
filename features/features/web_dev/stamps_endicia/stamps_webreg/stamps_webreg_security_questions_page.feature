@@ -5,6 +5,7 @@ Feature: Stamps WebReg: Security Question Workflow
 
   @sdcwr_security_question_page_validation
   Scenario: Security Question Page Validation
+
     #Security Question in Profile page
     Then WL: navigates to default registration page for stamps with the following offer id 350
     Then WL: set profile page default values

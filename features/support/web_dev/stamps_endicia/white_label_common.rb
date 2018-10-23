@@ -68,7 +68,8 @@ module WhiteLabel
     page_objects(:second_security_question, index: 1) {{xpath: '//div[contains(@class, "secretQuestion")]/button'}}
     page_objects(:second_security_question_help_block,  index: 0) { {xpath: '//*[@id="secretquestions"]/div/div/div/span'} }
     text_field(:second_secret_answer, tag: :text_field, required: true) { { id: 'secretAnswer2' } }
-    page_objects(:second_security_answer_help_block,  index: 0) { {xpath: '//*[@id="secretquestions"]/div/div/div/span'} }
+    page_objects(:second_security_answer_help_block_pro_page,  index: 0) { {xpath: '//*[@id="secretquestions"]/div/div/div/span'} }
+    page_objects(:second_security_answer_help_block,  index: 3) { {xpath: '//*[@id="newsecretquestions"]/div/div/div/div/div/span'} }
     page_objects(:sq_page_sq_help_block) { {xpath: '//div[@class="form-group has-error"]/span'} }
 
 
@@ -163,7 +164,7 @@ module WhiteLabel
       "select  offer_pricing_plans.OfferID, offer_pricing_plans.PlanID, pricing_plans.SKU, pricing_plans.MonthlyBaseFee
        from [dbo].[smt_pricingplans] as pricing_plans
        inner join  [dbo].[smt_OfferPricingPlans] as offer_pricing_plans on  offer_pricing_plans.PlanID = pricing_plans.PlanID
-       where offer_pricing_plans.OfferID = #{offer_id} and pricing_plans.SKU like '%#{sku}%'")
+       where offer_pricing_plans.OfferID = #{offer_id} and pricing_plans.SKU = '#{sku}'")
 
       data.each do |item|
         return item['MonthlyBaseFee']
