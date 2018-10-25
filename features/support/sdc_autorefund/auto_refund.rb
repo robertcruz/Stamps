@@ -6,6 +6,8 @@ module SdcAutoRefund
     page_object(:terms_conditions) { { xpath: '' } }
     page_object(:update_label_status) { { xpath: '//*[text()="Update Label Status"]' } }
     page_object(:success_msg) { { xpath: '//*[text()="Thank you! Your label status has been updated."]' } }
+    page_objects(:not_shipped_all) {{ xpath: '' }}
+    page_objects(:shipped_all) {{ xpath: '' }}
 
     def not_shipped(num)
       page_object(:ns_chooser) { { xpath: "()[#{num}]" } }
@@ -20,5 +22,24 @@ module SdcAutoRefund
       page_object(:s_verify) { { xpath: "()[#{num}]" } }
       chooser(:radio, :s_chooser, :s_verify, :class, :checked)
     end
+
+    # def row
+    #   Row.new
+    # end
+
   end
+
+  # class Row < SdcPage
+  #   def not_shipped(num)
+  #
+  #   end
+  #
+  #   def shipped(num)
+  #
+  #   end
+  #
+  #   def tracking(num)
+  #
+  #   end
+  # end
 end

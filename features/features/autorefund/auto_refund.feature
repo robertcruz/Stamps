@@ -3,7 +3,7 @@ Feature: Auto Refund UI test
   Background:
     Given Start test driver
 
-  @auto_refund
+  @refund_assist
   Scenario: WEBAPPS-11739 New Auto-Refund UI
     Then sign-in to mail
     Then navigate to auto refund page

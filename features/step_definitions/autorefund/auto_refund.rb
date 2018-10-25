@@ -58,6 +58,10 @@ end
 
 Then /^expect not shipped for all rows on auto refund selected$/ do
   #not implemented
+  not_shipped_all = SdcAutoRefund.not_shipped_all
+  not_shipped_all.each do |not_shipped|
+    expect(not_shipped.selected?).to be_truthy
+  end
 end
 
 
