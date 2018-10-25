@@ -121,7 +121,7 @@ Feature:  Contacts BVT - Contacts Filter Panel
     Then on left navigation expect count of new costcode added is 0
     Then in contacts grid check row 1
     Then click contacts toolbar cost codes dropdown
-    Then on cost codes dropdown menu select Change Cost Code
+    Then on cost codes dropdown menu select Change Cost Code WEBAPPAUTO-120
     Then set cost code value in the change costcode pop up box to new costcode added
     Then click on cost code save button
     Then expect value of Cost Code in contacts grid is correct?
@@ -136,6 +136,7 @@ Feature:  Contacts BVT - Contacts Filter Panel
     #Selected filter - Empty State
     Then click on selected filter of contacts left navigation panel
     Then expect empty state message of selected contacts is displayed on the contacts grid
+    Then expect contacts grid message for selected contact is There are no contacts selected.
     Then click on all contacts filter of contacts left navigation panel
     #Selected filter -counts
     Then in contacts grid check row 1

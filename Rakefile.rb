@@ -1822,8 +1822,8 @@ Cucumber::Rake::Task.new(:rules_domestic) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
-Cucumber::Rake::Task.new(:bvt) do |t|
-  t.profile = 'bvt'
+Cucumber::Rake::Task.new(:old) do |t|
+  t.profile = 'old'
   t.cucumber_opts = "-p cuke_reports"
 end
 
