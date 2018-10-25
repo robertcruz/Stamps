@@ -1,7 +1,7 @@
 module SdcReports
   class Date < SdcPage
-    page_object(:link) { { xpath: '' } }
-    page_object(:tooltip) { { xpath: '' } }
+    page_object(:link) { { xpath: '//*[contains(text(), "Date:")]' } }
+    page_object(:tooltip) { { xpath: '//b[contains(text(), "Date Range")]' } }
     page_object(:all) { { xpath: '//*[text()="All"]' } }
     page_object(:custom_date_range) { { xpath: '//*[text()="Custom Date Range"]' } }
     page_object(:month_to_date) { { xpath: '//*[text()="Month to Date"]' } }
@@ -14,11 +14,57 @@ module SdcReports
     page_object(:past_90_days) { { xpath: '//*[text()="Past 90 days"]' } }
 
     def from
-      #datepickers
+      DateFrom.new
     end
 
     def to
-      #datepickers
+      DateTo.new
+    end
+  end
+
+  class DateFrom < SdcPage
+    page_object(:text_field, tag: :text_field) { { xpath: '(//input[contains(@id, "datefield")])[1]' } }
+    page_object(:drop_down) { { xpath: '(//*[contains(@class, "x-form-date-trigger")])[1]' } }
+
+    def datepicker
+      ShipDateDatepicker.new
+    end
+  end
+
+  class DateTo < SdcPage
+    page_object(:text_field, tag: :text_field) { { xpath: '(//input[contains(@id, "datefield")])[2]' } }
+    page_object(:drop_down) { { xpath: '(//*[contains(@class, "x-form-date-trigger")])[2]' } }
+
+    def datepicker
+      ShipDateDatepicker.new
+    end
+  end
+
+  class DateDatepicker < SdcPage
+    page_object(:head_link) { { xpath: '//*[@class="x-datepicker-header"]//span[contains(@id, "btnWrap")]' } }
+    page_object(:today) { { xpath: '//*[contains(@class, "x-datepicker-footer")]//*[contains(@id, "btnWrap")]' } }
+
+    def selection_day(day)
+      page_object(:day) { { xpath: "//td[contains(@class, 'x-datepicker-active')]/*[text()='#{day}']/.." } }
+    end
+
+    def month_picker
+      @month_year ||= DateMonthPicker.new
+    end
+  end
+
+  class DateMonthPicker < SdcPage
+    page_object(:ok) { { xpath: '//*[@class="x-monthpicker-buttons"]//*[text()="OK"]' } }
+    page_object(:cancel) { { xpath: '//*[@class="x-monthpicker-buttons"]//*[text()="Cancel"]' } }
+    page_object(:year_prev) { { xpath: '//*[contains(@class,"x-monthpicker-yearnav-prev")]' } }
+    page_object(:year_next) { { xpath: '//*[contains(@class,"x-monthpicker-yearnav-next")]' } }
+
+    def selection_month(month)
+      page_object(:month) { { xpath: "//a[text()='#{month}']" } }
+    end
+
+    def selection_year(year)
+      page_object(:year) { { xpath: "//*[contains(@class, 'x-monthpicker-year')]//a[text()='#{year}']" } }
     end
   end
 
