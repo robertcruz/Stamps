@@ -20,9 +20,9 @@ module SdcContacts
 
     def page_arrow_disabled(arrow_name)
       xpath="//*[contains(@class,'page-#{arrow_name}')]/ancestor::a[contains(@class,'x-toolbar-item')]"
-      item=page_object(:parent_item){{xpath: xpath}}
-      class_value =  item.attribute_value("class")
-      class_value.include?("disabled")
+      item=page_object(:parent_item){{xpath: xpath}} #todo-Aloha this method should only return this page object
+      class_value =  item.attribute_value("class") #todo-Aloha move this API call to step definition
+      class_value.include?("disabled") #todo-Aloha move this API call to step definition
     end
 
     end
