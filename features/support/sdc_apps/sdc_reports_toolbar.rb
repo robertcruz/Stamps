@@ -175,5 +175,4 @@ module SdcReports
       end
     end
   end
-
 end
