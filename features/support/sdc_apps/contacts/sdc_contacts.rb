@@ -1,8 +1,11 @@
 module SdcContacts
-
   class << self
     def contact_details
       ContactDetails::Panel.new
+    end
+
+    def multi_contact_details
+      MultiContactDetails::Panel.new
     end
 
     def toolbar
@@ -20,7 +23,5 @@ module SdcContacts
     def modals
       Modals
     end
-
   end
-
 end
