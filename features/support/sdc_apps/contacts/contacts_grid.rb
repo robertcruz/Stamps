@@ -1,6 +1,6 @@
 module SdcContacts
   module Grid
-    class ContactsGridColumnBase < SdcPage
+    class GridColumnBase < SdcPage
       @@column_number = {}
 
       def self.set(property, value)
@@ -38,37 +38,39 @@ module SdcContacts
         }
       end
 
-      def contacts_grid_container
+      def grid_container
         '//div[contains(@class,"x-grid-inner-normal")]//div[@class="x-grid-item-container"]'
       end
 
 
-      def contacts_column_xpath(column)
+      def column_xpath(column)
         column = column_names[column] if column.class.eql?(Symbol)
         "*//span[text()='#{column}']"
       end
 
-      def contacts_header_element(column)
+      def header_element(column)
         if column.eql? :checkbox
-          xpath = '*//div[contains(@class, "x-column-header-checkbox")]'
-          page_object(:checkbox_header) { { xpath: xpath } }
-          #sdc_param(:chooser_xpath) { '//*[@id="sdc-mainpanel-calculatepostageradio-displayEl"]' }
-
+          #chooser
           chooser_xpath = "//div[contains(@class,'x-column-header-checkbox')]//div[@class= 'x-column-header-text']"
           chooser_name = "grid_chooser"
           page_object(chooser_name) { { xpath: chooser_xpath } }
+          #Verify
           verify_xpath = "//div[contains(@class, 'x-column-header-checkbox')]"
           verify_name = "grid_verify"
           page_object(verify_name) { { xpath: verify_xpath } }
+          #checkbox Object
+          xpath = '*//div[contains(@class, "x-column-header-checkbox")]'
+          page_object(:checkbox_header) { { xpath: xpath } }
           grid_checkbox_name = "grid_checkbox"
           SdcPage.chooser(grid_checkbox_name, chooser_name, verify_name, :class, 'selected')
           instance_eval(grid_checkbox_name)
 
         else
-          xpath = contacts_column_xpath(column)
+          xpath = column_xpath(column)
           page_object(:header_element) { { xpath: xpath } }
         end
       end
+
       def header_element_trigger_xpath(column)
         column = column_names[column] if column.class.eql?(Symbol)
         "*//span[text()='#{column}']/following::div[1]"
@@ -102,18 +104,13 @@ module SdcContacts
 
       end
 
-      def contacts_scroll_to(column)
-        field = contacts_header_element(column)
+      def scroll_to(column)
+        field = header_element(column)
         field.scroll_into_view
       end
 
-      #def text_for_id(column, order_id)
-      # row = row_num(order_id)
-      #text_at(column, row)
-      #end
-
       def count
-        xpath = "#{contacts_grid_container}//table"
+        xpath = "#{grid_container}//table"
         grid_row_ct = page_object(:contacts_grid_row_ct) { { xpath: xpath } }
         begin
           ct = grid_row_ct.size.to_i
@@ -130,9 +127,9 @@ module SdcContacts
       end
 
       def grid_message
-        message = page_object(:empty_grid_message) { {xpath: '//*[@class="x-grid-empty"]'} }
-        message.text_value
+        page_object(:grid_message) { {xpath: '//*[@class="x-grid-empty"]'} }
       end
+
       def text_at(column, row)
         contacts_scroll_to(column)
         element = element_at_row(column, row)
@@ -148,17 +145,12 @@ module SdcContacts
         element
       end
 
-      # def contacts_element_for_id(column,order_id)
-      #row = contacts_row_num(order_id)
-      #contacts_element_at_row(column, row)
-      # end
-
-      def contacts_grid_field_column_name(column, row)
-        col = contacts_column_number(column)
+      def grid_field_column_name(column, row)
+        col = column_number(column)
         text_at(col, row)
       end
 
-      def contacts_column_number(name)
+      def column_number(name)
         col_num = get(name)
         if col_num
           return col_num
@@ -177,7 +169,7 @@ module SdcContacts
             set(key, index + 1)
 
             if key.eql?(name)
-              contacts_scroll_to(name)
+              scroll_to(name)
               col_num = get(name)
               return col_num
             end
@@ -187,13 +179,13 @@ module SdcContacts
         raise ArgumentError, error_message
       end
 
-      def contacts_row_num(order_id)
-        scroll_to(:order_id)
-        col_num = contacts_column_number(:order_id)
-        xpath = "#{contacts_grid_container}//tbody//td[#{col_num}]//div"
+      def contacts_row_num(name)
+        scroll_to(:name)
+        col_num = column_number(:name)
+        xpath = "#{grid_container}//tbody//td[#{col_num}]//div"
         divs = page_objects(:row_number_divs) { { xpath: xpath } }
         divs.each_with_index do |field, index|
-          return index + 1 if field.text.include?(order_id)
+          return index + 1 if field.text.include?(name)
         end
 
         raise ArgumentError, "Cannot locate Order ID #{order_id}"
@@ -236,19 +228,13 @@ module SdcContacts
       end
     end
 
-    class SdcContactsGridCheckBox < ContactsGridColumnBase
-      #todo-Aloha refactor name I don't want to see SdcContacts or Contacts in front of class name
-      #sdc_param(:chooser_xpath) { '//*[@id="sdc-mainpanel-calculatepostageradio-displayEl"]' }
+    class GridCheckBox < GridColumnBase
       page_object(:chooser) { { xpath: '//div[contains(@class, "x-column-header-text")]//span' } }
       page_object(:verify) { { xpath: '//div[contains(@class, "x-column-header-text")]' } }
       SdcPage.chooser(:checkbox_header, :chooser, :verify, :class, 'checker-on')
 
-      def contacts_scroll_into_view
-        contacts_scroll_to(:checkbox)
-      end
-
-      def contacts_checkbox_row(row)
-        #contacts_scroll_into_view
+      def checkbox_row(row)
+        scroll_to(:checkbox)
         chooser_xpath = "//table[#{row}]//div[@class='x-grid-row-checker']"
         chooser_name = "grid_chooser_#{row}"
         page_object(chooser_name) { { xpath: chooser_xpath } }
@@ -261,12 +247,12 @@ module SdcContacts
       end
     end
 
-    class SdcContactsGridColumn < ContactsGridColumnBase #todo-Aloha refactor name I don't want to see SdcContacts or Contacts in front of class name
+    class GridColumn < GridColumnBase #todo-Aloha refactor name I don't want to see SdcContacts or Contacts in front of class name
       def initialize(column)
         @column = column
       end
 
-      def contacts_header_text
+      def header_text
         element = contacts_scroll_into_view
         element.text_value
       end
@@ -276,40 +262,32 @@ module SdcContacts
         element.present?
       end
 
-      def contacts_scroll_into_view
-        contacts_scroll_to(@column)
+      def scroll_into_view
+        scroll_to(@column)
       end
 
-      def contacts_text_at_row(row)
+      def text_at_row(row)
         text_at(@column, row)
       end
 
-      #def data(order_id)
-      #text_for_id(@column, order_id)
-      #end
-
-      def contacts_element(row)
-        contacts_element_at_row(@column, row)
+       def element(row)
+        element_at_row(@column, row)
       end
 
-      #def element_for_id(order_id)
-      #super(@column, order_id)
-      #end
-
-      def contacts_sort_ascending
+      def sort_ascending
         sort_order(@column, :sort_ascending)
       end
 
-      def contacts_sort_descending
+      def sort_descending
         sort_order(@column, :sort_descending)
       end
     end
 
     class << self
       # todo-Rob this column method will be removed. I need to see how it's being used first. all column calls should be done through grid_column(column)
-      def column
-        ContactsGridColumnBase.new
-      end
+      # def column
+      #   ContactsGridColumnBase.new
+      # end
 
       def body
         xpath = '//div[starts-with(@id, "contactsGrid-")][contains(@id, "-normal-body")]'
@@ -322,15 +300,15 @@ module SdcContacts
       def grid_column(column)
         body.wait_until_present(timeout: 15)
 
-        unless ContactsGridColumnBase.contacts_column_names.keys.include? column
+        unless GridColumnBase.contacts_column_names.keys.include? column
           raise ArgumentError, "Invalid grid column: #{column}"
         end
 
         case column
         when :checkbox
-          SdcContactsGridCheckBox.new
+          GridCheckBox.new
         else
-          SdcContactsGridColumn.new(column)
+          GridColumn.new(column)
         end
       end
     end

@@ -1,6 +1,7 @@
 module SdcContacts
+  module ContactsPagination
 
-  class ContactsPagination < SdcPage
+    class Pagination < SdcPage
     page_object(:perpage_drop_down) { { xpath: '//*[@name="perpage"]/following::div[contains(@class,"arrow-trigger")]' } }
     text_field(:perpage_textbox, tag: :text_field) { { xpath: '//*[@name="perpage"]'} }
     page_object(:page_first, required: true, timeout: 20) { { xpath: '//*[contains(@class,"page-first")]'}}
@@ -24,12 +25,8 @@ module SdcContacts
       class_value.include?("disabled")
     end
 
-  end
-
-  class << self
-    def contacts_pagination
-      ContactsPagination.new
     end
+
   end
 
 end

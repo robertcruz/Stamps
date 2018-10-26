@@ -1,10 +1,10 @@
 module SdcContacts
   class << self
-    def contact_details
+    def details
       ContactDetails::Panel.new
     end
 
-    def multi_contact_details
+    def multi_details
       MultiContactDetails::Panel.new
     end
 
@@ -23,5 +23,10 @@ module SdcContacts
     def modals
       Modals
     end
+
+    def pagination
+      ContactsPagination::Pagination.new
+    end
+
   end
 end
