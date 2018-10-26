@@ -331,10 +331,14 @@ module TestSession
           @driver.window.resize_to(width, height)
           @driver.window.move_to(0, 0)
         rescue Exception
-          @driver.window.maximize
+          #ignore
         end
       else
-        @driver.window.maximize
+        begin
+          @driver.window.maximize
+        rescue
+          #ignore
+        end
       end
 
       @driver
