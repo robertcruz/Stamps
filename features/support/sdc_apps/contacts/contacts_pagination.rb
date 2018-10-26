@@ -24,9 +24,6 @@ module SdcContacts
       class_value =  item.attribute_value("class") #todo-Aloha move this API call to step definition
       class_value.include?("disabled") #todo-Aloha move this API call to step definition
     end
-
     end
-
   end
-
 end
