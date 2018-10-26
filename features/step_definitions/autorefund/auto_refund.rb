@@ -1,18 +1,18 @@
 
 Then /^navigate to auto refund page$/ do
-  env = case SdcEnv.env
+  env = case TestSession.env.url
           when :qacc
             'ext.qacc'
           when :qasc
             'ext.qasc'
           when :stg
-            '.testing'
+            '.staging'
           when :prod
             ''
           else
             # ignore
         end
-  step "go to url https://print#{env}.stamps.com/PostageTools/RefundEligibilityReport.aspx"
+  step "go to url https://or#{env}.stamps.com/PostageTools/RefundEligibilityReport.aspx"
 end
 
 Then /^wait while auto refund page ready$/ do

@@ -6,6 +6,7 @@ Feature: Auto Refund UI test
   @refund_assist
   Scenario: WEBAPPS-11739 New Auto-Refund UI
     Then sign-in to mail
+    Then navigate to History
     Then navigate to auto refund page
     Then expect title on auto refund present
     Then expect terms and conditions link on auto refund present

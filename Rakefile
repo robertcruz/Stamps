@@ -4091,3 +4091,7 @@ Cucumber::Rake::Task.new(:history_toolbar) do |t|
   t.profile = 'history_toolbar'
   t.cucumber_opts = "-p cuke_reports"
 end
+Cucumber::Rake::Task.new(:refund_assist) do |t|
+  t.profile = 'refund_assist'
+  t.cucumber_opts = "-p cuke_reports"
+end
