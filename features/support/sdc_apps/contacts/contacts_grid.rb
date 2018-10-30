@@ -48,7 +48,7 @@ module SdcContacts
         "*//span[text()='#{column}']"
       end
 
-      def header_element(column)
+      def contacts_header_element(column)
         if column.eql? :checkbox
           #chooser
           chooser_xpath = "//div[contains(@class,'x-column-header-checkbox')]//div[@class= 'x-column-header-text']"
@@ -62,7 +62,7 @@ module SdcContacts
           xpath = '*//div[contains(@class, "x-column-header-checkbox")]'
           page_object(:checkbox_header) { { xpath: xpath } }
           grid_checkbox_name = "grid_checkbox"
-          SdcPage.chooser(grid_checkbox_name, chooser_name, verify_name, :class, 'selected')
+          SdcPage.chooser(grid_checkbox_name, chooser_name, verify_name, :class, 'checker-on')
           instance_eval(grid_checkbox_name)
 
         else
@@ -105,7 +105,7 @@ module SdcContacts
       end
 
       def scroll_to(column)
-        field = header_element(column)
+        field = contacts_header_element(column)
         field.scroll_into_view
       end
 
@@ -131,14 +131,14 @@ module SdcContacts
       end
 
       def text_at(column, row)
-        contacts_scroll_to(column)
+        scroll_to(column)
         element = element_at_row(column, row)
         element.text_value
       end
 
       def element_at_row(column, row)
-        column_num = contacts_column_number(column).to_s
-        xpath = "#{contacts_grid_container}//table[#{row.to_s}]//tbody//td[#{column_num}]//div"
+        column_num = column_number(column).to_s
+        xpath = "#{grid_container}//table[#{row.to_s}]//tbody//td[#{column_num}]//div"
         coordinates = "col#{column}xrow#{row}"
         element = page_object(coordinates.to_sym) { { xpath: xpath } }
         element.scroll_into_view
@@ -179,7 +179,7 @@ module SdcContacts
         raise ArgumentError, error_message
       end
 
-      def contacts_row_num(name)
+      def row_num(name)
         scroll_to(:name)
         col_num = column_number(:name)
         xpath = "#{grid_container}//tbody//td[#{col_num}]//div"
@@ -238,7 +238,7 @@ module SdcContacts
         chooser_xpath = "//table[#{row}]//div[@class='x-grid-row-checker']"
         chooser_name = "grid_chooser_#{row}"
         page_object(chooser_name) { { xpath: chooser_xpath } }
-        verify_xpath = "#{contacts_grid_container}//table[#{row}]"
+        verify_xpath = "#{grid_container}//table[#{row}]"
         verify_name = "grid_verify_#{row}"
         page_object(verify_name) { { xpath: verify_xpath } }
         grid_checkbox_name = "grid_checkbox_#{row}"
@@ -253,12 +253,12 @@ module SdcContacts
       end
 
       def header_text
-        element = contacts_scroll_into_view
+        element = scroll_into_view
         element.text_value
       end
 
       def present?
-        element = contacts_scroll_into_view
+        element = scroll_into_view
         element.present?
       end
 
@@ -285,9 +285,9 @@ module SdcContacts
 
     class << self
       # todo-Rob this column method will be removed. I need to see how it's being used first. all column calls should be done through grid_column(column)
-      # def column
-      #   ContactsGridColumnBase.new
-      # end
+      def column
+        GridColumnBase.new
+      end
 
       def body
         xpath = '//div[starts-with(@id, "contactsGrid-")][contains(@id, "-normal-body")]'
