@@ -1,7 +1,7 @@
 module SdcContacts
-  module FilterPanel
+  module ContactsFilterPanel
 
-    class ContactsFilter < SdcPage
+    class Filter < SdcPage
       page_object(:left_nav){{xpath: '//*[@id="left_navigation_items"]'}}
       text_field(:search_bar, tag: :text_field) { {xpath: '//*[@placeholder="Search Contacts"]'} }
       page_object(:search_icon) { {xpath: '//*[contains(@class, "search-trigger-grey")]'} }
@@ -48,6 +48,8 @@ module SdcContacts
       end
 
       def group(value,row)
+
+        xpath_widget= "(//*[contains(@class, 'groups-filters')]//table[@class='sdc-badgebutton x-box-item sdc-badgebutton-default']//tr/td[2]/div[@class='table-cell-inner sdc-badgebutton-widget'])[#{row}]"
         xpath_edit="#{xpath_widget}/a[@class='sdc-badge-preset-btn sdc-icon-pencil']"
         #edit = page_object(:group_edit, required: true, timeout: 10){ { xpath: xpath_edit}}
 
@@ -59,7 +61,6 @@ module SdcContacts
           xpath_label = "(//*[contains(@class, 'groups-filters')]//table[@class='sdc-badgebutton x-box-item sdc-badgebutton-default']//tr/td[1]/div[@class='table-cell-inner sdc-badgebutton-text'])[#{row}]"
           page_object(:name, required: true, timeout: 10){ { xpath: xpath_label }}
         when 'count'
-          xpath_widget= "(//*[contains(@class, 'groups-filters')]//table[@class='sdc-badgebutton x-box-item sdc-badgebutton-default']//tr/td[2]/div[@class='table-cell-inner sdc-badgebutton-widget'])[#{row}]"
           xpath_count ="#{xpath_widget}/div"
           page_object(:count, required: true, timeout: 10){ { xpath: xpath_count}}
         end
@@ -68,11 +69,8 @@ module SdcContacts
     end
 
     class CostCodes <SdcPage
-      #page_object(:cost_codes_expand_button,required: true, timeout: 45 ) { { xpath: '//*[@id="left_nav_costcodes_fieldset"]//*[@class="x-tool-img x-tool-expand-bottom"]'} } - Id changed
       page_object(:cost_codes_results_count) { {xpath: '(//*[@id="left_nav_costcodes_fieldset"]//div[@class="sdc-badge"])'} }
       page_object(:cost_codes_results_text) { {xpath: '(//*[@id="left_nav_costcodes_fieldset"]//div[@class="table-cell-inner sdc-badgebutton-text"])'} }
-      #page_objects(:total_costcodes) { {xpath: '(//*[@id="left_nav_costcodes_fieldset-targetEl"]//table[@class="sdc-badgebutton x-box-item sdc-badgebutton-default"])'} }
-      #chooser_xpath_value = "//*[@id='left_nav_costcodes_fieldset-targetEl']//table[@class='sdc-badgebutton x-box-item sdc-badgebutton-default']"
       page_object(:cost_codes) { {xpath: '//*[contains(@class, "cost-codes-filters")]'}}
       page_object(:cost_codes_expand_button,required: true, timeout: 45 ) { {   xpath: '//*[contains(@class, "cost-codes-filters")]//img[contains(@class, "-expand-bottom")]'} }
       page_object(:cost_codes_collapse_button,required: true, timeout: 45 ) { { xpath: '//*[contains(@class, "cost-codes-filters")]//img[contains(@class, "-collapse-top")]'} }
@@ -101,7 +99,7 @@ module SdcContacts
 
     class << self
       def filter_panel
-        ContactsFilter.new
+        Filter.new
       end
 
       def search_results
@@ -116,11 +114,11 @@ module SdcContacts
         AllContacts.new
       end
 
-      def cost_code
+      def cost_codes
         CostCodes.new
       end
 
-      def group
+      def groups
         Groups.new
       end
 
