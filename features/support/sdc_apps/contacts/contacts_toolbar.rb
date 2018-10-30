@@ -13,6 +13,18 @@ module SdcContacts
       page_object(:feedback) { {xpath: '//*[contains(@class, "sdc-icon-feedback")]'} }
       page_object(:settings) { {xpath: '//*[contains(@class, "sdc-icon-settings")]'} }
 
+      def groups_dropdown
+        GroupsDropdown.new
+      end
+
+      def cost_codes_dropdown
+        CostCodesDropdown.new
+      end
+
+      def toolbar_settings
+        ToolbarSettings.new
+      end
+
     end
 
     class GroupsDropdown< SdcPage
@@ -35,11 +47,11 @@ module SdcContacts
 
       def column_menu_checkbox(column)
         #chooser
-        chooser_xpath = "#{setting_columns_menu_item(column)}/following-sibling::div[1]"
+        chooser_xpath = "#{column_menu(column)}/following-sibling::div[1]"
         chooser_name = "men_item_chooser_name"
         page_object(chooser_name) { { xpath: chooser_xpath } }
         #verify
-        verify_xpath = "#{setting_columns_menu_item(column)}/ancestor::div[contains(@class,'x-menu-item-default')]"
+        verify_xpath = "#{column_menu(column)}/ancestor::div[contains(@class,'x-menu-item-default')]"
         verify_name = "grid_verify_name"
         page_object(verify_name) { { xpath: verify_xpath } }
         #checkbox page object
@@ -55,24 +67,6 @@ module SdcContacts
         class_value.include?("unchecked")
       end
 
-    end
-
-    class << self
-      def toolbar
-        Toolbar.new
-      end
-
-      def groups_dropdown
-        CostCodesDropdown.new
-      end
-
-      def cost_codes_dropdown
-        CostCodesDropdown.new
-      end
-
-      def toolbar_settings
-        ToolbarSettings.new
-      end
     end
 
   end
