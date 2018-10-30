@@ -10,11 +10,11 @@ module SdcContacts
 
     class AddReference < SdcPage
       page_object(:add_reference_window){{xpath: '//*[@id="contacts-ref"]'} }
-      page_object(:title) { {xpath: '//*[text()="Change Reference #"]'} }
-      page_object(:close){ { xpath: '//*[@class="x-tool-img x-tool-close"]'} }
-      page_object(:reference_num, tag: :text_field,  required: true, timeout: 10) { { xpath: '//*[@id="ref-number-inputEl"]' } }
-      page_object(:reference_error, required: true, timeout: 10) { { xpath: '//*[@id="ref-number-errorEl"]//ul'}}
-      page_object(:save_button, tag: :span, required: true, timeout: 45 ) { { xpath: '//span[text()="Save"]'} }
+      page_object(:title) { {xpath: '//*//div[contains(@id,"title-")][text() = "Change Reference #"]'} }
+      page_object(:close){ { xpath: '//div[contains(@id,"title-")][text() = "Change Reference #"]//following::span[contains(@class,"x-btn-icon-")][contains(@class,"-close")]'} }
+      page_object(:reference_num, tag: :text_field,  required: true, timeout: 10) { { xpath: '//*[@name="ref-number"]' } }
+      page_object(:reference_error, required: true, timeout: 10) { { xpath: '//div[contains(@id,"title-")][text() = "Change Reference #"]//following::div[contains(@class,"-error-msg")]'} }
+      page_object(:save_button, tag: :span, required: true, timeout: 45 ) { { xpath: '//div[contains(@id,"title-")][text() = "Change Reference #"]//following::span[text()="Save"]'} }
     end
 
     class ChangeCostCode < SdcPage
@@ -45,15 +45,15 @@ module SdcContacts
         label.text_value
       end
 
-      def add_group
+      def add_groups
         AddGroups.new
       end
 
-      def edit_group
+      def edit_groups
         EditGroups.new
       end
 
-      def delete_group
+      def delete_groups
         DeleteGroups.new
       end
 
@@ -132,21 +132,38 @@ module SdcContacts
       page_object(:no_button, required: true, timeout: 10) { { xpath: '//*[contains(@id,"title-")][text()="Clear Contacts"]/following::span[text()="No"]' } }
     end
 
+    class ContactsImport <SdcPage
+      page_object(:window){{xpath: '//div[@id="iFrameHolderIdParent_header"]'}}
+      page_object(:header){{xpath: '//*//*[contains(@class,"x-window-header-title")]//div[text()="Import Contacts"]'}}
+      page_object(:close_icon){{xpath: '//*[contains(@class,"sdc-icon-mobile-close-light")]'}}
+
+      page_object(:body_iframe){{xpath:'//div[@id="iFrameHolderIdParent-body"]/iframe'}}
+      page_object(:select_file_button){{xpath:'//span(text()="Select a CSV File")'}}
+
+      def file_has_header()
+        page_object(:chooser){{xpath:'xxxxxxxx'}}
+        page_object(:verify){{xpath:'xxxxxxxx'}}
+        checkbox('file_has_header_checkbox',:chooser,:verify,:class,"selected")
+      end
+
+      page_object(:group_drop_down){ { xpath: '//select[@id="mapTemplate"]' } }
+
+      def group_drop_down_option(str)
+        page_object(:group_selected){{xpath:"//select[@id='mapTemplate']/option[contains(text(),'#{str}')]" }}
+      end
+
+      def import_contacts_iframe
+        '//div[@id="iFrameHolderIdParent-body"]/iframe'
+      end
+      #
+      def import_contacts_iframe_elements
+        import_contacts_iframe.span(text: "Select a CSV File")
+        #page_object(:select_file_button){{xpath:'//span(text()="Select a CSV File")'}}
+      end
+
+    end
+
     class << self
-
-      def loading_contacts
-        klass = Class.new(SdcPage) do
-          page_object(:loading) { { xpath: '//*[contains(text(), "Loading contacts...")]' } }
-        end
-        klass.new.loading
-      end
-
-      def verifying_account
-        klass = Class.new(SdcPage) do
-          page_object(:verifying_account) { {xpath: '//*[contains(text(), "Verifying")]'} }
-        end
-        klass.new.verifying_account
-      end
 
       def delete_contact
         DeleteContact.new
@@ -160,12 +177,16 @@ module SdcContacts
         ChangeCostCode.new
       end
 
-      def manage_group
+      def manage_groups
         ManageGroups.new
       end
 
-      def change_group
+      def change_groups
         ChangeGroups.new
+      end
+
+      def import_contacts
+        ContactsImport.new
       end
 
     end
