@@ -2,10 +2,11 @@ module SdcContacts
   module ContactDetails
 
     class ToolBarMenu < SdcPage
-      page_object(:menu_button, required: true, timeout: 10) { { xpath: '//div[@id="contactDetailsPanel_header-innerCt"]//a'}}
-      page_object(:menu_print_postage, required: true, timeout: 10) { { xpath: '//span[contains(@id, "menuitem-")][text()="Print Postage"]'}}
-      page_object(:menu_delete, required: true, timeout: 10) { { xpath: '//span[contains(@id, "menuitem-")][text()="Delete"]'}}
-      page_object(:menu_collapse_panel, required: true, timeout: 10) { { xpath: '//span[contains(@id, "menuitem-")][text()="Collapse Panel"]'}}
+      #page_object(:menu_button, required: true, timeout: 10) { { xpath: '//div[@id="contactDetailsPanel_header-innerCt"]//a'}}
+      page_object(:menu_button, required: true, timeout: 10) { { xpath: '//*[contains(@class,"x-btn-after-title")][1]'}}
+      page_object(:print_postage, required: true, timeout: 10) { { xpath: '//span[contains(@id, "menuitem-")][text()="Print Postage"]'}}
+      page_object(:delete, required: true, timeout: 10) { { xpath: '//span[contains(@id, "menuitem-")][text()="Delete"]'}}
+      page_object(:collapse_panel, required: true, timeout: 10) { { xpath: '//span[contains(@id, "menuitem-")][text()="Collapse Panel"]'}}
     end
 
     class NamePrefix < SdcPage
@@ -39,10 +40,9 @@ module SdcContacts
     end
 
     class Group < SdcPage
-
-      text_field(:text_field, tag: :text_field) { { xpath: '//input[contains(@id, "groupsContactDetailsCmb")]' } }
-      text_field(:text_list, tag: :text_field) { { xpath: '//input[contains(@id, "groupsContactDetailsCmb-itemList")]' } }
-      page_object(:drop_down) { { xpath: '//*[contains(@id, "groupsContactDetailsCmb")][contains(@class, "arrow")]' } }
+      text_field(:text_field, tag: :text_field) { { xpath: '//input[@name="Groups"]' } }
+      page_object(:drop_down) { { xpath: '//input[@name="Groups"]/following::div[contains(@id,"-trigger-picker")]' } }
+      text_field(:text_list, tag: :text_field) { {xpath: '//*[@class="x-tagfield-list"]//li'} }
 
       def selection_group(name: 'selection', value: 'None')
         page_object(name) { { xpath: "//li[text()='#{value}']" } }
@@ -95,7 +95,7 @@ module SdcContacts
       page_object(:error_title,  required: true, timeout: 10){{xpath: '//*[@id="Title-errorEl"]'} } #-Change
 
       #Address Fields
-      page_object(:street_address, required: true, timeout: 20) { { xpath: '//*[@name="StreetAddress"]' } }
+      page_object(:street_address, tag: :textarea, required: true, timeout: 20) { { xpath: '//*[@name="StreetAddress"]' } }
       page_object(:error_street_address, required: true, timeout: 20) { { xpath: '//*[@name="StreetAddress"]//following::div[contains(@class,"x-form-error-msg x-form-invalid-icon")][1]' } }
       page_object(:city, tag: :text_field,  required: true, timeout: 20) { { xpath: '//input[@name="City"]' } }
       page_object(:province, tag: :text_field,  required: true, timeout: 20) { { xpath: '//input[@name="Province"]'} }
@@ -103,8 +103,8 @@ module SdcContacts
 
       #Email
       page_object(:email, tag: :text_field, required: true, timeout: 20){ { xpath: '//input[@name="Email"]'}}
-      page_object(:email_error,  required: true, timeout: 20){{xpath: '//*[@id="Email-errorEl"]//ul'}}
-      page_object(:email_error_message){{xpath: '//div[@id="Email-errorEl"]//li'}}
+      page_object(:email_error, timeout: 20){{xpath: '//input[@name="Email"]/following::div[contains(@id,"errorEl")]'}}
+      page_object(:email_error_message){{xpath: '//*[contains(@id,"errorEl")]//li'}}
 
       #Phone
       page_object(:phone, tag: :text_field,  required: true, timeout: 20) { { xpath: '//input[@name="Phone"]' } }
@@ -141,7 +141,7 @@ module SdcContacts
         State.new
       end
 
-      def clear_aa
+      def clear_contacts
         SdcContacts::Modals::ClearContacts.new
       end
 
