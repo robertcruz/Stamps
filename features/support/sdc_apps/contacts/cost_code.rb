@@ -1,4 +1,4 @@
-module SdcContacts
+module SdcAccountServices
 
   class ContactsAddCostCodes < SdcPage
 
@@ -30,7 +30,7 @@ module SdcContacts
 
   class << self
 
-    def contacts_cost_codes
+    def cost_codes
       ContactsAddCostCodes.new
     end
   end
