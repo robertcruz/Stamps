@@ -158,37 +158,38 @@ Then /^expect name details on contacts grid are updated appropriately for (.*)$/
   end
 end
 
-Then /^expect values of contact added in contacts grid are correct$/ do
-
-  company = TestData.hash[:company]
-  country = TestData.hash[:country]
-  street_address = TestData.hash[:street_address]
-  city = TestData.hash[:city]
-  state = TestData.hash[:state]
-  postal_code = TestData.hash[:postal_code]
-  email = TestData.hash[:email]
-  phone = TestData.hash[:phone]
-  phone_ext = TestData.hash[:phone_ext]
-  reference_number = TestData.hash[:reference_number]
-  cost_code = TestData.hash[:cost_code]
-
-  step "expect value of Name in contacts grid is #{full_name}"
-  step "expect value of Company in contacts grid is #{company}"
-  step "expect value of Country in contacts grid is #{country}"
-  step "expect value of Street Address in contacts grid is #{street_address}"
-  step "expect value of City in contacts grid is #{city}"
-  if country.eql? 'United States'
-    step "expect value of State/Prv in contacts grid is #{state}"
-  else
-    step "expect value of Province in contacts grid is #{state}"
-  end
-  step "expect value of Postal Code in contacts grid is #{postal_code}"
-  step "expect value of Email in contacts grid is #{email}"
-  step "expect value of Phone in contacts grid is #{phone}"
-  step "expect value of Phone Extension in contacts grid is #{phone_ext}"
-  step "expect value of Reference Number in contacts grid is #{reference_number}"
-  step "expect value of Cost Code in contacts grid is #{cost_code}"
-end
+#
+# Then /^expect values of contact added in contacts grid are correct$/ do
+#
+#   company = TestData.hash[:company]
+#   country = TestData.hash[:country]
+#   street_address = TestData.hash[:street_address]
+#   city = TestData.hash[:city]
+#   state = TestData.hash[:state]
+#   postal_code = TestData.hash[:postal_code]
+#   email = TestData.hash[:email]
+#   phone = TestData.hash[:phone]
+#   phone_ext = TestData.hash[:phone_ext]
+#   reference_number = TestData.hash[:reference_number]
+#   cost_code = TestData.hash[:cost_code]
+#
+#   step "expect value of Name in contacts grid is #{full_name}"
+#   step "expect value of Company in contacts grid is #{company}"
+#   step "expect value of Country in contacts grid is #{country}"
+#   step "expect value of Street Address in contacts grid is #{street_address}"
+#   step "expect value of City in contacts grid is #{city}"
+#   if country.eql? 'United States'
+#     step "expect value of State/Prv in contacts grid is #{state}"
+#   else
+#     step "expect value of Province in contacts grid is #{state}"
+#   end
+#   step "expect value of Postal Code in contacts grid is #{postal_code}"
+#   step "expect value of Email in contacts grid is #{email}"
+#   step "expect value of Phone in contacts grid is #{phone}"
+#   step "expect value of Phone Extension in contacts grid is #{phone_ext}"
+#   step "expect value of Reference Number in contacts grid is #{reference_number}"
+#   step "expect value of Cost Code in contacts grid is #{cost_code}"
+# end
 
 #Validate Details in Contacts Grid
 # Then /^expect value of (.*) in contacts grid is (?:correct|(.*))$/ do |col, value|
