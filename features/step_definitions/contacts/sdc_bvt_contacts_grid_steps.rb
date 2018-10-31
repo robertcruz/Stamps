@@ -60,6 +60,24 @@ Then /^expect company in contacts grid is (?:correct|(.*))$/ do |str|
   expect(actual_value.strip).to eql str.strip
 end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Then /^expect name details on contacts grid are updated appropriately for (.*)$/ do |name|
   contacts_grid_body = SdcContacts.grid.body
   contacts_grid_body.safe_wait_until_present(timeout: 60)
