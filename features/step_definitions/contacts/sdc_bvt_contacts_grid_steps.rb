@@ -43,10 +43,12 @@ end
 
 Then /^expect number of visible contacts grid column is (?:correct|(.*))$/ do |count|
   columns = SdcContacts.grid.columns
-  count ||= 19
+  count ||= 20
   actual_count = 0
   columns.each do |column|
-    actual_count += 1 if column.text.size > 3
+    element = SdcElement.new(column)
+    element.scroll_into_view
+    actual_count += 1 if element.text_value.size >= 1
   end
   expect(actual_count).to eql count
 end
