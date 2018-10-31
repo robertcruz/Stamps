@@ -365,6 +365,27 @@ Then /^set print form mail-to country to (.*)$/ do |str|
   expect(text_field.text_value).to eql(str)
 end
 
+Then /^expect print form mail-to country is disabled$/ do
+  mail_to = SdcMail.print_form.mail_to
+  country=mail_to.dom_text_field
+  country.safe_wait_until_present(timeout: 5)
+  country.flash
+  mail_to.dom_text_field.flash
+  p 'enabled'
+  p country.enabled?
+  p 'disabled'
+  p country.disabled?
+
+  expect(country.disabled?).to be(true)
+end
+
+Then /^expect value of print form mail-to country is (.*)/ do |str|
+  mail_to = SdcMail.print_form.mail_to
+  country=mail_to.dom_text_field
+  country.safe_wait_until_present(timeout: 5)
+  expect(country.text_value).to eql(str)
+end
+
 Then /^set print form name to (.*)$/ do |str|
   str = str.casecmp('random').zero? ? TestHelper.rand_full_name : str
   mail_to = SdcMail.print_form.mail_to
