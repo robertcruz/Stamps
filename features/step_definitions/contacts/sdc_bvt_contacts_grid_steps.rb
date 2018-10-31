@@ -34,9 +34,8 @@ Then /^in contacts grid uncheck row (\d+)$/ do |row|
   checkbox.safe_wait_until_present(timeout: 30)
   checkbox.uncheck if checkbox.checked?
   expect(checkbox.checked?).to be(false)
-  #contacts_detail = SdcContacts.contacts_detail
-  #expect(contacts_detail.contacts_detail_panel.present?).to be(false)
 end
+
 Then /^expect number of contacts displayed in the grid is (.*)$/ do |count|
   grid = SdcContacts.grid.column
   expect(grid.count.to_i).to eql(count.to_i)
