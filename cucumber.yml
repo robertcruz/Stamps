@@ -309,6 +309,7 @@ healthcheck: --tags @healthcheck --guess
 authentication: --tags @authentication --guess LOG_LEVEL=info
 customs_form_auto_calculate_weight: --tags @customs_form_auto_calculate_weight --guess
 whats_new: --tags @whats_new --guess
+user_identification_portal: --tags @user_identification_portal --guess
 Registration: --tags @Registration --guess WEB_APP=Registration
 pam: --tags @pam --guess WEB_APP=pam
 registration_pam_orders: --tags @registration_pam_orders --guess WEB_APP=Registration
