@@ -14,8 +14,23 @@ Feature:  Contacts BVT - Contacts ToolBar
     Then in contacts grid uncheck row 1
     Then search contacts from contacts filter panel with name newly added
     Then in contacts grid check row 1
-    Then expect values of contact added in contacts grid are correct
-    Then expect values of contact added in contacts detail panel are correct
+    #Then expect values of contact added in contacts grid are correct
+    #Then expect values of contact added in contacts detail panel are correct
+
+    Then expect name in contacts grid is correct
+    Then expect company in contacts grid is correct
+
+
+
+
+
+
+
+
+
+
+
+
 
   @sdc_contacts_delete_single_from_top_navigation
   Scenario: Delete Contact Top Nav Scenario 1 :Delete a newly added contact from top navigation

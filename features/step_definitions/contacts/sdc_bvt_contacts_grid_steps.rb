@@ -42,6 +42,22 @@ Then /^expect number of contacts displayed in the grid is (.*)$/ do |count|
   expect(grid.count.to_i).to eql(count.to_i)
 end
 
+Then /^expect name in contacts grid is (?:correct|(.*))$/ do |str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  str ||= TestData.hash[:full_name]
+  column = SdcContacts.grid.grid_column(:name)
+  actual_value = column.text_at_row(1)
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect company in contacts grid is (?:correct|(.*))$/ do |str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  str ||= TestData.hash[:company]
+  column = SdcContacts.grid.grid_column(:company)
+  actual_value = column.text_at_row(1)
+  expect(actual_value.strip).to eql str.strip
+end
+
 Then /^expect name details on contacts grid are updated appropriately for (.*)$/ do |name|
   contacts_grid_body = SdcContacts.grid.body
   contacts_grid_body.safe_wait_until_present(timeout: 60)
@@ -114,7 +130,6 @@ end
 
 Then /^expect values of contact added in contacts grid are correct$/ do
 
-  full_name = TestData.hash[:full_name]
   company = TestData.hash[:company]
   country = TestData.hash[:country]
   street_address = TestData.hash[:street_address]
@@ -146,140 +161,144 @@ Then /^expect values of contact added in contacts grid are correct$/ do
 end
 
 #Validate Details in Contacts Grid
-Then /^expect value of (.*) in contacts grid is (.*)$/ do |col,value|
-  contacts_grid_body = SdcContacts.grid.body
-  contacts_grid_body.safe_wait_until_present(timeout: 60)
+# Then /^expect value of (.*) in contacts grid is (?:correct|(.*))$/ do |col, value|
+#   contacts_grid_body = SdcContacts.grid.body
+#   contacts_grid_body.safe_wait_until_present(timeout: 60)
+#
+#   #SdcLogger.info '**Grid**'
+#
+#   new_value = if value.eql?'blank'
+#                 ""
+#               elsif value.eql? 'correct?'
+#                 temp
+#               else
+#                 value
+#               end
+#
+#   actual_value = column.text_at_row(1)
+#
+#   if column.header_text.eql?('Country')
+#     val = actual_value.split('-')
+#     expect(val[1].strip).to eql new_value.strip
+#   elsif column.header_text.eql?('State/Prv') && col.eql?('State/Prv')
+#     us_states = data_for(:us_states, {})
+#     new_value = us_states.key(value)
+#     expect(actual_value.strip).to eql new_value.strip
+#   else
+#     expect(actual_value.strip).to eql new_value.strip
+#   end
+#
+#   SdcLogger.info "given value : #{value}"
+#   SdcLogger.info "modified given value : #{new_value}"
+#   SdcLogger.info "value on Grid :#{actual_value}"
+#
+# end
 
-  #SdcLogger.info '**Grid**'
+#todo-Navya create a new test that validates column names.
+#
+#
 
-  case col
-  when 'Name'
-    column = SdcContacts.grid.grid_column(:name)
-    expect(column).present?
-    expect(column.header_text).to eql('Name')
-
-  when 'Prefix'
-    column = SdcContacts.grid.grid_column(:prefix)
-    expect(column).present?
-    expect(column.header_text).to eql('Prefix')
-
-  when 'First Name'
-    column = SdcContacts.grid.grid_column(:first_name)
-    expect(column).present?
-    expect(column.header_text).to eql('First Name')
-
-  when 'Middle Name'
-    column = SdcContacts.grid.grid_column(:middle)
-    expect(column).present?
-    expect(column.header_text).to eql('Middle')
-
-  when 'Last Name'
-    column = SdcContacts.grid.grid_column(:last_name)
-    expect(column).present?
-    expect(column.header_text).to eql('Last Name')
-
-  when 'Suffix'
-    column = SdcContacts.grid.grid_column(:suffix)
-    expect(column).present?
-    expect(column.header_text).to eql('Suffix')
-
-  when 'Company'
-    column = SdcContacts.grid.grid_column(:company)
-    expect(column).present?
-    expect(column.header_text).to eql('Company')
-
-  when 'Title'
-    column = SdcContacts.grid.grid_column(:title)
-    expect(column).present?
-    expect(column.header_text).to eql('Title')
-
-  when 'Department'
-    column = SdcContacts.grid.grid_column(:department)
-    expect(column).present?
-    expect(column.header_text).to eql('Department')
-
-  when 'Country'
-    column = SdcContacts.grid.grid_column(:country)
-    expect(column).present?
-    expect(column.header_text).to eql('Country')
-
-  when 'Street Address'
-    column = SdcContacts.grid.grid_column(:street_address)
-    expect(column).present?
-    expect(column.header_text).to eql('Street Address')
-
-  when 'City'
-    column = SdcContacts.grid.grid_column(:city)
-    expect(column).present?
-    expect(column.header_text).to eql('City')
-
-  when 'State/Prv'
-    column = SdcContacts.grid.grid_column(:state_prv)
-    expect(column).present?
-    expect(column.header_text).to eql('State/Prv')
-
-  when 'Province'
-    column = SdcContacts.grid.grid_column(:state_prv)
-    expect(column).present?
-    expect(column.header_text).to eql('State/Prv')
-
-  when 'Postal Code'
-    column = SdcContacts.grid.grid_column(:postal_code)
-    expect(column).present?
-    expect(column.header_text).to eql('Postal Code')
-
-  when 'Email'
-    column = SdcContacts.grid.grid_column(:email)
-    expect(column).present?
-    expect(column.header_text).to eql('Email')
-
-  when 'Phone'
-    column = SdcContacts.grid.grid_column(:phone)
-    expect(column).present?
-    expect(column.header_text).to eql('Phone')
-
-  when 'Phone Extension'
-    column = SdcContacts.grid.grid_column(:phone_ext)
-    expect(column).present?
-    expect(column.header_text).to eql('Ext.')
-
-  when 'Reference Number'
-    column = SdcContacts.grid.grid_column(:reference_no)
-    expect(column).present?
-    expect(column.header_text).to eql('Reference #')
-
-  when 'Cost Code'
-    column = SdcContacts.grid.grid_column(:cost_code)
-    expect(column).present?
-    expect(column.header_text).to eql('Cost Code')
-    if value == "correct?"
-      temp ||= TestData.hash[:costcode_val]
-    end
-  end
-
-  new_value = if value.eql?'blank'
-                ""
-              elsif value.eql? 'correct?'
-                temp
-              else
-                value
-              end
-
-  actual_value = column.text_at_row(1)
-
-  if column.header_text.eql?('Country')
-    val = actual_value.split('-')
-    expect(val[1].strip).to eql new_value.strip
-  elsif column.header_text.eql?('State/Prv') && col.eql?('State/Prv')
-    us_states = data_for(:us_states, {})
-    new_value = us_states.key(value)
-    expect(actual_value.strip).to eql new_value.strip
-  else
-    expect(actual_value.strip).to eql new_value.strip
-  end
-
-  SdcLogger.info "given value : #{value}"
-  SdcLogger.info "modified given value : #{new_value}"
-  SdcLogger.info "value on Grid :#{actual_value}"
-
-end
+# case col
+# when 'Name'
+#   column = SdcContacts.grid.grid_column(:name)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Name')
+#
+# when 'Prefix'
+#   column = SdcContacts.grid.grid_column(:prefix)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Prefix')
+#
+# when 'First Name'
+#   column = SdcContacts.grid.grid_column(:first_name)
+#   expect(column).present?
+#   expect(column.header_text).to eql('First Name')
+#
+# when 'Middle Name'
+#   column = SdcContacts.grid.grid_column(:middle)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Middle')
+#
+# when 'Last Name'
+#   column = SdcContacts.grid.grid_column(:last_name)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Last Name')
+#
+# when 'Suffix'
+#   column = SdcContacts.grid.grid_column(:suffix)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Suffix')
+#
+# when 'Company'
+#   column = SdcContacts.grid.grid_column(:company)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Company')
+#
+# when 'Title'
+#   column = SdcContacts.grid.grid_column(:title)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Title')
+#
+# when 'Department'
+#   column = SdcContacts.grid.grid_column(:department)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Department')
+#
+# when 'Country'
+#   column = SdcContacts.grid.grid_column(:country)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Country')
+#
+# when 'Street Address'
+#   column = SdcContacts.grid.grid_column(:street_address)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Street Address')
+#
+# when 'City'
+#   column = SdcContacts.grid.grid_column(:city)
+#   expect(column).present?
+#   expect(column.header_text).to eql('City')
+#
+# when 'State/Prv'
+#   column = SdcContacts.grid.grid_column(:state_prv)
+#   expect(column).present?
+#   expect(column.header_text).to eql('State/Prv')
+#
+# when 'Province'
+#   column = SdcContacts.grid.grid_column(:state_prv)
+#   expect(column).present?
+#   expect(column.header_text).to eql('State/Prv')
+#
+# when 'Postal Code'
+#   column = SdcContacts.grid.grid_column(:postal_code)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Postal Code')
+#
+# when 'Email'
+#   column = SdcContacts.grid.grid_column(:email)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Email')
+#
+# when 'Phone'
+#   column = SdcContacts.grid.grid_column(:phone)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Phone')
+#
+# when 'Phone Extension'
+#   column = SdcContacts.grid.grid_column(:phone_ext)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Ext.')
+#
+# when 'Reference Number'
+#   column = SdcContacts.grid.grid_column(:reference_no)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Reference #')
+#
+# when 'Cost Code'
+#   column = SdcContacts.grid.grid_column(:cost_code)
+#   expect(column).present?
+#   expect(column.header_text).to eql('Cost Code')
+#   if value == "correct?"
+#     temp ||= TestData.hash[:costcode_val]
+#   end
+# end
