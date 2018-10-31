@@ -603,7 +603,7 @@ swwr_create_your_account_page_validation: --tags @swwr_create_your_account_page_
 aloha: --tags @sdc_contacts_pagination URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core004 PW=password1
 #aloha: --tags @sdc_contacts_show_all_columns URL=qacc LOG_LEVEL=debug HEALTHCHECK=false BROWSER=gc MAX_WINDOW=false USR=Tmaheryar PW=password1
 sdc_contacts_delete_multiple_from_top_navigation: --tags @sdc_contacts_delete_multiple_from_top_navigation --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
-sdc_contacts_add_valid_email: --tags @sdc_contacts_add_valid_email  --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_add_valid_invalid_email: --tags @sdc_contacts_add_valid_invalid_email --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
 sdc_contacts_add_invalid_email: --tags @sdc_contacts_add_invalid_email  --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
 sdc_contacts_delete_multiple_from_details_menu: --tags @sdc_contacts_delete_multiple_from_details_menu --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
 sdc_contacts_delete_single_from_details_menu: --tags @sdc_contacts_delete_single_from_details_menu --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
