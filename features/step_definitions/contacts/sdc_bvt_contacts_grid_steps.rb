@@ -45,6 +45,7 @@ end
 Then /^expect name in contacts grid is (?:correct|(.*))$/ do |str|
   SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
   str ||= TestData.hash[:full_name]
+  expect(SdcContacts.grid.columns.size).to eql 20
   column = SdcContacts.grid.grid_column(:name)
   actual_value = column.text_at_row(1)
   expect(actual_value.strip).to eql str.strip
@@ -53,6 +54,7 @@ end
 Then /^expect company in contacts grid is (?:correct|(.*))$/ do |str|
   SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
   str ||= TestData.hash[:company]
+  expect(SdcContacts.grid.columns.size).to eql 20
   column = SdcContacts.grid.grid_column(:company)
   actual_value = column.text_at_row(1)
   expect(actual_value.strip).to eql str.strip

@@ -67,7 +67,11 @@ module SdcContacts
         text_at(column, row)
       end
 
-      def count
+      def columns
+        page_objects(:columns) { { xpath: '//span[@class="x-column-header-text-inner"]' } }
+      end
+
+      def row_count
         xpath = "#{grid_container}//table"
         grid_row_ct = page_object(:grid_row_ct) { { xpath: xpath } }
         begin
@@ -78,7 +82,6 @@ module SdcContacts
         end
         0
       end
-      alias_method :size, :count
 
       def empty?
         size.zero?
@@ -113,8 +116,6 @@ module SdcContacts
         col_num = get(name)
         return col_num if col_num
 
-        xpath = '//span[@class="x-column-header-text-inner"]'
-        columns = page_objects(:columns) { { xpath: xpath } }
         columns.each_with_index do |field, index|
           element = ::SdcElement.new(field)
           element.scroll_into_view
@@ -234,6 +235,14 @@ module SdcContacts
           page_object(:body) { { xpath: xpath } }
         end
         klass.new.body
+      end
+
+      def columns
+        xpath = '//span[@class="x-column-header-text-inner"]'
+        klass = Class.new(SdcPage) do
+          page_objects(:columns) { { xpath: xpath } }
+        end
+        klass.new.columns
       end
 
       def grid_column(column)
