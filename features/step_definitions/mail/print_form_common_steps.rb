@@ -1,11 +1,11 @@
 # encoding: utf-8
 
 
-Then /^[Ss]et Print form Mail-From to (.*)$/ do |str|
+Then /^set print form mail-from to (.*)$/ do |str|
   mail_from = SdcMail.print_form.mail_from
   selection = mail_from.selection(:selection_element, str)
   text = mail_from.text_field.text_value
-  unless text.eql? str
+  unless text.eql?(str)
     mail_from.drop_down.click
     selection.scroll_into_view
     selection.safe_wait_until_present(timeout: 1)

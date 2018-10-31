@@ -32,6 +32,18 @@ Then /^check search contacts grid name (.+)$/ do |str|
   expect(checkbox.checked?).to be(true)
 end
 
+Then /^set search contacts grid name (.+)$/ do |str|
+  search_filter = SdcMail.modals.search_contacts
+  search_filter.search_text.flash
+  search_filter.search_text.set(str)
+end
+
+Then /^click search icon on search contacts modal$/ do
+  search_contact_modal = SdcMail.modals.search_contacts
+  search_contact_modal.search_icon.click
+end
+
+
 Then /^check search contacts grid row (\d+)$/ do |row|
   grid = SdcMail.modals.search_contacts.grid
   checkbox = grid.checkbox_for_row(row)

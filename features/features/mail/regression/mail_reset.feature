@@ -6,7 +6,7 @@ Feature: Resetting mail fields
 
   Scenario: Check if extra services enabled after reset
     Then select print on Shipping Label - 8 ½" x 11" Paper
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to random address in zone 1
     Then set print form ounces to 1
     Then show advanced options

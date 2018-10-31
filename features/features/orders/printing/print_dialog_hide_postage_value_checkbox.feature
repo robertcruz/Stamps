@@ -13,7 +13,6 @@ Feature: Add Hide Mail Value CheckBox to Print Dialog
     Then set order details service to PM Flat Rate Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then expect Print modal Printing On Label is Printing On:
 
     Then in Print modal, check Hide Mail Value

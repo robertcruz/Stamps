@@ -10,7 +10,7 @@ Feature: BVT for Mail page
   @mail_bvt_envelopes
   Scenario: Envelope
     Then select print on Envelope - 10
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to to a random address in zone 1
     Then set print form ounces to 1
     Then select print form service FCM Letter
@@ -21,7 +21,7 @@ Feature: BVT for Mail page
   @bvt_mail_piece_validation
   Scenario: Envelope - #10
     Then select print on Envelope - 10
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to to a random address in zone 1
     Then set print form ounces to 1
     Then select print form service FCM Letter
@@ -30,7 +30,7 @@ Feature: BVT for Mail page
   @bvt_mail_piece_validation
   Scenario: Shipping Label - 8 ½" x 11" Paper
     Then select print on Shipping Label - 8 ½" x 11" Paper
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to country to United States
     Then set print form mail-to to a random address in zone 5 through 8
     Then set print form pounds to 0
@@ -41,7 +41,7 @@ Feature: BVT for Mail page
   @bvt_mail_piece_validation
   Scenario: Roll - 4" x 6" Shipping Label
     Then select print on Roll 4x6
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to country to United States
     Then set print form mail-to to a random address in zone 1 through 4
     Then set print form ounces to 1
@@ -52,7 +52,7 @@ Feature: BVT for Mail page
   Scenario: Certified Mail Label - SDC-3610
 #    Then select print on Shipping Label - 8 ½" x 11" Paper
     Then select print on Certified Mail Label - SDC-3610
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
 #    Then set print form mail-to country to United States
     Then set print form mail-to to a random address in zone 1 through 4
     Then set print form pounds to 0
@@ -63,7 +63,7 @@ Feature: BVT for Mail page
   @bvt_mail_piece_validation
   Scenario: Shipping Label - 8 ½" x 11" Paper
     Then select print on Shipping Label - 8 ½" x 11" Paper
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to country to United States
     Then set print form mail-to to a random address in zone 1 through 4
     Then set print form pounds to 0
@@ -79,14 +79,14 @@ Feature: BVT for Mail page
     Then select print on Stamps
     Then set print form serial number to C12345
     Then select advanced options specify postage amount
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then select print form service Media Mail
     Then set print form stamp amount 2.85
     Then set print form stamp quantity 1
     Then set print form advanced options reference number to Stamp3221
     Then set print form serial number to B12345
     Then select advanced options calculate postage amount
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form ounces to 1
     Then select print form service FCM Letter
     Then sign out
@@ -105,7 +105,7 @@ Feature: BVT for Mail page
     Then show advanced options
     Then set print form serial number to B12345
     Then select advanced options specify postage amount
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then select print form service Media Mail
     Then set print form stamp amount 2
     Then set print form stamp quantity 1
@@ -114,7 +114,7 @@ Feature: BVT for Mail page
   @mail_service_validation
   Scenario: Envelope - #10
     Then select print on Envelope - 10
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to to a random address in zone 1
     Then set print form ounces to 1
     Then select print form service FCM Letter
@@ -123,7 +123,7 @@ Feature: BVT for Mail page
   @mail_service_validation
   Scenario: Shipping Label - 8 ½" x 11" Paper
     Then select print on Shipping Label - 8 ½" x 11" Paper
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to country to United States
     Then set print form mail-to to a random address in zone 5 through 8
     Then set print form pounds to 0
@@ -134,7 +134,7 @@ Feature: BVT for Mail page
   @mail_service_validation
   Scenario: Roll - 4" x 6" Shipping Label
     Then select print on Roll 4x6
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to country to United States
     Then set print form mail-to to a random address in zone 1 through 4
     Then set print form ounces to 1
@@ -145,7 +145,7 @@ Feature: BVT for Mail page
   Scenario: Certified Mail Label - SDC-3610
 #    Then select print on Shipping Label - 8 ½" x 11" Paper
     Then select print on Certified Mail Label - SDC-3610
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
 #    Then set print form mail-to country to United States
     Then set print form mail-to to a random address in zone 1 through 4
     Then set print form pounds to 0
@@ -156,7 +156,7 @@ Feature: BVT for Mail page
   @mail_service_validation
   Scenario: Shipping Label - 8 ½" x 11" Paper
     Then select print on Shipping Label - 8 ½" x 11" Paper
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to country to United States
     Then set print form mail-to to a random address in zone 1 through 4
     Then set print form pounds to 0

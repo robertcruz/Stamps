@@ -16,6 +16,7 @@ module SdcHistory
         @@column_names ||= {
             checkbox: ' ',
             date_printed: 'Date Printed',
+            total_code: 'Total Cost',
             adj_amount: 'Adj. Amount',
             shipment_status: 'Shipment Status',
             tracking_number: 'Tracking #',
@@ -246,7 +247,7 @@ module SdcHistory
       def grid_column(column)
         body.wait_until_present(timeout: 15)
 
-        unless HistoryGridBase.column_names.keys.include? column
+        unless HistoryGridBase.column_names.key? column
           raise ArgumentError, "Invalid grid column: #{column}"
         end
 

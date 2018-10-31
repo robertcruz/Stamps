@@ -12,7 +12,7 @@ class SdcTest
         print "\n"
         print "\n"
 
-      elsif TestSession.env.sauce_browser
+      elsif TestSession.env.selenium_platform
         SdcPage.browser = TestSession.sauce_browser
         print "\n"
         print "\n"

@@ -37,6 +37,18 @@ Then /^sign-in to mail$/ do
   end
 end
 
+Then /^login to webclient$/ do
+  usr = TestSession.env.usr
+  pw = TestSession.env.pw
+  TestData.hash[:username] = usr
+  TestData.hash[:password] = pw
+  step "set sign in page username to #{usr}"
+  step "set sign in page password to #{pw}"
+  step 'click sign in page sign-in button'
+end
+
+
+
 Then /^sign out$/ do
   begin
     unless TestSession.env.responsive

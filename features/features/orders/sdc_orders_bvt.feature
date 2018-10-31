@@ -301,7 +301,6 @@ Feature:  BVT tests for Orders
 
     Then expect customs non-delivery options is Treat as abandoned
     Then expect customs internal transaction number is Required
-    Then expect customs i agree to the usps privacy act statement is checked correct
 
     Then expect customs associated item 1 Description is correct
     Then expect customs associated item 1 Quantity is correct

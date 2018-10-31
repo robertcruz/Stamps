@@ -65,7 +65,7 @@ Feature: Manage Print Options
     Then sign-in to mail
     Then select print on Roll - 4" x 6" Shipping Label
 #    Then set Advanced Options Mail Date to today
-#    Then set Print form Mail-From to default
+#    Then set print form mail-from to default
     Then set print form mail-to to a random address in zone 1
     Then select print form service PM Package
     Then show advanced options
@@ -93,7 +93,7 @@ Feature: Manage Print Options
     Then sign-in to mail
     Then select print on Envelope - #10, 4 ⅛" x 9 ½"
 #    Then set Advanced Options Mail Date to today
-#    Then set Print form Mail-From to default
+#    Then set print form mail-from to default
     Then set print form mail-to to a random address in zone 1 through 4
     Then set print form ounces to 2
     Then select print form service FCM Letter
@@ -148,7 +148,7 @@ Feature: Manage Print Options
   Scenario: Advanced Options for Certified Mail Label - SDC-3610
     Then sign-in to mail
     Then select print on Certified Mail Label - SDC-3610
-#    Then set Print form Mail-From to default
+#    Then set print form mail-from to default
     Then set print form mail-to to a random address in zone 1
     Then select print form service PM Package
     Then show advanced options
@@ -244,4 +244,14 @@ Feature: Manage Print Options
     Then expect advanced options cost code field is present
     Then set print form advanced options cost code None
     Then expect print form advanced options cost code is None
+    Then sign out
+
+  @mail_contacts_comm_error
+  Scenario: Communication error in FF durint navigation between Mail and Contacts pages
+    Then sign-in to mail
+    Then navigate to Contacts
+    Then expect mail server error is not present
+    Then in contacts grid check row 1
+    Then click contacts toolbar print postage button
+    Then expect mail server error is not present
     Then sign out

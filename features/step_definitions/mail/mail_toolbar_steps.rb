@@ -41,11 +41,11 @@ Then /^expect postage message panel tracking label is (.+)$/ do |str|
   expect(message_panel.tracking_label.text.strip).to include str
 end
 
-Then /^save postage message panel tracking number$/ do
+Then /^save tracking number on print form message panel$/ do
   message_panel = SdcMail.print_form.message_panel
   message_panel.tracking_number.wait_until_present(timeout: 40)
   TestData.hash[:tracking_number] = message_panel.tracking_number.text.strip
-  expect(TestData.hash[:tracking_number].size).to be > 15
+  expect(TestData.hash[:tracking_number].size).to be > 12
 end
 
 Then /^click print label expecting no errors$/ do

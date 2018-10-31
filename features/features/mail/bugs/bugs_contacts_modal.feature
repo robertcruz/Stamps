@@ -6,7 +6,7 @@ Feature: Mail Contacts Modal Bugs
   @bugs_contacts_modal
   Scenario: ORDERSAUTO_3243 Adding Contact from Mail should not Add Reference # Or Cost Code
     Then select print on Shipping Label - 5x8
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to country to United States
     Then set print form mail-to to a random address in zone 1 through 4
     Then set print form ounces to 1
@@ -15,7 +15,7 @@ Feature: Mail Contacts Modal Bugs
     Then set print form advanced options cost code 123
     Then click mail statusbar print
     Then set Mail Print modal Printer
-    Then click Mail Print modal Print button
+    Then click print button on mail print modal
 
     Then click print form mail to link
     Then expect contacts modal is present

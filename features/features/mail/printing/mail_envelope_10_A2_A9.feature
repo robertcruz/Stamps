@@ -9,17 +9,17 @@ Feature: Envelope #10, #A2, #A9
   Scenario: Print On: Envelope #10
 
     Then select print on Envelope - 10
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to to a random address in zone 1
     Then set print form ounces to 1
     Then select print form service FCM Letter
     Then click mail statusbar print
     Then set Mail Print modal Printer
-    Then click Mail Print modal Print button
+    Then click print button on mail print modal
 
    #mail_print_envelope_10_delivery_address
     Then select print on Envelope - 10
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to to a random address in zone 1 through 4
     Then set print form ounces to 3
     Then select print form service FCM Letter
@@ -30,11 +30,11 @@ Feature: Envelope #10, #A2, #A9
     #Then on Envelope form, set Cost Code to None
     Then click mail statusbar print
     Then set Mail Print modal Printer
-    Then click Mail Print modal Print button
+    Then click print button on mail print modal
 
    #mail_print_envelope_10_postage
     Then select print on Envelope - 10
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to to a random address in zone 1 through 4
     Then set print form ounces to 3
     Then select print form service FCM Letter
@@ -45,11 +45,11 @@ Feature: Envelope #10, #A2, #A9
     #Then on Envelope form, set Cost Code to None
     Then click mail statusbar print
     Then set Mail Print modal Printer
-    Then click Mail Print modal Print button
+    Then click print button on mail print modal
 
    #mail_print_envelope_10_return_address
     Then select print on Envelope - 10
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to to a random address in zone 1 through 4
     Then set print form ounces to 2
     Then select print form service FCM Letter
@@ -60,30 +60,30 @@ Feature: Envelope #10, #A2, #A9
     #Then on Envelope form, set Cost Code to None
     Then click mail statusbar print
     Then set Mail Print modal Printer
-    Then click Mail Print modal Print button
+    Then click print button on mail print modal
 
   @mail_print_envelope_A9
   Scenario: Print On: Envelope #A9
 
     Then select print on Envelope - A9
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to to a random address in zone 5 through 8
     Then set print form ounces to 1
     Then select print form service FCM Letter
     Then click mail statusbar print
     Then set Mail Print modal Printer
-    Then click Mail Print modal Print button
+    Then click print button on mail print modal
 
   @mail_print_envelope_A2
   Scenario: Print On: Envelope #A2
 
     Then select print on Envelope - A2
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to to a random address in zone 5 through 8
     Then set print form ounces to 1
     Then select print form service FCM Letter
     Then click mail statusbar print
     Then set Mail Print modal Printer
-    Then click Mail Print modal Print button
+    Then click print button on mail print modal
 
     Then sign out

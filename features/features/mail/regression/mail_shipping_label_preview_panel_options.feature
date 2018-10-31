@@ -8,7 +8,7 @@ Feature:Shipping Label Preview Panel
 
     Then select print on Shipping Label - 5x8
 
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to country to United States
     Then set print form mail-to to a random address in zone 1 through 4
     Then set print form ounces to 1
@@ -36,6 +36,6 @@ Feature:Shipping Label Preview Panel
     Then expect print form advanced options reference number is correct
     Then click mail statusbar print
     Then set Mail Print modal Printer
-    Then click Mail Print modal Print button
+    Then click print button on mail print modal
     Then sign out
 

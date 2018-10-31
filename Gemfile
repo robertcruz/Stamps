@@ -13,7 +13,6 @@ gem 'faker'
 gem 'sauce_whisk'
 gem 'watir_drops'
 
-
 group :web_dev do
   gem 'tiny_tds'
 end
@@ -24,10 +23,6 @@ end
 
 group :selenium do
   gem 'selenium-webdriver'
-end
-
-group :mysql do
-  gem 'mysql2'
 end
 
 group :rates do
