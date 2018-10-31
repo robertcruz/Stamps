@@ -168,8 +168,8 @@ Feature:  BVT tests for Orders
     Then expect filter panel search results tab is present
     Then expect Filter Panel search result count is 1
     Then check grid order id
-    Then expect Filter Panel search result count is greater than 0
-    Then remove Filter Panel search results tab
+    Then expect filter panel search result count is greater than 0
+    Then remove filter panel search results tab
     Then expect filter panel search results tab is not present
     Then sign out
 
