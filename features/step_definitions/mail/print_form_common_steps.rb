@@ -356,7 +356,7 @@ Then /^set print form mail-to country to (.*)$/ do |str|
   mail_to.selection(:selection_element, str)
   text_field = mail_to.text_field
   text_field.safe_wait_until_present(timeout: 1)
-  text_field = mail_to.text_field if mail_to.int_text_field.present?
+  text_field = mail_to.text_field if mail_to.text_field.present?
   unless text_field.text_value.eql?(str)
     text_field.set(str)
     mail_to.selection_element.safe_wait_until_present(timeout: 2)
