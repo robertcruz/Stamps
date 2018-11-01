@@ -9,6 +9,9 @@ module SdcOrders
     page_object(:count) { {xpath: '(//*[contains(@class, "sdc-badgebutton-widget")]//div[contains(@class, "sdc-badge")])[1]'} }
     page_object(:label) { {xpath: '(//*[contains(@class, "sdc-badgebutton-first")])[1]'} }
     page_object(:x_btn) { {xpath: '//*[contains(@class, "remove")]'} }
+
+
+    page_object(:search_orders, tag: :checkbox) { {xpath: '//input[@placeholder="Search Orders"]'} }
   end
 
   class SdcOrdersFilterPanel < SdcPage

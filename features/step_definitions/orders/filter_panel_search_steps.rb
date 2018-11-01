@@ -60,18 +60,18 @@ Then /^expect orders filter expand is present$/ do
 end
 
 Then /^search orders for (.*) expecting to find at least (\d+)$/ do |str, count|
-  step "set Filter Panel Search textbox to #{str}"
-  step "click Filter Panel Search button"
+  step "set filter panel search textbox to #{str}"
+  step "click filter panel search button"
   SdcOrders.loading_orders.wait_while_present(timeout: 10)
   expect(SdcOrders.filter_panel.search_results.count.text_value.to_i).to be >= count.to_i
 end
 
-Then /^[Ss]et Filter Panel Search textbox to (.*)$/ do |str|
+Then /^set filter panel search textbox to (.*)$/ do |str|
   TestData.hash[:filter_panel_search_str] = str
   SdcOrders.filter_panel.search_orders.set(TestData.hash[:filter_panel_search_str])
 end
 
-Then /^[Cc]lick Filter Panel Search [Bb]utton$/ do
+Then /^click filter panel search button$/ do
   SdcOrders.filter_panel.search.safe_wait_while_present(timeout: 2)
   SdcOrders.filter_panel.search.click
 end
@@ -80,7 +80,7 @@ Then /^[Ee]xpect Filter Panel search result count is (\d+)$/ do |count|
   expect(SdcOrders.filter_panel.search_results.count.text_value.to_i).to eql(count.to_i)
 end
 
-Then /^[Ee]xpect Filter Panel search result count is greater than (\d+)$/ do |count|
+Then /^expect filter panel search result count is greater than (\d+)$/ do |count|
   expect(SdcOrders.filter_panel.search_results.count.text_value.to_i).to be >= count.to_i
 end
 

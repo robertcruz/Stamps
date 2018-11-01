@@ -237,6 +237,7 @@ Then /^expect pending recipient action is selected on history filter panel statu
   status = SdcHistory.filter_panel.status
   expect(status.pending_recipient_action.selected?).to be true
 end
+
 Then /^expect undeliverable is selected on history filter panel status$/ do
   status = SdcHistory.filter_panel.status
   expect(status.undeliverable.selected?).to be true

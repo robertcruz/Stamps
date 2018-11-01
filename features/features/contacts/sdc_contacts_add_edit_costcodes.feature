@@ -36,7 +36,7 @@ Feature:  Contacts BVT - Contacts Cost Codes
     Then set cost code value in the change costcode pop up box to new costcode added
     Then click on cost code save button
     Then expect value of Cost Code in contacts grid is correct?
-    Then on left navigation expect count of new costcode added is 1
+    Then on left navigation expect count of new costcode added is incremented by 1
 
   @sdc_contacts_toolbar_change_cost_code_add_edit
   Scenario: Contacts BVT Scenario 1: Add Cost Code from change cost codes pop up via Contacts Toolbar
@@ -55,7 +55,7 @@ Feature:  Contacts BVT - Contacts Cost Codes
     Then in contacts grid check row 1
     Then set new costcode added value in details menu cost code dropdown
     Then click on cost codes expand button of contacts left navigation
-    Then on left navigation expect count of new costcode added is 1
+    Then on left navigation expect count of new costcode added is incremented by 1
     # Change to exsisting code code
     Then in contacts grid check row 1
     Then click contacts toolbar cost codes dropdown

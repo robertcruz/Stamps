@@ -41,7 +41,6 @@ module SdcWebsite
       page_object(:learn_more) { { xpath: '//span[contains(text(), "Learn More")]' } }
     end
 
-
     class AddAdvancedShippingFeatures < SdcPage
       page_object(:window) { { xpath: '//div[starts-with(@id, "shipstationsinglepageupgradeview-")][contains(@class, "x-window-default-closable")]' } }
       page_object(:x_button) { { xpath: '//span[contains(@class, "icon-mobile-close-light")]' } }

@@ -7,35 +7,24 @@ Feature:  Contacts BVT - Contacts Details
   Scenario: Delete Contact Details Menu Scenario 1:Delete single contacts from details panel
     Then sign-in to orders
     Then navigate to Contacts
-    Then delete all available contacts with the value Anand Raj
+    Then delete all available contacts with the value RuthAnand
     Then expect count of contact search results is 0
-    Then close the search results by clicking on remove button
+    Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
-    Then set contact details name to Anand Raj
-    Then set contact details company to FL Homes
-    Then set contact details country to United States
-    #Then set contact details country to India
-    Then set contact details street address to  223 E. Concord Street
-    Then set contact details city to Orlando
-    #Then set contact details Province to Telengana
-    Then set contact details state to Florida
-    Then set contact details postal code to 32801
-    Then set contact details email to anand@gmail.com
-    Then set contact details phone to 23345152
-    Then set contact details phone extension to 987
-    Then set contact details groups to group1
-    Then set contact details reference number to ref00012
-    Then set contact details cost code to Costcode1
+    Then set contact details to
+      | full_name | company | country| street_address | city | state | postal_code | phone  |  email | groups | reference_number|cost_code |
+      |RuthAnand  |FL Homes|United States|223 E. Concord Street|Orlando|Florida|32801|random|random  |random   |random |random     |
     Then in contacts grid uncheck row 1
-    Then search for contact Anand Raj from the contacts left navigation filter
+    Then search contacts from contacts filter panel with name RuthAnand
     Then expect count of contact search results is 1
     Then in contacts grid check row 1
     Then click on contact details menu dropdown
-    Then select Delete from dropdown menu
-    Then expect contacts delete message box is available
-    Then delete contacts message box click on yes button
-    Then  search for contact Anand Raj from the contacts left navigation filter
+    Then select contact details menu Delete
+    Then expect delete contacts modal is displayed
+    Then click yes button on delete contacts modal
+    Then search contacts from contacts filter panel with name RuthAnand
     Then expect count of contact search results is 0
+    Then sign out
 
   @sdc_contacts_delete_multiple_from_details_menu
   Scenario: Delete Contact Details Menu Scenario 2 :Delete multiple contacts from Details Panel
@@ -43,88 +32,53 @@ Feature:  Contacts BVT - Contacts Details
     Then navigate to Contacts
     Then delete all available contacts with the value Jon
     Then expect count of contact search results is 0
-    Then close the search results by clicking on remove button
-    Then click contacts toolbar add button
-    Then set contact details name to Jon1
+    Then click remove button on search results of contacts filter
+    Then click add button on contacts toolbar
+    Then set contact details to
+      | full_name | company | country| street_address | city | state | postal_code | phone  |  email | groups | reference_number|cost_code |
+      |Jon1 |FL Homes|United States|223 E. Concord Street|Orlando|Florida|32801|random|random  |random   |random |random     |
     Then in contacts grid uncheck row 1
-    Then click contacts toolbar add button
-    Then set contact details name to Jon2
+    Then click add button on contacts toolbar
+    Then set contact details to
+      | full_name | company | country| street_address | city | state | postal_code | phone  |  email | groups | reference_number|cost_code |
+      |Jon2 |random|United States|223 E. Concord Street|Orlando|Florida|32801|random|random  |random   |random |random     |
     Then in contacts grid uncheck row 1
-    Then click contacts toolbar add button
-    Then set contact details name to Jon3
+    Then click add button on contacts toolbar
+    Then set contact details to
+      | full_name | company | country| street_address | city | state | postal_code | phone  |  email | groups | reference_number|cost_code |
+      |Jon3 |random|United States|223 E. Concord Street|Orlando|Florida|32801|random|random  |random   |random |random     |
     Then in contacts grid uncheck row 1
-    Then search for contact Jon from the contacts left navigation filter
+    Then search contacts from contacts filter panel with name Jon
     Then expect count of contact search results is 3
     Then in contacts grid check row 1
-    Then In contacts grid check row 3
-    Then click on contact details menu dropdown
-    Then select Delete from dropdown menu
-    Then expect contacts delete message box is available
-    Then delete contacts message box click on yes button
-    Then on left navigation menu search contact Jon
+    Then in contacts grid check row 3
+    Then click on multiple contact details menu dropdown
+    Then select contact details menu Delete
+    Then expect delete contacts modal is displayed
+    Then click yes button on delete contacts modal
+    Then search contacts from contacts filter panel with name Jon
     Then expect count of contact search results is 1
+    Then sign out
 
-  @sdc_contacts_add_valid_email
+  @sdc_contacts_add_valid_invalid_email
   Scenario: Contacts Add Email Scenario 1 :Add valid Email to a newly added contact via contact details modal
     Then sign-in to orders
     Then navigate to Contacts
-    Then delete all available contacts with the value Aloha9154
-    Then expect count of contact search results is 0
-    Then close the search results by clicking on remove button
     Then click add button on contacts toolbar
-    Then set contact details name to Aloha9154
-    Then set contact details company to Stamps1
-    #Then Set Contact Details country to United States
-    Then set contact details country to India
-    Then set contact details street address to  street1, road 2, lane 3
-    Then set contact details city to Hyderabad
-    #Then Set Contact Details ctate to Florida
-    Then set contact details province to Telengana
-    Then set contact details postal code to 500084
-    Then set contact details phone to 23345152
-    Then set contact details phone extension to 987
-    Then set contact details groups to group1
-    Then set contact details reference number to ref00012
-    Then set contact details cost code to Costcode1
+    Then set contact details to
+      | full_name | company | country| street_address | city | state | postal_code | phone  |  email | groups | reference_number|cost_code |
+      |random     |random   |United States|random     |San Juan|Federated States Of Micronesia|0097-5824|23345142-123|  |random        |random           |random          |
     Then in contacts grid uncheck row 1
-    Then search for contact Aloha9154 from the contacts left navigation filter
+    Then search contacts from contacts filter panel with name newly added
     Then in contacts grid check row 1
-    Then set contact details email to aanand@123stamps.com
-    Then expect email error is not displayed
-    Then close the search results by clicking on remove button
-    Then search for contact Aloha9154 from the contacts left navigation filter
-    Then expect value of Email in contacts grid is aanand@123stamps.com
-
-  @sdc_contacts_add_invalid_email
-  Scenario: Contacts Add Email Scenario 2 :Add Invalid Email to a newly added contact via contact details modal
-    Then sign-in to orders
-    Then navigate to Contacts
-    Then delete all available contacts with the value Conatct Email Invalid
-    Then expect count of contact search results is 0
-    Then close the search results by clicking on remove button
-    Then click add button on contacts toolbar
-    Then set contact details name to Contact Email Invalid
-    Then set contact details company to FL Homes
-    Then Set Contact Details country to United States
-    #Then set contact details country to India
-    Then set contact details street address to  223E. Concord Street
-    Then set contact details city to Hyderabad
-    Then Set Contact Details state to Florida
-    #Then set contact details province to Telengana
-    Then set contact details postal code to 32801
-    Then set contact details phone to 23345152
-    Then set contact details phone extension to 987
-    Then set contact details groups to group1
-    Then set contact details reference number to ref00012
-    Then set contact details cost code to Costcode1
-    Then in contacts grid uncheck row 1
-    Then search for contact Email Invalid from the contacts left navigation filter
-    Then in contacts grid check row 1
-    Then set contact details email to invalid.com
+    #invalid Email
+    Then set contact details email to test.com
     Then expect email error is displayed
-    Then close the search results by clicking on remove button
-    Then on left navigation menu search contact Aloha9154
-    Then expect value of Email in contacts grid is blank
+    #valid Email
+    Then set contact details email to aloha@lydia.in
+    Then expect email error is not displayed
+    Then expect value of Email in contacts grid is aloha@lydia.in
+
 
   @sdc_contacts_detail_name_singleName
   Scenario: Contacts Details Add Name Scenario 1 :Add/Edit Single Name in Contact Details panel and verify Grid is updated correctly
@@ -133,13 +87,13 @@ Feature:  Contacts BVT - Contacts Details
     Then navigate to Contacts
     Then delete all available contacts with the value CAPT P Al tha Lydia Anand
     Then expect count of contact search results is 0
-    Then close the search results by clicking on remove button
-    Then click contacts toolbar add button
+    Then click remove button on search results of contacts filter
+    Then click add button on contacts toolbar
     Then set contact details name to CAPT P Al tha Lydia Anand
     Then in contacts grid uncheck row 1
-    Then on left navigation menu search contact CAPT P Al tha Lydia Anand
+    Then search contacts from contacts filter panel with name CAPT P Al tha Lydia Anand
     Then expect count of contact search results is 1
-    Then expect name details for CAPT P Al tha Lydia Anand in contacts grid is updated appropriately
+    Then expect name details on contacts grid are updated appropriately for CAPT P Al tha Lydia Anand
 
   @sdc_contacts_detail_name_expand_collapse
   Scenario: Contacts Details Expand and Collapse Name Scenario 1 :Expand the Name field in Contact Details panel
@@ -155,7 +109,7 @@ Feature:  Contacts BVT - Contacts Details
     Then navigate to Contacts
     Then delete all available contacts with the value FirstName
     Then expect count of contact search results is 0
-    Then close the search results by clicking on remove button
+    Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
     Then click on contact details panel name expand button
     Then set contact details name prefix to CAPT
@@ -165,7 +119,7 @@ Feature:  Contacts BVT - Contacts Details
     Then set contact details suffix to Suffix
     Then click on contact details panel name collapse button
     Then in contacts grid uncheck row 1
-    Then on left navigation menu search contact FirstName
+    Then search contacts from contacts filter panel with name FirstName
     Then expect count of contact search results is 1
     Then expect value of Prefix in contacts grid is CAPT
     Then expect value of First Name in contacts grid is FirstName
@@ -179,11 +133,11 @@ Feature:  Contacts BVT - Contacts Details
     Then navigate to Contacts
     Then delete all available contacts with the value CompanySingle
     Then expect count of contact search results is 0
-    Then close the search results by clicking on remove button
+    Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
     Then set contact details name to CompanySingle
     Then in contacts grid uncheck row 1
-    Then on left navigation menu search contact CompanySingle
+    Then search contacts from contacts filter panel with name CompanySingle
     Then expect count of contact search results is 1
     Then in contacts grid check row 1
     Then set contact details company to Company123
@@ -203,7 +157,7 @@ Feature:  Contacts BVT - Contacts Details
     Then navigate to Contacts
     Then delete all available contacts with the value CompanyDetail
     Then expect count of contact search results is 0
-    Then close the search results by clicking on remove button
+    Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
     Then set contact details name to CompanyDetail
     Then click on contact details panel company expand button
@@ -211,12 +165,12 @@ Feature:  Contacts BVT - Contacts Details
     Then set contact details title to CompanyTitle
     Then click on contact details panel company collapse button
     Then in contacts grid uncheck row 1
-    Then on left navigation menu search contact CompanyDetail
+    Then search contacts from contacts filter panel with name CompanyDetail
     Then expect count of contact search results is 1
     Then expect value of Title in contacts grid is CompanyTitle
     Then expect value of Department in contacts grid is CompanyDepartment
 
-  @sdc_contacts_add_new_contact_max_lines
+  @SdcContacts.grid.contacts_grid_column
   Scenario: Contacts BVT Scenario 1 : Add new contact with maximum no of line in Street Address field
     Then sign-in to orders
     Then navigate to Contacts
@@ -227,7 +181,7 @@ Feature:  Contacts BVT - Contacts Details
     Then set street address on contact page details to maximum lines 3
     Then expect street address error message is not displayed
     Then in contacts grid uncheck row 1
-    Then search for contact newly added from the contacts left navigation filter
+    Then search contacts from contacts filter panel with name newly added
     Then in contacts grid check row 1
     Then expect values of contact added in contacts grid are correct
     Then click add button on contacts toolbar
@@ -247,7 +201,7 @@ Feature:  Contacts BVT - Contacts Details
       |random     |random   |  ||||23345142-123|random  |        |random           |          |
     Then set address to domestic
     Then in contacts grid uncheck row 1
-    Then search for contact newly added from the contacts left navigation filter
+    Then search contacts from contacts filter panel with name newly added
     Then in contacts grid check row 1
     Then expect values of contact added in contacts grid are correct
     Then click add button on contacts toolbar
@@ -256,7 +210,7 @@ Feature:  Contacts BVT - Contacts Details
       |random     |random   |  ||||23345142-123|random  |        |random           |          |
     Then set address to international
     Then in contacts grid uncheck row 1
-    Then search for contact newly added from the contacts left navigation filter
+    Then search contacts from contacts filter panel with name newly added
     Then in contacts grid check row 1
     Then expect values of contact added in contacts grid are correct
     Then click add button on contacts toolbar
@@ -265,6 +219,14 @@ Feature:  Contacts BVT - Contacts Details
       |random     |random   |  ||||23345142-123|random  |        |random           |          |
     Then set address to apo
     Then in contacts grid uncheck row 1
-    Then search for contact newly added from the contacts left navigation filter
+    Then search contacts from contacts filter panel with name newly added
     Then in contacts grid check row 1
     Then expect values of contact added in contacts grid are correct
+
+  @sdc_contacts_search_country_results
+  Scenario: Contacts BVT Scenario 1 : Add new contact with maximum no of line in Street Address field
+    Then sign-in to orders
+    Then navigate to Contacts
+    Then click add button on contacts toolbar
+    Then search contact details country with value Great
+    Then expect search country list contains value Great

@@ -1,4 +1,5 @@
 
+default: --backtrace --profile local_browser
 default: --backtrace --profile eli_dev
 
 cuke_reports: --format json --out report.json --backtrace -f pretty -r features --format pretty --format html --out reports
@@ -7,7 +8,7 @@ cuke_reports: --format json --out report.json --backtrace -f pretty -r features 
 #local_mobile: --tags @mail_authentication_mobile URL=stg USR=sauce0020 PW=pass111 SELENIUM_DEVICE='iPhone X 11.3' SELENIUM_PLATFORM=iOS SELENIUM_BROWSER=Safari SELENIUM_VERSION=11.3 LOG_LEVEL=debug
 #local_mobile: --tags @multiple_contact_email_not_required URL=cc USR=bvtsauce00019cc PW=pass111 SELENIUM_DEVICE='iPhone X 11.3' SELENIUM_PLATFORM=iOS SELENIUM_BROWSER=Safari SELENIUM_VERSION=11.3 LOG_LEVEL=debug
 #local_browser: --tags @refresh_filter_grid_after_actions URL=stg BROWSER=ff MAX_WINDOW=false USR=stgmacgc6 PW=pass111 PRINTER=factory LOG_LEVEL=info WINDOW_SIZE=1300x900
-local_browser: --tags @history_filter_direct_url_1 --guess URL=cc BROWSER=gc MAX_WINDOW=false USR=bvtccosxgc9 PW=pass111 PRINTER=factory LOG_LEVEL=info #WINDOW_SIZE=1300x900
+local_browser: --tags @sdc_contact_add_new_contact --guess URL=cc BROWSER=gc MAX_WINDOW=false USR=bvtccosxgc9 PW=pass111 PRINTER=factory LOG_LEVEL=info #WINDOW_SIZE=1300x900
 #local_browser: --tags @bvt_shipstation_updates_domestic URL=sc BROWSER=ff MAX_WINDOW=false USR=scsejsglwa PW=pass111 PRINTER=factory LOG_LEVEL=info
 sauce_mobile: --tags @mail_authentication_mobile --guess URL=stg USR=sauce0020 PW=pass111 SELENIUM_DEVICE='iPhone X Simulator' SELENIUM_PLATFORM=iOS SELENIUM_BROWSER=Safari SELENIUM_VERSION=12.0 TUNNEL_IDENTIFIER=rob LOG_LEVEL=info
 #sauce_browser: --tags @bvt_shipstation_updates_domestic URL=stg USR=stgvoc0kcnt6rw PW=pass111 SELENIUM_BROWSER=chrome SELENIUM_VERSION=latest SELENIUM_PLATFORM='Mac 10.10' TUNNEL_IDENTIFIER=rob LOG_LEVEL=info
@@ -17,7 +18,7 @@ sauce_browser: --tags @history_filter_direct_url_1 --guess URL=cc USR=cctruer0u 
 #mhossain1_cc: --tags @registration_normal_workflow JENKINS=true URL=cc LOG_LEVEL=info BROWSER=ff MAX_WINDOW=false WEB_APP=registration USR=mhossain1 PW=Password1
 #mhossain1_cc: --tags @pp_header_favicons_browser_mobile JENKINS=true URL=qacc BROWSER=gc BROWSER_MOBILE_EMULATOR=gc,'iPhone X' USR=wteam@stamps.com PW=password1 WEB_DEV=true
 #mhossain1_cc: --tags @pp_log_in_page_validation JENKINS=true URL=stg BROWSER=ff USR=wteam@stamps.com PW=password1 FIREFOX_PROFILE=true WEB_DEV=true
-mhossain1_cc: --tags @ewwr_security_question_page_validation URL=stg BROWSER=gc_web_dev LOG_LEVEL=info #USR=wteam@stamps.com PW=password1
+
 kaushal_cc: --tags @ewwr_security_question_page_validation URL=stg BROWSER=edge #USR=qawebdevelopment@stamps.com PW=password1
 web_apps_dev: --tags @bvt_new_order USR=default PW=pass111 URL=tcarney-win7-3.corp.stamps.com --guess BROWSER=ff MAX_WINDOW=false
 eli_dev: --tags @sdc_contacts_print_to_mail --guess JENKINS=false WEB_APP=mail URL=cc BROWSER=ff USR=hal9000qa12 PW=password1 PRINTER=factory
@@ -309,6 +310,7 @@ healthcheck: --tags @healthcheck --guess
 authentication: --tags @authentication --guess LOG_LEVEL=info
 customs_form_auto_calculate_weight: --tags @customs_form_auto_calculate_weight --guess
 whats_new: --tags @whats_new --guess
+user_identification_portal: --tags @user_identification_portal --guess BROWSER=gc
 Registration: --tags @Registration --guess WEB_APP=Registration
 pam: --tags @pam --guess WEB_APP=pam
 registration_pam_orders: --tags @registration_pam_orders --guess WEB_APP=Registration
@@ -600,9 +602,8 @@ ewwr_session_state_data_validation: --tags @ewwr_session_state_data_validation -
 ewwr_security_question_page_validation: --tags @ewwr_security_question_page_validation --guess  LOG_LEVEL=info
 ewwr_header_footer_validation: --tags @ewwr_header_footer_validation --guess  LOG_LEVEL=info
 swwr_create_your_account_page_validation: --tags @swwr_create_your_account_page_validation --guess LOG_LEVEL=info
-aloha: --tags @sdc_contacts_left_navigation_selected_filter URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core002 PW=password1
-#aloha: --tags @sdc_contact_add_new_contact URL=stg LOG_LEVEL=debug HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core002 PW=password1
-#aloha: --tags @sdc_contacts_show_all_columns URL=qacc LOG_LEVEL=debug HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=Tmaheryar PW=password1
+aloha: --tags @sdc_contacts_add_valid_invalid_email URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core004 PW=password1
+#aloha: --tags @sdc_contacts_show_all_columns URL=qacc LOG_LEVEL=debug HEALTHCHECK=false BROWSER=gc MAX_WINDOW=false USR=Tmaheryar PW=password1
 sdc_contacts_delete_multiple_from_top_navigation: --tags @sdc_contacts_delete_multiple_from_top_navigation --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
 sdc_contacts_add_valid_email: --tags @sdc_contacts_add_valid_email  --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
 sdc_contacts_add_invalid_email: --tags @sdc_contacts_add_invalid_email  --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
@@ -638,3 +639,8 @@ sdc_contacts_print_to_mail:  --tags @sdc_contacts_print_to_mail --guess LOG_LEVE
 history_toolbar:  --tags @history_toolbar --guess LOG_LEVEL=info
 history_filter_direct_url:  --tags @history_filter_direct_url --guess LOG_LEVEL=info
 container_label_return_address:  --tags @container_label_return_address --guess LOG_LEVEL=info
+
+sdc_contacts_pagination_navigate_different_pages: --tags @sdc_contacts_pagination_navigate_different_pages --guess LOG_LEVEL=info
+sdc_contacts_search_country_results: --tags @sdc_contacts_search_country_results --guess LOG_LEVEL=info
+sdc_contact_top_nav_print_postage: --tags @sdc_contact_top_nav_print_postage --guess LOG_LEVEL=info
+bug_postal_code_not_added_contact_details: --tags @bug_postal_code_not_added_contact_details --guess LOG_LEVEL=info

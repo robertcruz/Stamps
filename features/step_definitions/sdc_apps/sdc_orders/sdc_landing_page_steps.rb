@@ -60,7 +60,7 @@ Then /^fetch user credentials from MySQL$/ do
 end
 
 Then /^sign-in to orders$/ do
-  step 'verify health check for Orders' if TestSession.env.healthcheck
+ # step 'verify health check for Orders' if TestSession.env.healthcheck
   step 'visit Orders landing page'
   usr = TestSession.env.usr
   pw = TestSession.env.pw

@@ -26,8 +26,8 @@ Feature:  Contacts BVT - Contacts Filter Panel
 	#Contacts Filter Panel	Search Contact : Search for non exsisting contact
     Then set search text on contacts left navigation search bar to Non Exsisting
     Then click search button on contacts left navigation search bar
-    Then expect empty search message for searched contact is displayed on the contacts grid
-    Then click on remove button of search results on contacts left navigation panel
+    Then expect contacts grid message for searched contact is No contacts found.
+    Then click remove button on search results of contacts filter
 	#Contacts Filter Panel - SELECTED Filter
     Then expect selected filter on the contacts left navigation panel is available
     Then fetch count of selected contacts
@@ -44,39 +44,41 @@ Feature:  Contacts BVT - Contacts Filter Panel
     Then click on cost codes expand button of contacts left navigation
     Then fetch total against each cost code available
     Then click on cost codes collapse button of contacts left navigation
+    Then sign out
 
   @sdc_contacts_left_navigation_add_group
   Scenario: Contacts BVT Scenario 1: Add new group from contact left navigation
     Then sign-in to orders
     Then navigate to Contacts
     # Groups Left Navigation plus Button - Add
-    Then mousehover on groups section of left navigation
+    Then hover on groups section of left navigation
     Then click on groups add button of contacts left navigation
     Then set group name on add group pop up to blank
     Then click on save button of add groups pop up window
-    Then expect error message of blank group name is displayed on add groups pop up window
+    Then expect error message on add groups modal is Group name required.
     Then set group name on add group pop up to existing
     Then click on save button of add groups pop up window
-    Then expect error message of existing group name is displayed on add groups pop up window
+    Then expect error message on add groups modal is This group name is already in use. Please choose a unique group name
     Then set group name on add group pop up to random
     Then click on save button of add groups pop up window
     Then expect error message is not displayed on add groups pop up window
+    Then sign out
 
   @sdc_contacts_left_add_edit_group
   Scenario: Contacts BVT Scenario 1: Add/Edit group from contact left navigation
     Then sign-in to orders
     Then navigate to Contacts
     # Groups Left Navigation settings Button - Add from (manage groups)
-    Then mousehover on groups section of left navigation
+    Then hover on groups section of left navigation
     Then click on groups settings button of contacts left navigation
     Then expect manage groups pop up is displayed
     Then click add button on manage groups window toolbar
     Then set group name on add group pop up to blank
     Then click on save button of add groups pop up window
-    Then expect error message of blank group name is displayed on add groups pop up window
+    Then expect error message on add groups modal is Group name required.
     Then set group name on add group pop up to existing
     Then click on save button of add groups pop up window
-    Then expect error message of existing group name is displayed on add groups pop up window
+    Then expect error message on add groups modal is This group name is already in use. Please choose a unique group name
     Then set group name on add group pop up to random
     Then click on save button of add groups pop up window
     Then expect error message is not displayed on add groups pop up window
@@ -87,10 +89,10 @@ Feature:  Contacts BVT - Contacts Filter Panel
     Then click edit button on manage groups window toolbar
     Then set group name on edit pop up to blank
     Then click on save button of edit groups pop up
-    Then expect error message of blank group name is displayed on edit groups pop up window
+    Then expect error message on edit groups modal is Group name required.
     Then set group name on edit pop up to existing
     Then click on save button of edit groups pop up
-    Then expect error message of existing group name is displayed on edit groups pop up window
+    Then expect error message on edit groups modal is This group name is already in use. Please choose a unique group name
     Then set group name on edit pop up to random
     Then click on save button of edit groups pop up
     Then expect error message is not displayed on edit groups pop up window
@@ -99,6 +101,7 @@ Feature:  Contacts BVT - Contacts Filter Panel
     Then click existing row in manage group table
     Then click delete button on manage groups window toolbar
     Then click on yes button of delete groups pop up
+    Then expect manage groups pop up is displayed
     Then expect group name deleted is not available in the manage group pop up table
 
   @sdc_contacts_left_nav_add_edit_cost_code
@@ -121,7 +124,7 @@ Feature:  Contacts BVT - Contacts Filter Panel
     Then on left navigation expect count of new costcode added is 0
     Then in contacts grid check row 1
     Then click contacts toolbar cost codes dropdown
-    Then on cost codes dropdown menu select Change Cost Code WEBAPPAUTO-120
+    Then on cost codes dropdown menu select Change Cost Code
     Then set cost code value in the change costcode pop up box to new costcode added
     Then click on cost code save button
     Then expect value of Cost Code in contacts grid is correct?
@@ -135,7 +138,6 @@ Feature:  Contacts BVT - Contacts Filter Panel
     Then expect count on selected filter is 0
     #Selected filter - Empty State
     Then click on selected filter of contacts left navigation panel
-    Then expect empty state message of selected contacts is displayed on the contacts grid
     Then expect contacts grid message for selected contact is There are no contacts selected.
     Then click on all contacts filter of contacts left navigation panel
     #Selected filter -counts
@@ -154,7 +156,7 @@ Feature:  Contacts BVT - Contacts Filter Panel
     Then select an existing group from left navigation filter panel
     Then expect count on selected filter is 2
 	#Searches contacts
-    Then search for contact aloha from the contacts left navigation filter
+    Then search contacts from contacts filter panel with name aloha
     Then expect count on selected filter is 2
 	#Changes pages or page numbers in the filter (Bottom footer)
     Then set per page drop down of pagination on contacts toolbar to 100
@@ -164,3 +166,4 @@ Feature:  Contacts BVT - Contacts Filter Panel
     Then click on clear all link of contact detail panel
     Then expect clear contacts pop up box is displayed
     Then click on yes button of clear contacts pop up window
+    Then sign out

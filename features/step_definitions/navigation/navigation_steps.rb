@@ -16,7 +16,7 @@ Then /^navigate to (.+)$/ do |str|
     step 'click through tutorial modal'
     SdcContacts.loading_contacts.safe_wait_until_present(timeout: 20)
     SdcContacts.loading_contacts.safe_wait_while_present(timeout: 45)
-    SdcContacts.contacts_body.safe_wait_until_present(timeout: 20)
+    SdcContacts::Grid.body.safe_wait_until_present(timeout: 20)
   when :history
     step 'close welcome modal on history'
     step 'wait while loading history grid'

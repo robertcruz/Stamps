@@ -1,4 +1,7 @@
-Then /^[Ee]xpect [Cc]ontacts [Dd]elete [Mm]essage [Bb]ox [Ii]s [Aa]vailable$/ do
-  message_box = SdcContacts.contacts_delete_message_box
-  message_box.title.safe_wait_until_present(timeout: 10)
-end
+Then /^temp$/ do
+  us_states = data_for(:us_states, {})
+  state_values = us_states.values
+  state_abbr = us_states.keys
+  state_value = us_states['OH']
+  state_key = us_states.key('Ohio')
+ end

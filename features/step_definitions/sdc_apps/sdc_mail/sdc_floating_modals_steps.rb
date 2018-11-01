@@ -85,6 +85,19 @@ Then /^click close button on incomplete fields$/ do
   expect(incomplete_fields.window.present?).to be(false)
 end
 
+Then /^expect address cleansing modal is present$/ do
+  address_cleansing=SdcMail.modals.address_cleansing
+  address_cleansing.title.safe_wait_until_present(timeout:10)
+  expect(address_cleansing.title.present?).to be(true)
+end
+
+Then /^click accept button on address cleansing modal$/ do
+  address_cleansing=SdcMail.modals.address_cleansing
+  address_cleansing.accept_button.safe_wait_until_present(timeout:10)
+  expect(address_cleansing.accept_button.present?).to be(true)
+  address_cleansing.accept_button.click
+end
+
 Then /^expect mail server error is present$/ do
   expect(SdcMail.modals.server_error.title).to be_present
 end
