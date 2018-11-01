@@ -514,7 +514,7 @@ Then /^expect value of groups in contact details panel is (?:correct|(.*))$/ do 
   contacts_detail = SdcContacts.details
   contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
   str ||= TestData.hash[:groups]
-  actual_value = contacts_detail.groups.text_list.text_value
+  actual_value = contacts_detail.group.text_list.text_value
   expect(actual_value.strip).to eql str.strip
 end
 
