@@ -1,5 +1,4 @@
 
-default: --backtrace --profile local_browser
 default: --backtrace --profile eli_dev
 
 cuke_reports: --format json --out report.json --backtrace -f pretty -r features --format pretty --format html --out reports
