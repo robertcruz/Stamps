@@ -20,4 +20,5 @@ Feature:  Transitioning between Contacts and Mail Pages
     Then click contacts toolbar print postage button
     Then select print on Shipping Label - 8 ½" x 11" Paper
     Then navigate to Contacts
+    Then click add button on contacts toolbar
     Then sign out
