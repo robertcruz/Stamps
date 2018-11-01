@@ -227,6 +227,9 @@ Then /^expect contacts grid reference no column at row (\d+) is (?:correct|(.*))
   SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
   step 'expect number of visible contacts grid column is correct'
   str ||= TestData.hash[:reference_number]
+  if str.eql?('blank')
+    str=''
+  end
   column = SdcContacts.grid.grid_column(:reference_no)
   actual_value = column.text_at_row(row)
   expect(actual_value.strip).to eql str.strip

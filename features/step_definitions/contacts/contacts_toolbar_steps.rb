@@ -17,12 +17,12 @@ Then /^click delete button on contacts toolbar$/ do
   del_con_win.title.safe_wait_until_present(timeout:10)
 end
 
-Then /^click add reference button on contacts toolbar$/ do
+Then /^click change reference button on contacts toolbar$/ do
   toolbar = SdcContacts.toolbar
   toolbar.ref.safe_wait_until_present(timeout: 15)
   toolbar.ref.click
-  add_ref_win = SdcContacts.modals.add_reference
-  add_ref_win.add_reference_window.safe_wait_until_present(timeout: 30)
+  add_ref_win = SdcContacts.modals.change_reference
+  add_ref_win.reference_window.safe_wait_until_present(timeout: 30)
 end
 
 Then /^click on groups menu dropdown on contacts toolbar$/ do

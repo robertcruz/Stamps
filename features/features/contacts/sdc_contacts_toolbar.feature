@@ -7,12 +7,15 @@ Feature:  Contacts BVT - Contacts ToolBar
   Scenario: Contacts BVT Scenario 1 : Click add, add new contact  and the open and view details
     Then sign-in to orders
     Then navigate to Contacts
+    Then delete all available contacts with the value AddNewContact
+    Then expect count of contact search results is 0
+    Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
     Then set contact details to
       | full_name | company | country| street_address | city | state | postal_code | phone  |  email | groups | reference_number|cost_code |
-      |random     |random   |United States|random     |San Juan|Federated States Of Micronesia|0097-5824|random|random  |random   |random |random     |
+      |AddNewContact |random   |United States|random     |San Juan|Federated States Of Micronesia|0097-5824|random|random  |random   |random |random     |
     Then in contacts grid uncheck row 1
-    Then search contacts from contacts filter panel with name newly added
+    Then search contacts from contacts filter panel with name AddNewContact
     Then in contacts grid check row 1
     Then expect contacts grid name column at row 1 is correct
     Then expect contacts grid company column at row 1 is correct
@@ -37,7 +40,6 @@ Feature:  Contacts BVT - Contacts ToolBar
     Then expect value of groups in contact details panel is correct
     Then expect value of reference number in contact details panel is correct
     Then expect value of cost code in contact details panel is correct
-
 
   @sdc_contacts_delete_single_from_top_navigation
   Scenario: Delete Contact Top Nav Scenario 1 :Delete a newly added contact from top navigation
@@ -91,47 +93,32 @@ Feature:  Contacts BVT - Contacts ToolBar
     Then search contacts from contacts filter panel with name Jon
     Then expect count of contact search results is 1
 
-  @sdc_contacts_existing_add_invalid_reference_number
-  Scenario: Add Reference Number from Top Nav Scenario 1 :Add an Invalid Reference to an Existing Contact via Contacts Toolbar
+  @sdc_contacts_existing_add_valid_invalid_reference_number
+  Scenario: Add Reference Number from Top Nav Scenario 1 :Add Invalid, valid Reference to a contact
     Then sign-in to orders
     Then navigate to Contacts
-    Then delete all available contacts with the value AddInValidReference
+    Then delete all available contacts with the value AddReference
     Then expect count of contact search results is 0
     Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
     Then set contact details to
       | full_name | company | country| street_address | city | state | postal_code | phone  |  email | groups | reference_number|cost_code |
-      |AddInValidReference |random|United States|223 E. Concord Street|Orlando|Florida|32801|random|random  |random   | |random     |
+      |AddReference |random|United States|223 E. Concord Street|Orlando|Florida|32801|random|random  |random   | |random     |
     Then in contacts grid uncheck row 1
-    Then search contacts from contacts filter panel with name AddInValidReference
+    Then search contacts from contacts filter panel with name AddReference
     Then expect count of contact search results is 1
     Then in contacts grid check row 1
-    Then click add reference button on contacts toolbar
+    Then click change reference button on contacts toolbar
     Then set reference number to Invalid Reference1 Reference2 Reference3
     Then expect reference number error is displayed
+    Then expect error message on add reference modal is Maximum 35 characters allowed.
     Then click on add reference close button
-    Then expect value of Reference Number in contacts grid is blank
-
-  @sdc_contacts_existing_add_valid_reference_number
-  Scenario: Add Reference Number from Top Nav Scenario 2 :Add an Valid Reference to an Existing Contact via Contacts Toolbar
-    Then sign-in to orders
-    Then navigate to Contacts
-    Then delete all available contacts with the value AddValidReference
-    Then expect count of contact search results is 0
-    Then click remove button on search results of contacts filter
-    Then click add button on contacts toolbar
-    Then set contact details to
-      | full_name | company | country| street_address | city | state | postal_code | phone  |  email | groups | reference_number|cost_code |
-      |AddValidReference |random|United States|223 E. Concord Street|Orlando|Florida|32801|random|random  |random   | |random     |
-    Then in contacts grid uncheck row 1
-    Then search contacts from contacts filter panel with name AddValidReference
-    Then expect count of contact search results is 1
-    Then in contacts grid check row 1
-    Then click add reference button on contacts toolbar
+    Then expect contacts grid reference no column at row 1 is blank
+    Then click change reference button on contacts toolbar
     Then set reference number to Reference 123456789
     Then expect reference number error is not displayed
     Then click on add reference save button
-    Then expect value of Reference Number in contacts grid is Reference 123456789
+    Then expect contacts grid reference no column at row 1 is Reference 123456789
 
  @sdc_contacts_toolbar_settings_show_hide_all_columns
   Scenario: Contacts BVT Scenario 1 : Select columns to show/hide in the Grid
