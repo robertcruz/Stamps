@@ -20,6 +20,11 @@ module SdcMail
       class MailTo < SdcPage
         # Mail To Drop down
         page_objects(:add_buttons) { { xpath: '//span[contains(@class, "sdc-icon-add-button")]' } }
+        page_object(:dom_drop_down) { { xpath: '//*[@id="sdc-mainpanel-matltocountrydroplist-trigger-picker"]' } }
+        page_object(:int_drop_down) { { xpath: '//*[@id="shiptoview-international-targetEl"]//div[contains(@id, "-trigger-picker")][starts-with(@id, "combo")]' } }
+        page_objects(:dom_text_field, index: 0, tag: :text_fields) { { xpath: '//input[@name="ShipCountryCode"]' } }
+        page_objects(:int_text_field, index: 1, tag: :text_fields) { { xpath: '//input[@name="ShipCountryCode"]' } }
+
         page_objects(:text_fields, tag: :text_fields) { { xpath: '//input[@name="ShipCountryCode"]' } }
         page_objects(:drop_downs, tag: :text_fields) { { xpath: '' } }
 
