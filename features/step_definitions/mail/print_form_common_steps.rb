@@ -367,7 +367,7 @@ end
 
 Then /^expect print form mail-to country is disabled$/ do
   mail_to = SdcMail.print_form.mail_to
-  country=mail_to.dom_text_field
+  country = mail_to.dom_text_field
   country.safe_wait_until_present(timeout: 5)
   country.flash
   mail_to.dom_text_field.flash
@@ -381,7 +381,7 @@ end
 
 Then /^expect value of print form mail-to country is (.*)/ do |str|
   mail_to = SdcMail.print_form.mail_to
-  country=mail_to.dom_text_field
+  country = mail_to.dom_text_field
   country.safe_wait_until_present(timeout: 5)
   expect(country.text_value).to eql(str)
 end

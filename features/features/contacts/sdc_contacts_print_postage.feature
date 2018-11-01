@@ -29,21 +29,21 @@ Feature:  Contacts BVT - Print Postage
   @batch_print_create_multiple_shift_25Oct
   Scenario: Multiple Contacts Selected and country field is disabled
     Then sign-in to orders
-#    Then navigate to Contacts
-#    #Delete existing contacts
-#    Then delete all available contacts with the value Diana Doly
-#    Then expect count of contact search results is 0
-#    Then click add button on contacts toolbar
-#    Then set contact details to
-#      | full_name | company | country| street_address | city | state | postal_code | phone  |  email | groups | reference_number|cost_code |
-#      |Diana Doly    |random   |United States|1 Cortlandt St     |New York|New York|10007|23345142-123|random  |        |random           |          |
-#    Then in contacts grid uncheck row 1
-#    Then delete all available contacts with the value Alex Persih
-#    Then click add button on contacts toolbar
-#    Then set contact details to
-#      | full_name | company | country| street_address | city | state | postal_code | phone  |  email | groups | reference_number|cost_code |
-#      |Alex Persih    |random   |United States|1 Cortlandt St     |New York|New York|10007|23345142-123|random  |        |random           |          |
-#    Then in contacts grid uncheck row 1
+    Then navigate to Contacts
+    #Delete existing contacts
+    Then delete all available contacts with the value Diana Doly
+    Then expect count of contact search results is 0
+    Then click add button on contacts toolbar
+    Then set contact details to
+      | full_name | company | country     | street_address | city   | state  | postal_code | phone      |  email | groups | reference_number|cost_code |
+      |Diana Doly |random   |United States|1 Cortlandt St  |New York|New York|10007        |23345142-123| random |        |random           |          |
+    Then in contacts grid uncheck row 1
+    Then delete all available contacts with the value Alex Persih
+    Then click add button on contacts toolbar
+    Then set contact details to
+      | full_name  | company | country       | street_address | city     | state    | postal_code | phone        |  email | groups | reference_number|cost_code |
+      |Alex Persih |random   | United States | 1 Cortlandt St | New York | New York | 10007       | 23345142-123 | random |        | random          |          |
+    Then in contacts grid uncheck row 1
     #navigate to mail page to verify multiple contact added
     Then navigate to Mail
     Then select print on Shipping Label - 8 ½" x 11" Paper
@@ -52,10 +52,13 @@ Feature:  Contacts BVT - Print Postage
     #WEBAPPAUTO-9 - Batch Print : Search Contacts Modal for selecting multiple contacts in Mail
     Then set search contacts grid name Diana Doly
     Then click search icon on search contacts modal
-    Then pause for 5 seconds
+    Then pause for 2 seconds
+    Then expect contacts filter panel search result count is 1
     Then check search contacts grid name Diana Doly
     Then set search contacts grid name Alex Persih
     Then click search icon on search contacts modal
+    Then pause for 2 seconds
+    Then expect contacts filter panel search result count is 1
     Then check search contacts grid name Alex Persih
     Then click select button on search contacts modal
     #ORDERSAUTO-4780 :Scenarion 1 : Multiple Contacts Selected and country field is disabled
