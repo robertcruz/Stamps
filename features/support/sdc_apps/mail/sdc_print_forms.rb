@@ -58,7 +58,7 @@ module SdcMail
           end
 
           error = Selenium::WebDriver::Error::NoSuchElementError
-          error_message = 'Cannot get a Ship-To Country text field'
+          error_message = 'Cannot get a Ship-To Country drop down'
           raise error, error_message
         end
 
@@ -68,7 +68,7 @@ module SdcMail
           end
 
           error = Selenium::WebDriver::Error::NoSuchElementError
-          error_message = 'Cannot get a Ship-To Country drop down'
+          error_message = 'Cannot get a Ship-To Country text field'
           raise error, error_message
         end
 
