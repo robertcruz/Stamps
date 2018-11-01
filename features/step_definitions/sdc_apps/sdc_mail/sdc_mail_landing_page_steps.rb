@@ -54,7 +54,7 @@ Then /^sign out$/ do
     unless TestSession.env.responsive
       user_drop_down = SdcWebsite.navigation.user_drop_down
       landing_page = SdcWebsite.landing_page
-      4.times do
+      2.times do
         user_drop_down.signed_in_user.hover
         user_drop_down.sign_out_link.safe_wait_until_present(timeout: 1)
         user_drop_down.sign_out_link.click
