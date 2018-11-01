@@ -42,10 +42,9 @@ Then /^expect number of contacts displayed in the grid is (.*)$/ do |count|
 end
 
 Then /^expect number of visible contacts grid column is (?:correct|(.*))$/ do |count|
-  columns = SdcContacts.grid.columns
   count ||= 20
   actual_count = 0
-  columns.each do |column|
+  SdcContacts.grid.columns.each do |column|
     element = SdcElement.new(column)
     element.scroll_into_view
     actual_count += 1 if element.text_value.size >= 1
