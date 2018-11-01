@@ -26,7 +26,7 @@ Then /^fetch total against each group available$/ do
 end
 
 Then /^select (.*) from groups menu dropdown of contacts toolbar$/ do |str|
-  toolbar = SdcContacts.toolbar.groups
+  toolbar = SdcContacts.toolbar.groups_dropdown
   case str
   when 'Change Groups'
     toolbar.toolbar_groups_change_groups.safe_wait_until_present(timeout: 15)

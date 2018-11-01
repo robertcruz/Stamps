@@ -14,22 +14,29 @@ Feature:  Contacts BVT - Contacts ToolBar
     Then in contacts grid uncheck row 1
     Then search contacts from contacts filter panel with name newly added
     Then in contacts grid check row 1
-    #Then expect values of contact added in contacts grid are correct
-    #Then expect values of contact added in contacts detail panel are correct
-
     Then expect contacts grid name column at row 1 is correct
     Then expect contacts grid company column at row 1 is correct
-
-
-
-
-
-
-
-
-
-
-
+    Then expect contacts grid country column at row 1 is correct
+    Then expect contacts grid street address column at row 1 is correct
+    Then expect contacts grid city column at row 1 is correct
+    Then expect contacts grid state column at row 1 is correct
+    Then expect contacts grid postal code column at row 1 is correct
+    Then expect contacts grid phone column at row 1 is correct
+    Then expect contacts grid email column at row 1 is correct
+    Then expect contacts grid reference no column at row 1 is correct
+    Then expect contacts grid cost code column at row 1 is correct
+    Then expect value of name in contact details panel is correct
+    Then expect value of company in contact details panel is correct
+    Then expect value of country in contact details panel is correct
+    Then expect value of street address in contact details panel is correct
+    Then expect value of city in contact details panel is correct
+    Then expect value of state in contact details panel is correct
+    Then expect value of postal code in contact details panel is correct
+    Then expect value of phone in contact details panel is correct
+    Then expect value of email in contact details panel is correct
+    Then expect value of groups contact details panel is correct
+    Then expect value of reference number in contact details panel is correct
+    Then expect value of cost code in contact details panel is correct
 
 
   @sdc_contacts_delete_single_from_top_navigation

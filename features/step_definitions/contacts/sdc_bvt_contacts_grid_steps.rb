@@ -61,6 +61,52 @@ Then /^expect contacts grid name column at row (\d+) is (?:correct|(.*))$/ do |r
   expect(actual_value.strip).to eql str.strip
 end
 
+Then /^expect contacts grid prefix column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:prefix]
+  column = SdcContacts.grid.grid_column(:prefix)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect contacts grid first name column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:first_name]
+  column = SdcContacts.grid.grid_column(:first_name)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect contacts grid last name column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:last_name]
+  column = SdcContacts.grid.grid_column(:last_name)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect contacts grid middle name column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:middle_name]
+  column = SdcContacts.grid.grid_column(:middle)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect contacts grid suffix column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:suffix]
+  column = SdcContacts.grid.grid_column(:suffix)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
+
+
 Then /^expect contacts grid company column at row (\d+) is (?:correct|(.*))$/ do |row, str|
   SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
   step 'expect number of visible contacts grid column is correct'
@@ -70,23 +116,130 @@ Then /^expect contacts grid company column at row (\d+) is (?:correct|(.*))$/ do
   expect(actual_value.strip).to eql str.strip
 end
 
+  Then /^expect contacts grid title column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+    SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+    step 'expect number of visible contacts grid column is correct'
+    str ||= TestData.hash[:title]
+    column = SdcContacts.grid.grid_column(:title)
+    actual_value = column.text_at_row(row)
+    expect(actual_value.strip).to eql str.strip
+  end
+Then /^expect contacts grid department column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:department]
+  column = SdcContacts.grid.grid_column(:department)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
 
+Then /^expect contacts grid country column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:country]
+  if str.eql? 'United States'
+    country_abbrv = 'US'
+  else
+    countries = data_for(:countries, {})
+    country_abbrv = countries.key(str)
+  end
+  new_value = "#{country_abbrv} - #{str}"
+  column = SdcContacts.grid.grid_column(:country)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql new_value.strip
+end
 
+Then /^expect contacts grid street address column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:street_address]
+  column = SdcContacts.grid.grid_column(:street_address)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
 
+Then /^expect contacts grid city column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:city]
+  column = SdcContacts.grid.grid_column(:city)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
 
+Then /^expect contacts grid state column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:state]
+  us_states = data_for(:us_states, {})
+  new_value = us_states.key(str)
+  column = SdcContacts.grid.grid_column(:state_prv)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql new_value.strip
+end
 
+Then /^expect contacts grid province column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:province]
+  column = SdcContacts.grid.grid_column(:state_prv)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
 
+Then /^expect contacts grid postal code column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:postal_code]
+  column = SdcContacts.grid.grid_column(:postal_code)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
 
+Then /^expect contacts grid email column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:email]
+  column = SdcContacts.grid.grid_column(:email)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
 
+Then /^expect contacts grid phone column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:phone]
+  column = SdcContacts.grid.grid_column(:phone)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
 
+Then /^expect contacts grid phone ext column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:phone_ext]
+  column = SdcContacts.grid.grid_column(:phone_ext)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
 
+Then /^expect contacts grid reference no column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:reference_number]
+  column = SdcContacts.grid.grid_column(:reference_no)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
 
-
-
-
-
-
-
+Then /^expect contacts grid cost code column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:cost_code]
+  column = SdcContacts.grid.grid_column(:cost_code)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
 
 Then /^expect name details on contacts grid are updated appropriately for (.*)$/ do |name|
   contacts_grid_body = SdcContacts.grid.body
@@ -157,179 +310,3 @@ Then /^expect name details on contacts grid are updated appropriately for (.*)$/
     #p value_first+'- First :' + firstname
   end
 end
-
-#
-# Then /^expect values of contact added in contacts grid are correct$/ do
-#
-#   company = TestData.hash[:company]
-#   country = TestData.hash[:country]
-#   street_address = TestData.hash[:street_address]
-#   city = TestData.hash[:city]
-#   state = TestData.hash[:state]
-#   postal_code = TestData.hash[:postal_code]
-#   email = TestData.hash[:email]
-#   phone = TestData.hash[:phone]
-#   phone_ext = TestData.hash[:phone_ext]
-#   reference_number = TestData.hash[:reference_number]
-#   cost_code = TestData.hash[:cost_code]
-#
-#   step "expect value of Name in contacts grid is #{full_name}"
-#   step "expect value of Company in contacts grid is #{company}"
-#   step "expect value of Country in contacts grid is #{country}"
-#   step "expect value of Street Address in contacts grid is #{street_address}"
-#   step "expect value of City in contacts grid is #{city}"
-#   if country.eql? 'United States'
-#     step "expect value of State/Prv in contacts grid is #{state}"
-#   else
-#     step "expect value of Province in contacts grid is #{state}"
-#   end
-#   step "expect value of Postal Code in contacts grid is #{postal_code}"
-#   step "expect value of Email in contacts grid is #{email}"
-#   step "expect value of Phone in contacts grid is #{phone}"
-#   step "expect value of Phone Extension in contacts grid is #{phone_ext}"
-#   step "expect value of Reference Number in contacts grid is #{reference_number}"
-#   step "expect value of Cost Code in contacts grid is #{cost_code}"
-# end
-
-#Validate Details in Contacts Grid
-# Then /^expect value of (.*) in contacts grid is (?:correct|(.*))$/ do |col, value|
-#   contacts_grid_body = SdcContacts.grid.body
-#   contacts_grid_body.safe_wait_until_present(timeout: 60)
-#
-#   #SdcLogger.info '**Grid**'
-#
-#   new_value = if value.eql?'blank'
-#                 ""
-#               elsif value.eql? 'correct?'
-#                 temp
-#               else
-#                 value
-#               end
-#
-#   actual_value = column.text_at_row(1)
-#
-#   if column.header_text.eql?('Country')
-#     val = actual_value.split('-')
-#     expect(val[1].strip).to eql new_value.strip
-#   elsif column.header_text.eql?('State/Prv') && col.eql?('State/Prv')
-#     us_states = data_for(:us_states, {})
-#     new_value = us_states.key(value)
-#     expect(actual_value.strip).to eql new_value.strip
-#   else
-#     expect(actual_value.strip).to eql new_value.strip
-#   end
-#
-#   SdcLogger.info "given value : #{value}"
-#   SdcLogger.info "modified given value : #{new_value}"
-#   SdcLogger.info "value on Grid :#{actual_value}"
-#
-# end
-
-#todo-Navya create a new test that validates column names.
-#
-#
-
-# case col
-# when 'Name'
-#   column = SdcContacts.grid.grid_column(:name)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Name')
-#
-# when 'Prefix'
-#   column = SdcContacts.grid.grid_column(:prefix)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Prefix')
-#
-# when 'First Name'
-#   column = SdcContacts.grid.grid_column(:first_name)
-#   expect(column).present?
-#   expect(column.header_text).to eql('First Name')
-#
-# when 'Middle Name'
-#   column = SdcContacts.grid.grid_column(:middle)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Middle')
-#
-# when 'Last Name'
-#   column = SdcContacts.grid.grid_column(:last_name)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Last Name')
-#
-# when 'Suffix'
-#   column = SdcContacts.grid.grid_column(:suffix)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Suffix')
-#
-# when 'Company'
-#   column = SdcContacts.grid.grid_column(:company)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Company')
-#
-# when 'Title'
-#   column = SdcContacts.grid.grid_column(:title)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Title')
-#
-# when 'Department'
-#   column = SdcContacts.grid.grid_column(:department)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Department')
-#
-# when 'Country'
-#   column = SdcContacts.grid.grid_column(:country)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Country')
-#
-# when 'Street Address'
-#   column = SdcContacts.grid.grid_column(:street_address)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Street Address')
-#
-# when 'City'
-#   column = SdcContacts.grid.grid_column(:city)
-#   expect(column).present?
-#   expect(column.header_text).to eql('City')
-#
-# when 'State/Prv'
-#   column = SdcContacts.grid.grid_column(:state_prv)
-#   expect(column).present?
-#   expect(column.header_text).to eql('State/Prv')
-#
-# when 'Province'
-#   column = SdcContacts.grid.grid_column(:state_prv)
-#   expect(column).present?
-#   expect(column.header_text).to eql('State/Prv')
-#
-# when 'Postal Code'
-#   column = SdcContacts.grid.grid_column(:postal_code)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Postal Code')
-#
-# when 'Email'
-#   column = SdcContacts.grid.grid_column(:email)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Email')
-#
-# when 'Phone'
-#   column = SdcContacts.grid.grid_column(:phone)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Phone')
-#
-# when 'Phone Extension'
-#   column = SdcContacts.grid.grid_column(:phone_ext)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Ext.')
-#
-# when 'Reference Number'
-#   column = SdcContacts.grid.grid_column(:reference_no)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Reference #')
-#
-# when 'Cost Code'
-#   column = SdcContacts.grid.grid_column(:cost_code)
-#   expect(column).present?
-#   expect(column.header_text).to eql('Cost Code')
-#   if value == "correct?"
-#     temp ||= TestData.hash[:costcode_val]
-#   end
-# end

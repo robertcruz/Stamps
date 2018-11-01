@@ -1,50 +1,3 @@
-
-Then /^add a valid contact with domestic address$/ do
-
-  full_name = TestHelper.rand_full_name
-  company = TestHelper.rand_comp_name
-  country = 'United States'
-  street_address = '2441 61st St'
-  city = 'Port Arthur'
-  state = 'TX'
-  postal_code = '77640-6942'
-  email = TestHelper.rand_email
-  full_phone = TestHelper.rand_phone_format
-  phone_ext =  TestHelper.rand_phone
-  #groups =  TestHelper.rand_group_name
-  reference_number = TestHelper.rand_reference_number
-  #cost_code =  param['cost_code']
-
-  step "set contact details name to #{full_name}"
-  step "set contact details company to #{company}"
-  step "set contact details country to #{country}"
-  step "set contact details street address to #{street_address}"
-  step "set contact details city to #{city}"
-  step "set contact details state to #{state}"
-  step "set contact details postal code to #{postal_code}"
-  step "set contact details email to #{email}"
-  step "set contact details phone to #{full_phone}"
-  #step "set contact details groups to #{groups}"
-  step "set contact details reference number to #{reference_number}"
-  #step "set contact details groups to #{}cost_code}"
-
-  TestData.hash[:full_name] = full_name
-  TestData.hash[:company] = company
-  TestData.hash[:country] = country
-  TestData.hash[:street_address] = street_address
-  TestData.hash[:city] = city
-  TestData.hash[:state] = state
-  TestData.hash[:postal_code] = postal_code
-  TestData.hash[:email] = email
-  TestData.hash[:full_phone] = full_phone
-  TestData.hash[:phone] = phone
-  TestData.hash[:phone_ext] = phone_ext
-  TestData.hash[:groups] = groups
-  TestData.hash[:cost_code] = cost_code
-  TestData.hash[:reference_number] = reference_number
-
-end
-
 Then /^set contact details to$/ do |table|
   param = table.hashes.first
   full_name = param['full_name']
@@ -413,129 +366,173 @@ Then /^expand collapsed contact details panel$/ do
   contact_detail.expand_button.click
 end
 
-Then /^expect values of contact added in contacts detail panel are correct$/ do
-  full_name	=	TestData.hash[:full_name]
-  company	=	TestData.hash[:company]
-  country	=	TestData.hash[:country]
-  street_address	=	TestData.hash[:street_address]
-  city	=	TestData.hash[:city]
-  state	=	TestData.hash[:state]
-  postal_code	=	TestData.hash[:postal_code]
-  email	=	TestData.hash[:email]
-  phone	=	TestData.hash[:phone]
-  phone_ext	=	TestData.hash[:phone_ext]
-  groups	=	TestData.hash[:groups]
-  reference_number	=	TestData.hash[:reference_number]
-  cost_code	=	TestData.hash[:cost_code]
-
-  step "expect value of Name in contact details panel is #{full_name}"
-  step "expect value of Company in contact details panel is #{company}"
-  step "expect value of Country in contact details panel is #{country}"
-  step "expect value of Street Address in contact details panel is #{street_address}"
-  step "expect value of City in contact details panel is #{city}"
-  step "expect value of State/Prv in contact details panel is #{state}"
-  step "expect value of Postal Code in contact details panel is #{postal_code}"
-  step "expect value of Email in contact details panel is #{email}"
-  step "expect value of Phone in contact details panel is #{phone}"
-  step "expect value of Phone Extension in contact details panel is #{phone_ext}"
-  step "expect value of Groups in contact details panel is #{groups}"
-  step "expect value of Reference Number in contact details panel is #{reference_number}"
-  step "expect value of Cost Code in contact details panel is #{cost_code}"
-end
-
-#Validation of Values on the Details Panel
-Then /^expect value of (.*) in contact details panel is (.*)$/ do |label,value|
+Then /^expect value of name in contact details panel is (?:correct|(.*))$/ do |str|
   contacts_detail = SdcContacts.details
   contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
-
-  if value.eql? 'blank'
-    new_value = ""
-  else
-    new_value = value
-  end
-
-  case label
-
-  when 'Name'
-    actual_value = contacts_detail.name.text_value
-
-  when 'Prefix'
-    name_pre = SdcContacts.details.name_prefix
-    actual_value =  name_pre.prefix_text_field.text_value
-
-  when 'First Name'
-    actual_value = contacts_detail.first_name.text_value
-
-  when 'Middle Name'
-    actual_value = contacts_detail.middle_name.text_value
-
-  when 'Last Name'
-    actual_value = contacts_detail.last_name.text_value
-
-  when 'Suffix'
-    actual_value = contacts_detail.name_suffix.text_value
-
-  when 'Company'
-    actual_value = contacts_detail.company.text_value
-
-  when 'Title'
-    actual_value = contacts_detail.title.text_value
-
-  when 'Department'
-    actual_value = contacts_detail.department.text_value
-
-  when 'Country'
-    country = SdcContacts.details.country
-    actual_value = country.text_field.text_value
-
-  when 'Street Address'
-    actual_value = contacts_detail.street_address.text_value
-
-  when 'City'
-    actual_value = contacts_detail.city.text_value
-
-  when 'State/Prv' ,'State','Province'
-    state = SdcContacts.details.state
-    if state.text_field.present?
-      actual_value = state.text_field.text_value
-    else
-      actual_value = contacts_detail.state_prv.text_value
-    end
-
-  when 'Postal Code'
-    actual_value = contacts_detail.postal_code.text_value
-
-  when 'Email'
-    actual_value = contacts_detail.email.text_value
-
-  when 'Phone'
-    actual_value = contacts_detail.phone.text_value
-
-  when 'Phone Extension'
-    actual_value = contacts_detail.phone_ext.text_value
-
-  when 'Groups'
-    groups = SdcContacts.details.group
-    actual_value = groups.text_list.text_value
-
-  when 'Reference Number'
-    actual_value = contacts_detail.reference_number.text_value
-
-  when 'Cost Code'
-    cost_code = SdcContacts.details.cost_code
-    actual_value = cost_code.text_field.text_value
-    if new_value.eql? ''
-      new_value = 'None'
-    end
-  end
-  SdcLogger.info "Label:  #{label}"
-  SdcLogger.info "given value :#{value}"
-  SdcLogger.info "Modified given value #{new_value}"
-  SdcLogger.info "Value in details panel :#{actual_value.to_s}"
-
-  expect(actual_value.strip).to eql new_value.strip
+  str ||= TestData.hash[:full_name]
+  actual_value = contacts_detail.name.text_value
+  expect(actual_value.strip).to eql str.strip
 end
 
+Then /^expect value of prefix in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:prefix]
+  actual_value =  name_pre.prefix_text_field.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of first name in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:first_name]
+  actual_value = contacts_detail.first_name.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of middle name in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:middle]
+  actual_value = contacts_detail.middle_name.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of last name in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:last_name]
+  actual_value = contacts_detail.last_name.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of suffix in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:suffix]
+  actual_value = contacts_detail.name_suffix.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of company in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:company]
+  actual_value = contacts_detail.company.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of title in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:title]
+  actual_value = contacts_detail.title.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of department in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:department]
+  actual_value = contacts_detail.department.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of country in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:country]
+  actual_value = contacts_detail.country.text_field.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of street address in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:street_address]
+  actual_value = contacts_detail.street_address.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of city in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:city]
+  actual_value = contacts_detail.city.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of state in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:state]
+  actual_value = contacts_detail.state.text_field.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of province in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:province]
+  actual_value = contacts_detail.state_prv.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of postal code in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:postal_code]
+  actual_value = contacts_detail.postal_code.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of email in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:email]
+  actual_value = contacts_detail.email.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of phone in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:phone]
+  actual_value = contacts_detail.phone.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of phone ext in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:phone_ext]
+  actual_value = contacts_detail.phone_ext.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of groups in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:groups]
+  actual_value = contacts_detail.groups.text_list.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of reference number in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:reference_number]
+  actual_value = contacts_detail.reference_number.text_value
+  expect(actual_value.strip).to eql str.strip
+end
+
+Then /^expect value of cost code in contact details panel is (?:correct|(.*))$/ do |str|
+  contacts_detail = SdcContacts.details
+  contacts_detail.reference_number.safe_wait_until_present(timeout: 15)
+  str ||= TestData.hash[:cost_code]
+  actual_value = contacts_detail.cost_code.text_field.text_value
+  expect(actual_value.strip).to eql str.strip
+end
 
 Then /^set street address on contact page details to maximum lines (\d+)$/ do |lines|
   contacts_detail = SdcContacts.details
