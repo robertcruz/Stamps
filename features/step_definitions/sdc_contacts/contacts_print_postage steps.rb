@@ -2,7 +2,7 @@
 Then /^expect ship-to country on mail is (?:correct|(.*))$/ do |str|
   str ||= TestData.hash[:country]
   mail_to = SdcMail::SdcPrintForm::MailToContainer::MailTo.new
-  actual_value = mail_to.dom_text_field
+  actual_value = mail_to.text_field
   expect(actual_value.text_value.to_s).to eql(str.to_s)
 end
 
