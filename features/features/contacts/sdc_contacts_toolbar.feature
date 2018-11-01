@@ -17,8 +17,8 @@ Feature:  Contacts BVT - Contacts ToolBar
     #Then expect values of contact added in contacts grid are correct
     #Then expect values of contact added in contacts detail panel are correct
 
-    Then expect name in contacts grid is correct
-    Then expect company in contacts grid is correct
+    Then expect contacts grid name column at row 1 is correct
+    Then expect contacts grid company column at row 1 is correct
 
 
 
