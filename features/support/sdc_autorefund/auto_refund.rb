@@ -52,24 +52,46 @@ module SdcAutoRefund
 
     def not_shipped_all
       klass = Class.new(SdcPage) do
-        page_object(:not_shipped_all) { { xpath: '//*[contains(@id, "is-not-opt-out")]' } }
+        page_objects(:not_shipped_all, tag: :radio) { { xpath: '//include[contains(@id, "is-not-opt-out")]' } }
       end
       klass.new.not_shipped_all
     end
 
     def shipped_all
       klass = Class.new(SdcPage) do
-        page_object(:shipped_all) { { xpath: '//*[contains(@id, "is-opt-out")]' } }
+        page_objects(:shipped_all, tag: :radio) { { xpath: '//include[contains(@id, "is-opt-out")]' } }
       end
       klass.new.shipped_all
     end
 
     def not_shipped(num)
       klass = Class.new(SdcPage) do
-        page_object(:not_shipped) { { xpath: "(//*[contains(@id, 'is-not-opt-out')])[#{num}]" } }
+        page_object(:not_shipped, tag: :radio) { { xpath: "(//*[contains(@id, 'is-not-opt-out')])[#{num}]" } }
       end
       klass.new.not_shipped
     end
+
+    def not_shipped_label(num)
+      klass = Class.new(SdcPage) do
+        page_object(:not_shipped_label) { { xpath: "(//*[contains(@id, 'is-not-opt-out')]/following-sibling::*)[#{num}]" } }
+      end
+      klass.new.not_shipped_label
+    end
+
+    def shipped(num)
+      klass = Class.new(SdcPage) do
+        page_object(:shipped, tag: :radio) { { xpath: "(//*[contains(@id, 'is-opt-out')])[#{num}]" } }
+      end
+      klass.new.shipped
+    end
+
+    def shipped_label(num)
+      klass = Class.new(SdcPage) do
+        page_object(:shipped_label) { { xpath: "(//*[contains(@id, 'is-opt-out')]/following-sibling::*)[#{num}]" } }
+      end
+      klass.new.shipped_label
+    end
+
 
     # def shipped(num)
     #   klass = Class.new(SdcPage) do
@@ -78,9 +100,9 @@ module SdcAutoRefund
     #   klass.new.shipped
     # end
     #
-    def shipped(num)
-      Shipped.new(num)
-    end
+    # def shipped(num)
+    #   Shipped.new(num)
+    # end
   end
 
   class Shipped < SdcPage

@@ -23,5 +23,9 @@ module SdcHistory
     def details
       Details
     end
+
+    def modals
+      Modals
+    end
   end
 end
