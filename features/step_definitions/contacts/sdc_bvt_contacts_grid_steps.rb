@@ -116,14 +116,14 @@ Then /^expect contacts grid company column at row (\d+) is (?:correct|(.*))$/ do
   expect(actual_value.strip).to eql str.strip
 end
 
-  Then /^expect contacts grid title column at row (\d+) is (?:correct|(.*))$/ do |row, str|
-    SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
-    step 'expect number of visible contacts grid column is correct'
-    str ||= TestData.hash[:title]
-    column = SdcContacts.grid.grid_column(:title)
-    actual_value = column.text_at_row(row)
-    expect(actual_value.strip).to eql str.strip
-  end
+Then /^expect contacts grid title column at row (\d+) is (?:correct|(.*))$/ do |row, str|
+  SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
+  step 'expect number of visible contacts grid column is correct'
+  str ||= TestData.hash[:title]
+  column = SdcContacts.grid.grid_column(:title)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str.strip
+end
 Then /^expect contacts grid department column at row (\d+) is (?:correct|(.*))$/ do |row, str|
   SdcContacts.grid.body.safe_wait_until_present(timeout: 60)
   step 'expect number of visible contacts grid column is correct'
