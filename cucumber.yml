@@ -634,7 +634,7 @@ sdc_contact_column_header_dropdown_menu: --tags @sdc_contact_column_header_dropd
 sdc_contact_columns_sort_asc_dec: --tags @sdc_contact_columns_sort_asc_dec --guess LOG_LEVEL=info
 sdc_contact_columns_name_sort:  --tags @sdc_contact_columns_name_sort --guess LOG_LEVEL=info
 sdc_contacts_left_navigation_selected_filter:  --tags @sdc_contacts_left_navigation_selected_filter --guess LOG_LEVEL=info
-sdc_contacts_print:  --tags @sdc_contacts_print --guess LOG_LEVEL=info
+sdc_contacts_print_to_mail:  --tags @sdc_contacts_print_to_mail --guess LOG_LEVEL=info
 history_toolbar:  --tags @history_toolbar --guess LOG_LEVEL=info
 history_filter_direct_url:  --tags @history_filter_direct_url --guess LOG_LEVEL=info
 container_label_return_address:  --tags @container_label_return_address --guess LOG_LEVEL=info

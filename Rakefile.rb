@@ -77,8 +77,8 @@ Cucumber::Rake::Task.new(:sdc_contacts_existing_add_valid_reference_number) do |
   t.cucumber_opts = "-p cuke_reports"
 end
 
-Cucumber::Rake::Task.new(:sdc_contacts_print) do |t|
-  t.profile = 'sdc_contacts_print'
+Cucumber::Rake::Task.new(:sdc_contacts_print_to_mail) do |t|
+  t.profile = 'sdc_contacts_print_to_mail'
   t.cucumber_opts = "-p cuke_reports"
 end
 
