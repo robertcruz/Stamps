@@ -114,6 +114,25 @@ Then /^expect multiple contacts view include (.+)$/ do |str|
   expectations.each { |contact| expect(contacts).to include contact }
 end
 
+Then /^hover over contact (.+)$/ do |str|
+  add_address = SdcMail.modals.add_address
+  add_address.contacts_view.container.wait_until_present(timeout: 5)
+  contacts = add_address.contacts_view.contacts_list
+ SdcLogger.info "contacts.count : #{contacts.count}"
+  p contacts.count
+  i=1
+  while i< contacts.count+1
+    #SdcLogger.info "i : #{i}"
+    p i
+    #SdcLogger.info "contacts[i].text : #{contacts[i].text}"
+    p contacts[i].text
+      if contacts[i].text.eql?(str)
+        contacts.hover
+      end
+    i=i+1
+    end
+end
+
 Then /^[Ee]xpect Print form Mail To is disabled$/ do
   pending
   #expect(stamps.mail.print_form.mail_to.enabled?).to be(true), "Print form Mail To is NOT disabled"

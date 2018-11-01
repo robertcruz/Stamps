@@ -34,7 +34,6 @@ end
 
 Then /^set search contacts grid name (.+)$/ do |str|
   search_filter = SdcMail.modals.search_contacts
-  search_filter.search_text.flash
   search_filter.search_text.set(str)
 end
 
