@@ -34,7 +34,7 @@ Feature:  Contacts BVT - Contacts ToolBar
     Then expect value of postal code in contact details panel is correct
     Then expect value of phone in contact details panel is correct
     Then expect value of email in contact details panel is correct
-    Then expect value of groups contact details panel is correct
+    Then expect value of groups in contact details panel is correct
     Then expect value of reference number in contact details panel is correct
     Then expect value of cost code in contact details panel is correct
 
