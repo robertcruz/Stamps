@@ -77,7 +77,7 @@ Feature:  Contacts BVT - Contacts Details
     #valid Email
     Then set contact details email to aloha@lydia.in
     Then expect email error is not displayed
-    Then expect value of Email in contacts grid is aloha@lydia.in
+    Then expect contacts grid email column at row 1 is aloha@lydia.in
 
 
   @sdc_contacts_detail_name_singleName

@@ -109,15 +109,22 @@ Feature:  Contacts BVT - Contacts ToolBar
     Then expect count of contact search results is 1
     Then in contacts grid check row 1
     Then click change reference button on contacts toolbar
+    #Empty Reference Number
+    Then set reference number to blank
+    Then click on change reference save button
+    Then expect reference number error is displayed
+    Then expect error message on add reference modal is Reference required.
+    #Invalid Reference
     Then set reference number to Invalid Reference1 Reference2 Reference3
     Then expect reference number error is displayed
     Then expect error message on add reference modal is Maximum 35 characters allowed.
-    Then click on add reference close button
+    Then click on change reference close button
     Then expect contacts grid reference no column at row 1 is blank
+    #Valid Reference
     Then click change reference button on contacts toolbar
     Then set reference number to Reference 123456789
     Then expect reference number error is not displayed
-    Then click on add reference save button
+    Then click on change reference save button
     Then expect contacts grid reference no column at row 1 is Reference 123456789
 
  @sdc_contacts_toolbar_settings_show_hide_all_columns

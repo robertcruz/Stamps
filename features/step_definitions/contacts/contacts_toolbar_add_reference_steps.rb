@@ -1,17 +1,20 @@
 Then /^set reference number to (.*)$/ do |value|
   ref = SdcContacts.modals.change_reference
   ref.reference_num.wait_until_present(timeout: 15)
+  if value.eql?'blank'
+    value =''
+  end
   ref.reference_num.set(value)
   SdcLogger.info "value: #{value}"
 end
 
-Then /^click on add reference close button$/ do
+Then /^click on change reference close button$/ do
   ref = SdcContacts.modals.change_reference
   ref.close.safe_wait_until_present(timeout: 15)
   ref.close.click
 end
 
-Then /^click on add reference save button$/ do
+Then /^click on change reference save button$/ do
   ref = SdcContacts.modals.change_reference
   ref.save_button.wait_until_present(timeout: 15)
   ref.save_button.click
