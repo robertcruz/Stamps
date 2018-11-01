@@ -222,6 +222,11 @@ Cucumber::Rake::Task.new(:sdc_contacts_existing_add_invalid_reference_number) do
   t.cucumber_opts = "-p cuke_reports"
 end
 
+Cucumber::Rake::Task.new(:sdc_contacts_print) do |t|
+  t.profile = 'sdc_contacts_print'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 #BEGIN PARTNER PORTAL
 Cucumber::Rake::Task.new(:pp_log_in_page_validation) do |t|
   t.profile = 'pp_log_in_page_validation'
