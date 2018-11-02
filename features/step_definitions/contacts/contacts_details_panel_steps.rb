@@ -228,7 +228,7 @@ Then /^set contact details suffix to (.*)$/ do |str|
   contacts_detail = SdcContacts.details
   contacts_detail.name_suffix.safe_wait_until_present(timeout: 15)
   contacts_detail.name_suffix.set(str)
-  contacts_detail.name.click
+  contacts_detail.company.click
   TestData.hash[:suffix]=str
 end
 
