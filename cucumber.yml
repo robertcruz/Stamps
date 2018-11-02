@@ -604,6 +604,7 @@ swwr_create_your_account_page_validation: --tags @swwr_create_your_account_page_
 aloha: --tags @sdc_contacts_detail_name_all_details URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core004 PW=password1
 #aloha: --tags @sdc_contact_add_new_contact URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core004 PW=password1
 #aloha: --tags @sdc_contacts_show_all_columns URL=qacc LOG_LEVEL=debug HEALTHCHECK=false BROWSER=gc MAX_WINDOW=false USR=Tmaheryar PW=password1
+sdc_contacts_delete_single_from_top_navigation: --tags @sdc_contacts_delete_single_from_top_navigation --guess LOG_LEVEL=info
 sdc_contacts_add_valid_invalid_email: --tags @sdc_contacts_add_valid_invalid_email  --guess  LOG_LEVEL=info
 sdc_contacts_existing_add_valid_invalid_reference_number: --tags @sdc_contacts_existing_add_valid_invalid_reference_number  --guess  LOG_LEVEL=info
 sdc_contacts_delete_multiple_from_top_navigation: --tags @sdc_contacts_delete_multiple_from_top_navigation --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
