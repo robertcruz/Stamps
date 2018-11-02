@@ -14,7 +14,7 @@ Then /^set contact details to$/ do |table|
   reference_number = param['reference_number']
   cost_code = param['cost_code']
 
-  if full_name.empty? || full_name.downcase.include?('random')
+  if full_name.downcase.include?('random')
     full_name = TestHelper.rand_full_name
   end
 
@@ -124,6 +124,54 @@ Then /^set contact details name to (.*)$/ do |str|
   contacts_detail.name.safe_wait_until_present(timeout: 15)
   contacts_detail.name.set(str)
   contacts_detail.company.click
+  step "split name to details for #{str}"
+  TestData.hash[:full_name]=str
+end
+
+Then /^split name to details for (.*)$/ do |full_name|
+  #full_name = TestData.hash[:full_name]
+  prefix  = ''
+  first_name =''
+  middle_name =''
+  last_name =''
+  prefix_list=['None', '1Lt.','1stLt.','2Lt.','2ndLt.','Amb.','Amb. &amp; Mrs.','BG',
+               'BGen.','BrigGen.','Brother','CAPT','CDR','COL','CPT','Capt.','Capt. &amp; Mrs.','Col.',
+               'Col. &amp; Mrs.', 'Dean', 'Dr.', 'Dr. &amp; Mrs.', 'Drs.', 'ENS', 'Est. of','GEN','Gen.','Gen. &amp; Mrs.',
+               'Gov.','Hon.','Hon. &amp; Mrs.','Justice','LCDR','LCDR &amp; Mrs.','LCpl','LT','LTC','LTG',
+               'LTJG','Lt.','LtCol.','LtGen.','MAJ','MG','MSG','MSgt.','Maj.','MajGen.',
+               'Mayor','Mdme.','Miss','Mr.','Mr. &amp; Dr.','Mr. &amp; Mrs.','Mrs.','Ms.','Msgr.','Prince',
+               'Prof.','Prof. &amp; Mrs.','RADM','RT.','REV.','Rabbi','Rev.','Rev. &amp; Mrs.','Rev. Dr.','Rev. Dr. &amp; Mrs.',
+               'Rev.','Father','Senator','Sir','Sister']
+  words = full_name.split(" ")
+
+  if prefix_list.include? words[0]
+    prefix =words[0]
+    words.delete(words[0])
+  end
+  if words.length.eql?(1)
+    last_name=words[0]
+  elsif words.length.eql?(2)
+    first_name=words[0]
+    last_name=words[1]
+  elsif words.length.eql?(3)
+    first_name =words[0]
+    middle_name =words[1]
+    last_name =words[2]
+  elsif words.length >3
+    last_name =words[words.length-1]
+    middle_name = words[words.length - 2]
+    i=0
+    firstname = ''
+    while i < words.length- 2
+      firstname = firstname + words[i]  + " "
+      i = i + 1
+    end
+    first_name =firstname.rstrip
+  end
+  TestData.hash[:prefix ]||= prefix
+  TestData.hash[:first_name]||=first_name
+  TestData.hash[:middle_name ]||= middle_name
+  TestData.hash[:last_name]||= last_name
 end
 
 Then /^click on contact details panel name expand button$/ do
@@ -148,35 +196,40 @@ Then /^set contact details name prefix to (.*)$/ do |str|
   name_pre.selection.safe_click
   expect(name_pre.prefix_text_field.text_value).to include(str)
   contacts_detail = SdcContacts.details
-  contacts_detail.name.click
+  contacts_detail.first_name.click
+  TestData.hash[:prefix]=str
 end
 
-Then /^set contact details firstname to (.*)$/ do |str|
+Then /^set contact details first name to (.*)$/ do |str|
   contacts_detail = SdcContacts.details
   contacts_detail.first_name.safe_wait_until_present(timeout: 15)
   contacts_detail.first_name.set(str)
   contacts_detail.middle_name.click
+  TestData.hash[:first_name]=str
 end
 
-Then /^set contact details middlename to (.*)$/ do |str|
+Then /^set contact details middle name to (.*)$/ do |str|
   contacts_detail = SdcContacts.details
   contacts_detail.middle_name.safe_wait_until_present(timeout: 15)
   contacts_detail.middle_name.set(str)
   contacts_detail.last_name.click
+  TestData.hash[:middle_name]=str
 end
 
-Then /^set contact details lastname to (.*)$/ do |str|
+Then /^set contact details last name to (.*)$/ do |str|
   contacts_detail = SdcContacts.details
   contacts_detail.last_name.safe_wait_until_present(timeout: 15)
   contacts_detail.last_name.set(str)
-  contacts_detail.name_suffix.click
+  contacts_detail.company.click
+  TestData.hash[:last_name]=str
 end
 
 Then /^set contact details suffix to (.*)$/ do |str|
   contacts_detail = SdcContacts.details
   contacts_detail.name_suffix.safe_wait_until_present(timeout: 15)
   contacts_detail.name_suffix.set(str)
-  contacts_detail.company.click
+  contacts_detail.name.click
+  TestData.hash[:suffix]=str
 end
 
 Then /^set contact details company to (.*)$/ do |str|
@@ -202,14 +255,16 @@ Then /^set contact details title to (.*)$/ do |str|
   contacts_detail = SdcContacts.details
   contacts_detail.title.safe_wait_until_present(timeout: 15)
   contacts_detail.title.set(str)
-  contacts_detail.department.click
+  contacts_detail.company.click
+  TestData.hash[:title]=str
 end
 
 Then /^set contact details department to (.*)$/ do |str|
   contacts_detail = SdcContacts.details
   contacts_detail.department.safe_wait_until_present(timeout: 15)
   contacts_detail.department.set(str)
-  contacts_detail.title.click
+  contacts_detail.company.click
+  TestData.hash[:department]=str
 end
 
 Then /^set contact details country to (.*)$/ do |str|
