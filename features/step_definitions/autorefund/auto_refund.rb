@@ -33,19 +33,21 @@ Then /^expect update label status button on auto refund present$/ do
 end
 
 Then /^select shipped on row (.*) on auto refund$/ do |str|
-  SdcAutoRefund.shipped(str).radio.click
+  SdcAutoRefund.shipped_label(str).click
+  step "expect shipped on row #{str} on auto refund selected"
 end
 
 Then /^expect shipped on row (.*) on auto refund selected$/ do |str|
-  expect(SdcAutoRefund.shipped(str).radio.selected?).to be_truthy
+  expect(SdcAutoRefund.shipped(str).checked?).to be_truthy
 end
 
 Then /^select not shipped on row (.*) on auto refund$/ do |str|
-  SdcAutoRefund.not_shipped(str).radio.click
+  SdcAutoRefund.not_shipped_label(str).click
+  step "expect not shipped on row #{str} on auto refund selected"
 end
 
 Then /^expect not shipped on row (.*) on auto refund selected$/ do |str|
-  expect(SdcAutoRefund.not_shipped(str).radio.selected?).to be_truthy
+  expect(SdcAutoRefund.not_shipped(str).checked?).to be_truthy
 end
 
 Then /^click update label status button on auto refund present$/ do
@@ -56,11 +58,27 @@ Then /^expect success message on auto refund present$/ do
   expect(SdcAutoRefund.success_msg).to be_present
 end
 
+Then /^select not shipped for all rows on auto refund/ do
+  (1..SdcAutoRefund.rows.count).each do |index|
+    step "select not shipped on row #{index} on auto refund"
+  end
+end
+
 Then /^expect not shipped for all rows on auto refund selected$/ do
-  #not implemented
-  not_shipped_all = SdcAutoRefund.not_shipped_all
-  not_shipped_all.each do |not_shipped|
-    expect(not_shipped.selected?).to be_truthy
+  (1..SdcAutoRefund.rows.count).each do |index|
+    step "expect not shipped on row #{index} on auto refund selected"
+  end
+end
+
+Then /^select shipped for all rows on auto refund/ do
+  (1..SdcAutoRefund.rows.count).each do |index|
+    step "select shipped on row #{index} on auto refund"
+  end
+end
+
+Then /^expect shipped for all rows on auto refund selected$/ do
+  (1..SdcAutoRefund.rows.count).each do |index|
+    step "expect shipped on row #{index} on auto refund selected"
   end
 end
 

@@ -24,7 +24,7 @@ Feature:  History regression
     Then set print form weight to lbs 0 oz 1
     Then click print label
     #Then expct print form print message labels
-    Then click print button on mail print modal
+#    Then click print button on mail print modal
     Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
     Then save tracking number on print form message panel
     Then navigate to History
