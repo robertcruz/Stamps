@@ -3,7 +3,7 @@ Feature:  Contacts BVT - Contacts Pagination
   Background:
     Given Start test driver
 
-@sdc_contacts_pagination
+z@sdc_contacts_pagination
 Scenario: Contacts BVT Scenario 1: Contacts Pagination
     Then sign-in to orders
     Then navigate to Contacts
