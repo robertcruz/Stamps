@@ -1,5 +1,5 @@
 
-default: --backtrace --profile local_browser
+default: --backtrace --profile eli_dev
 
 cuke_reports: --format json --out report.json --backtrace -f pretty -r features --format pretty --format html --out reports
 
@@ -20,7 +20,7 @@ sauce_browser: --tags @history_filter_direct_url_1 --guess URL=cc USR=cctruer0u 
 
 kaushal_cc: --tags @ewwr_security_question_page_validation URL=stg BROWSER=edge #USR=qawebdevelopment@stamps.com PW=password1
 web_apps_dev: --tags @bvt_new_order USR=default PW=pass111 URL=tcarney-win7-3.corp.stamps.com --guess BROWSER=ff MAX_WINDOW=false
-eli_dev: --tags @mail_bvt_stamps --guess JENKINS=false WEB_APP=mail URL=stg BROWSER=ff USR=stgld1uw4sroe7 PW=pass111 PRINTER=factory
+eli_dev: --tags @sdc_contacts_print_to_mail --guess JENKINS=false WEB_APP=mail URL=cc BROWSER=ff USR=hal9000qa12 PW=password1 PRINTER=factory
 ray_dev: --tags @rates_parcel_select_ground --guess JENKINS=false URL=stg BROWSER=ff USR=default PW=pass111
 sap: --tags @registration_orders WEB_APP=registration URL=cc --guess BROWSER=ff MAX_WINDOW=false
 alex_history:  --tags @history_filter_direct_url_1 BROWSER=firefox URL=cc USR=abqacctest1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
@@ -634,6 +634,7 @@ sdc_contact_column_header_dropdown_menu: --tags @sdc_contact_column_header_dropd
 sdc_contact_columns_sort_asc_dec: --tags @sdc_contact_columns_sort_asc_dec --guess LOG_LEVEL=info
 sdc_contact_columns_name_sort:  --tags @sdc_contact_columns_name_sort --guess LOG_LEVEL=info
 sdc_contacts_left_navigation_selected_filter:  --tags @sdc_contacts_left_navigation_selected_filter --guess LOG_LEVEL=info
+sdc_contacts_print_to_mail:  --tags @sdc_contacts_print_to_mail --guess LOG_LEVEL=info
 history_toolbar:  --tags @history_toolbar --guess LOG_LEVEL=info
 history_filter_direct_url:  --tags @history_filter_direct_url --guess LOG_LEVEL=info
 container_label_return_address:  --tags @container_label_return_address --guess LOG_LEVEL=info
