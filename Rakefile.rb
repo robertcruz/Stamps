@@ -37,8 +37,8 @@ Cucumber::Rake::Task.new(:sdc_contacts_add_invalid_email) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
-Cucumber::Rake::Task.new(:sdc_contacts_detail_name_singleName) do |t|
-  t.profile = 'sdc_contacts_detail_name_singleName'
+Cucumber::Rake::Task.new(:sdc_contact_details_single_name) do |t|
+  t.profile = 'sdc_contact_details_single_name'
   t.cucumber_opts = "-p cuke_reports"
 end
 

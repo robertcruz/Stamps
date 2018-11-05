@@ -79,7 +79,7 @@ Feature:  Contacts BVT - Contacts Details
     Then expect email error is not displayed
     Then expect contacts grid email column at row 1 is aloha@lydia.in
 
-  @sdc_contacts_detail_name_singleName
+  @sdc_contact_details_single_name
   Scenario: Contacts Details Add Name Scenario 1 :Add/Edit Single Name in Contact Details panel and verify Grid is updated correctly
     Then sign-in to orders
     Then navigate to Contacts
