@@ -17,7 +17,7 @@ Feature:  Transitioning between Contacts and Mail Pages
     Then set contact details postal code to 32801
     Then set contact details email to adams@gmail.com
     Then set contact details phone to 23345152
-    Then click contacts toolbar print postage button
+    Then click print postage button on contacts toolbar
     Then select print on Shipping Label - 8 ½" x 11" Paper
     Then navigate to Contacts
     Then click add button on contacts toolbar

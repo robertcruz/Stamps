@@ -252,6 +252,6 @@ Feature: Manage Print Options
     Then navigate to Contacts
     Then expect mail server error is not present
     Then in contacts grid check row 1
-    Then click contacts toolbar print postage button
+    Then click print postage button on contacts toolbar
     Then expect mail server error is not present
     Then sign out
