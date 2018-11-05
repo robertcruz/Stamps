@@ -6,7 +6,7 @@ Feature: ORDERSAUTO-3353 New Sprint 11/22/17 WEBAPPS-6720 Update Default Checkbo
   @mail_hidden_postage
   Scenario: ORDERSAUTO-3353 New Sprint 11/22/17 WEBAPPS-6720 Update Default Checkbox State for Hide Label Value
     Then select print on Shipping Label - 5x8
-    Then set Print form Mail-From to default
+    Then set print form mail-from to default
     Then set print form mail-to country to United States
     Then set print form mail-to to address random name, random company, 3217 Shasta Circle S., Los Angeles, CA 90065
     Then set print form ounces to 1

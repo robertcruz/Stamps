@@ -65,5 +65,4 @@ module SdcHistory
       end
     end
   end
-
 end

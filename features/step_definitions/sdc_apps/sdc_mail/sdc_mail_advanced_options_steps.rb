@@ -179,6 +179,7 @@ end
 Then /^set print form advanced options reference number to (?:(?:a |some |)random string|(.*))$/ do |str|
   str ||= TestHelper.rand_alpha_numeric
   advanced_options = SdcMail.print_form.advanced_options
+  advanced_options.reference_num.wait_until_present(timeout: 5)
   advanced_options.reference_num.scroll_into_view
   advanced_options.reference_num.set(str)
   advanced_options.reference_num.click

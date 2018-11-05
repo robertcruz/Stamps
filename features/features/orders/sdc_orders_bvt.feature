@@ -168,8 +168,8 @@ Feature:  BVT tests for Orders
     Then expect filter panel search results tab is present
     Then expect Filter Panel search result count is 1
     Then check grid order id
-    Then expect Filter Panel search result count is greater than 0
-    Then remove Filter Panel search results tab
+    Then expect filter panel search result count is greater than 0
+    Then remove filter panel search results tab
     Then expect filter panel search results tab is not present
     Then sign out
 
@@ -301,7 +301,6 @@ Feature:  BVT tests for Orders
 
     Then expect customs non-delivery options is Treat as abandoned
     Then expect customs internal transaction number is Required
-    Then expect customs i agree to the usps privacy act statement is checked correct
 
     Then expect customs associated item 1 Description is correct
     Then expect customs associated item 1 Quantity is correct

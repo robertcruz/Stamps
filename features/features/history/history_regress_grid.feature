@@ -13,8 +13,9 @@ Feature:  Mail BVT
     Then click print label
     Then click continue on confirm print modal
     Then expect postage message panel tracking label is Postage was sent to your printer. Your Tracking Number is
-    Then save postage message panel tracking number
+    Then save tracking number on print form message panel
     Then navigate to History
+    Then expect history grid column Carrier is USPS for row 1
     Then expect today is selected on history filter panel
     Then expect history grid column Shipment Status is Printed for row 1
     Then expect history grid weight is correct for row 1
@@ -23,6 +24,5 @@ Feature:  Mail BVT
     Then uncheck row 1 on history grid
     Then check row 1 on history grid
 
-    Then check row for saved tracking number on history grid
 
     Then sign out

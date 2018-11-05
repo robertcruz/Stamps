@@ -7,6 +7,11 @@ Cucumber::Rake::Task.new(:local_browser) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+Cucumber::Rake::Task.new(:user_identification_portal) do |t|
+  t.profile = 'user_identification_portal'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:changes_to_landing_page) do |t|
   t.profile = 'changes_to_landing_page'
   t.cucumber_opts = "-p cuke_reports"
@@ -63,6 +68,41 @@ Cucumber::Rake::Task.new(:extra_services_cost_for_rrb_service) do |t|
 end
 
 #CONTACTS
+Cucumber::Rake::Task.new(:sdc_contacts_existing_add_valid_invalid_reference_number) do |t|
+  t.profile = 'sdc_contacts_existing_add_valid_invalid_reference_number'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:sdc_contacts_add_valid_invalid_email) do |t|
+  t.profile = 'sdc_contacts_add_valid_invalid_email'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+
+Cucumber::Rake::Task.new(:bug_postal_code_not_added_contact_details) do |t|
+  t.profile = 'bug_postal_code_not_added_contact_details'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:sdc_contacts_print_stamps_media_international) do |t|
+  t.profile = 'sdc_contacts_print_stamps_media_international'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:sdc_contacts_print_stamps_media_domestic) do |t|
+  t.profile = 'sdc_contacts_print_stamps_media_domestic'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:sdc_contact_top_nav_print_postage) do |t|
+  t.profile = 'sdc_contact_top_nav_print_postage'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:sdc_contacts_search_country_results) do |t|
+  t.profile = 'sdc_contacts_search_country_results'
+  t.cucumber_opts = "-p cuke_reports"
+end
 
 Cucumber::Rake::Task.new(:sdc_contacts_left_navigation_selected_filter) do |t|
   t.profile = 'sdc_contacts_left_navigation_selected_filter'
@@ -101,6 +141,11 @@ end
 
 Cucumber::Rake::Task.new(:sdc_contacts_pagination) do |t|
   t.profile = 'sdc_contacts_pagination'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:sdc_contacts_pagination_navigate_different_pages) do |t|
+  t.profile = 'sdc_contacts_pagination_navigate_different_pages'
   t.cucumber_opts = "-p cuke_reports"
 end
 
@@ -182,13 +227,13 @@ Cucumber::Rake::Task.new(:sdc_contacts_add_valid_email) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
-Cucumber::Rake::Task.new(:sdc_contacts_add_invalid_email) do |t|
-  t.profile = 'sdc_contacts_add_invalid_email'
+Cucumber::Rake::Task.new(:sdc_contacts_add_valid_invalid_email) do |t|
+  t.profile = 'sdc_contacts_add_valid_invalid_email'
   t.cucumber_opts = "-p cuke_reports"
 end
 
-Cucumber::Rake::Task.new(:sdc_contacts_detail_name_singleName) do |t|
-  t.profile = 'sdc_contacts_detail_name_singleName'
+Cucumber::Rake::Task.new(:sdc_contact_details_single_name) do |t|
+  t.profile = 'sdc_contact_details_single_name'
   t.cucumber_opts = "-p cuke_reports"
 end
 
@@ -219,6 +264,16 @@ end
 
 Cucumber::Rake::Task.new(:sdc_contacts_existing_add_invalid_reference_number) do |t|
   t.profile = 'sdc_contacts_existing_add_invalid_reference_number'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:sdc_contacts_existing_add_valid_reference_number) do |t|
+  t.profile = 'sdc_contacts_existing_add_valid_reference_number'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:sdc_contacts_print_to_mail) do |t|
+  t.profile = 'sdc_contacts_print_to_mail'
   t.cucumber_opts = "-p cuke_reports"
 end
 
@@ -2620,8 +2675,8 @@ Cucumber::Rake::Task.new(:rules_domestic) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
-Cucumber::Rake::Task.new(:old) do |t|
-  t.profile = 'old'
+Cucumber::Rake::Task.new(:bvt) do |t|
+  t.profile = 'bvt'
   t.cucumber_opts = "-p cuke_reports"
 end
 
@@ -4038,6 +4093,12 @@ Cucumber::Rake::Task.new(:mail_dropdown_tooltip) do |t|
   t.profile = 'mail_dropdown_tooltip'
   t.cucumber_opts = "-p cuke_reports"
 end
+Cucumber::Rake::Task.new(:mail_contacts_comm_error) do |t|
+  t.profile = 'mail_contacts_comm_error'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+
 
 #--------------------### Orders Bugs ##---------------------
 
@@ -4089,5 +4150,15 @@ end
 #------------------- History ---------------------------------------------
 Cucumber::Rake::Task.new(:history_toolbar) do |t|
   t.profile = 'history_toolbar'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:container_label_return_address) do |t|
+  t.profile = 'container_label_return_address'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:history_filter_direct_url) do |t|
+  t.profile = 'history_filter_direct_url'
   t.cucumber_opts = "-p cuke_reports"
 end

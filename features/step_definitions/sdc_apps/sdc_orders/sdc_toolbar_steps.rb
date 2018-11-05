@@ -77,8 +77,10 @@ end
 Then /^click orders toolbar print button$/ do
   step 'save order details data'
   SdcOrders.order_details.footer.print.click
-  expect(SdcOrders.modals.print.title).to be_present
-  expect(SdcOrders.modals.print.title.text_value).to match(/You have \d label ready to print/)
+  print = SdcOrders.modals.print
+  print.title.safe_wait_until_present(timeout: 5)
+  expect(print.title).to be_present
+  expect(print.title.text_value).to match(/You have \d label ready to print/)
 end
 
 

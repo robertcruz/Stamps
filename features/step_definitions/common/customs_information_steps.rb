@@ -32,7 +32,7 @@ Then /^set customs package contents to (.*)$/ do |value|
   package_contents.drop_down.click unless package_contents.selection.present?
   package_contents.selection.click unless package_contents.selection.class_disabled?
   step "expect customs package contents is #{value}"
-  step 'Save Customs Information form Total amount'
+  step 'save total amount on customs Information form'
   TestData.hash[:customs_package_contents] = value
 end
 
@@ -65,7 +65,7 @@ Then /^set customs internal transaction number to (.*)$/ do |value|
   internal_transaction.drop_down.click unless internal_transaction.selection.present?
   internal_transaction.selection.click unless internal_transaction.selection.class_disabled?
   step "expect customs internal transaction number is #{value}"
-  step 'Save Customs Information form Total amount'
+  step 'save total amount on customs Information form'
   TestData.hash[:customs_internal_transaction_no] = value
 end
 
@@ -80,7 +80,7 @@ Then /^set customs more info to (?:random string|random|(.*))$/ do |str|
   str ||= TestHelper.rand_alpha_numeric(min: 6, max: 18)
   SdcWebsite.customs_form.more_info.set(str) if SdcWebsite.customs_form.more_info.present?
   step "expect Customs More Info is #{str}"
-  step 'Save Customs Information form Total amount'
+  step 'save total amount on customs Information form'
   TestData.hash[:customs_more_info] = str
 end
 
@@ -88,7 +88,7 @@ end
 #   str ||= TestHelper.rand_alpha_numeric(min: 6, max: 18)
 #   SdcWebsite.customs_form.more_info.set(str) if SdcWebsite.customs_form.more_info.present?
 #   step "expect Customs More Info is #{str}"
-#   step 'Save Customs Information form Total amount'
+#   step 'save total amount on customs Information form'
 #   TestData.hash[:customs_more_info] = str
 # end
 
@@ -105,17 +105,8 @@ Then /^set customs itn number to (?:(?:a|some) random string|(.*))$/ do |str|
   customs_form = SdcWebsite.customs_form
   customs_form.itn.wait_until_present(timeout: 5)
   customs_form.itn.set(str) unless customs_form.itn.class_disabled?
-  step "expect customs i agree to the usps privacy act statement is checked #{str}"
-  step 'Save Customs Information form Total amount'
+  step 'save total amount on customs Information form'
   TestData.hash[:customs_itn_no] = str
-end
-
-Then /^expect customs i agree to the usps privacy act statement is checked (?:correct|(.*))$/ do |str|
-  str ||= TestData.hash[:customs_itn_no]
-  customs_form = SdcWebsite.customs_form
-  customs_form.itn.wait_until_present(timeout: 5)
-  expect(customs_form.itn.class_disabled?).to be(false), 'ITN number is disabled'
-  expect(customs_form.itn.text_value).to eql(str)
 end
 
 Then /^set customs license number to (?:(?:a|some) random string|(.*))$/ do |str|
@@ -124,7 +115,7 @@ Then /^set customs license number to (?:(?:a|some) random string|(.*))$/ do |str
   customs_form.license.wait_until_present(timeout: 5)
   customs_form.license.set(str) if customs_form.license.present?
   step "expect customs license number is #{str}"
-  step 'Save Customs Information form Total amount'
+  step 'save total amount on customs Information form'
   TestData.hash[:customs_license_no] = str
 end
 
@@ -132,7 +123,7 @@ Then /^expect customs license number is (?:correct|(.*))$/ do |str|
   str ||= TestData.hash[:customs_license_no]
   expect(SdcWebsite.customs_form.license).to be_present, 'License field is not present'
   expect(SdcWebsite.customs_form.license.text_value).to eql(str)
-  step 'Save Customs Information form Total amount'
+  step 'save total amount on customs Information form'
 end
 
 Then /^set customs certificate number to (?:(?:a|some) random string|(.*))$/ do |str|
@@ -141,7 +132,7 @@ Then /^set customs certificate number to (?:(?:a|some) random string|(.*))$/ do 
   customs_form.certificate.wait_until_present(timeout: 5)
   customs_form.certificate.set(str) if customs_form.certificate.present?
   step "expect customs certificate number is #{str}"
-  step 'Save Customs Information form Total amount'
+  step 'save total amount on customs Information form'
   TestData.hash[:customs_certificate_no] = str
 end
 
@@ -159,7 +150,7 @@ Then /^set customs invoice number to (?:(?:a|some) random string|(.*))$/ do |str
   customs_form.invoice.wait_until_present(timeout: 5)
   customs_form.invoice.set(str) if customs_form.invoice.present?
   step "expect customs invoice number is #{str}"
-  step 'Save Customs Information form Total amount'
+  step 'save total amount on customs Information form'
   TestData.hash[:customs_invoice_no] = str
 end
 
@@ -178,10 +169,10 @@ Then /^check customs form i agree to the usps privacy act statement$/ do
   customs_form = SdcWebsite.customs_form
   customs_form.agree.wait_until_present(timeout: 5)
   customs_form.agree.check
-  step 'expect customs i agree to the usps privacy act statement is checked'
+  step 'expect i agree to the usps privacy act statement is checked on customs form'
 end
 
-Then /^expect customs i agree to the usps privacy act statement is checked$/ do
+Then /^expect i agree to the usps privacy act statement is checked on customs form$/ do
   customs_form = SdcWebsite.customs_form
   customs_form.agree.wait_until_present(timeout: 5)
   expect(customs_form.agree.checked?).to be(true), 'I agree to the USPS Privacy Act Statement is not checked'
@@ -203,7 +194,7 @@ end
 Then /^close customs information form$/ do
   step 'pause for 4 seconds'
   step 'blur out on customs form'
-  step 'Save Customs Information form Total amount'
+  step 'save total amount on customs Information form'
   customs_form = SdcWebsite.customs_form
   ready_to_print = SdcWebsite.modals.ready_to_print
   8.times do
@@ -272,7 +263,7 @@ Then /^expect customs associated item grid count is (.+)$/ do |str|
   expect(SdcWebsite.customs_form.associated_items.size).to eql(str.to_i)
 end
 
-Then /^[Ss]ave Customs Information form [Tt]otal amount$/ do
+Then /^save total amount on customs Information form$/ do
   customs_form = SdcWebsite.customs_form
   total = customs_form.total.text_value.parse_digits.to_f.round(2)
   TestData.hash[:customs_total_value] = total
@@ -328,7 +319,7 @@ Then /^set customs associated item (\d+) description to (.*)$/ do |item, value|
   TestData.hash[:customs_associated_items][item] ||= {}
   value = TestHelper.rand_alpha_numeric if value.downcase.include?('random')
   SdcWebsite.customs_form.item.item_description(item).scroll_into_view.set(value)
-  step 'Save Customs Information form Total amount'
+  step 'save total amount on customs Information form'
   TestData.hash[:customs_associated_items][item][:description] = value
 end
 
@@ -336,7 +327,7 @@ Then /^set customs associated item (\d+) qty to (\d+)$/ do |item, value|
   qty = SdcWebsite.customs_form.item.qty(item)
   qty.scroll_into_view
   qty.set(value)
-  step 'Save Customs Information form Total amount'
+  step 'save total amount on customs Information form'
   TestData.hash[:customs_associated_items][item] ||= {}
   TestData.hash[:customs_associated_items][item][:quantity] = value
 end
@@ -349,7 +340,7 @@ Then /^increment customs associated item (\d+) qty by (\d+)$/ do |item, value|
     qty.increment.click
   end
   step "expect customs associated item #{item} qty is #{old_qty + value}"
-  step 'Save Customs Information form Total amount'
+  step 'save total amount on customs Information form'
   TestData.hash[:customs_associated_items][item] ||= {}
   TestData.hash[:customs_associated_items][item][:quantity] = old_qty + value
 end
@@ -362,7 +353,7 @@ Then /^decrement customs associated item (\d+) qty by (\d+)$/ do |item, value|
     qty.decrement.click
   end
   step "expect customs associated item #{item} qty is #{old_qty - value}"
-  step 'Save Customs Information form Total amount'
+  step 'save total amount on customs Information form'
   TestData.hash[:customs_associated_items][item] ||= {}
   TestData.hash[:customs_associated_items][item][:quantity] = old_qty - value
 end
@@ -380,7 +371,7 @@ Then /^set customs associated item (\d+) unit price to (.*)$/ do |item, value|
     break if unit_price.text_field.text_value.include value.to_s
   end
   expect(unit_price.text_field.text_value).to include(value)
-  step 'Save Customs Information form Total amount'
+  step 'save total amount on customs Information form'
   TestData.hash[:customs_associated_items][item] ||= {}
   TestData.hash[:customs_associated_items][item][:price] = value
 end
@@ -405,7 +396,7 @@ end
 
 Then /^set customs associated item (\d+) Tarriff to (.*)$/ do |item, value|
   SdcWebsite.customs_form.item.hs_tariff(item).scroll_into_view.set(value)
-  step 'Save Customs Information form Total amount'
+  step 'save total amount on customs Information form'
   TestData.hash[:customs_associated_items][item] ||= {}
   TestData.hash[:customs_associated_items][item][:tarriff] = value
 end

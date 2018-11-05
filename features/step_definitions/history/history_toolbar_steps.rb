@@ -52,6 +52,7 @@ end
 Then /^click create container label button on history toolbar$/ do
   create_container_label = SdcHistory.toolbar.create_container_label
   create_container_label.link.click
+  create_container_label.tooltip.safe_wait_until_present(timeout: 2)
   if create_container_label.tooltip.present?
     create_container_label.tooltip.hover
     create_container_label.link.click if create_container_label.tooltip.present?
@@ -121,8 +122,9 @@ Then /^expect selected packages button on history toolbar create container label
 end
 
 Then /^click selected packages button on history toolbar create container label$/ do
+  step 'expect selected packages button on history toolbar create container label is enabled'
   SdcHistory.toolbar.create_container_label.selected_packages.click
-  # expect modal step ''
+  step 'expect container label modal on history is present'
 end
 
 Then /^expect reprint last label on history toolbar create container label is enabled$/ do

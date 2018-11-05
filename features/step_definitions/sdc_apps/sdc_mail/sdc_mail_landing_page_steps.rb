@@ -37,18 +37,27 @@ Then /^sign-in to mail$/ do
   end
 end
 
+Then /^login to webclient$/ do
+  usr = TestSession.env.usr
+  pw = TestSession.env.pw
+  TestData.hash[:username] = usr
+  TestData.hash[:password] = pw
+  step "set sign in page username to #{usr}"
+  step "set sign in page password to #{pw}"
+  step 'click sign in page sign-in button'
+end
+
+
+
 Then /^sign out$/ do
   begin
     unless TestSession.env.responsive
       user_drop_down = SdcWebsite.navigation.user_drop_down
       landing_page = SdcWebsite.landing_page
-      4.times do
-        user_drop_down.signed_in_user.hover
-        user_drop_down.sign_out_link.safe_wait_until_present(timeout: 1)
-        user_drop_down.sign_out_link.click
-        landing_page.username.safe_wait_until_present(timeout: 1)
-        break if landing_page.username.present?
-      end
+      user_drop_down.signed_in_user.hover
+      user_drop_down.sign_out_link.safe_wait_until_present(timeout: 1)
+      user_drop_down.sign_out_link.click
+      landing_page.username.safe_wait_until_present(timeout: 1)
     end
   rescue
     # ignore

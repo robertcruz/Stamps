@@ -161,10 +161,8 @@ Feature: All International Rules
     Then set customs non-delivery options to Return to sender
 
     Then set customs internal transaction number to Required
-    Then expect customs i agree to the usps privacy act statement is checked visible
 
     Then set customs internal transaction number to Not required
-    Then expect customs i agree to the usps privacy act statement is checked hidden
 
     Then set customs internal transaction number to Required
     Then set customs itn number to random

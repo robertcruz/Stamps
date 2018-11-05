@@ -38,7 +38,7 @@ Feature: Orders Filter Panel
     Then select Grid Toolbar Move menu item Move to Shipped
     Then expect Move to Shipped modal order number is correct
     Then click Move to Shipped modal move button
-    Then Remove Filter Panel search results tab
+    Then remove filter panel search results tab
     Then select Filter Panel tab Shipped
     Then expect selected Filter is Shipped
     Then expect cached Order ID exist in the selected filter
@@ -47,7 +47,7 @@ Feature: Orders Filter Panel
     Then check grid order id
     Then select Grid Toolbar Move menu item Move to Canceled
     Then click Move to Canceled modal move button
-    Then Remove Filter Panel search results tab
+    Then remove filter panel search results tab
     Then select Filter Panel tab Canceled
     Then expect selected Filter is Canceled
     Then expect cached Order ID exist in the selected filter
@@ -56,7 +56,7 @@ Feature: Orders Filter Panel
     Then check grid order id
     Then select Grid Toolbar Move menu item Move to Awaiting Shipment
     Then click Move to Awaiting Shipment modal move button
-    Then Remove Filter Panel search results tab
+    Then remove filter panel search results tab
     Then select Filter Panel tab Awaiting Shipment
     Then expect selected Filter is Awaiting Shipment
     Then expect cached Order ID exist in the selected filter

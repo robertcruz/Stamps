@@ -28,7 +28,7 @@ module SdcCore
       end
 
       def rand_comp_name(*args)
-        'comapy '+rand_alpha_numeric(*args).to_s.split.map(&:capitalize).join(' ')
+        'company '+rand_alpha_numeric(*args).to_s.split.map(&:capitalize).join(' ')
       end
 
       def rand_city_name(*args)

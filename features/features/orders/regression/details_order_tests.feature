@@ -78,7 +78,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # Priority Mail Padded Flat Rate Envelope
@@ -88,7 +87,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # Priority Mail Legal Flat Rate Envelope
@@ -98,7 +96,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # Priority Mail Small Flat Rate Box
@@ -108,7 +105,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # Priority Mail Medium Flat Rate Box
@@ -118,7 +114,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # Priority Mail Large Flat Rate Box
@@ -128,7 +123,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # Priority Mail Regional Rate Box A
@@ -138,7 +132,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # Priority Mail Regional Rate Box B
@@ -148,7 +141,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # PME Flat Rate Envelope
@@ -158,7 +150,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # PME Padded Flat Rate Envelope
@@ -168,7 +159,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # PME Legal Flat Rate Envelope
@@ -178,7 +168,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then sign out
@@ -203,7 +192,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # Priority Mail International Padded Flat Rate Envelope
@@ -217,7 +205,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # Priority Mail International Legal Flat Rate Envelope
@@ -231,7 +218,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # Priority Mail International Small Flat Rate Box
@@ -245,7 +231,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # Priority Mail International Medium Flat Rate Box
@@ -259,7 +244,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # Priority Mail International Large Flat Rate Box
@@ -273,7 +257,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # PME International Flat Rate Envelope
@@ -287,7 +270,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # PME International Padded Flat Rate Envelope
@@ -301,7 +283,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   # PME International Legal Flat Rate Envelope
@@ -315,7 +296,6 @@ Feature: All details tests for order
     Then expect order details ounces is 0
     Then expect orders grid service is correct
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then sign out
@@ -420,147 +400,126 @@ Feature: All details tests for order
     Then expect Order Details service is FCM Large Envelope/Flat
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PM Large/Thick Envelope
     Then expect Order Details service is PM Large/Thick Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PM Package
     Then expect Order Details service is PM Package
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PM Large Package
     Then expect Order Details service is PM Large Package
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PM Flat Rate Envelope
     Then expect Order Details service is PM Flat Rate Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PM Padded Flat Rate Envelope
     Then expect Order Details service is PM Padded Flat Rate Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PM Legal Flat Rate Envelope
     Then expect Order Details service is PM Legal Flat Rate Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PM Small Flat Rate Box
     Then expect Order Details service is PM Small Flat Rate Box
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PM Medium Flat Rate Box
     Then expect Order Details service is PM Medium Flat Rate Box
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PM Large Flat Rate Box
     Then expect Order Details service is PM Large Flat Rate Box
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PM Regional Rate Box A
     Then expect Order Details service is PM Regional Rate Box A
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PM Regional Rate Box B
     Then expect Order Details service is PM Regional Rate Box B
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PME Package/Flat/Thick Envelope
     Then expect Order Details service is PME Package/Flat/Thick Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PME Flat Rate Envelope
     Then expect Order Details service is PME Flat Rate Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PME Flat Rate Envelope
     Then expect Order Details service is PME Flat Rate Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PME Padded Flat Rate Envelope
     Then expect Order Details service is PME Padded Flat Rate Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PME Padded Flat Rate Envelope
     Then expect Order Details service is PME Padded Flat Rate Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PME Legal Flat Rate Envelope
     Then expect Order Details service is PME Legal Flat Rate Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to MM Package/Flat/Thick Envelope
     Then expect Order Details service is MM Package/Flat/Thick Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PSG Package/Flat/Thick Envelope
     Then expect Order Details service is PSG Package/Flat/Thick Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PSG Oversized Package
     Then expect Order Details service is PSG Oversized Package
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
   @details_services
@@ -581,63 +540,54 @@ Feature: All details tests for order
     Then expect Order Details service is FCMI Large Envelope/Flat
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to FCMI Package/Thick Envelope
     Then expect Order Details service is FCMI Package/Thick Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PMI Package/Flat/Thick Envelope
     Then expect Order Details service is PMI Package/Flat/Thick Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PMI Flat Rate Envelope
     Then expect Order Details service is PMI Flat Rate Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PMI Padded Flat Rate Envelope
     Then expect Order Details service is PMI Padded Flat Rate Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PMI Legal Flat Rate Envelope
     Then expect Order Details service is PMI Legal Flat Rate Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PMI Small Flat Rate Box
     Then expect Order Details service is PMI Small Flat Rate Box
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PMI Medium Flat Rate Box
     Then expect Order Details service is PMI Medium Flat Rate Box
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PMI Large Flat Rate Box
     Then expect Order Details service is PMI Large Flat Rate Box
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     #Then set order details service to PMI Regional Rate Box A
@@ -650,28 +600,24 @@ Feature: All details tests for order
     Then expect Order Details service is PMEI Package/Flat/Thick Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PMEI Flat Rate Envelope
     Then expect Order Details service is PMEI Flat Rate Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PMEI Padded Flat Rate Envelope
     Then expect Order Details service is PMEI Padded Flat Rate Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then set order details service to PMEI Legal Flat Rate Envelope
     Then expect Order Details service is PMEI Legal Flat Rate Envelope
 
     Then click orders toolbar print button
-    Then expect Print modal Print Modal is present
     Then in print modal, click close button
 
     Then sign out

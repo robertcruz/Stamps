@@ -466,6 +466,7 @@ end
 
 Then /^click print label on container label modal$/ do
   SdcHistory.modals.container_label.print_label.click
+  step 'expect ready to print modal on history is present'
 end
 
 Then /^click cancel on container label modal$/ do
@@ -483,3 +484,91 @@ end
 Then /^expect number of containers on container label modal is (.+)$/ do |val|
   expect(SdcHistory.modals.container_label.number_containers.text_value).to eql(val)
 end
+
+#container label ready to print
+Then /^expect ready to print modal on history is present$/ do
+  expect(SdcHistory.modals.ready_to_print.title).to be_present
+end
+
+Then /^expect ready to print modal on history is not present$/ do
+  expect(SdcHistory.modals.ready_to_print.title).not_to be_present
+end
+
+Then /^click print button on ready to print modal$/ do
+  SdcHistory.modals.ready_to_print.print.click
+  step 'wait while loading history filters grid'
+  begin
+    SdcPage.browser.wait_until(timeout: 30) { container_label.selected? }
+  rescue
+    # ignore
+  end
+  step 'expect your container label modal on history is present'
+end
+
+#your container label
+Then /^expect your container label modal on history is present$/ do
+  expect(SdcHistory.modals.your_container_label.title).to be_present
+end
+
+Then /^expect your container label modal on history is not present$/ do
+  expect(SdcHistory.modals.your_container_label.title).not_to be_present
+end
+
+Then /^close your container label modal on history$/ do
+  SdcHistory.modals.your_container_label.x_btn.click
+  step 'expect your container label modal on history is not present'
+end
+
+Then /^click close button on your container label modal$/ do
+  SdcHistory.modals.your_container_label.close.click
+end
+
+Then /^click reprint button on your container label modal$/ do
+  SdcHistory.modals.your_container_label.reprint.click
+  step 'expect reprint modal on history is present'
+end
+
+#reprint container label
+Then /^expect reprint modal on history is present$/ do
+  expect(SdcHistory.modals.reprint.title).to be_present
+end
+
+Then /^expect reprint modal on history is not present$/ do
+  expect(SdcHistory.modals.reprint.title).not_to be_present
+end
+
+Then /^click reprint button on reprint modal$/ do
+  SdcHistory.modals.reprint.reprint.click
+  step 'expect your container label modal on history is present'
+end
+
+#welcome modal
+Then /^expect welcome modal on history is present$/ do
+  expect(SdcHistory.modals.welcome.title).to be_present
+end
+
+Then /^expect welcome modal on history is not present$/ do
+  expect(SdcHistory.modals.welcome.title).not_to be_present
+end
+
+Then /^close welcome modal on history$/ do
+  welcome = SdcHistory.modals.welcome
+  welcome.x_btn.click if welcome.present?
+  step 'expect welcome modal on history is not present'
+end
+
+Then /^click next button on welcome modal$/ do
+  SdcHistory.modals.welcome.next.click
+end
+
+Then /^click close button on welcome modal$/ do
+  SdcHistory.modals.welcome.close.click
+end
+
+Then /^click through tutorial modal on history$/ do
+  3.times do
+    step 'click next button on welcome modal'
+  end
+  step 'click close button on welcome modal'
+end
+

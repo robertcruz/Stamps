@@ -47,11 +47,6 @@ Then /^orders print modal printer dropdown is present$/ do
   expect(SdcOrders.modals.print.printer.drop_down).to be_present, "StampsConnect is not connected. You might need to re-login to this PC: #{SdcEnv.hostname}"
 end
 
-Then /^[Ee]xpect [Pp]rint [Mm]odal [Pp]rint [Mm]odal is [Pp]resent$/ do
-  pending
-  #expect(stamps.orders.modals.orders_print_modal).to be_present, "Orders Print Modal is not present"
-end
-
 Then /^[Cc]lick [Pp]rint [Mm]odal [Pp]rint [Bb]utton$/ do
   SdcWebsite.orders.modals.print.print.click
 end
@@ -67,7 +62,6 @@ end
 
 Then /^[Pp]rint [Ss]hipping [Ll]abel for SAS$/ do
   step "click Orders Toolbar Print button"
-  step "expect Print modal Print Modal is present"
   step "click print modal print button"
 end
 
