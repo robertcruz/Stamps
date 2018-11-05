@@ -43,6 +43,18 @@ Then /^expect all the page arrows are disabled$/ do
   pagination = SdcContacts.pagination
   SdcLogger.info "First Page disabled #{pagination.page_arrow_disabled('first')}"
   expect(pagination.page_arrow_disabled('first')).to be(true)
+
+  # pagination.page_arrow.next.item.attribute_value("class").include?("disabled")
+  # pagination.page_arrow.next.click
+  #
+  # pagination.page_arrow.prev.item.attribute_value("class").include?("disabled")
+  # pagination.page_arrow.prev.click
+  #
+  # pagination.page_arrow.last.item.attribute_value("class").include?("disabled")
+  # pagination.page_arrow.last.click
+
+  #etc
+
   SdcLogger.info "Last Page disabled #{pagination.page_arrow_disabled('last')}"
   expect(pagination.page_arrow_disabled('last')).to be(true)
   SdcLogger.info "Previous Page disabled #{pagination.page_arrow_disabled('prev')}"

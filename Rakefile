@@ -227,8 +227,8 @@ Cucumber::Rake::Task.new(:sdc_contacts_add_valid_email) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
-Cucumber::Rake::Task.new(:sdc_contacts_add_invalid_email) do |t|
-  t.profile = 'sdc_contacts_add_invalid_email'
+Cucumber::Rake::Task.new(:sdc_contacts_add_valid_invalid_email) do |t|
+  t.profile = 'sdc_contacts_add_valid_invalid_email'
   t.cucumber_opts = "-p cuke_reports"
 end
 
@@ -264,6 +264,11 @@ end
 
 Cucumber::Rake::Task.new(:sdc_contacts_existing_add_invalid_reference_number) do |t|
   t.profile = 'sdc_contacts_existing_add_invalid_reference_number'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:sdc_contacts_existing_add_valid_reference_number) do |t|
+  t.profile = 'sdc_contacts_existing_add_valid_reference_number'
   t.cucumber_opts = "-p cuke_reports"
 end
 

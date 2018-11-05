@@ -601,38 +601,35 @@ ewwr_session_state_data_validation: --tags @ewwr_session_state_data_validation -
 ewwr_security_question_page_validation: --tags @ewwr_security_question_page_validation --guess  LOG_LEVEL=info
 ewwr_header_footer_validation: --tags @ewwr_header_footer_validation --guess  LOG_LEVEL=info
 swwr_create_your_account_page_validation: --tags @swwr_create_your_account_page_validation --guess LOG_LEVEL=info
-aloha: --tags @sdc_contact_add_new_contact URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core001 PW=password1
-#aloha: --tags @sdc_contact_add_new_contact URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core004 PW=password1
+aloha: --tags @sdc_contacts_pagination URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core004 PW=password1
 #aloha: --tags @sdc_contacts_show_all_columns URL=qacc LOG_LEVEL=debug HEALTHCHECK=false BROWSER=gc MAX_WINDOW=false USR=Tmaheryar PW=password1
-sdc_contacts_add_valid_invalid_email: --tags @sdc_contacts_add_valid_invalid_email  --guess  LOG_LEVEL=info
-sdc_contacts_existing_add_valid_invalid_reference_number: --tags @sdc_contacts_existing_add_valid_invalid_reference_number  --guess  LOG_LEVEL=info
-sdc_contacts_delete_multiple_from_top_navigation: --tags @sdc_contacts_delete_multiple_from_top_navigation --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_add_valid_email: --tags @sdc_contacts_add_valid_email  --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_add_invalid_email: --tags @sdc_contacts_add_invalid_email  --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_delete_multiple_from_details_menu: --tags @sdc_contacts_delete_multiple_from_details_menu --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_delete_single_from_details_menu: --tags @sdc_contacts_delete_single_from_details_menu --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_detail_name_expand_collapse: --tags @sdc_contacts_detail_name_expand_collapse --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_detail_name_all_details: --tags @sdc_contacts_detail_name_all_details --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_detail_name_singleName: --tags @sdc_contacts_detail_name_singleName --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_detail_company_single: --tags @sdc_contacts_detail_company_single --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_detail_company_expand_collapse: --tags @sdc_contacts_detail_company_expand_collapse --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_detail_company_department_and_title_details: --tags @sdc_contacts_detail_company_department_and_title_details --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_existing_add_invalid_reference_number: --tags @sdc_contacts_existing_add_invalid_reference_number --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_existing_add_valid_reference_number: --tags @sdc_contacts_existing_add_valid_reference_number --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_toolbar_add_new_cost_code: --tags @sdc_contacts_toolbar_add_new_cost_code URL=stg LOG_LEVEL=debug HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core002 PW=password1
-sdc_contacts_toolbar_add_existing_cost_code: --tags @sdc_contacts_toolbar_add_existing_cost_code URL=stg LOG_LEVEL=debug HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core002 PW=password1
-sdc_contacts_toolbar_change_cost_code_add_edit: --tags @sdc_contacts_toolbar_change_cost_code_add_edit --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_toolbar_change_group_add_remove: --tags @sdc_contacts_toolbar_change_group_add_remove --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_toolbar_add_group: --tags @sdc_contacts_toolbar_add_group --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_left_panel_regression: --tags @sdc_contacts_left_panel_regression  --guess  LOG_LEVEL=info
-sdc_contact_add_new_contact: --tags @sdc_contact_add_new_contact --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_toolbar_edit_delete_group: --tags @sdc_contacts_toolbar_edit_delete_group --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true
-sdc_contacts_left_navigation_add_group:  --tags @sdc_contacts_left_navigation_add_group --guess  LOG_LEVEL=info
-sdc_contacts_left_add_edit_group:  --tags @sdc_contacts_left_add_edit_group --guess  LOG_LEVEL=info
-sdc_contacts_pagination: --tags @sdc_contacts_pagination --guess  LOG_LEVEL=info
-sdc_contacts_add_new_contact_max_lines: --tags @sdc_contacts_add_new_contact_max_lines --guess LOG_LEVEL=info
-sdc_contact_add_new_contact_different_addresses: --tags @sdc_contact_add_new_contact_different_addresses --guess LOG_LEVEL=info
-sdc_contacts_toolbar_settings_show_hide_all_columns: --tags @sdc_contacts_toolbar_settings_show_hide_all_columns --guess LOG_LEVEL=info
+sdc_contacts_delete_multiple_from_top_navigation: --tags @sdc_contacts_delete_multiple_from_top_navigation --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_add_valid_invalid_email: --tags @sdc_contacts_add_valid_invalid_email --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_add_invalid_email: --tags @sdc_contacts_add_invalid_email  --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_delete_multiple_from_details_menu: --tags @sdc_contacts_delete_multiple_from_details_menu --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_delete_single_from_details_menu: --tags @sdc_contacts_delete_single_from_details_menu --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_detail_name_expand_collapse: --tags @sdc_contacts_detail_name_expand_collapse --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_detail_name_all_details: --tags @sdc_contacts_detail_name_all_details --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_detail_name_singleName: --tags @sdc_contacts_detail_name_singleName --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_detail_company_single: --tags @sdc_contacts_detail_company_single --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_detail_company_expand_collapse: --tags @sdc_contacts_detail_company_expand_collapse --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_detail_company_department_and_title_details: --tags @sdc_contacts_detail_company_department_and_title_details --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_existing_add_invalid_reference_number: --tags @sdc_contacts_existing_add_invalid_reference_number --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_existing_add_valid_reference_number: --tags @sdc_contacts_existing_add_valid_reference_number --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_toolbar_add_new_cost_code: --tags @sdc_contacts_toolbar_add_new_cost_code URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false
+sdc_contacts_toolbar_add_existing_cost_code: --tags @sdc_contacts_toolbar_add_existing_cost_code URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false
+sdc_contacts_toolbar_change_cost_code_add_edit: --tags @sdc_contacts_toolbar_change_cost_code_add_edit --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_toolbar_change_group_add_remove: --tags @sdc_contacts_toolbar_change_group_add_remove --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_toolbar_add_group: --tags @sdc_contacts_toolbar_add_group --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_left_panel_regression: --tags @sdc_contacts_left_panel_regression   --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contact_add_new_contact: --tags @sdc_contact_add_new_contact --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_toolbar_edit_delete_group: --tags @sdc_contacts_toolbar_edit_delete_group --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_left_navigation_add_group:  --tags @sdc_contacts_left_navigation_add_group  --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_left_add_edit_group:  --tags @sdc_contacts_left_add_edit_group  --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_pagination: --tags @sdc_contacts_pagination  --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_add_new_contact_max_lines: --tags @sdc_contacts_add_new_contact_max_lines  --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contact_add_new_contact_different_addresses: --tags @sdc_contact_add_new_contact_different_addresses  --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
+sdc_contacts_toolbar_settings_show_hide_all_columns: --tags @sdc_contacts_toolbar_settings_show_hide_all_columns --guess JENKINS=true WEB_DEV=true FIREFOX_PROFILE=true LOG_LEVEL=info
 sdc_contact_column_header_dropdown_menu: --tags @sdc_contact_column_header_dropdown_menu --guess LOG_LEVEL=info
 sdc_contact_columns_sort_asc_dec: --tags @sdc_contact_columns_sort_asc_dec --guess LOG_LEVEL=info
 sdc_contact_columns_name_sort:  --tags @sdc_contact_columns_name_sort --guess LOG_LEVEL=info

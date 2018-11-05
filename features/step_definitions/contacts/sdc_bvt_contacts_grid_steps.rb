@@ -1,7 +1,7 @@
 Then /^check row header in contacts grid$/ do
   contacts_grid_body = SdcContacts.grid.body
   contacts_grid_body.safe_wait_until_present(timeout: 10)
-  header_checkbox = SdcContacts::Grid::column.header_element(:checkbox)
+  header_checkbox = SdcContacts.grid.column.contacts_header_element(:checkbox)
   header_checkbox.safe_wait_until_present(timeout: 10)
   header_checkbox.check unless header_checkbox.checked?
   expect(header_checkbox.checked?).to be(true)
@@ -10,7 +10,7 @@ end
 Then /^uncheck row header in contacts grid$/ do
   contacts_grid_body = SdcContacts.grid.body
   contacts_grid_body.safe_wait_until_present(timeout: 10)
-  header_checkbox = SdcContacts::Grid::column.header_element(:checkbox)
+  header_checkbox = SdcContacts.grid.column.contacts_header_element(:checkbox)
   header_checkbox.safe_wait_until_present(timeout: 10)
   header_checkbox.uncheck if header_checkbox.checked?
   expect(header_checkbox.checked?).to be(false)
@@ -19,7 +19,7 @@ end
 Then /^in contacts grid check row (\d+)$/ do |row|
   contacts_grid_body = SdcContacts.grid.body
   contacts_grid_body.safe_wait_until_present(timeout: 60)
-  checkbox = SdcContacts::Grid.grid_column(:checkbox).checkbox_row(row)
+  checkbox = SdcContacts.grid.grid_column(:checkbox).checkbox_row(row)
   checkbox.safe_wait_until_present(timeout: 30)
   checkbox.check  unless checkbox.checked?
   expect(checkbox.checked?).to be(true)
@@ -30,7 +30,7 @@ end
 Then /^in contacts grid uncheck row (\d+)$/ do |row|
   contacts_grid_body = SdcContacts.grid.body
   contacts_grid_body.safe_wait_until_present(timeout: 60)
-  checkbox = SdcContacts::Grid.grid_column(:checkbox).checkbox_row(row)
+  checkbox = SdcContacts.grid.grid_column(:checkbox).checkbox_row(row)
   checkbox.safe_wait_until_present(timeout: 30)
   checkbox.uncheck if checkbox.checked?
   expect(checkbox.checked?).to be(false)
