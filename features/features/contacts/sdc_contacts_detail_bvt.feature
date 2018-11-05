@@ -66,8 +66,8 @@ Feature:  Contacts BVT - Contacts Details
     Then navigate to Contacts
     Then click add button on contacts toolbar
     Then set contact details to
-      | full_name | company | country| street_address | city | state | postal_code | phone  |  email | groups | reference_number|cost_code |
-      |random     |random   |United States|random     |San Juan|Federated States Of Micronesia|0097-5824|23345142-123|  |random        |random           |random          |
+      | full_name | company | country       | street_address | city     | state                          | postal_code | phone        |  email | groups | reference_number|cost_code |
+      | random    | random  | United States |random          | San Juan | Federated States Of Micronesia | 0097-5824   | 23345142-123 | random |random  |random           |random    |
     Then in contacts grid uncheck row 1
     Then search contacts from contacts filter panel with name newly added
     Then in contacts grid check row 1
@@ -80,7 +80,7 @@ Feature:  Contacts BVT - Contacts Details
     Then expect contacts grid email column at row 1 is aloha@lydia.in
 
 
-  @sdc_contacts_detail_name_singleName
+  @sdc_contacts_detail_name_single
   Scenario: Contacts Details Add Name Scenario 1 :Add/Edit Single Name in Contact Details panel and verify Grid is updated correctly
     Then sign-in to orders
     Then pause for 5 seconds
