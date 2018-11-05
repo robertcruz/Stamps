@@ -79,53 +79,51 @@ Feature:  Contacts BVT - Contacts Details
     Then expect email error is not displayed
     Then expect contacts grid email column at row 1 is aloha@lydia.in
 
-
-  @sdc_contacts_detail_name_singleName
+  @sdc_contact_details_single_name
   Scenario: Contacts Details Add Name Scenario 1 :Add/Edit Single Name in Contact Details panel and verify Grid is updated correctly
     Then sign-in to orders
-    Then pause for 5 seconds
     Then navigate to Contacts
-    Then delete all available contacts with the value CAPT P Al tha Lydia Anand
+    Then delete all available contacts with the value  Aloha Mich
     Then expect count of contact search results is 0
     Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
-    Then set contact details name to CAPT P Al tha Lydia Anand
+    Then set contact details to
+      | full_name  | company | country       | street_address | city     | state    | postal_code | phone        |  email | groups | reference_number|cost_code |
+      |CAPT P Aloha Mich Lydia Anand |random | United States | 1 Cortlandt St | New York | New York | 10007 |random | random |random | random |random |
     Then in contacts grid uncheck row 1
-    Then search contacts from contacts filter panel with name CAPT P Al tha Lydia Anand
+    Then search contacts from contacts filter panel with name Aloha Mich
     Then expect count of contact search results is 1
-    Then expect name details on contacts grid are updated appropriately for CAPT P Al tha Lydia Anand
-
-  @sdc_contacts_detail_name_expand_collapse
-  Scenario: Contacts Details Expand and Collapse Name Scenario 1 :Expand the Name field in Contact Details panel
-    Then Sign-in to Orders
-    Then Navigate to Contacts
-    Then In Contacts Grid Check Row 1
-    Then Click on Contact Details Panel Name Expand Button
-    Then Click on Contact Details Panel Name Collapse Button
+    Then expect contacts grid prefix column at row 1 is correct
+    Then expect contacts grid first name column at row 1 is correct
+    Then expect contacts grid middle name column at row 1 is correct
+    Then expect contacts grid last name column at row 1 is correct
 
   @sdc_contacts_detail_name_all_details
   Scenario: Contacts Details Add Name Scenario 2 :Add/Edit All the Name fields(prefix, firstname, middlename, lastname, suffix) in Contact Details panel and verify Grid is updated correctly
     Then sign-in to orders
     Then navigate to Contacts
-    Then delete all available contacts with the value FirstName
+    Then delete all available contacts with the value First
     Then expect count of contact search results is 0
     Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
+    Then set contact details to
+      | full_name  | company | country       | street_address | city     | state    | postal_code | phone        |  email | groups | reference_number|cost_code |
+      | |random | United States | 1 Cortlandt St | New York | New York | 10007 |random | random |random | random |random |
     Then click on contact details panel name expand button
-    Then set contact details name prefix to CAPT
-    Then set contact details firstName to FirstName
-    Then set contact details middlename to MiddleName
-    Then set contact details lastname to LastName
-    Then set contact details suffix to Suffix
+    Then set contact details name prefix to BG
+    Then set contact details first name to First
+    Then set contact details middle name to Middle
+    Then set contact details last name to Last
+    Then set contact details suffix to sufix
     Then click on contact details panel name collapse button
     Then in contacts grid uncheck row 1
-    Then search contacts from contacts filter panel with name FirstName
+    Then search contacts from contacts filter panel with name First
     Then expect count of contact search results is 1
-    Then expect value of Prefix in contacts grid is CAPT
-    Then expect value of First Name in contacts grid is FirstName
-    Then expect value of Middle Name in contacts grid is MiddleName
-    Then expect value of Last Name in contacts grid is LastName
-    Then expect value of Suffix in contacts grid is Suffix
+    Then expect contacts grid prefix column at row 1 is correct
+    Then expect contacts grid first name column at row 1 is correct
+    Then expect contacts grid middle name column at row 1 is correct
+    Then expect contacts grid last name column at row 1 is correct
+    Then expect contacts grid suffix column at row 1 is correct
 
   @sdc_contacts_detail_company_single
   Scenario: Contacts Details Add Company Scenario 1 :Add/Edit Single Company in Contact Details panel
@@ -135,21 +133,12 @@ Feature:  Contacts BVT - Contacts Details
     Then expect count of contact search results is 0
     Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
-    Then set contact details name to CompanySingle
+    Then set contact details to
+      | full_name  | company | country       | street_address | city     | state    | postal_code | phone        |  email | groups | reference_number|cost_code |
+      |CompanySingle |random | United States | 1 Cortlandt St | New York | New York | 10007 |random | random |random | random |random |
     Then in contacts grid uncheck row 1
     Then search contacts from contacts filter panel with name CompanySingle
-    Then expect count of contact search results is 1
-    Then in contacts grid check row 1
-    Then set contact details company to Company123
-    Then expect value of Company in contacts grid is Company123
-
-  @sdc_contacts_detail_company_expand_collapse
-  Scenario: Contacts Details Expand and Collapse Company Scenario 1 :Expand/Collapse the Company field in Contact Details panel
-    Then sign-in to orders
-    Then navigate to Contacts
-    Then In Contacts Grid Check Row 1
-    Then Click on Contact Details Panel Company Expand Button
-    Then Click on Contact Details Panel Company Collapse Button
+    Then expect contacts grid company column at row 1 is correct
 
   @sdc_contacts_detail_company_department_and_title_details
   Scenario: Contacts Details - Company Add Title and Department Scenario 1:Expand the Name field in Contact Details panel
@@ -159,7 +148,9 @@ Feature:  Contacts BVT - Contacts Details
     Then expect count of contact search results is 0
     Then click remove button on search results of contacts filter
     Then click add button on contacts toolbar
-    Then set contact details name to CompanyDetail
+    Then set contact details to
+      | full_name  | company | country       | street_address | city     | state    | postal_code | phone        |  email | groups | reference_number|cost_code |
+      |CompanyDetail |random | United States | 1 Cortlandt St | New York | New York | 10007 |random | random |random | random |random |
     Then click on contact details panel company expand button
     Then set contact details department to CompanyDepartment
     Then set contact details title to CompanyTitle
@@ -167,8 +158,9 @@ Feature:  Contacts BVT - Contacts Details
     Then in contacts grid uncheck row 1
     Then search contacts from contacts filter panel with name CompanyDetail
     Then expect count of contact search results is 1
-    Then expect value of Title in contacts grid is CompanyTitle
-    Then expect value of Department in contacts grid is CompanyDepartment
+    Then expect contacts grid company column at row 1 is correct
+    Then expect contacts grid title column at row 1 is correct
+    Then expect contacts grid department column at row 1 is correct
 
   @SdcContacts.grid.contacts_grid_column
   Scenario: Contacts BVT Scenario 1 : Add new contact with maximum no of line in Street Address field
