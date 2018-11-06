@@ -249,6 +249,7 @@ end
 
 # Data
 Then /^click data link on reports toolbar$/ do
+  SdcReports.toolbar.data.link.hover
   SdcReports.toolbar.data.link.click
   step 'hover on data tooltip on reports toolbar'
   if SdcReports.toolbar.data.tooltip.present?
