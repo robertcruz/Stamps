@@ -1,219 +1,343 @@
-Then /^click date link on history toolbar$/ do
+Then /^click date link on reports toolbar$/ do
   SdcReports.toolbar.date.link.click
-  step 'expect date menu on history toolbar has correct values'
+  SdcReports.toolbar.date.link.hover
+  step 'hover on date tooltip on reports toolbar'
+  step 'expect date menu on reports toolbar has correct values'
 end
 
-Then /^expect date menu on history toolbar has correct values$/ do
-  step 'expect all on history toolbar date is present'
-  step 'expect custom date range on history toolbar date is present'
-  step 'expect month to date on history toolbar date is present'
-  step 'expect year to date on history toolbar date is present'
-  step 'expect previous month on history toolbar date is present'
-  step 'expect previous quarter on history toolbar date is present'
-  step 'expect previous year on history toolbar date is present'
-  step 'expect past 7 days on history toolbar date is present'
-  step 'expect past 30 days on history toolbar date is present'
-  step 'expect past 90 days on history toolbar date is present'
+Then /^hover on date tooltip on reports toolbar$/ do
+  SdcReports.toolbar.date.tooltip.safe_wait_until_present(timeout: 5)
+  SdcReports.toolbar.date.tooltip.hover if SdcReports.toolbar.date.tooltip.present?
 end
 
-Then /^expect all on history toolbar date is present$/ do
+Then /^expect date menu on reports toolbar has correct values$/ do
+  step 'expect all on reports toolbar date is present'
+  step 'expect custom date range on reports toolbar date is present'
+  step 'expect month to date on reports toolbar date is present'
+  step 'expect year to date on reports toolbar date is present'
+  step 'expect previous month on reports toolbar date is present'
+  step 'expect previous quarter on reports toolbar date is present'
+  step 'expect previous year on reports toolbar date is present'
+  step 'expect past 7 days on reports toolbar date is present'
+  step 'expect past 30 days on reports toolbar date is present'
+  step 'expect past 90 days on reports toolbar date is present'
+end
+
+Then /^expect all on reports toolbar date is present$/ do
   expect(SdcReports.toolbar.date.all).to be_present
 end
 
-Then /^expect custom date range on history toolbar date is present$/ do
+Then /^expect custom date range on reports toolbar date is present$/ do
   expect(SdcReports.toolbar.date.custom_date_range).to be_present
 end
-Then /^expect month to date on history toolbar date is present$/ do
+Then /^expect month to date on reports toolbar date is present$/ do
   expect(SdcReports.toolbar.date.month_to_date).to be_present
 end
-Then /^expect year to date on history toolbar date is present$/ do
+Then /^expect year to date on reports toolbar date is present$/ do
   expect(SdcReports.toolbar.date.year_to_date).to be_present
 end
-Then /^expect previous month on history toolbar date is present$/ do
+Then /^expect previous month on reports toolbar date is present$/ do
   expect(SdcReports.toolbar.date.previous_month).to be_present
 end
-Then /^expect previous quarter on history toolbar date is present$/ do
+Then /^expect previous quarter on reports toolbar date is present$/ do
   expect(SdcReports.toolbar.date.previous_quarter).to be_present
 end
-Then /^expect previous year on history toolbar date is present$/ do
+Then /^expect previous year on reports toolbar date is present$/ do
   expect(SdcReports.toolbar.date.previous_year).to be_present
 end
-Then /^expect past 7 days on history toolbar date is present$/ do
+Then /^expect past 7 days on reports toolbar date is present$/ do
   expect(SdcReports.toolbar.date.past_7_days).to be_present
 end
-Then /^expect past 30 days on history toolbar date is present$/ do
+Then /^expect past 30 days on reports toolbar date is present$/ do
   expect(SdcReports.toolbar.date.past_30_days).to be_present
 end
-Then /^expect past 90 days on history toolbar date is present$/ do
+Then /^expect past 90 days on reports toolbar date is present$/ do
   expect(SdcReports.toolbar.date.past_90_days).to be_present
 end
 
-Then /^expect date on history toolbar contains (.+)$/ do |str|
-  expect(SdcReports.toolbar.date.text_value).to include?(str)
+Then /^expect date on reports toolbar contains (.+)$/ do |str|
+  expect(SdcReports.toolbar.date.link.text_value).to include(str)
 end
 
-Then /^click (.*) on history toolbar date$/ do |str|
+Then /^click (.*) on reports toolbar date$/ do |str|
   date = SdcReports.toolbar.date
   obj = case str
-          when 'all'
+          when 'All'
             date.all
-          when 'custom date range'
+          when 'Custom Date Range'
             date.custom_date_range
-          when 'month to date'
+          when 'Month to Date'
             date.month_to_date
-          when 'year to date'
+          when 'Year to Date'
             date.year_to_date
-          when 'previous month'
+          when 'Previous Month'
             date.previous_month
-          when 'previous quarter'
+          when 'Previous Quarter'
             date.previous_quarter
-          when 'previous year'
+          when 'Previous Year'
             date.previous_year
-          when 'past 7 days'
+          when 'Past 7 days'
             date.past_7_days
-          when 'past 30 days'
+          when 'Past 30 days'
             date.past_30_days
-          when 'past 90 days'
+          when 'Past 90 days'
             date.past_90_days
           else
             #ingore
         end
+  # step 'hover on date tooltip on reports toolbar'
   obj.click
-  step "expect date on history toolbar contains #{str}"
+  step 'wait while loading reports grid'
+  step "expect date on reports toolbar contains #{str}"
 end
 
-Then /^click view link on history toolbar$/ do
+Then /^click view link on reports toolbar$/ do
   SdcReports.toolbar.view.link.click
-  step 'expect view menu on history toolbar has correct values'
+  SdcReports.toolbar.view.link.hover
+  step 'hover on view tooltip on reports toolbar'
+  step 'expect view menu on reports toolbar has correct values'
 end
 
-Then /^expect view menu on history toolbar has correct values$/ do
-  step 'expect area on history toolbar view is present'
-  step 'expect bar on history toolbar view is present'
-  step 'expect column on history toolbar view is present'
-  step 'expect 100% area on history toolbar view is present'
-  step 'expect 100% bar on history toolbar view is present'
-  step 'expect 100% column on history toolbar view is present'
-  step 'expect line on history toolbar view is present'
-  step 'expect pie on history toolbar view is present'
-  step 'expect trend on history toolbar view is present'
-  step 'expect summary on history toolbar view is present'
-  step 'expect transactions on history toolbar view is present'
+Then /^hover on view tooltip on reports toolbar$/ do
+  SdcReports.toolbar.view.tooltip.safe_wait_until_present(timeout: 5)
+  SdcReports.toolbar.view.tooltip.hover if SdcReports.toolbar.view.tooltip.present?
 end
 
-Then /^expect area on history toolbar view is present$/ do
+Then /^expect view menu on reports toolbar has correct values$/ do
+  step 'expect area on reports toolbar view is present'
+  step 'expect bar on reports toolbar view is present'
+  step 'expect column on reports toolbar view is present'
+  step 'expect 100% area on reports toolbar view is present'
+  step 'expect 100% bar on reports toolbar view is present'
+  step 'expect 100% column on reports toolbar view is present'
+  step 'expect line on reports toolbar view is present'
+  step 'expect pie on reports toolbar view is present'
+  step 'expect trend on reports toolbar view is present'
+  step 'expect summary on reports toolbar view is present'
+  step 'expect transactions on reports toolbar view is present'
+end
+
+Then /^expect area on reports toolbar view is present$/ do
   expect(SdcReports.toolbar.view.area).to be_present
 end
-Then /^expect bar on history toolbar view is present$/ do
+Then /^expect bar on reports toolbar view is present$/ do
   expect(SdcReports.toolbar.view.bar).to be_present
 end
-Then /^expect column on history toolbar view is present$/ do
+Then /^expect column on reports toolbar view is present$/ do
   expect(SdcReports.toolbar.view.column).to be_present
 end
-Then /^expect 100% area on history toolbar view is present$/ do
+Then /^expect 100% area on reports toolbar view is present$/ do
   expect(SdcReports.toolbar.view.area_100).to be_present
 end
-Then /^expect 100% bar on history toolbar view is present$/ do
+Then /^expect 100% bar on reports toolbar view is present$/ do
   expect(SdcReports.toolbar.view.bar_100).to be_present
 end
-Then /^expect 100% column on history toolbar view is present$/ do
+Then /^expect 100% column on reports toolbar view is present$/ do
   expect(SdcReports.toolbar.view.column_100).to be_present
 end
-Then /^expect line on history toolbar view is present$/ do
+Then /^expect line on reports toolbar view is present$/ do
   expect(SdcReports.toolbar.view.line).to be_present
 end
-Then /^expect pie on history toolbar view is present$/ do
+Then /^expect pie on reports toolbar view is present$/ do
   expect(SdcReports.toolbar.view.pie).to be_present
 end
-Then /^expect trend on history toolbar view is present$/ do
+Then /^expect trend on reports toolbar view is present$/ do
   expect(SdcReports.toolbar.view.trend).to be_present
 end
-Then /^expect summary on history toolbar view is present$/ do
+Then /^expect summary on reports toolbar view is present$/ do
   expect(SdcReports.toolbar.view.summary).to be_present
 end
-Then /^expect transactions on history toolbar view is present$/ do
+Then /^expect transactions on reports toolbar view is present$/ do
   expect(SdcReports.toolbar.view.transactions).to be_present
 end
 
-Then /^click (.*) on history toolbar view/ do |str|
+Then /^click (.*) on reports toolbar view$/ do |str|
   view = SdcReports.toolbar.view
   obj = case str
-          when 'area'
+          when 'Area'
             view.area
-          when 'bar'
+          when 'Bar'
             view.bar
-          when 'column'
+          when 'Column'
             view.column
-          when '100% area'
+          when '100% Area'
             view.area_100
-          when '100% bar'
+          when '100% Bar'
             view.bar_100
-          when '100% column'
+          when '100% Column'
             view.column_100
-          when 'line'
+          when 'Line'
             view.line
-          when 'pie'
+          when 'Pie'
             view.pie
-          when 'trend'
+          when 'Trend'
             view.trend
-          when 'summary'
+          when 'Summary'
             view.summary
-          when 'transactions'
+          when 'Transactions'
             view.transactions
           else
             #ingore
         end
   obj.click
+  step 'wait while loading reports grid'
 end
 
-Then /^click interval link on history toolbar$/ do
+# Interval
+Then /^click interval link on reports toolbar$/ do
   SdcReports.toolbar.interval.link.click
-  step 'expect interval menu on history toolbar has correct values'
+  step 'hover on interval tooltip on reports toolbar'
+  if SdcReports.toolbar.interval.tooltip.present?
+    SdcReports.toolbar.interval.link.hover
+    step 'hover on interval tooltip on reports toolbar'
+  end
+  step 'expect interval menu on reports toolbar has correct values'
 end
 
-Then /^expect interval menu on history toolbar has correct values$/ do
-  step 'expect days on history toolbar interval is present'
-  step 'expect weeks on history toolbar interval is present'
-  step 'expect months on history toolbar interval is present'
-  step 'expect quarters on history toolbar interval is present'
-  step 'expect years on history toolbar interval is present'
+Then /^hover on interval tooltip on reports toolbar$/ do
+  SdcReports.toolbar.interval.tooltip.safe_wait_until_present(timeout: 5)
+  SdcReports.toolbar.interval.tooltip.hover if SdcReports.toolbar.interval.tooltip.present?
 end
 
-Then /^expect days on history toolbar interval is present$/ do
+Then /^expect interval menu on reports toolbar has correct values$/ do
+  step 'expect days on reports toolbar interval is present'
+  step 'expect weeks on reports toolbar interval is present'
+  step 'expect months on reports toolbar interval is present'
+  step 'expect quarters on reports toolbar interval is present'
+  step 'expect years on reports toolbar interval is present'
+end
+
+Then /^expect days on reports toolbar interval is present$/ do
   expect(SdcReports.toolbar.interval.days).to be_present
 end
 
-Then /^expect weeks on history toolbar interval is present$/ do
+Then /^expect weeks on reports toolbar interval is present$/ do
   expect(SdcReports.toolbar.interval.weeks).to be_present
 end
 
-Then /^expect months on history toolbar interval is present$/ do
+Then /^expect months on reports toolbar interval is present$/ do
   expect(SdcReports.toolbar.interval.months).to be_present
 end
 
-Then /^expect quarters on history toolbar interval is present$/ do
+Then /^expect quarters on reports toolbar interval is present$/ do
   expect(SdcReports.toolbar.interval.quarters).to be_present
 end
 
-Then /^expect years on history toolbar interval is present$/ do
+Then /^expect years on reports toolbar interval is present$/ do
   expect(SdcReports.toolbar.interval.years).to be_present
 end
 
-Then /^click (.*) on history toolbar interval/ do |str|
-  interval = SdcReports.toolbar.view
+Then /^click (.*) on reports toolbar interval$/ do |str|
+  interval = SdcReports.toolbar.interval
   obj = case str
-          when 'days'
+          when 'Days'
             interval.days
-          when 'weeks'
+          when 'Weeks'
             interval.weeks
-          when 'months'
+          when 'Months'
             interval.months
-          when 'quarters'
+          when 'Quarters'
             interval.quarters
-          when 'years'
+          when 'Years'
             interval.years
           else
             #ingore
         end
   obj.click
+  step 'wait while loading reports grid'
+end
+
+# Data
+Then /^click data link on reports toolbar$/ do
+  SdcReports.toolbar.data.link.click
+  step 'hover on data tooltip on reports toolbar'
+  if SdcReports.toolbar.data.tooltip.present?
+    SdcReports.toolbar.data.link.hover
+    step 'hover on data tooltip on reports toolbar'
+  end
+  step 'expect data menu on reports toolbar has correct values'
+end
+
+Then /^hover on data tooltip on reports toolbar$/ do
+  SdcReports.toolbar.data.tooltip.safe_wait_until_present(timeout: 5)
+  SdcReports.toolbar.data.tooltip.hover if SdcReports.toolbar.data.tooltip.present?
+end
+
+Then /^expect data menu on reports toolbar has correct values$/ do
+  step 'expect cost on reports toolbar data is present'
+  step 'expect count on reports toolbar data is present'
+end
+
+Then /^expect cost on reports toolbar data is present$/ do
+  expect(SdcReports.toolbar.data.cost).to be_present
+end
+
+Then /^expect count on reports toolbar data is present$/ do
+  expect(SdcReports.toolbar.data.count).to be_present
+end
+
+Then /^click (.*) on reports toolbar data/ do |str|
+  data = SdcReports.toolbar.data
+  obj = case str
+          when 'Cost'
+            data.cost
+          when 'Count'
+            data.count
+          else
+            #ingore
+        end
+  obj.click
+  step 'wait while loading reports grid'
+end
+
+# Filters
+Then /^click filters link on reports toolbar$/ do
+  SdcReports.toolbar.filters.link.click
+  step 'expect filters modal on reports is present'
+end
+
+#reset
+Then /^expect reset on reports toolbar is present$/ do
+  expect(SdcReports.toolbar.reset.icon).to be_present
+end
+
+Then /^click reset on reports toolbar$/ do
+  SdcReports.toolbar.reset.icon.click
+end
+
+#print
+Then /^expect print on reports toolbar is present$/ do
+  expect(SdcReports.toolbar.print.icon).to be_present
+end
+
+Then /^click print on reports toolbar$/ do
+  SdcReports.toolbar.print.click
+end
+
+#exports
+Then /^expect export on reports toolbar is present$/ do
+  expect(SdcReports.toolbar.export.icon).to be_present
+end
+
+Then /^click export on reports toolbar$/ do
+  SdcReports.toolbar.export.click
+end
+
+#feedback
+Then /^expect feedback on reports toolbar is present$/ do
+  expect(SdcReports.toolbar.feedback.icon).to be_present
+end
+
+Then /^click feedback on reports toolbar$/ do
+  SdcReports.toolbar.feedback.icon.click
+  step 'expect feedback modal on reports is present'
+end
+
+#settings
+Then /^expect settings on reports toolbar is present$/ do
+  expect(SdcReports.toolbar.settings.icon).to be_present
+end
+
+Then /^click settings on reports toolbar$/ do
+  SdcReports.toolbar.settings.click
 end

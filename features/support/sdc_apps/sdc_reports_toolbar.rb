@@ -5,9 +5,9 @@ module SdcReports
     page_object(:all) { { xpath: '//*[text()="All"]' } }
     page_object(:custom_date_range) { { xpath: '//*[text()="Custom Date Range"]' } }
     page_object(:month_to_date) { { xpath: '//*[text()="Month to Date"]' } }
-    page_object(:year_do_date) { { xpath: '//*[text()="Year to Date"]' } }
+    page_object(:year_to_date) { { xpath: '//*[text()="Year to Date"]' } }
     page_object(:previous_month) { { xpath: '//*[text()="Previous Month"]' } }
-    page_object(:previous_quater) { { xpath: '//*[text()="Previous Quarter"]' } }
+    page_object(:previous_quarter) { { xpath: '//*[text()="Previous Quarter"]' } }
     page_object(:previous_year) { { xpath: '//*[text()="Previous Year"]' } }
     page_object(:past_7_days) { { xpath: '//*[text()="Past 7 days"]' } }
     page_object(:past_30_days) { { xpath: '//*[text()="Past 30 days"]' } }
@@ -85,7 +85,7 @@ module SdcReports
   end
 
   class Interval < SdcPage
-    page_object(:link) { { xpath: '//span[text()="Interval")' } }
+    page_object(:link) { { xpath: '//span[text()="Interval"]' } }
     page_object(:tooltip) { { xpath: '//b[contains(text(), "Interval")]' } }
     page_object(:days) { { xpath: '//*[text()="Days"]' } }
     page_object(:weeks) { { xpath: '//*[text()="Weeks"]' } }
