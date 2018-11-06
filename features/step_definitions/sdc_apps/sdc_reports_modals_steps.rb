@@ -37,6 +37,6 @@ end
 
 Then /^close welcome modal on reports$/ do
   welcome = SdcReports.modals.welcome
-  welcome.x_btn.click if welcome.present?
+  welcome.x_btn.click if welcome.title.present?
   step 'expect welcome modal on reports is not present'
 end
