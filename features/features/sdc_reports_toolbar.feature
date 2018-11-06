@@ -7,8 +7,8 @@ Feature:  Reports Toolbar
   Scenario: Reports toolbar UI validation
     Then sign-in to orders
     Then navigate to Reports
-#    Then click date link on reports toolbar
-#    Then click All on reports toolbar date
+    Then click date link on reports toolbar
+    Then click All on reports toolbar date
 #    Then click date link on reports toolbar
 #    Then click Custom Date Range on reports toolbar date
 #    Then click date link on reports toolbar
