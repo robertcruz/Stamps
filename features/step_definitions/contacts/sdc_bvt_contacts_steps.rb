@@ -5,4 +5,3 @@ Then /^temp$/ do
   state_value = us_states['OH']
   state_key = us_states.key('Ohio')
 end
-

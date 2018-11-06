@@ -25,9 +25,10 @@ Feature:  Contacts BVT - Print Postage
     Then show advanced options
     Then expect reference # on mail is correct
     Then expect cost code on mail is correct
-
-  @batch_print_create_multiple_shift_25Oct
-  Scenario: Multiple Contacts Selected and country field is disabled
+    Then sign out
+Then sign-in to mail
+  @batch_print_with_multiple_contacts
+  Scenario: validating mail to fields for multiple contacts selected in mil page
     Then sign-in to orders
     Then navigate to Contacts
     #Delete existing contacts
@@ -37,12 +38,14 @@ Feature:  Contacts BVT - Print Postage
     Then set contact details to
       | full_name | company | country     | street_address | city   | state  | postal_code | phone      |  email | groups | reference_number|cost_code |
       |Diana Doly |random   |United States|1 Cortlandt St  |New York|New York|10007        |23345142-123| random |        |random           |          |
+    Then save contact details of Diana
     Then in contacts grid uncheck row 1
     Then delete all available contacts with the value Alex Persih
     Then click add button on contacts toolbar
     Then set contact details to
       | full_name  | company | country       | street_address | city     | state    | postal_code | phone        |  email | groups | reference_number|cost_code |
       |Alex Persih |random   | United States | 1 Cortlandt St | New York | New York | 10007       | 23345142-123 | random |        | random          |          |
+    Then save contact details of Alex
     Then in contacts grid uncheck row 1
     #navigate to mail page to verify multiple contact added
     Then navigate to Mail
@@ -52,13 +55,11 @@ Feature:  Contacts BVT - Print Postage
     #WEBAPPAUTO-9 - Batch Print : Search Contacts Modal for selecting multiple contacts in Mail
     Then set search contacts grid name Diana Doly
     Then click search icon on search contacts modal
-    Then pause for 2 seconds
-    Then expect contacts filter panel search result count is 1
+    Then pause for 5 seconds
     Then check search contacts grid name Diana Doly
     Then set search contacts grid name Alex Persih
     Then click search icon on search contacts modal
-    Then pause for 2 seconds
-    Then expect contacts filter panel search result count is 1
+    Then pause for 5 seconds
     Then check search contacts grid name Alex Persih
     Then click select button on search contacts modal
     #ORDERSAUTO-4780 :Scenarion 1 : Multiple Contacts Selected and country field is disabled
@@ -67,11 +68,15 @@ Feature:  Contacts BVT - Print Postage
     #ORDERSAUTO-4781 :Scenario 2: Multiple Contacts Selected and see list of contacts
     Then expect multiple contacts view include Diana Doly, Alex Persih
     #ORDERSAUTO-4782 :Scenario 3: Multiple Contacts Selected and Hovers over Contact entry
-    Then hover over contact Diana Doly
-    #Then expect tooltip of contact Diana Doly is correct
-#    Then verify the tool tip for displayed is correct
-#    Then hover over each contact name in the contacts box to view tooltip
-#    Then verify address and email displayed in the tooltip for each contact
-#    #ORDERSAUTO-4783 :Scenario 4: Multiple Contacts Selected and contact is removed from list
-#    Then expect each contact to have remove X button next to it
-#    Then expect contact to be removed after clicking X button
+    Then on mail-to text box hover over contact Diana
+    #Then expect tooltip of contact Diana is correct
+    Then expect remove button is available for contact Diana
+    Then on mail-to text box hover over contact Alex
+    #Then expect tooltip of contact Alex is correct
+    Then expect remove button is available for contact Alex
+    #ORDERSAUTO-4783 :Scenario 4: Multiple Contacts Selected and contact is removed from list
+    Then click remove button on contact Diana
+
+
+
+

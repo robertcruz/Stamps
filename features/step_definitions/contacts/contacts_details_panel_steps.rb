@@ -706,6 +706,16 @@ Then /^expect search country list contains value (.*)$/ do |country_name|
     SdcLogger.info "#{TestData.hash[:country_list][i]} is present in search list of #{country_name}"
     i = i + 1
   end
+end
 
-
+Then /^save contact details of (.*)$/ do |name|
+  TestData.hash["#{name}_name"]||=TestData.hash[:full_name]
+  TestData.hash["#{name}_company"]||=TestData.hash[:company]
+  TestData.hash["#{name}_street_address"]||=TestData.hash[:street_address]
+  TestData.hash["#{name}_city"]||= TestData.hash[:city]
+    us_states = data_for(:us_states, {})
+    state_abbvr = us_states.key(TestData.hash[:state])
+  TestData.hash["#{name}_state_abbvr"]||= state_abbvr
+  TestData.hash["#{name}_zip"]||=TestData.hash[:postal_code]
+  TestData.hash["#{name}_email"]||=TestData.hash[:email]
 end
