@@ -27,6 +27,7 @@ Feature:  Contacts BVT - Print Postage
     Then expect cost code on mail is correct
     Then sign out
 Then sign-in to mail
+
   @batch_print_with_multiple_contacts
   Scenario: validating mail to fields for multiple contacts selected in mil page
     Then sign-in to orders
