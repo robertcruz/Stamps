@@ -809,6 +809,62 @@ class SdcElement < BasicObject
   end
 end
 
+class ElementWithVerify < BasicObject
+  def initialize(element, verify_element, property: nil)
+    @element = element
+    @verify = verify_element
+    @property = property
+  end
+
+  def property=(property)
+    @property = property
+  end
+
+  def is_attribute?(sym)
+    result = if @verify.respond_to? :attribute_value
+               @verify.send(:attribute_value, @property)
+             else
+               @verify.send(:attribute, @property)
+             end
+
+    return result if [true, false].include? result
+
+    if result.casecmp('true').zero? || result .casecmp('false').zero?
+      return result.casecmp('true').zero?
+    end
+    result.include?(sym.to_s)
+  end
+
+  def checked?
+    is_attribute?(:checked)
+  end
+
+  def selected?
+    is_attribute?(:selected)
+  end
+
+  def enabled?
+    is_attribute?(:enabled)
+  end
+
+  def disabled?
+    is_attribute?(:selected)
+  end
+
+  def respond_to_missing?(name, include_private = false)
+    @element.respond_to?(name, include_private) || super
+  end
+
+  def method_missing(name, *args, &block)
+    super unless @element.respond_to?(name)
+    @element.send(name, *args, &block)
+  end
+end
+
+class ElementChooser < ElementWithVerify
+
+end
+
 class SdcChooser < BasicObject
   include ::SdcElementHelper
 
