@@ -809,9 +809,9 @@ class SdcElement < BasicObject
   end
 end
 
-class ElementWithVerify < BasicObject
+class ElementWithVerify < SdcElement
   def initialize(element, verify_element, property: nil)
-    @element = element
+    super(element)
     @verify = verify_element
     @property = property
   end
@@ -850,19 +850,56 @@ class ElementWithVerify < BasicObject
   def disabled?
     is_attribute?(:selected)
   end
+end
 
-  def respond_to_missing?(name, include_private = false)
-    @element.respond_to?(name, include_private) || super
+class ElementChecker < ElementWithVerify
+  def initialize(element, verify_element, property: nil)
+    super(element, verify_element, property)
   end
 
-  def method_missing(name, *args, &block)
-    super unless @element.respond_to?(name)
-    @element.send(name, *args, &block)
+  def check(iter: 2)
+    iter.times do
+      @element.click
+      break if checked?
+    end
+
+    checked?
+  end
+
+
+  def uncheck(iter: 2)
+    iter.times do
+      @element.click
+      break unless checked?
+    end
+
+    checked?
   end
 end
 
-class ElementChooser < ElementWithVerify
+class ElementSelector < ElementWithVerify
+  def initialize(element, verify_element, property: nil)
+    super(element, verify_element, property)
+  end
 
+  def select(iter: 2)
+    iter.times do
+      @element.click
+      break if selected?
+    end
+
+    selected?
+  end
+
+
+  def unselect(iter: 2)
+    iter.times do
+      @element.click
+      break unless selected?
+    end
+
+    selected?
+  end
 end
 
 class SdcChooser < BasicObject
