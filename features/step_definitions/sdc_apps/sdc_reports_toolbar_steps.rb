@@ -1,7 +1,10 @@
 Then /^click date link on reports toolbar$/ do
   SdcReports.toolbar.date.link.click
-  SdcReports.toolbar.date.link.hover
   step 'hover on date tooltip on reports toolbar'
+  if SdcReports.toolbar.date.tooltip.present?
+    SdcReports.toolbar.date.link.hover
+    step 'hover on date tooltip on reports toolbar'
+  end
   step 'expect date menu on reports toolbar has correct values'
 end
 
@@ -30,6 +33,7 @@ end
 Then /^expect custom date range on reports toolbar date is present$/ do
   expect(SdcReports.toolbar.date.custom_date_range).to be_present
 end
+
 Then /^expect month to date on reports toolbar date is present$/ do
   expect(SdcReports.toolbar.date.month_to_date).to be_present
 end
@@ -249,7 +253,6 @@ end
 
 # Data
 Then /^click data link on reports toolbar$/ do
-  SdcReports.toolbar.data.link.hover
   SdcReports.toolbar.data.link.click
   step 'hover on data tooltip on reports toolbar'
   if SdcReports.toolbar.data.tooltip.present?

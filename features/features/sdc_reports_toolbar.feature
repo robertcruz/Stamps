@@ -9,24 +9,24 @@ Feature:  Reports Toolbar
     Then navigate to Reports
     Then click date link on reports toolbar
     Then click All on reports toolbar date
-#    Then click date link on reports toolbar
-#    Then click Custom Date Range on reports toolbar date
-#    Then click date link on reports toolbar
-#    Then click Month to Date on reports toolbar date
-#    Then click date link on reports toolbar
-#    Then click Year to Date on reports toolbar date
-#    Then click date link on reports toolbar
-#    Then click Previous Month on reports toolbar date
-#    Then click date link on reports toolbar
-#    Then click Previous Quarter on reports toolbar date
-#    Then click date link on reports toolbar
-#    Then click Previous Year on reports toolbar date
-#    Then click date link on reports toolbar
-#    Then click Past 7 days on reports toolbar date
-#    Then click date link on reports toolbar
-#    Then click Past 30 days on reports toolbar date
-#    Then click date link on reports toolbar
-#    Then click Past 90 days on reports toolbar date
+    Then click date link on reports toolbar
+    Then click Custom Date Range on reports toolbar date
+    Then click date link on reports toolbar
+    Then click Month to Date on reports toolbar date
+    Then click date link on reports toolbar
+    Then click Year to Date on reports toolbar date
+    Then click date link on reports toolbar
+    Then click Previous Month on reports toolbar date
+    Then click date link on reports toolbar
+    Then click Previous Quarter on reports toolbar date
+    Then click date link on reports toolbar
+    Then click Previous Year on reports toolbar date
+    Then click date link on reports toolbar
+    Then click Past 7 days on reports toolbar date
+    Then click date link on reports toolbar
+    Then click Past 30 days on reports toolbar date
+    Then click date link on reports toolbar
+    Then click Past 90 days on reports toolbar date
 #
 #    Then click view link on reports toolbar
 #    Then click Transactions on reports toolbar view
@@ -62,10 +62,10 @@ Feature:  Reports Toolbar
 #    Then click interval link on reports toolbar
 #    Then click Years on reports toolbar interval
 
-    Then click data link on reports toolbar
-    Then click Count on reports toolbar data
-    Then click data link on reports toolbar
-    Then click Cost on reports toolbar data
+#    Then click data link on reports toolbar
+#    Then click Count on reports toolbar data
+#    Then click data link on reports toolbar
+#    Then click Cost on reports toolbar data
 
     Then click filters link on reports toolbar
     Then close filters modal on reports
