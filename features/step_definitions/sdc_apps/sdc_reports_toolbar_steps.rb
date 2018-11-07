@@ -1,5 +1,11 @@
 Then /^click date link on reports toolbar$/ do
   SdcReports.toolbar.date.link.click
+  SdcReports.toolbar.date.tooltip.safe_wait_until_present(timeout: 3)
+  if SdcReports.toolbar.date.tooltip.present?
+    SdcReports.toolbar.date.link.click
+    SdcReports.toolbar.date.tooltip.safe_wait_until_present(timeout: 2)
+    SdcReports.toolbar.date.link.click
+  end
   step 'expect date menu on reports toolbar has correct values'
 end
 
@@ -92,6 +98,12 @@ end
 
 Then /^click view link on reports toolbar$/ do
   SdcReports.toolbar.view.link.click
+  SdcReports.toolbar.view.tooltip.safe_wait_until_present(timeout: 3)
+  if SdcReports.toolbar.view.tooltip.present?
+    SdcReports.toolbar.view.link.click
+    SdcReports.toolbar.view.tooltip.safe_wait_until_present(timeout: 2)
+    SdcReports.toolbar.view.link.click
+  end
   # SdcReports.toolbar.view.link.hover
   # step 'hover on view tooltip on reports toolbar'
   step 'expect view menu on reports toolbar has correct values'
@@ -185,6 +197,12 @@ end
 # Interval
 Then /^click interval link on reports toolbar$/ do
   SdcReports.toolbar.interval.link.click
+  SdcReports.toolbar.interval.tooltip.safe_wait_until_present(timeout: 3)
+  if SdcReports.toolbar.interval.tooltip.present?
+    SdcReports.toolbar.interval.link.click
+    SdcReports.toolbar.interval.tooltip.safe_wait_until_present(timeout: 2)
+    SdcReports.toolbar.interval.link.click
+  end
   # step 'hover on interval tooltip on reports toolbar'
   # if SdcReports.toolbar.interval.tooltip.present?
   #   SdcReports.toolbar.interval.link.hover
