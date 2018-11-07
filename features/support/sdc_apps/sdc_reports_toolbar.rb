@@ -2,16 +2,29 @@ module SdcReports
   class Date < SdcPage
     page_object(:link) { { xpath: '//*[contains(text(), "Date:")]' } }
     page_object(:tooltip) { { xpath: '//b[contains(text(), "Date Range")]' } }
-    page_object(:all) { { xpath: '//*[text()="All"]' } }
-    page_object(:custom_date_range) { { xpath: '//*[text()="Custom Date Range"]' } }
-    page_object(:month_to_date) { { xpath: '//*[text()="Month to Date"]' } }
-    page_object(:year_to_date) { { xpath: '//*[text()="Year to Date"]' } }
-    page_object(:previous_month) { { xpath: '//*[text()="Previous Month"]' } }
-    page_object(:previous_quarter) { { xpath: '//*[text()="Previous Quarter"]' } }
-    page_object(:previous_year) { { xpath: '//*[text()="Previous Year"]' } }
-    page_object(:past_7_days) { { xpath: '//*[text()="Past 7 days"]' } }
-    page_object(:past_30_days) { { xpath: '//*[text()="Past 30 days"]' } }
-    page_object(:past_90_days) { { xpath: '//*[text()="Past 90 days"]' } }
+
+
+    page_object(:all) { { xpath: '(//*[text()="All"]/../../..//span)[1]' } }
+    page_object(:custom_date_range) { { xpath: '(//*[text()="All"]/../../..//span)[2]' } }
+    page_object(:month_to_date) { { xpath: '(//*[text()="All"]/../../..//span)[3]' } }
+    page_object(:year_to_date) { { xpath: '(//*[text()="All"]/../../..//span)[4]' } }
+    page_object(:previous_month) { { xpath: '(//*[text()="All"]/../../..//span)[5]' } }
+    page_object(:previous_quarter) { { xpath: '(//*[text()="All"]/../../..//span)[6]' } }
+    page_object(:previous_year) { { xpath: '(//*[text()="All"]/../../..//span)[7]' } }
+    page_object(:past_7_days) { { xpath: '(//*[text()="All"]/../../..//span)[8]' } }
+    page_object(:past_30_days) { { xpath: '(//*[text()="All"]/../../..//span)[9]' } }
+    page_object(:past_90_days) { { xpath: '(//*[text()="All"]/../../..//span)[10]' } }
+
+    # page_object(:all) { { xpath: '//*[text()="All"]' } }
+    # page_object(:custom_date_range) { { xpath: '//*[text()="Custom Date Range"]' } }
+    # page_object(:month_to_date) { { xpath: '//*[text()="Month to Date"]' } }
+    # page_object(:year_to_date) { { xpath: '//*[text()="Year to Date"]' } }
+    # page_object(:previous_month) { { xpath: '//*[text()="Previous Month"]' } }
+    # page_object(:previous_quarter) { { xpath: '//*[text()="Previous Quarter"]' } }
+    # page_object(:previous_year) { { xpath: '//*[text()="Previous Year"]' } }
+    # page_object(:past_7_days) { { xpath: '//*[text()="Past 7 days"]' } }
+    # page_object(:past_30_days) { { xpath: '//*[text()="Past 30 days"]' } }
+    # page_object(:past_90_days) { { xpath: '//*[text()="Past 90 days"]' } }
 
     def from
       DateFrom.new
@@ -71,27 +84,47 @@ module SdcReports
   class View < SdcPage
     page_object(:link) { { xpath: '//span[text()="View"]' } }
     page_object(:tooltip) { { xpath: '//b[contains(text(), "View")]' } }
-    page_object(:area) { { xpath: '//*[text()="Area"]' } }
-    page_object(:bar) { { xpath: '//*[text()="Bar"]' } }
-    page_object(:column) { { xpath: '//*[text()="Column"]' } }
-    page_object(:area_100) { { xpath: '//*[text()="100% Area"]' } }
-    page_object(:bar_100) { { xpath: '//*[text()="100% Bar"]' } }
-    page_object(:column_100) { { xpath: '//*[text()="100% Column"]' } }
-    page_object(:line) { { xpath: '//*[text()="Line"]' } }
-    page_object(:pie) { { xpath: '//*[text()="Pie"]' } }
-    page_object(:trend) { { xpath: '//*[text()="Trend"]' } }
-    page_object(:summary) { { xpath: '//*[text()="Summary"]' } }
-    page_object(:transactions) { { xpath: '//*[text()="Transactions"]' } }
+
+    page_object(:area) { { xpath: '(//*[text()="Transactions"]/../../..//span)[1]' } }
+    page_object(:bar) { { xpath: '(//*[text()="Transactions"]/../../..//span)[2]' } }
+    page_object(:column) { { xpath: '(//*[text()="Transactions"]/../../..//span)[3]' } }
+    page_object(:area_100) { { xpath: '(//*[text()="Transactions"]/../../..//span)[4]' } }
+    page_object(:bar_100) { { xpath: '(//*[text()="Transactions"]/../../..//span)[5]' } }
+    page_object(:column_100) { { xpath: '(//*[text()="Transactions"]/../../..//span)[6]' } }
+    page_object(:line) { { xpath: '(//*[text()="Transactions"]/../../..//span)[7]' } }
+    page_object(:pie) { { xpath: '(//*[text()="Transactions"]/../../..//span)[8]' } }
+    page_object(:trend) { { xpath: '(//*[text()="Transactions"]/../../..//span)[9]' } }
+    page_object(:summary) { { xpath: '(//*[text()="Transactions"]/../../..//span)[10]' } }
+    page_object(:transactions) { { xpath: '(//*[text()="Transactions"]/../../..//span)[11]' } }
+
+    # page_object(:area) { { xpath: '//*[text()="Area"]' } }
+    # page_object(:bar) { { xpath: '//*[text()="Bar"]' } }
+    # page_object(:column) { { xpath: '//*[text()="Column"]' } }
+    # page_object(:area_100) { { xpath: '//*[text()="100% Area"]' } }
+    # page_object(:bar_100) { { xpath: '//*[text()="100% Bar"]' } }
+    # page_object(:column_100) { { xpath: '//*[text()="100% Column"]' } }
+    # page_object(:line) { { xpath: '//*[text()="Line"]' } }
+    # page_object(:pie) { { xpath: '//*[text()="Pie"]' } }
+    # page_object(:trend) { { xpath: '//*[text()="Trend"]' } }
+    # page_object(:summary) { { xpath: '//*[text()="Summary"]' } }
+    # page_object(:transactions) { { xpath: '//*[text()="Transactions"]' } }
   end
 
   class Interval < SdcPage
     page_object(:link) { { xpath: '//span[text()="Interval"]' } }
     page_object(:tooltip) { { xpath: '//b[contains(text(), "Interval")]' } }
-    page_object(:days) { { xpath: '//*[text()="Days"]' } }
-    page_object(:weeks) { { xpath: '//*[text()="Weeks"]' } }
-    page_object(:months) { { xpath: '//*[text()="Months"]' } }
-    page_object(:quarters) { { xpath: '//*[text()="Quarters"]' } }
-    page_object(:years) { { xpath: '//*[text()="Years"]' } }
+
+    page_object(:days) { { xpath: '(//*[text()="Years"]/../../..//span)[1]' } }
+    page_object(:weeks) { { xpath: '(//*[text()="Years"]/../../..//span)[2]' } }
+    page_object(:months) { { xpath: '(//*[text()="Years"]/../../..//span)[3]' } }
+    page_object(:quarters) { { xpath: '(//*[text()="Years"]/../../..//span)[4]' } }
+    page_object(:years) { { xpath: '(//*[text()="Years"]/../../..//span)[5]' } }
+
+    # page_object(:days) { { xpath: '//*[text()="Days"]' } }
+    # page_object(:weeks) { { xpath: '//*[text()="Weeks"]' } }
+    # page_object(:months) { { xpath: '//*[text()="Months"]' } }
+    # page_object(:quarters) { { xpath: '//*[text()="Quarters"]' } }
+    # page_object(:years) { { xpath: '//*[text()="Years"]' } }
   end
 
   class Data < SdcPage

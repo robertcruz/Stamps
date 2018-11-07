@@ -1,10 +1,5 @@
 Then /^click date link on reports toolbar$/ do
   SdcReports.toolbar.date.link.click
-  step 'hover on date tooltip on reports toolbar'
-  if SdcReports.toolbar.date.tooltip.present?
-    SdcReports.toolbar.date.link.hover
-    step 'hover on date tooltip on reports toolbar'
-  end
   step 'expect date menu on reports toolbar has correct values'
 end
 
@@ -97,8 +92,8 @@ end
 
 Then /^click view link on reports toolbar$/ do
   SdcReports.toolbar.view.link.click
-  SdcReports.toolbar.view.link.hover
-  step 'hover on view tooltip on reports toolbar'
+  # SdcReports.toolbar.view.link.hover
+  # step 'hover on view tooltip on reports toolbar'
   step 'expect view menu on reports toolbar has correct values'
 end
 
@@ -190,11 +185,11 @@ end
 # Interval
 Then /^click interval link on reports toolbar$/ do
   SdcReports.toolbar.interval.link.click
-  step 'hover on interval tooltip on reports toolbar'
-  if SdcReports.toolbar.interval.tooltip.present?
-    SdcReports.toolbar.interval.link.hover
-    step 'hover on interval tooltip on reports toolbar'
-  end
+  # step 'hover on interval tooltip on reports toolbar'
+  # if SdcReports.toolbar.interval.tooltip.present?
+  #   SdcReports.toolbar.interval.link.hover
+  #   step 'hover on interval tooltip on reports toolbar'
+  # end
   step 'expect interval menu on reports toolbar has correct values'
 end
 
@@ -254,11 +249,17 @@ end
 # Data
 Then /^click data link on reports toolbar$/ do
   SdcReports.toolbar.data.link.click
-  step 'hover on data tooltip on reports toolbar'
+  SdcReports.toolbar.data.tooltip.safe_wait_until_present(timeout: 3)
   if SdcReports.toolbar.data.tooltip.present?
-    SdcReports.toolbar.data.link.hover
-    step 'hover on data tooltip on reports toolbar'
+    SdcReports.toolbar.data.link.click
+    SdcReports.toolbar.data.tooltip.safe_wait_until_present(timeout: 2)
+    SdcReports.toolbar.data.link.click
   end
+  # step 'hover on data tooltip on reports toolbar'
+  # if SdcReports.toolbar.data.tooltip.present?
+  #   SdcReports.toolbar.data.link.hover
+  #   step 'hover on data tooltip on reports toolbar'
+  # end
   step 'expect data menu on reports toolbar has correct values'
 end
 
