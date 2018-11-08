@@ -461,7 +461,6 @@ class SdcPage < WatirDrops::PageObject
     alias text_field page_object
     alias button page_object
     alias label page_object
-    alias selection page_object
     alias link page_object
 
     def page_objects(name, tag: nil, index: nil, required: false, timeout: 60)
@@ -478,6 +477,12 @@ class SdcPage < WatirDrops::PageObject
           SdcElement.new(element)
         end
       end
+    end
+
+    def checker()
+    end
+
+    def selector()
     end
 
     def chooser(name, chooser, verify, property, property_name)
@@ -865,7 +870,6 @@ class ElementChecker < ElementWithVerify
 
     checked?
   end
-
 
   def uncheck(iter: 2)
     iter.times do
