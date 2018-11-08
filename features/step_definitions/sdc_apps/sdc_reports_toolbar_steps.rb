@@ -93,9 +93,6 @@ Then /^click (.*) on reports toolbar date$/ do |str|
 
   obj.click
   step 'wait while loading reports grid'
-  SdcReports.toolbar.date.link.click
-  step "expect #{str} selected on reports toolbar date"
-  SdcReports.toolbar.date.link.click
   step "expect date on reports toolbar contains #{str}"
 end
 
@@ -111,8 +108,6 @@ Then /^click view link on reports toolbar$/ do
     SdcReports.toolbar.view.tooltip.safe_wait_until_present(timeout: 2)
     SdcReports.toolbar.view.link.click
   end
-  # SdcReports.toolbar.view.link.hover
-  # step 'hover on view tooltip on reports toolbar'
   step 'expect view menu on reports toolbar has correct values'
 end
 
@@ -210,11 +205,6 @@ Then /^click interval link on reports toolbar$/ do
     SdcReports.toolbar.interval.tooltip.safe_wait_until_present(timeout: 2)
     SdcReports.toolbar.interval.link.click
   end
-  # step 'hover on interval tooltip on reports toolbar'
-  # if SdcReports.toolbar.interval.tooltip.present?
-  #   SdcReports.toolbar.interval.link.hover
-  #   step 'hover on interval tooltip on reports toolbar'
-  # end
   step 'expect interval menu on reports toolbar has correct values'
 end
 
@@ -280,11 +270,6 @@ Then /^click data link on reports toolbar$/ do
     SdcReports.toolbar.data.tooltip.safe_wait_until_present(timeout: 2)
     SdcReports.toolbar.data.link.click
   end
-  # step 'hover on data tooltip on reports toolbar'
-  # if SdcReports.toolbar.data.tooltip.present?
-  #   SdcReports.toolbar.data.link.hover
-  #   step 'hover on data tooltip on reports toolbar'
-  # end
   step 'expect data menu on reports toolbar has correct values'
 end
 
