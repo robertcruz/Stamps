@@ -90,10 +90,17 @@ Then /^click (.*) on reports toolbar date$/ do |str|
           else
             #ingore
         end
-  # step 'hover on date tooltip on reports toolbar'
+
   obj.click
   step 'wait while loading reports grid'
+  SdcReports.toolbar.date.link.click
+  step "expect #{str} selected on reports toolbar date"
+  SdcReports.toolbar.date.link.click
   step "expect date on reports toolbar contains #{str}"
+end
+
+Then /^expect (.*) selected on reports toolbar date$/ do |str|
+  expect(SdcReports.toolbar.date.selection.text_value).to include(str)
 end
 
 Then /^click view link on reports toolbar$/ do
