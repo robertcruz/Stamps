@@ -647,4 +647,4 @@ sdc_contacts_pagination_navigate_different_pages: --tags @sdc_contacts_paginatio
 sdc_contacts_search_country_results: --tags @sdc_contacts_search_country_results --guess LOG_LEVEL=info
 sdc_contact_top_nav_print_postage: --tags @sdc_contact_top_nav_print_postage --guess LOG_LEVEL=info
 bug_postal_code_not_added_contact_details: --tags @bug_postal_code_not_added_contact_details --guess LOG_LEVEL=info
-batch_print_with_multiple_contacts: --tags @batch_print_with_multiple_contacts -- guess LOG_LEVEL=info
+batch_print_with_multiple_contacts: --tags @batch_print_with_multiple_contacts --guess LOG_LEVEL=info
