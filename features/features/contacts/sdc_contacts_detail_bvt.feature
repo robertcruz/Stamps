@@ -162,7 +162,7 @@ Feature:  Contacts BVT - Contacts Details
     Then expect contacts grid title column at row 1 is correct
     Then expect contacts grid department column at row 1 is correct
 
-  @SdcContacts.grid.contacts_grid_column
+  @sdc_contacts_add_new_contact_max_lines
   Scenario: Contacts BVT Scenario 1 : Add new contact with maximum no of line in Street Address field
     Then sign-in to orders
     Then navigate to Contacts
