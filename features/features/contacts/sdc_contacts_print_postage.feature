@@ -27,7 +27,7 @@ Feature:  Contacts BVT - Print Postage
     Then expect cost code on mail is correct
     Then sign out
 
-  @mailto_validtion_for_multiple_contacts
+  @mailto_validation_for_multiple_contacts
   Scenario: validating mail to fields for multiple contacts selected in mail page
   WEBAPPAUTO-8 Batch Print: Create Multiple Ship To Contacts View
   WEBAPPAUTO-9 Batch Print : Search Contacts Modal for selecting multiple contacts in Mail
