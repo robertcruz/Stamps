@@ -126,7 +126,6 @@ end
 
 
 Then /^on mail-to text box hover over contact (.*)$/ do |contact|
-  #contact_name = SdcMail::SdcMailFloatingModals::ContactsView.new
   contact_name = SdcMail.modals.add_address.contacts_view
   contact_count = contact_name.contacts_list.count
   #SdcLogger.info "Total no of contacts to hover are :#{contact_count}"
