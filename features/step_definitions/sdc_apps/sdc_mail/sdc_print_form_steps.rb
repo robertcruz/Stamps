@@ -105,6 +105,16 @@ Then /^expect selected contacts count is (.+)$/ do |str|
   expect(add_address.selected_contacts_count.text.parse_digits.to_i).to eql str.to_i
 end
 
+Then /^expect multiple contacts view is displayed$/ do
+  multiple_contacts_view = SdcMail.modals.add_address.contacts_view
+  expect(multiple_contacts_view.container.present?).to be(true)
+end
+
+Then /^expect multiple contacts view is not displayed$/ do
+  multiple_contacts_view = SdcMail.modals.add_address.contacts_view
+  expect(multiple_contacts_view.container.present?).to be(false)
+end
+
 Then /^expect multiple contacts view include (.+)$/ do |str|
   expectations = str.split(',').map(&:strip)
   add_address = SdcMail.modals.add_address

@@ -27,21 +27,21 @@ Then /^check search contacts grid name (.*)$/ do |str|
   grid = SdcMail.modals.search_contacts.grid
   row = grid.row_number_for_name(str)
   checkbox = grid.checkbox_for_row(row)
-  checkbox.check
+  checkbox.check unless checkbox.checked?
   expect(checkbox.checked?).to be(true)
 end
 
 Then /^set search contacts grid name (.*)$/ do |str|
   search_filter = SdcMail.modals.search_contacts
-  search_filter.search_text.wait_until_present(timeout:10)
+  search_filter.search_text.wait_until_present(timeout:30)
   search_filter.search_text.set(str)
-  expect(search_filter.search_icon.present?).to be(true)
 end
 
 Then /^click search icon on search contacts modal$/ do
   search_contact_modal = SdcMail.modals.search_contacts
-  search_contact_modal.search_icon.wait_until_present(timeout:10)
+  search_contact_modal.search_icon.wait_until_present(timeout:30)
   search_contact_modal.search_icon.click
+  sleep(5)
 end
 
 

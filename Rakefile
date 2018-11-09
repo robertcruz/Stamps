@@ -68,8 +68,8 @@ Cucumber::Rake::Task.new(:extra_services_cost_for_rrb_service) do |t|
 end
 
 #CONTACTS
-Cucumber::Rake::Task.new(:batch_print_with_multiple_contacts) do |t|
-  t.profile = 'batch_print_with_multiple_contacts'
+Cucumber::Rake::Task.new(:mailto_validation_for_multiple_contacts) do |t|
+  t.profile = 'mailto_validation_for_multiple_contacts'
   t.cucumber_opts = "-p cuke_reports"
 end
 
