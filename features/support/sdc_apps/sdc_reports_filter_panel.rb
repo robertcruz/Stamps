@@ -46,15 +46,11 @@ module SdcReports
       page_object(:by_cost_code_chooser) { { xpath: '//*[contains(@class,"badgebutton")]//div[text()="By Cost Code"]' } }
       page_object(:by_cost_code_verify) { { xpath: '//*[contains(@class,"badgebutton")]//div[text()="By Cost Code"]/../../../..' } }
       chooser(:by_cost_code, :by_cost_code_chooser, :by_cost_code_verify, :class, :selected)
-    end
 
-    # class Expenses < SdcPage
-    #   page_object(:link) { { xpath: '//div[text()="Expenses"][contains(@class,"sdc-badgebutton-text")]' } }
-    # end
-    #
-    # class Balances < SdcPage
-    #   page_object(:link) { { xpath: '//*[text()="Balances"]' } }
-    # end
+      page_object(:by_user_chooser) { { xpath: '(//*[contains(@class,"badgebutton")]//div[text()="By User"])[1]' } }
+      page_object(:by_user_verify) { { xpath: '(//*[contains(@class,"badgebutton")]//div[text()="By User"]/../../../..)[1]' } }
+      chooser(:by_user, :by_user_chooser, :by_user_verify, :class, :selected)
+    end
 
     class CollapsedView < SdcPage
       page_object(:expand) { { xpath: '//img[contains(@class,"x-tool-expand-right")]' } }
