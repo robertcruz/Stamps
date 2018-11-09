@@ -164,7 +164,7 @@ module WhiteLabel
       "select  offer_pricing_plans.OfferID, offer_pricing_plans.PlanID, pricing_plans.SKU, pricing_plans.MonthlyBaseFee
        from [dbo].[smt_pricingplans] as pricing_plans
        inner join  [dbo].[smt_OfferPricingPlans] as offer_pricing_plans on  offer_pricing_plans.PlanID = pricing_plans.PlanID
-       where offer_pricing_plans.OfferID = #{offer_id} and pricing_plans.SKU = '#{sku}'")
+       where offer_pricing_plans.OfferID = #{offer_id} and pricing_plans.SKU = '0#{sku}'")
 
       data.each do |item|
         return item['MonthlyBaseFee']
@@ -178,8 +178,6 @@ module WhiteLabel
     def wr_model_session_offer
       SdcPage.browser.execute_script('return WR.model.session.offer')
     end
-
-
   end
 
   class SDCWWebsite <SdcPage

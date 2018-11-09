@@ -344,7 +344,7 @@ end
 
 Then /^WL: expect membership page credit card number tooltip to be (.*)$/ do |str|
   cc_number_help_block = WhiteLabel.membership_page.cc_number_help_block
-  cc_number_help_block.wait_until_presnet(timeout: 5)
+  cc_number_help_block.wait_until_present(timeout: 5)
   text = WhiteLabel.membership_page.cc_number_help_block.text_value.strip
   expect(text).to eql(str)
 end

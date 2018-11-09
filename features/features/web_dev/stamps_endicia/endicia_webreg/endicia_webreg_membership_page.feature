@@ -411,6 +411,7 @@ Feature: Endicia WebReg: Membership Page
 
   @ewwr_membership_page_username_taken_validation
   Scenario: Membership Page Username Taken Validation
+
     Then WL: navigates to default registration page for endicia with the following offer id 707
     Then WL: set profile page default values
     Then WL: set pp username to an existing username from db

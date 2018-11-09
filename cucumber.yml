@@ -1,5 +1,5 @@
 
-default: --backtrace --profile kaushal_cc
+default: --backtrace --profile kaushal_cc16
 
 cuke_reports: --format json --out report.json --backtrace -f pretty -r features --format pretty --format html --out reports
 
@@ -21,7 +21,7 @@ mhossain1_cc: --tags @ewwr_security_question_page_validation URL=stg BROWSER=gc_
 
 kaushal_cc_mob: --tags @sdcwr_profile_page_ui_validation URL=stg BROWSER=gc_iPhone_X LOG_LEVEL=info #USR=qawebdevelopment@stamps.com PW=password1
 
-kaushal_cc: --tags @sdcwr_security_question_page_validation URL=cc BROWSER=edge LOG_LEVEL=info
+kaushal_cc: --tags @sdcwr_header_footer_validation URL=stg BROWSER=edge LOG_LEVEL=info
 
 sauce_mobile: --tags @mail_authentication_mobile URL=stg USR=sauce0020 PW=pass111 SELENIUM_DEVICE='iPhone X Simulator' SELENIUM_PLATFORM=iOS SELENIUM_BROWSER=Safari SELENIUM_VERSION=11.3TUNNEL_IDENTIFIER=rob LOG_LEVEL=info
 ks_sauce_mobile:  --tags @sdcw_postage_online_page_validation_mobile URL=stg SELENIUM_DEVICE='iPhone X Simulator' SELENIUM_PLATFORM=Android SELENIUM_BROWSER=chrome SELENIUM_VERSION=latest TUNNEL_IDENTIFIER=kaushal LOG_LEVEL=info
