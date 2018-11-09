@@ -113,6 +113,7 @@ end
 Then /^expect multiple contacts view is not displayed$/ do
   multiple_contacts_view = SdcMail.modals.add_address.contacts_view
   expect(multiple_contacts_view.container.present?).to be(false)
+
 end
 
 Then /^expect multiple contacts view include (.+)$/ do |str|
