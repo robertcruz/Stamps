@@ -1,5 +1,5 @@
 
-default: --backtrace --profile local_browser
+default: --backtrace --profile alex_rates_pmi
 
 cuke_reports: --format json --out report.json --backtrace -f pretty -r features --format pretty --format html --out reports
 
@@ -27,7 +27,7 @@ alex_history:  --tags @history_filter_direct_url_1 BROWSER=firefox URL=cc USR=ab
 alex_mail:  --tags @mail_dropdown_tooltip BROWSER=firefox URL=stg USR=abqasttest1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
 alex_regress:  --tags @bvt_shipping_address_management BROWSER=ff WEB_APP=orders URL=cc USR=abqacc10 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
 alex_rates:  --tags @rates_orders_pme_comm_plus_zone_5 BROWSER=ff URL=stg USR=abqast2 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false
-alex_rates_pmi:  --tags @rates_mail_pmei_comm_base_group_2 BROWSER=ff URL=stg USR=abqast5 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
+alex_rates_pmi:  --tags @rates_mail_pme_comm_base_zone_2 BROWSER=ff URL=stg USR=abqast5 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
 alex_orders:  --tags @bvt_orders_ui_validation BROWSER=ff URL=prod USR=abqaprod2 PW=password1  PRINTER=factory --guess LOG_LEVEL=info HEALTHCHECK=false
 alex_test:  --tags @bvt_shipping_address_management BROWSER=ff URL=qacc USR=abqacc10 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
 saucelabs_alex: --tags @history_filter_direct_url URL=qacc USR=abqaccsas1 PW=password1 --guess SAUCE_USERNAME=robcruz SAUCE_ACCESS_KEY=0e60dbc9-5bbf-425a-988b-f81c42d6b7ef SELENIUM_BROWSER=firefox SELENIUM_VERSION=latest SELENIUM_PLATFORM='Windows 10' SELENIUM_HOST=ondemand.saucelabs.com SELENIUM_PORT=443

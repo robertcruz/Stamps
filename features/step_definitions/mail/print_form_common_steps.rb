@@ -41,9 +41,12 @@ Then /^set print form pounds to (\d+) by arrows$/ do |lbs|
   step 'blur out on print form'
 end
 
-Then /^set print form ounces to (\d+)$/ do |oz|
-  SdcMail.print_form.weight.oz.set(oz)
-  TestData.hash[:oz] = oz.to_f
+Then /^set print form ounces to (.+)$/ do |str|
+  step 'blur out on print form'
+  SdcMail.print_form.weight.oz.set(str)
+  step "expect print form ounces is #{str}"
+  TestData.hash[:oz] = str.to_f
+  step 'blur out on print form'
 end
 
 Then /^increment print form weight by lbs (\d+) oz (\d+)$/ do |lbs, oz|
@@ -84,14 +87,14 @@ Then /^decrement print form ounces by (\d+)$/ do |oz|
   TestData.hash[:oz] = oz
 end
 
-Then /^expect print form pounds is (?:correct|(\d+))$/ do |lbs|
+Then /^expect print form pounds is (?:correct|(.*))$/ do |lbs|
   lbs = lbs.nil? ? TestData.hash[:lbs] : lbs
-  expect(SdcMail.print_form.weight.lbs.text_value.to_i).to eql lbs
+  expect(SdcMail.print_form.weight.lbs.text_value).to eql lbs
 end
 
-Then /^expect print form ounces is (?:correct|(\d+))$/ do |oz|
+Then /^expect print form ounces is (?:correct|(.*))$/ do |oz|
   oz = oz.nil? ? TestData.hash[:oz] : oz
-  expect(SdcMail.print_form.weight.oz.text_value.to_i).to eql oz
+  expect(SdcMail.print_form.weight.oz.text_value).to eql oz
 end
 
 Then /^set print form dimensions to length (\d+) width (\d+) height (\d+)$/ do |l, w, h|
