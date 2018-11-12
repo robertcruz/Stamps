@@ -46,7 +46,7 @@ module SdcMail
       page_object(:search_option) { { xpath: '//span[contains(@class, "x-btn-icon-el")]' } }
       page_object(:print_verify) { { xpath: '//table[contains(@id, "tableview")]' } }
       page_object(:print_chooser) { { xpath: '//table[contains(@id, "tableview")]//tbody//tr//td[1]//div//div' } }
-      checkbox(:print_option_checkbox, :print_chooser, :print_verify, 'class', 'selected')
+      chooser(:print_option_checkbox, :print_chooser, :print_verify, 'class', 'selected')
       page_object(:single_grid_item) { { xpath: '//table[contains(@id, "tableview")]//tbody//tr//td[2]//div' } }
       page_object(:grid) { { xpath: '//table[contains(@id, "tableview")]' } }
     end
@@ -93,12 +93,12 @@ module SdcMail
 
       page_object(:rr_chooser) { { xpath: '//span[@id="sdc-extraserviceswin-rrcheckbox-displayEl"]' } }
       page_object(:rr_verify) { { xpath: '//div[@id="sdc-extraserviceswin-rrcheckbox"]' } }
-      checkbox(:return_receipt, :rr_chooser, :rr_verify, 'class', 'checked')
+      chooser(:return_receipt, :rr_chooser, :rr_verify, 'class', 'checked')
       page_object(:return_receipt_cost) { { xpath: '//label[@id="sdc-extraserviceswin-rrpricelabel"]' } }
 
       page_object(:rd_chooser) { { xpath: '//span[@id="sdc-extraserviceswin-rdcheckbox-displayEl"]' } }
       page_object(:rd_verify) { { xpath: '//div[@id="sdc-extraserviceswin-rdcheckbox"]' } }
-      checkbox(:restricted_delivery, :rd_chooser, :rd_verify, 'class', 'checked')
+      chooser(:restricted_delivery, :rd_chooser, :rd_verify, 'class', 'checked')
       page_object(:restricted_delivery_cost) { { xpath: '//label[@id="sdc-extraserviceswin-rdpricelabel"]' } }
 
       text_field(:value_text_field, tag: :text_field) { { xpath: '//input[@id="sdc-extraserviceswin-valuenumberfield-inputEl"]' } }
@@ -114,26 +114,26 @@ module SdcMail
 
       page_object(:hpu_chooser) { { xpath: '//span[@id="sdc-extraserviceswin-hfpucheckbox-displayEl"]' } }
       page_object(:hpu_verify) { { xpath: '//div[@id="sdc-extraserviceswin-hfpucheckbox"]' } }
-      checkbox(:hold_for_pickup, :hpu_chooser, :hpu_verify, 'class', 'checked')
+      chooser(:hold_for_pickup, :hpu_chooser, :hpu_verify, 'class', 'checked')
       page_object(:hold_for_pickup_cost) { { xpath: '//label[@id="sdc-extraserviceswin-hfpupricelabel"]' } }
 
       page_object(:frag_chooser) { { xpath: '//span[@id="sdc-extraserviceswin-shcheckbox-displayEl"]' } }
       page_object(:frag_verify) { { xpath: '//div[@id="sdc-extraserviceswin-shcheckbox"]' } }
-      checkbox(:fragile, :frag_chooser, :frag_verify, 'class', 'checked')
+      chooser(:fragile, :frag_chooser, :frag_verify, 'class', 'checked')
       page_object(:fragile_cost) { { xpath: '//label[@id="sdc-extraserviceswin-shpricelabel"]' } }
 
       page_object(:rrmerch_chooser) { { xpath: '//span[@id="sdc-extraserviceswin-rrmcheckbox-displayEl"]' } }
       page_object(:rrmerch_verify) { { xpath: '//div[@id="sdc-extraserviceswin-rrmcheckbox"]' } }
-      checkbox(:return_receipt_for_merchandise, :rrmerch_chooser, :rrmerch_verify, 'class', 'checked')
+      chooser(:return_receipt_for_merchandise, :rrmerch_chooser, :rrmerch_verify, 'class', 'checked')
       page_object(:return_receipt_for_merchandise_cost) { { xpath: '//label[@id="sdc-extraserviceswin-rrmpricelabel"]' } }
 
       page_object(:nrect_chooser) { { xpath: '//span[@id="sdc-extraserviceswin-notrectangularcheckbox-displayEl"]' } }
       page_object(:nrect_verify) { { xpath: '//div[@id="sdc-extraserviceswin-notrectangularcheckbox"]' } }
-      checkbox(:non_rectangular, :nrect_chooser, :nrect_verify, 'class', 'checked')
+      chooser(:non_rectangular, :nrect_chooser, :nrect_verify, 'class', 'checked')
 
       page_object(:nnd_chooser) { { xpath: '//span[@id="sdc-extraserviceswin-nndcheckbox-displayEl"]' } }
       page_object(:nnd_verify) { { xpath: '//div[@id="sdc-extraserviceswin-nndcheckbox"]' } }
-      checkbox(:notice_non_delivery, :nnd_chooser, :nnd_verify, 'class', 'checked')
+      chooser(:notice_non_delivery, :nnd_chooser, :nnd_verify, 'class', 'checked')
       page_object(:notice_non_delivery_cost) { { xpath: '//label[@id="sdc-extraserviceswin-nndpricelabel"]' } }
 
       page_object(:form_3811) { { xpath: '//u[text()="Form 3811"]' } }
@@ -269,7 +269,7 @@ module SdcMail
 
       page_object(:include_delivery_adr_chooser) { { id: 'sdc-favorites-delivery-address-checkbox-displayEl' } }
       page_object(:include_delivery_adr_verify) { { xpath: '//*[@id="sdc-favorites-delivery-address-checkbox-bodyEl"]/..' } }
-      checkbox(:include_delivery_adr, :include_delivery_adr_chooser, :include_delivery_adr_verify, 'class', 'checked')
+      chooser(:include_delivery_adr, :include_delivery_adr_chooser, :include_delivery_adr_verify, 'class', 'checked')
     end
 
     class SdcManageFavoritesRename < SdcPage
@@ -399,7 +399,7 @@ module SdcMail
 
       page_object(:checkbox) { { xpath: '//div[starts-with(@id, "dialoguemodal-")][contains(@id, "-targetEl")]//input[starts-with(@id, "checkbox-")][contains(@id, "-inputEl")]' } }
       page_object(:verify) { { xpath: '//div[starts-with(@id, "dialoguemodal-")][contains(@id, "-targetEl")]//div[contains(@class, "x-form-type-checkbox")]' } }
-      checkbox(:dont_show_this_again, :checkbox, :verify, 'class', 'checked')
+      chooser(:dont_show_this_again, :checkbox, :verify, 'class', 'checked')
 
       page_object(:continue) { { xpath: '//span[text()="Continue"][@class="x-btn-inner x-btn-inner-primary-medium"]' } }
     end

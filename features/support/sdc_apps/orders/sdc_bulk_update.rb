@@ -42,7 +42,7 @@ module SdcOrders
   class SdcBulkShipFrom < SdcPage
     page_object(:ship_from_chooser) { { xpath: '//div[contains(@class, "shipfrom-row")]//span[contains(@class, "checkbox")]' } }
     page_object(:ship_from_verify) { { xpath: '//div[contains(@class, "shipfrom-row")]//div[contains(@class, "checkbox")]' } }
-    checkbox(:checkbox, :ship_from_chooser, :ship_from_verify, 'class', 'checked')
+    chooser(:checkbox, :ship_from_chooser, :ship_from_verify, 'class', 'checked')
 
     page_object(:drop_down) { { xpath: '(//div[starts-with(@id, "shipfromdroplist")]/div[contains(@id, "trigger-picker")])[2]' } }
     page_object(:text_field) { { xpath: '(//input[starts-with(@id, "shipfromdroplist")])[2]' } }
@@ -56,7 +56,7 @@ module SdcOrders
   class SdcBulkWeight < SdcPage
     page_object(:weight_chooser) { { xpath: '(//div[contains(@class, "weight-row")]//span[contains(@id, "checkbox")])[1]' } }
     page_object(:weight_verify) { { xpath: '(//div[contains(@class, "weight-row")]//div[contains(@class, "checkbox")])[1]' } }
-    checkbox(:checkbox, :weight_chooser, :weight_verify, 'class', 'checked')
+    chooser(:checkbox, :weight_chooser, :weight_verify, 'class', 'checked')
 
     text_field(:lbs_tf, tag: :text_field) { { xpath: '(//div[contains(@class, "pounds-numberfield")]//input)[2]' } }
     page_object(:lbs_inc) { { xpath: '(//div[contains(@class, "pounds-numberfield")]//div[contains(@class, "x-form-spinner-up")])[2]' } }
@@ -72,7 +72,7 @@ module SdcOrders
   class SdcBulkDomService < SdcPage
     page_object(:domservice_chooser) { { xpath: '//div[contains(@class, "domestic-service-row")]//span[contains(@class, "checkbox")]' } }
     page_object(:domservice_verify) { { xpath: '//div[contains(@class, "domestic-service-row")]//div[contains(@class, "checkbox")]' } }
-    checkbox(:checkbox, :domservice_chooser, :domservice_verify, 'class', 'checked')
+    chooser(:checkbox, :domservice_chooser, :domservice_verify, 'class', 'checked')
 
     page_object(:drop_down, required: true, timeout: 40) { { xpath: '(//div[contains(@id, "servicedroplist")]//div[contains(@id, "trigger-picker")])[2]' } }
     page_object(:text_field, required: true, timeout: 40) { { xpath: '(//input[contains(@id, "servicedroplist")])[2]' } }
@@ -87,7 +87,7 @@ module SdcOrders
   class SdcBulkIntlService < SdcPage
     page_object(:intlservice_chooser) { { xpath: '//div[contains(@class, "intl-service-row")]//span[contains(@class, "checkbox")]' } }
     page_object(:intlservice_verify) { { xpath: '//div[contains(@class, "intl-service-row")]//div[contains(@class, "checkbox")]' } }
-    checkbox(:checkbox, :intlservice_chooser, :intlservice_verify, 'class', 'checked')
+    chooser(:checkbox, :intlservice_chooser, :intlservice_verify, 'class', 'checked')
 
     page_object(:drop_down, required: true, timeout: 40) { { xpath: '(//div[contains(@id, "servicedroplist")]//div[contains(@id, "trigger-picker")])[3]' } }
     page_object(:text_field, required: true, timeout: 40) { { xpath: '(//input[contains(@id, "servicedroplist")])[3]' } }
@@ -102,7 +102,7 @@ module SdcOrders
   class SdcBulkInsurance < SdcPage
     page_object(:insurance_chooser) { { xpath: '//div[contains(@class, "insurance-row")]//span[contains(@class, "checkbox")]' } }
     page_object(:insurance_verify) { { xpath: '//div[contains(@class, "insurance-row")]//div[contains(@class, "checkbox")]' } }
-    checkbox(:checkbox, :insurance_chooser, :insurance_verify, 'class', 'checked')
+    chooser(:checkbox, :insurance_chooser, :insurance_verify, 'class', 'checked')
 
     page_object(:drop_down) { { xpath: '//div[contains(@class, "insurance-row")]//div[contains(@id, "trigger-picker")' } }
     page_object(:text_field) { { xpath: '//*[@placeholder="Select an Insurance Service"]' } }
@@ -115,7 +115,7 @@ module SdcOrders
   class SdcBulkInsureAmt < SdcPage
     page_object(:insureamt_chooser) { { xpath: '//div[contains(@class, "insurance-amt-row")]//span[contains(@class, "checkbox")]' } }
     page_object(:insureamt_verify) { { xpath: '//div[contains(@class, "insurance-amt-row")]//div[contains(@class, "checkbox")]' } }
-    checkbox(:checkbox, :insureamt_chooser, :insureamt_verify, 'class', 'checked')
+    chooser(:checkbox, :insureamt_chooser, :insureamt_verify, 'class', 'checked')
 
     text_field(:text_f, tag: :text_field) { { xpath: '(//input[contains(@id, "insurancefield")])[2]' } }
     page_object(:increment) { { xpath: '(//div[contains(@id, "insurancefield")]//div[contains(@class, "x-form-spinner-up")])[2]' } }
@@ -126,7 +126,7 @@ module SdcOrders
   class SdcBulkTracking < SdcPage
     page_object(:tracking_chooser) { { xpath: '//div[contains(@class, "tracking-row")]//span[contains(@class, "checkbox")]' } }
     page_object(:tracking_verify) { { xpath: '//div[contains(@class, "tracking-row")]//div[contains(@class, "checkbox")]' } }
-    checkbox(:checkbox, :tracking_chooser, :tracking_verify, 'class', 'checked')
+    chooser(:checkbox, :tracking_chooser, :tracking_verify, 'class', 'checked')
 
     page_object(:drop_down) { { xpath: '(//div[contains(@id, "trackingdroplist")]//div[contains(@id, "trigger-picker")])[2]' } }
     page_object(:text_field) { { xpath: '(//input[contains(@id, "trackingdroplist")])[2]' } }
@@ -139,7 +139,7 @@ module SdcOrders
   class SdcBulkDimensions < SdcPage
     page_object(:dimension_chooser) { { xpath: '//div[contains(@class, "dimension-row")]//span[contains(@class, "checkbox")]' } }
     page_object(:dimension_verify) { { xpath: '//div[contains(@class, "dimension-row")]//div[contains(@class, "checkbox")]' } }
-    checkbox(:checkbox, :dimension_chooser, :dimension_verify, 'class', 'checked')
+    chooser(:checkbox, :dimension_chooser, :dimension_verify, 'class', 'checked')
 
     text_field(:len_tf, tag: :text_field) { { xpath: '(//*[contains(@class, "lengthnumberfield")])[2]' } }
     page_object(:len_inc) { { xpath: '(//*[contains(@class, "lengthnumberfield")]/../following-sibling::*/div[contains(@class, "up")])[2]' } }

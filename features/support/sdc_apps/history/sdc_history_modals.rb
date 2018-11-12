@@ -232,7 +232,7 @@ module SdcHistory
 
       page_object(:chooser_elem) { { xpath: '//div[contains(@id, "scan-confirmation")]//span[contains(@id, "checkbox")]' } }
       page_object(:verify_elem) { { xpath: '//div[contains(@id, "scan-confirmation")]//div[contains(@class, "checkbox")]' } }
-      checkbox(:print_details, :chooser_elem, :verify_elem, 'class', 'checked')
+      chooser(:print_details, :chooser_elem, :verify_elem, 'class', 'checked')
     end
 
     class ReprintScanForm < SdcPage

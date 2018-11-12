@@ -8,7 +8,7 @@ module WhiteLabel
     page_object(:side_opt_in_text) {{xpath: '//li[@id="sideoptin"]/div/div/label/span'}}
     page_object(:money_saving_offers_checkbox_chooser) { {xpath: '//li[@id="sideoptin"]/div/div'} }
     page_object(:money_saving_offers_checkbox_verify) { {id: 'sideoptin'} }
-    checkbox(:money_saving_offers_checkbox, :money_saving_offers_checkbox_chooser, :money_saving_offers_checkbox_verify, 'class', 'checked')
+    chooser(:money_saving_offers_checkbox, :money_saving_offers_checkbox_chooser, :money_saving_offers_checkbox_verify, 'class', 'checked')
     text_field(:email, tag: :text_field, required: true) { { id: 'email' } }
     page_objects(:email_tooltip,  index: 0) { {xpath: '//*[@id="email"]/div/div/div/div/span'} }
     text_field(:username, tag: :text_field, required: true) { { id: 'username' } }

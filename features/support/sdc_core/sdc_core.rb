@@ -479,12 +479,6 @@ class SdcPage < WatirDrops::PageObject
       end
     end
 
-    def checker()
-    end
-
-    def selector()
-    end
-
     def chooser(name, chooser, verify, property, property_name)
       element(name.to_sym) do
         SdcChooser.new(instance_eval(chooser.to_s, __FILE__, __LINE__),
@@ -492,8 +486,30 @@ class SdcPage < WatirDrops::PageObject
                        property, property_name)
       end
     end
-    alias checkbox chooser
-    alias radio chooser
+
+    def po_with_verify(name, verify, property: nil)
+      element(name.to_sym) do
+        ElementWithVerify.new(instance_eval(element.to_s, __FILE__, __LINE__),
+                              instance_eval(verify.to_s, __FILE__, __LINE__),
+                              property)
+      end
+    end
+
+    def checker(name, element, verify, property: nil)
+      element(name.to_sym) do
+        ElementChecker(instance_eval(element.to_s, __FILE__, __LINE__),
+                       instance_eval(verify.to_s, __FILE__, __LINE__),
+                       property)
+      end
+    end
+
+    def selector(name, element, verify, property: nil)
+      element(name.to_sym) do
+        ElementSelector(instance_eval(element.to_s, __FILE__, __LINE__),
+                       instance_eval(verify.to_s, __FILE__, __LINE__),
+                       property)
+      end
+    end
 
     def sdc_number(name, text_field, increment, decrement)
       element(name.to_sym) do

@@ -136,45 +136,45 @@ module SdcMail
 
         page_object(:hide_label_value_chooser) { { xpath: '//*[text()="Hide Label Value"]/../span' } }
         page_object(:hide_label_value_verify) { { xpath: '//*[text()="Hide Label Value"]/../../..' } }
-        checkbox(:hide_label_value, :hide_label_value_chooser, :hide_label_value_verify, 'class', 'checked')
+        chooser(:hide_label_value, :hide_label_value_chooser, :hide_label_value_verify, 'class', 'checked')
 
         page_object(:print_receipt_chooser) { { xpath: '//*[text()="Print Receipt"]/../span' } }
         page_object(:print_receipt_verify) { { xpath: '//*[text()="Print Receipt"]/../../..' } }
-        checkbox(:print_receipt, :print_receipt_chooser, :print_receipt_verify, 'class', 'checked')
+        chooser(:print_receipt, :print_receipt_chooser, :print_receipt_verify, 'class', 'checked')
 
         page_object(:print_reference_chooser) { { xpath: '//*[text()="Print Reference #"]/../span' } }
         page_object(:print_reference_verify) { { xpath: '//*[text()="Print Reference #"]/../../..' } }
-        checkbox(:print_reference, :print_reference_chooser, :print_reference_verify, 'class', 'checked')
+        chooser(:print_reference, :print_reference_chooser, :print_reference_verify, 'class', 'checked')
 
         page_object(:return_address_chooser) { { xpath: '//*[text()="Return Address"]/../span' } }
         page_object(:return_address_verify) { { xpath: '//*[text()="Return Address"]/../../..' } }
-        checkbox(:return_address, :return_address_chooser, :return_address_verify, 'class', 'checked')
+        chooser(:return_address, :return_address_chooser, :return_address_verify, 'class', 'checked')
 
         page_object(:delivery_address_chooser) { { xpath: '//*[text()="Delivery Address"]/../span' } }
         page_object(:delivery_address_verify) { { xpath: '//*[text()="Delivery Address"]/../../..' } }
-        checkbox(:delivery_address, :delivery_address_chooser, :delivery_address_verify, 'class', 'checked')
+        chooser(:delivery_address, :delivery_address_chooser, :delivery_address_verify, 'class', 'checked')
 
         page_object(:postage_chooser) { { xpath: '//*[text()="Postage"]/../span' } }
         page_object(:postage_verify) { { xpath: '//*[text()="Postage"]/../../..' } }
-        checkbox(:postage, :postage_chooser, :postage_verify, 'class', 'checked')
+        chooser(:postage, :postage_chooser, :postage_verify, 'class', 'checked')
 
         page_object(:service_commitments) { { xpath: '//*[text()="Service Commitments"]' } }
 
         page_object(:certified_mail_chooser) { { id: 'sdc-mainpanel-cmcheckbox-displayEl' } }
         page_object(:certified_mail_verify) { { xpath: '//*[@id="sdc-mainpanel-cmcheckbox-bodyEl"]/..' } }
-        checkbox(:certified_mail, :certified_mail_chooser, :certified_mail_verify, 'class', 'checked')
+        chooser(:certified_mail, :certified_mail_chooser, :certified_mail_verify, 'class', 'checked')
 
         page_object(:return_receipt_chooser) { { id: 'sdc-mainpanel-rrcheckbox-displayEl' } }
         page_object(:return_receipt_verify) { { xpath: '//*[@id="sdc-mainpanel-rrcheckbox-bodyEl"]/..' } }
-        checkbox(:return_receipt, :return_receipt_chooser, :return_receipt_verify, 'class', 'checked')
+        chooser(:return_receipt, :return_receipt_chooser, :return_receipt_verify, 'class', 'checked')
 
         page_object(:electronic_return_receipt_chooser) { { id: 'sdc-mainpanel-rrecheckbox-displayEl' } }
         page_object(:electronic_return_receipt_verify) { { xpath: '//*[@id="sdc-mainpanel-rrecheckbox-bodyEl"]/..' } }
-        checkbox(:electronic_return_receipt, :electronic_return_receipt_chooser, :electronic_return_receipt_verify, 'class', 'checked')
+        chooser(:electronic_return_receipt, :electronic_return_receipt_chooser, :electronic_return_receipt_verify, 'class', 'checked')
 
         page_object(:restricted_delivery_chooser) { { xpath: '//span[contains(@class, "sdc-mainpanel-rdcheckbox")]' } }
         page_object(:restricted_delivery_verify) { { xpath: '//span[contains(@class, "sdc-mainpanel-rdcheckbox")]/../../..' } }
-        checkbox(:restricted_delivery, :restricted_delivery_chooser, :restricted_delivery_verify, 'class', 'checked')
+        chooser(:restricted_delivery, :restricted_delivery_chooser, :restricted_delivery_verify, 'class', 'checked')
 
         page_object(:calc_chooser) { { xpath: '//*[@id="sdc-mainpanel-calculatepostageradio-displayEl"]' } }
         page_object(:calc_verify) { { xpath: '//*[@id="sdc-mainpanel-calculatepostageradio"]' } }
@@ -391,7 +391,7 @@ module SdcMail
 
       page_object(:print_all_chooser) { { xpath: '//*[text()="Print All"]/../span' } }
       page_object(:print_all_verify) { { xpath: '//*[text()="Print All"]/../../..' } }
-      checkbox(:print_all, :print_all_chooser, :print_all_verify, 'class', 'checked')
+      chooser(:print_all, :print_all_chooser, :print_all_verify, 'class', 'checked')
     end
 
     class ShippingLabels < PrintFormBase

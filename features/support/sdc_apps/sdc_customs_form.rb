@@ -6,7 +6,7 @@ module SdcWebsite
 
     page_object(:agree_chooser) { { xpath: '//*[contains(@class, "x-docked-bottom")]//*[contains(@class, "x-form-type-checkbox")]//input' } }
     page_object(:agree_verify) { { xpath: '//*[contains(@class, "x-docked-bottom")]//div[contains(@class, "x-form-type-checkbox")]' } }
-    checkbox(:agree, :agree_chooser, :agree_verify, 'class', 'checked')
+    chooser(:agree, :agree_chooser, :agree_verify, 'class', 'checked')
 
     page_object(:close) { { xpath: '//div[starts-with(@id, "customswindow")]//div[contains(@class, "x-panel-default-docked-bottom")]//span[text()="Close"]' } }
     page_object(:x_btn) { { xpath: '//*[contains(@class, "sdc-icon-mobile-close-light")]' } }

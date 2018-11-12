@@ -47,7 +47,7 @@ module SdcOrders
 
     page_object(:chooser_elem) { { xpath: '//div[contains(@id, "singleOrderDetailsForm")]//div[7]//input[contains(@class, "checkbox")]' } }
     page_object(:verify_elem) { { xpath: '//div[contains(@id, "singleOrderDetailsForm")]//div[7]//div[contains(@class, "checkbox")]' } }
-    checkbox(:checkbox, :chooser_elem, :verify_elem, 'class', 'checked')
+    chooser(:checkbox, :chooser_elem, :verify_elem, 'class', 'checked')
 
     text_field(:text_f, tag: :text_field) { { xpath: '(//input[contains(@id, "insurancefield")])[1]' } }
     page_object(:increment) { { xpath: '(//div[contains(@id, "insurancefield")]//div[contains(@class, "x-form-spinner-up")])[1]' } }

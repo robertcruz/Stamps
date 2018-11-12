@@ -72,19 +72,19 @@ module SdcNavigation
 
     page_object(:buy_10_chooser) { { xpath: '//*[@id="sdc-purchasewin-10dradio"]/../label' } }
     page_object(:buy_10_verify) { { xpath: '//*[@id="sdc-purchasewin-10dradio"]/../../..' } }
-    radio(:buy_10, :buy_10_chooser, :buy_10_verify, "class", "checked")
+    chooser(:buy_10, :buy_10_chooser, :buy_10_verify, :class, :checked)
 
     page_object(:buy_25_chooser) { { xpath: '//*[@id="sdc-purchasewin-25dradio"]/../label' } }
     page_object(:buy_25_verify) { { xpath: '//*[@id="sdc-purchasewin-25dradio"]/../../..' } }
-    radio(:buy_25, :buy_25_chooser, :buy_25_verify, "class", "checked")
+    chooser(:buy_25, :buy_25_chooser, :buy_25_verify, :class, :checked)
 
     page_object(:buy_50_chooser) { { xpath: '//*[@id="sdc-purchasewin-50dradio"]/../label' } }
     page_object(:buy_50_verify) { { xpath: '//*[@id="sdc-purchasewin-50dradio"]/../../..' } }
-    radio(:buy_50, :buy_50_chooser, :buy_50_verify, "class", "checked")
+    chooser(:buy_50, :buy_50_chooser, :buy_50_verify, :class, :checked)
 
     page_object(:buy_other_chooser) { { xpath: '//*[@id="sdc-purchasewin-otherdradio"]/../label' } }
     page_object(:buy_other_verify) { { xpath: '//*[@id="sdc-purchasewin-otherdradio"]/../../..' } }
-    radio(:buy_other, :buy_other_chooser, :buy_other_verify, "class", "checked")
+    chooser(:buy_other, :buy_other_chooser, :buy_other_verify, :class, :checked)
 
     page_object(:buy_other_amount, tag: :input) { { id: 'sdc-purchasewin-otheramount' } }
   end
