@@ -497,17 +497,17 @@ class SdcPage < WatirDrops::PageObject
 
     def checker(name, element, verify, property: nil)
       element(name.to_sym) do
-        ElementChecker(instance_eval(element.to_s, __FILE__, __LINE__),
-                       instance_eval(verify.to_s, __FILE__, __LINE__),
-                       property)
+        SdcChecker(instance_eval(element.to_s, __FILE__, __LINE__),
+                   instance_eval(verify.to_s, __FILE__, __LINE__),
+                   property)
       end
     end
 
     def selector(name, element, verify, property: nil)
       element(name.to_sym) do
-        ElementSelector(instance_eval(element.to_s, __FILE__, __LINE__),
-                       instance_eval(verify.to_s, __FILE__, __LINE__),
-                       property)
+        SdcSelector(instance_eval(element.to_s, __FILE__, __LINE__),
+                    instance_eval(verify.to_s, __FILE__, __LINE__),
+                    property)
       end
     end
 
@@ -834,11 +834,7 @@ class ElementWithVerify < SdcElement
   def initialize(element, verify_element, property: nil)
     super(element)
     @verify = verify_element
-    @property = property
-  end
-
-  def property=(property)
-    @property = property
+    @property = property || 'class'
   end
 
   def is_attribute?(sym)
@@ -873,7 +869,7 @@ class ElementWithVerify < SdcElement
   end
 end
 
-class ElementChecker < ElementWithVerify
+class SdcChecker < ElementWithVerify
   def initialize(element, verify_element, property: nil)
     super(element, verify_element, property)
   end
@@ -897,7 +893,7 @@ class ElementChecker < ElementWithVerify
   end
 end
 
-class ElementSelector < ElementWithVerify
+class SdcSelector < ElementWithVerify
   def initialize(element, verify_element, property: nil)
     super(element, verify_element, property)
   end

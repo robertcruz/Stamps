@@ -179,7 +179,7 @@ module SdcMail
         page_object(:calc_chooser) { { xpath: '//*[@id="sdc-mainpanel-calculatepostageradio-displayEl"]' } }
         page_object(:calc_verify) { { xpath: '//*[@id="sdc-mainpanel-calculatepostageradio"]' } }
         #chooser(:calculate_postage_amount, :calc_chooser, :calc_verify,:class, :checked)
-        checker(:calculate_postage_amount, :calc_chooser, :calc_verify, :class)
+        checker(:calculate_postage_amount, :calc_chooser, :calc_verify)
 
         page_object(:spec_chooser) { { xpath: '//*[@id="sdc-mainpanel-specifypostageradio-displayEl"]' } }
         page_object(:spec_verify) { { xpath: '//*[@id="sdc-mainpanel-specifypostageradio"]' } }

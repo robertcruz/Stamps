@@ -39,17 +39,17 @@ Feature: Manage Print Options
     Then sign-in to mail
     Then select print on Stamps
     Then show advanced options
-    Then expect advanced options calculate postage amount radio button is present
-    Then select advanced options calculate postage amount
-    Then expect advanced options calculate postage amount is selected
     Then expect advanced options specify postage amount radio button is present
     Then select advanced options specify postage amount
     Then expect advanced options specify postage amount is selected
+    Then expect advanced options calculate postage amount radio button is present
+    Then select advanced options calculate postage amount
+    Then expect advanced options calculate postage amount is selected
     Then set print form serial number to random C series
     Then select advanced options calculate postage amount
     Then set print form mail-to country to United States
     Then select print form service FCM Letter
-    Then set print form stamp quantity 1
+    Then set print form stamp quantity to 1
     Then set print form advanced options cost code None
     Then expect print form advanced options reference number field is present
     Then set print form advanced options reference number to random string

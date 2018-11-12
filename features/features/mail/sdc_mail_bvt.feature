@@ -291,7 +291,7 @@ Feature:  Mail BVT
     Then select print form service MM Package/Flat/Thick Envelope
     Then set print form advanced options reference number to STMP123
     Then set print form advanced options cost code None
-    #Then set print form stamp quantity 3
+    #Then set print form stamp quantity to 3
     Then increment print form stamp quantity by 2
     Then decrement print form stamp quantity by 2
     Then check print form print all

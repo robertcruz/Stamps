@@ -82,7 +82,7 @@ Feature: BVT for Mail page
     Then set print form mail-from to default
     Then select print form service Media Mail
     Then set print form stamp amount 2.85
-    Then set print form stamp quantity 1
+    Then set print form stamp quantity to 1
     Then set print form advanced options reference number to Stamp3221
     Then set print form serial number to B12345
     Then select advanced options calculate postage amount
@@ -108,7 +108,7 @@ Feature: BVT for Mail page
     Then set print form mail-from to default
     Then select print form service Media Mail
     Then set print form stamp amount 2
-    Then set print form stamp quantity 1
+    Then set print form stamp quantity to 1
     Then sign out
 
   @mail_service_validation
