@@ -45,7 +45,7 @@ Then /^set print form ounces to (.+)$/ do |str|
   step 'blur out on print form'
   SdcMail.print_form.weight.oz.set(str)
   step "expect print form ounces is #{str}"
-  TestData.hash[:oz] = str.to_f
+  TestData.hash[:oz] = str.to_i
   step 'blur out on print form'
 end
 
@@ -94,7 +94,7 @@ end
 
 Then /^expect print form ounces is (?:correct|(.*))$/ do |oz|
   oz = oz.nil? ? TestData.hash[:oz] : oz
-  expect(SdcMail.print_form.weight.oz.text_value).to eql oz
+  expect(SdcMail.print_form.weight.oz.text_value.to_i).to eql oz
 end
 
 Then /^set print form dimensions to length (\d+) width (\d+) height (\d+)$/ do |l, w, h|
