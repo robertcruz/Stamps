@@ -93,7 +93,7 @@ Then /^expect print form pounds is (?:correct|(.*))$/ do |lbs|
 end
 
 Then /^expect print form ounces is (?:correct|(.*))$/ do |oz|
-  oz = oz.nil? ? TestData.hash[:oz] : oz
+  oz = oz.nil? ? TestData.hash[:oz] : oz.to_i
   expect(SdcMail.print_form.weight.oz.text_value.to_i).to eql oz
 end
 
