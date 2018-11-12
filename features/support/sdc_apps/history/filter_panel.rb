@@ -4,7 +4,6 @@ module SdcHistory
     page_object(:header) { { xpath: '//div[text()="Date Printed"]' } }
     page_object(:after_date_printed_tool) { { xpath: '//div[text()="Date Printed"]/../../div[starts-with(@id,"tool")]/img' } }
 
-    page_object(:today) { { xpath: '' } }
     page_object(:today_chooser) { { xpath: '//*[contains(@class,"badgebutton")]//div[text()="Today"]' } }
     page_object(:today_verify) { { xpath: '//*[contains(@class,"badgebutton")]//div[text()="Today"]/../../../..' } }
     chooser(:today, :today_chooser, :today_verify, :class, :selected)

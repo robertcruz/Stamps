@@ -1,5 +1,5 @@
 
-default: --backtrace --profile local_browser
+default: --backtrace --profile alex_reports
 
 cuke_reports: --format json --out report.json --backtrace -f pretty -r features --format pretty --format html --out reports
 
@@ -24,6 +24,7 @@ eli_dev: --tags @sdc_contacts_print_to_mail --guess JENKINS=false WEB_APP=mail U
 ray_dev: --tags @rates_parcel_select_ground --guess JENKINS=false URL=stg BROWSER=ff USR=default PW=pass111
 sap: --tags @registration_orders WEB_APP=registration URL=cc --guess BROWSER=ff MAX_WINDOW=false
 alex_history:  --tags @history_filter_direct_url_1 BROWSER=firefox URL=cc USR=abqacctest1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
+alex_reports:  --tags @reports_filter_panel BROWSER=gc URL=qasc USR=abqascsas1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
 alex_mail:  --tags @mail_dropdown_tooltip BROWSER=firefox URL=stg USR=abqasttest1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
 alex_regress:  --tags @bvt_shipping_address_management BROWSER=ff WEB_APP=orders URL=cc USR=abqacc10 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
 alex_rates:  --tags @rates_orders_pme_comm_plus_zone_5 BROWSER=ff URL=stg USR=abqast2 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false
@@ -642,6 +643,8 @@ sdc_contacts_print_to_mail:  --tags @sdc_contacts_print_to_mail --guess LOG_LEVE
 history_toolbar:  --tags @history_toolbar --guess LOG_LEVEL=info
 history_filter_direct_url:  --tags @history_filter_direct_url --guess LOG_LEVEL=info
 container_label_return_address:  --tags @container_label_return_address --guess LOG_LEVEL=info
+reports_toolbar:  --tags @reports_toolbar --guess LOG_LEVEL=info
+reports_filter_panel:  --tags @reports_filter_panel --guess LOG_LEVEL=info
 
 sdc_contacts_pagination_navigate_different_pages: --tags @sdc_contacts_pagination_navigate_different_pages --guess LOG_LEVEL=info
 sdc_contacts_search_country_results: --tags @sdc_contacts_search_country_results --guess LOG_LEVEL=info
