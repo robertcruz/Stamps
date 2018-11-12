@@ -110,8 +110,9 @@ end
 
 
 Then /^select print form calculate postage amount$/ do
-  SdcMail.print_form.advanced_options.calculate_postage_amount.select
-  expect(SdcMail.print_form.advanced_options.calculate_postage_amount.selected?).to be_truthy
+  advanced_options = SdcMail.print_form.advanced_options
+  advanced_options.calculate_postage_amount.check
+  expect(advanced_options.calculate_postage_amount.checked?).to be_truthy
 end
 
 Then /^select print form specify postage amount$/ do

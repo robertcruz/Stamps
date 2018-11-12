@@ -178,13 +178,12 @@ module SdcMail
 
         page_object(:calc_chooser) { { xpath: '//*[@id="sdc-mainpanel-calculatepostageradio-displayEl"]' } }
         page_object(:calc_verify) { { xpath: '//*[@id="sdc-mainpanel-calculatepostageradio"]' } }
-        chooser(:calculate_postage_amount, :calc_chooser, :calc_verify,
-                :class, :checked)
+        #chooser(:calculate_postage_amount, :calc_chooser, :calc_verify,:class, :checked)
+        checker(:calculate_postage_amount, :calc_chooser, :calc_verify, :class)
 
         page_object(:spec_chooser) { { xpath: '//*[@id="sdc-mainpanel-specifypostageradio-displayEl"]' } }
         page_object(:spec_verify) { { xpath: '//*[@id="sdc-mainpanel-specifypostageradio"]' } }
-        chooser(:specify_postage_amount, :spec_chooser, :spec_verify,
-                :class, :checked)
+        chooser(:specify_postage_amount, :spec_chooser, :spec_verify, :class, :checked)
 
         def cost_code
           AdvancedOptionsCostCode.new

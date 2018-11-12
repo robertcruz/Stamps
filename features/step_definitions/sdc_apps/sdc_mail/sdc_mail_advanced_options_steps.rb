@@ -59,11 +59,13 @@ Then /^expect advanced options specify postage amount radio button is present$/ 
 end
 
 Then /^select advanced options calculate postage amount$/ do
-  SdcMail.print_form.advanced_options.calculate_postage_amount.select
+  advanced_options = SdcMail.print_form.advanced_options
+  advanced_options.calculate_postage_amount.check
+  expect(advanced_options.calculate_postage_amount.checked?).to be_truthy
 end
 
 Then /^expect advanced options calculate postage amount is selected$/ do
-  expect(SdcMail.print_form.advanced_options.calculate_postage_amount.selected?).to be(true)
+  expect(SdcMail.print_form.advanced_options.calculate_postage_amount.checked?).to be(true)
 end
 
 Then /^expect print form advanced options ship date is (\d+) (?:day|days) from today$/ do |day|
