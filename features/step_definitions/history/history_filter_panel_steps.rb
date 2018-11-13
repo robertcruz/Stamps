@@ -189,7 +189,87 @@ Then /^expect all count on history filter panel is greater than (\d+)$/ do |num|
   expect(date_printed.all_count.text.to_i).to be > num.to_i
 end
 
+#Eligible For
+Then /^expand eligible for on history filter panel$/ do
+  SdcHistory.filter_panel.eligible_for.after_eligible_for_tool.click
+  expect(SdcHistory.filter_panel.eligible_for.refund).to be_present
+end
 
-Then /^select eligible for container label on history filter panel$/ do
-  SdcHistory.filter_panel.eligible_for.container_label.click
+Then /^select refund on history filter panel eligible for$/ do
+  refund = SdcHistory.filter_panel.eligible_for.refund
+  refund.select
+  step 'wait while loading history grid'
+  begin
+    SdcPage.browser.wait_until(timeout: 5) { refund.selected? }
+  rescue
+    # ignore
+  end
+  expect(refund.selected?).to be true
+end
+
+Then /^expect refund on history filter panel eligible for is selected$/ do
+  date_printed = SdcHistory.filter_panel.date_printed
+  expect(date_printed.past_7_days.selected?).to be true
+end
+
+Then /^select container label on history filter panel eligible for$/ do
+  container_label = SdcHistory.filter_panel.eligible_for.container_label
+  container_label.select
+  step 'wait while loading history filters grid'
+  begin
+    SdcPage.browser.wait_until(timeout: 5) { container_label.selected? }
+  rescue
+    # ignore
+  end
+  step 'expect container label on history filter panel eligible for is selected'
+end
+
+Then /^expect container label on history filter panel eligible for is selected$/ do
+  expect(SdcHistory.filter_panel.eligible_for.container_label.selected?).to be true
+end
+
+Then /^expect delivered is selected on history filter panel status$/ do
+  status = SdcHistory.filter_panel.status
+  expect(status.delivered.selected?).to be true
+end
+
+Then /^expect pending recipient action is selected on history filter panel status$/ do
+  status = SdcHistory.filter_panel.status
+  expect(status.pending_recipient_action.selected?).to be true
+end
+
+Then /^expect undeliverable is selected on history filter panel status$/ do
+  status = SdcHistory.filter_panel.status
+  expect(status.undeliverable.selected?).to be true
+end
+
+Then /^go to (delivered|pending recipient action|undeliverable) filter on history directly$/ do |str|
+  env = case TestSession.env.url
+          when :qacc
+            'ext.qacc'
+          when :qasc
+            'ext.qasc'
+          when :stg
+            '.staging'
+          when :prod
+            ''
+          else
+            # ignore
+        end
+  filter = case str
+             when 'delivered'
+               'delivered'
+             when 'pending recipient action'
+               'pendingaction'
+             when 'undeliverable'
+               'undeliverable'
+             else
+               #ignore
+           end
+  step "go to url https://or#{env}.stamps.com/PostageTools/redirect?p=#{filter}&IsInStore=1"
+end
+
+Then /^wait while loading history filters grid$/ do
+  SdcHistory.filter_panel.loading.safe_wait_until_present(timeout: 8)
+  SdcHistory.filter_panel.loading.wait_while_present(timeout: 240)
 end

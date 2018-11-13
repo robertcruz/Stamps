@@ -6,7 +6,7 @@ module SdcMail
     page_object(:print_stamps) { { xpath: '//span[text()="Print Stamps"]' } }
     page_object(:print_dropdown) { { xpath: '(//*[contains(@class, "x-btn-arrow-right")])[1]' } }
     page_object(:print_sample) { { xpath: '//*[text()="Print Sample"][contains(@id, "menuitem")]' } }
-    page_object(:print_tooltip) { { xpath: '//*[contains(text(), "More Print Options")]' } }
+    page_object(:print_dropdown_tooltip) { { xpath: '//*[contains(text(), "More Print Options")]' } }
 
     page_object(:favorites) { { xpath: '//span[text()="Favorites"]' } }
     page_object(:save_as_favorite) { { xpath: '//*[text()="Save as Favorite"]' } }

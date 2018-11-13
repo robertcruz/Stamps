@@ -22,10 +22,12 @@ module SdcMail
         page_objects(:add_buttons) { { xpath: '//span[contains(@class, "sdc-icon-add-button")]' } }
         page_object(:dom_drop_down) { { xpath: '//*[@id="sdc-mainpanel-matltocountrydroplist-trigger-picker"]' } }
         page_object(:int_drop_down) { { xpath: '//*[@id="shiptoview-international-targetEl"]//div[contains(@id, "-trigger-picker")][starts-with(@id, "combo")]' } }
-        page_objects(:dom_text_field, index: 0, tag: :text_fields) { { xpath: '//input[@name="ShipCountryCode"]' } }
-        page_objects(:int_text_field, index: 1, tag: :text_fields) { { xpath: '//input[@name="ShipCountryCode"]' } }
-        # Mail To link
-        #page_object(:link, tag: :u) { { xpath: '//label[contains(@class, "sdc-mainpanel-shiptolinkbtn")]//u' } }
+        page_objects(:dom_text_field,index:0,tag: :text_fields) { { xpath: '//input[@name="ShipCountryCode"]' } }
+        page_objects(:int_text_field,index:1 ,tag: :text_fields) { { xpath: '//input[@name="ShipCountryCode"]' } }
+
+        page_objects(:text_fields, tag: :text_fields) { { xpath: '//input[@name="ShipCountryCode"]' } }
+        page_objects(:drop_downs, tag: :text_fields) { { xpath: '' } }
+
         page_object(:link) { { xpath: '//label[contains(@class, "sdc-mainpanel-shiptolinkbtn")]//b' } }
         # Domestic Address
         page_object(:text_area, tag: :textarea) { { xpath: '//textarea[@name="freeFormAddress"]' } }
@@ -44,6 +46,30 @@ module SdcMail
           add_buttons.each do |button|
             return SdcElement.new(button) if button.present?
           end
+
+          error = Selenium::WebDriver::Error::NoSuchElementError
+          error_message = 'Cannot get an add button'
+          raise error, error_message
+        end
+
+        def drop_down
+          drop_downs.each do |button|
+            return SdcElement.new(button) if button.present?
+          end
+
+          error = Selenium::WebDriver::Error::NoSuchElementError
+          error_message = 'Cannot get a Ship-To Country drop down'
+          raise error, error_message
+        end
+
+        def text_field
+          text_fields.each do |button|
+            return SdcElement.new(button) if button.present?
+          end
+
+          error = Selenium::WebDriver::Error::NoSuchElementError
+          error_message = 'Cannot get a Ship-To Country text field'
+          raise error, error_message
         end
 
         def selection(name, str)
@@ -297,6 +323,7 @@ module SdcMail
       end
     end
 
+    #todo-Alex tracking_label copy_tracking reprint
     module PostageMessagePanelContainer
       class MessagePanel < SdcPage
         page_object(:tracking_number) { { xpath: '//span[@id="trackingNumber"]' } }

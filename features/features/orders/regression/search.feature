@@ -23,8 +23,8 @@ Feature:  Search Orders
     Then search filtered Orders for cached Order ID
     Then expect filter panel search results tab is present
     Then expect Filter Panel search result count is 1
-    Then expect Filter Panel search result count is greater than 0
-    Then remove Filter Panel search results tab
+    Then expect filter panel search result count is greater than 0
+    Then remove filter panel search results tab
     Then expect filter panel search results tab is not present
 
     # Search for Ship Name
@@ -32,8 +32,8 @@ Feature:  Search Orders
     Then search filtered Orders for cached Ship-To full name
     Then expect filter panel search results tab is present
     Then expect Filter Panel search result count is 1
-    Then expect Filter Panel search result count is greater than 0
-    Then remove Filter Panel search results tab
+    Then expect filter panel search result count is greater than 0
+    Then remove filter panel search results tab
     Then expect filter panel search results tab is not present
 
     # Search for Ship Company
@@ -41,8 +41,8 @@ Feature:  Search Orders
     Then search filtered Orders for cached Ship-To full name
     Then expect filter panel search results tab is present
     Then expect Filter Panel search result count is 1
-    Then expect Filter Panel search result count is greater than 0
-    Then remove Filter Panel search results tab
+    Then expect filter panel search result count is greater than 0
+    Then remove filter panel search results tab
     Then expect filter panel search results tab is not present
     Then sign out
 
@@ -71,7 +71,7 @@ Feature:  Search Orders
     Then expect filter panel search results tab is present
     Then expect Filter Panel search result count is 1
     Then expect cached Order ID exist in the selected filter
-    Then remove Filter Panel search results tab
+    Then remove filter panel search results tab
     Then expect filter panel search results tab is not present
 
     # Search for Ship Name
@@ -79,7 +79,7 @@ Feature:  Search Orders
     Then expect filter panel search results tab is present
     Then expect Filter Panel search result count is 1
     Then expect cached Order ID exist in the selected filter
-    Then remove Filter Panel search results tab
+    Then remove filter panel search results tab
     Then expect filter panel search results tab is not present
 
     # Search for Ship Company
@@ -87,6 +87,6 @@ Feature:  Search Orders
     Then expect filter panel search results tab is present
     Then expect Filter Panel search result count is 1
     Then expect cached Order ID exist in the selected filter
-    Then remove Filter Panel search results tab
+    Then remove filter panel search results tab
     Then expect filter panel search results tab is not present
     Then sign out

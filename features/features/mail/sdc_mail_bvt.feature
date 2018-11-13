@@ -84,7 +84,6 @@ Feature:  Mail BVT
 
     Then expect customs non-delivery options is Treat as abandoned
     Then expect customs internal transaction number is Required
-    Then expect customs i agree to the usps privacy act statement is checked correct
 
     Then expect customs associated item 1 Description is correct
     Then expect customs associated item 1 Quantity is correct
@@ -103,7 +102,7 @@ Feature:  Mail BVT
     Then expect customs associated item 3 Made In is correct
     Then expect customs associated item 3 Tariff is correct
 
-    Then expect customs i agree to the usps privacy act statement is checked
+    Then expect i agree to the usps privacy act statement is checked on customs form
     Then expect Customs Total Value is correct
     Then close customs information form
     Then sign out
@@ -140,7 +139,7 @@ Feature:  Mail BVT
   Scenario: Address Cleansing
     Then sign-in to mail
     Then select print on Shipping Label - 8 ½" x 11" Paper
-#    Then set Print form Mail-From to Manage Mailing Addresses...
+#    Then set print form mail-from to Manage Mailing Addresses...
     Then set print form mail-to country to United States
     Then set print form mail-to country to Brazil
     Then set print form mail-to country to United States
@@ -520,7 +519,6 @@ Feature:  Mail BVT
 
     Then expect customs non-delivery options is Treat as abandoned
     Then expect customs internal transaction number is Required
-    Then expect customs i agree to the usps privacy act statement is checked correct
 
     Then expect customs associated item 1 Description is correct
     Then expect customs associated item 1 Quantity is correct
@@ -528,7 +526,7 @@ Feature:  Mail BVT
     Then expect customs associated item 1 Made In is correct
     Then expect customs associated item 1 Tariff is correct
 
-    Then expect customs i agree to the usps privacy act statement is checked
+    Then expect i agree to the usps privacy act statement is checked on customs form
     Then expect Customs Total Value is correct
     Then close customs information form
 

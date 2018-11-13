@@ -60,7 +60,7 @@ Then /^fetch user credentials from MySQL$/ do
 end
 
 Then /^sign-in to orders$/ do
-  step 'verify health check for Orders' if TestSession.env.healthcheck
+ # step 'verify health check for Orders' if TestSession.env.healthcheck
   step 'visit Orders landing page'
   usr = TestSession.env.usr
   pw = TestSession.env.pw
@@ -181,40 +181,40 @@ end
 
 Then /^set sign in page username to (.*)$/ do |str|
   landing_page = SdcWebsite.landing_page
-  landing_page.username.wait_until_present(timeout: 10)
+  landing_page.username.wait_until_present(timeout: 40)
   landing_page.username.set(str)
 end
 
 Then /^set sign in page password to (.*)$/ do |str|
   landing_page = SdcWebsite.landing_page
-  landing_page.password.wait_until_present(timeout: 10)
+  landing_page.password.wait_until_present(timeout: 40)
   landing_page.password.set(str)
 end
 
 Then /^click sign in page sign-in button$/ do
   landing_page = SdcWebsite.landing_page
-  landing_page.sign_in.wait_until_present(timeout: 10)
-  landing_pagee.sign_in.click
+  landing_page.sign_in.wait_until_present(timeout: 40)
+  landing_page.sign_in.click
 end
 
 Then /^click Orders landing page sign-in button$/ do
   rating_error = SdcWebsite.modals.rating_error
   landing_page = SdcWebsite.landing_page
-  landing_page.sign_in.wait_until_present(timeout: 3)
+  landing_page.sign_in.wait_until_present(timeout: 20)
   landing_page.sign_in.click
   3.times do
-    landing_page.sign_in.safe_wait_while_present(timeout: 2)
+    landing_page.sign_in.safe_wait_while_present(timeout: 15)
     break unless landing_page.sign_in.present?
     landing_page.sign_in.safe_click if landing_page.sign_in.present?
     step 'check for server error'
   end
-  landing_page.invalid_username.safe_wait_while_present(timeout: 2)
+  landing_page.invalid_username.safe_wait_while_present(timeout: 15)
   if landing_page.invalid_username.present?
     str = landing_page.invalid_username.text_value
     expect(str).to eql('')
   end
-  landing_page.sign_in.safe_wait_while_present(timeout: 10)
-  rating_error.body.safe_wait_until_present(timeout: 2)
+  landing_page.sign_in.safe_wait_while_present(timeout: 40)
+  rating_error.body.safe_wait_until_present(timeout: 15)
   if rating_error.body.present?
     error_msg = rating_error.body.text_value
     rating_error.ok.click

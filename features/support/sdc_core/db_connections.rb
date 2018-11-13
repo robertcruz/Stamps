@@ -1,6 +1,6 @@
 module SdcCore
   class MySqlConnDecorator < BasicObject
-    require 'mysql2'
+    #require 'mysql2'
 
     attr_reader :host, :username, :password
 

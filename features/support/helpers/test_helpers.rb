@@ -28,7 +28,26 @@ module SdcCore
       end
 
       def rand_comp_name(*args)
-        'comapy '+rand_alpha_numeric(*args).to_s.split.map(&:capitalize).join(' ')
+        'company '+rand_alpha_numeric(*args).to_s.split.map(&:capitalize).join(' ')
+      end
+
+      def rand_city_name(*args)
+        'city '+rand_alpha_numeric(*args).to_s.split.map(&:capitalize).join(' ')
+      end
+
+      def rand_street1_address(min: 2, max: 42)
+        'street1 '+ (('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a).sample(Random.rand(min..max)).shuffle.join
+      end
+      def rand_street2_address(min: 2, max: 42)
+        'street2 '+ (('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a).sample(Random.rand(min..max)).shuffle.join
+      end
+
+      def rand_street3_address(min: 2, max: 42)
+        'street3 '+ (('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a).sample(Random.rand(min..max)).shuffle.join
+      end
+
+      def rand_postal_code
+        "#{Random.rand(00501..99950)}"
       end
 
       def rand_usr

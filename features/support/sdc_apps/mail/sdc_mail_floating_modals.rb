@@ -317,6 +317,8 @@ module SdcMail
     class ContactsView < SdcPage
       page_object(:container) { { xpath: '//div[starts-with(@id,"multiplecontactsview-")][contains(@id,"-innerCt")]' } }
       page_objects(:contacts_list) { { xpath: '//div[starts-with(@id,"multiplecontactsview-")][contains(@id,"-innerCt")]//li[@id="ContactId"]//div[@class="x-tagfield-item-text"]' } }
+      page_objects(:remove_contact_button) { { xpath: '//div[@class="x-tagfield-item-close"]' } }
+
     end
 
     class MailToAddAddress < SdcPage
@@ -357,6 +359,39 @@ module SdcMail
       page_object(:close) { { xpath: '//span[text()="Close"]' } }
     end
 
+    class AddressCleansingModal < SdcPage
+      page_object(:title) { { xpath: '//div[contains(@class, "x-window-header-title")]//div[contains(text(),"Address Cleansing")][@class="x-title-text x-title-text-default x-title-item"]' } }
+      page_object(:x_button) { { xpath: '//span[contains(@class, "icon-mobile-close-light")]' } }
+      page_object(:address, tag: :textarea) { { xpath: '//textarea[@name="invalidAddressTextArea"]' } }
+      page_object(:address_close_icon, tag: :span) { { xpath: '//span[contains(@class,"sdc-icon-stop")]' } }
+      page_object(:accept_button) { { xpath: '//span[text()="Accept"]' } }
+      page_object(:exclude_all_button) { { xpath: '//span[text()="//span[text()="Exclude All"]"]' } }
+      page_object(:exclude_button) { { xpath: '//span[text()="//span[text()="Exclude"]"]' } }
+    end
+
+    class CleansingAcceptErrorModal < SdcPage
+      page_object(:title) { { xpath: '//div[text()="Invalid Address"]' } }
+      page_object(:close_icon) { { xpath: '//div[text()="Invalid Address"]/following::span[contains(@class, "icon-mobile-close-light")]' } }
+      page_object(:error_message) { { xpath: '//div[starts-with(@id, "dialoguemodal-")][@class="x-autocontainer-innerCt"]' } }
+      page_object(:close_button) { { xpath: '//span[text()="Close"]' } }
+    end
+
+    class CleansingExcludeErrorModal < SdcPage
+      page_object(:title) { { xpath: '//div[text()="Exclude Contact"]' } }
+      page_object(:close_icon) { { xpath: '//div[text()="Exclude Contact"]/following::span[contains(@class, "icon-mobile-close-light")]' } }
+      page_object(:error_message) { { xpath: '//div[starts-with(@id, "dialoguemodal-")][@class="x-autocontainer-innerCt"]' } }
+      page_object(:yes_button) { { xpath: '//span[text()="Yes"]' } }
+      page_object(:no_button) { { xpath: '//span[text()="No"]' } }
+    end
+
+    class CleansingExcludeAllErrorModal < SdcPage
+      page_object(:title) { { xpath: '//div[text()="Exclude Remaining Contacts"]' } }
+      page_object(:close_icon) { { xpath: '//div[text()="Exclude Remaining Contacts"]/following::span[contains(@class, "icon-mobile-close-light")]' } }
+      page_object(:error_message) { { xpath: '//div[starts-with(@id, "dialoguemodal-")][@class="x-autocontainer-innerCt"]' } }
+      page_object(:yes_button) { { xpath: '//span[text()="Yes"]' } }
+      page_object(:no_button) { { xpath: '//span[text()="No"]' } }
+    end
+
     class MailConfirmPrint < SdcPage
       page_object(:window) { { xpath: '//div[starts-with(@id, "dialoguemodal")][contains(@class,"x-window-closable")]' } }
       page_object(:title) { { xpath: '//div[contains(@class, "x-window-header-title")]//div[@class="x-title-text x-title-text-default x-title-item"]' } }
@@ -368,6 +403,12 @@ module SdcMail
       checkbox(:dont_show_this_again, :checkbox, :verify, 'class', 'checked')
 
       page_object(:continue) { { xpath: '//span[text()="Continue"][@class="x-btn-inner x-btn-inner-primary-medium"]' } }
+    end
+
+    class MailServerError < SdcPage
+      page_object(:title) { { xpath: '//*[text()="Server Error"]' } }
+      page_object(:body) { { xpath: '//div[contains(@class, "sdc-warning")]//div[contains(@id, "-innerCt")]' } }
+      page_object(:ok) { { xpath: '//span[text()="OK"]' } }
     end
 
     class << self
@@ -445,6 +486,26 @@ module SdcMail
 
       def comfirm_print
         MailConfirmPrint.new
+      end
+
+      def server_error
+        MailServerError.new
+      end
+
+      def address_cleansing
+        AddressCleansingModal.new
+      end
+
+      def address_cleansing_exclude
+        CleansingExcludeErrorModal.new
+      end
+
+      def address_cleansing_exclude_all
+        CleansingExcludeAllErrorModal.new
+      end
+
+      def address_cleansing_accept
+        CleansingAcceptErrorModal.new
       end
 
       # def settings

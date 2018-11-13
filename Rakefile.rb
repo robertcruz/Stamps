@@ -37,8 +37,8 @@ Cucumber::Rake::Task.new(:sdc_contacts_add_invalid_email) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
-Cucumber::Rake::Task.new(:sdc_contacts_detail_name_singleName) do |t|
-  t.profile = 'sdc_contacts_detail_name_singleName'
+Cucumber::Rake::Task.new(:sdc_contact_details_single_name) do |t|
+  t.profile = 'sdc_contact_details_single_name'
   t.cucumber_opts = "-p cuke_reports"
 end
 
@@ -76,6 +76,12 @@ Cucumber::Rake::Task.new(:sdc_contacts_existing_add_valid_reference_number) do |
   t.profile = 'sdc_contacts_existing_add_valid_reference_number'
   t.cucumber_opts = "-p cuke_reports"
 end
+
+Cucumber::Rake::Task.new(:sdc_contacts_print_to_mail) do |t|
+  t.profile = 'sdc_contacts_print_to_mail'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
   Cucumber::Rake::Task.new(:pp_authenticate) do |t|
     t.profile = 'pp_authenticate'
     t.cucumber_opts = "-p cuke_reports"
@@ -3288,3 +3294,17 @@ end
 
 
 #----------------------------------------------------------------
+
+Cucumber::Rake::Task.new(:history_filter_direct_url) do |t|
+  t.profile = 'history_filter_direct_url'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:reports_toolbar) do |t|
+  t.profile = 'reports_toolbar'
+  t.cucumber_opts = "-p cuke_reports"
+end
+Cucumber::Rake::Task.new(:reports_filter_panel) do |t|
+  t.profile = 'reports_filter_panel'
+  t.cucumber_opts = "-p cuke_reports"
+end
