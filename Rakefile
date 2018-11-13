@@ -68,9 +68,20 @@ Cucumber::Rake::Task.new(:extra_services_cost_for_rrb_service) do |t|
 end
 
 #CONTACTS
+#
+#
+Cucumber::Rake::Task.new(:contacts_print_postage_multiple_from_top_nav) do |t|
+  t.profile = 'contacts_print_postage_multiple_from_top_nav'
+  t.cucumber_opts = "-p cuke_reports"
+end
 
-Cucumber::Rake::Task.new(:mailto_validation_for_multiple_contacts) do |t|
-  t.profile = 'mailto_validation_for_multiple_contacts'
+Cucumber::Rake::Task.new(:contacts_print_postage_single_from_details) do |t|
+  t.profile = 'contacts_print_postage_single_from_details'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:multiple_shipto_contacts_view) do |t|
+  t.profile = 'multiple_shipto_contacts_view'
   t.cucumber_opts = "-p cuke_reports"
 end
 
