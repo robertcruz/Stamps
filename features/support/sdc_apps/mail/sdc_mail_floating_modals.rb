@@ -317,6 +317,8 @@ module SdcMail
     class ContactsView < SdcPage
       page_object(:container) { { xpath: '//div[starts-with(@id,"multiplecontactsview-")][contains(@id,"-innerCt")]' } }
       page_objects(:contacts_list) { { xpath: '//div[starts-with(@id,"multiplecontactsview-")][contains(@id,"-innerCt")]//li[@id="ContactId"]//div[@class="x-tagfield-item-text"]' } }
+      page_objects(:remove_contact_button) { { xpath: '//div[@class="x-tagfield-item-close"]' } }
+
     end
 
     class MailToAddAddress < SdcPage
@@ -356,7 +358,6 @@ module SdcMail
       page_object(:x_button) { { xpath: '//span[contains(@class, "icon-mobile-close-light")]' } }
       page_object(:close) { { xpath: '//span[text()="Close"]' } }
     end
-
 
     class AddressCleansingModal < SdcPage
       page_object(:title) { { xpath: '//div[contains(@class, "x-window-header-title")]//div[contains(text(),"Address Cleansing")][@class="x-title-text x-title-text-default x-title-item"]' } }

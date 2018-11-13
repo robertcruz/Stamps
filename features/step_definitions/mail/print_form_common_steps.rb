@@ -367,14 +367,9 @@ end
 
 Then /^expect print form mail-to country is disabled$/ do
   mail_to = SdcMail.print_form.mail_to
+  #country = mail_to.text_field
   country = mail_to.text_field
-  expect(country.attribute_value('class')).to include 'disabled'
-  #expect(country.disabled?).to be(true)
-  #
-    #todo-Aloha above is just an example. The UI framework that our dev is using is much more complicated than a regular
-    # html web page. asking if an element is .disabled? may not be what you will need to do. Sometimes there are
-    # parameters within class that indicates that it is disabled. You will need to examine the DOM for this textfield and
-    # figure out how to ask your disabled question.
+  expect(country.disabled?).to be(true)
 end
 
 Then /^expect value of print form mail-to country is (.*)/ do |str|

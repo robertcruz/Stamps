@@ -105,6 +105,16 @@ Then /^expect selected contacts count is (.+)$/ do |str|
   expect(add_address.selected_contacts_count.text.parse_digits.to_i).to eql str.to_i
 end
 
+Then /^expect multiple contacts view is displayed$/ do
+  multiple_contacts_view = SdcMail.modals.add_address.contacts_view
+  expect(multiple_contacts_view.container.present?).to be(true)
+end
+
+Then /^expect multiple contacts view is not displayed$/ do
+  multiple_contacts_view = SdcMail.modals.add_address.contacts_view
+  expect(multiple_contacts_view.container.present?).to be(false)
+end
+
 Then /^expect multiple contacts view include (.+)$/ do |str|
   expectations = str.split(',').map(&:strip)
   add_address = SdcMail.modals.add_address
@@ -114,23 +124,72 @@ Then /^expect multiple contacts view include (.+)$/ do |str|
   expectations.each { |contact| expect(contacts).to include contact }
 end
 
-Then /^hover over contact (.+)$/ do |str|
-  add_address = SdcMail.modals.add_address
-  add_address.contacts_view.container.wait_until_present(timeout: 5)
-  contacts = add_address.contacts_view.contacts_list
- SdcLogger.info "contacts.count : #{contacts.count}"
-  p contacts.count
-  i=1
-  while i< contacts.count+1
-    #SdcLogger.info "i : #{i}"
-    p i
-    #SdcLogger.info "contacts[i].text : #{contacts[i].text}"
-    p contacts[i].text
-      if contacts[i].text.eql?(str)
-        contacts.hover
-      end
-    i=i+1
+
+Then /^on mail-to text box hover over contact (.*)$/ do |contact|
+  contact_name = SdcMail.modals.add_address.contacts_view
+  contact_count = contact_name.contacts_list.count
+  #SdcLogger.info "Total no of contacts to hover are :#{contact_count}"
+  i=0
+  while i< contact_count
+    if contact_name.contacts_list[i].attribute_value('title').include? contact
+      #contact_name.contacts_list[i].flash
+      contact_name.contacts_list[i].hover
+      break
+      #SdcLogger.info "Hover successful for contact ID:#{i}"
     end
+    i=i+1
+  end
+end
+
+Then /^expect tooltip of contact (.*) is correct$/ do |name|
+  contact_name = SdcMail.modals.add_address.contacts_view
+  contact_count = contact_name.contacts_list.count
+  i=0
+  while i< contact_count
+    if contact_name.contacts_list[i].attribute_value('title').include? name
+      contact_tooltip_data_email = contact_name.contacts_list[i].attribute_value("data-email")
+      contact_tooltip_data_contact = contact_name.contacts_list[i].attribute_value("data-contact")
+      tooltip = contact_tooltip_data_contact.split("<br>#{name}")
+      address = tooltip[1].split("','AddressSummary'")
+      concatenated_tooltip = name + address[0] +" " +contact_tooltip_data_email
+      #SdcLogger.info "Concatenated tooltip for contact #{i} is " "\n" +" #{concatenated_tooltip}"
+      tooltip_to_verify = "#{TestData.hash["#{name}_name"]}" + "<br>" "#{TestData.hash["#{name}_company"]}<br>#{TestData.hash["#{name}_street_address"]}<br>#{TestData.hash["#{name}_city"]}, #{TestData.hash["#{name}_state_abbvr"]} #{TestData.hash["#{name}_zip"]} #{contact_tooltip_data_email}"
+      #SdcLogger.info "tooltip to verify for contact #{i} is " "\n" +" #{tooltip_to_verify}"
+      expect(tooltip_to_verify).to eql(concatenated_tooltip)
+      #SdcLogger.info "Expected and Actual tooltip for contact #{i} are same. Displayed as below : Actual #{concatenated_tooltip} and Expected :#{tooltip_to_verify} "
+    end
+    i=i+1
+  end
+
+end
+
+Then /^expect remove button is available for contact (.*)$/ do |name|
+  contact_name = SdcMail.modals.add_address.contacts_view
+  contact_count = contact_name.contacts_list.count
+  #SdcLogger.info "Total no of contacts to hover are :#{contact_count}"
+  i=0
+  while i< contact_count
+    if contact_name.contacts_list[i].attribute_value("title").include? name
+      expect(contact_name.remove_contact_button[i].present?).to be (true)
+      break
+    end
+    i=i+1
+  end
+end
+
+Then /^click remove button on contact (.*)$/ do |name|
+  contact_name = SdcMail.modals.add_address.contacts_view
+  contact_count = contact_name.contacts_list.count
+  #SdcLogger.info "Total no of contacts to hover are :#{contact_count}"
+  i=0
+  while i< contact_count
+    if contact_name.contacts_list[i].attribute_value("title").include? name
+      contact_name.remove_contact_button[i].click
+      break
+    end
+    i=i+1
+  end
+
 end
 
 Then /^[Ee]xpect Print form Mail To is disabled$/ do
