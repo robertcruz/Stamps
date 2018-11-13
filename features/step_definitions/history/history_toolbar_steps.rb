@@ -103,6 +103,10 @@ Then /^expect change cost codes button on history toolbar cost codes is enabled$
   expect(SdcHistory.toolbar.cost_codes.change_cost_code.class_disabled?).to be_falsy
 end
 
+Then /^expect change cost codes button on history toolbar cost codes is disabled$/ do
+  expect(SdcHistory.toolbar.cost_codes.change_cost_code.class_disabled?).to be_truthy
+end
+
 Then /^click change cost codes button on history toolbar cost codes$/ do
   SdcHistory.toolbar.cost_codes.change_cost_code.click
 end

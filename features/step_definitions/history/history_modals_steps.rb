@@ -439,8 +439,13 @@ Then /^click save button on change cost code modal$/ do
   SdcHistory.modals.change_cost_code.save.click
 end
 
-Then /^select new cost code on change cost code modal (.*)$/ do |str|
-  new_cost_code = SdcHistory.modals.change_cost_code.new_cost_code
+Then /^select new cost code on change cost code modal (?:to random|(.*))$/ do |str|
+    new_cost_code = SdcHistory.modals.change_cost_code.new_cost_code
+    count=new_cost_code.costcode_list.count
+    p count
+    str||=new_cost_code.costcode_random(Random.rand(costcode_list.count))
+    p str
+  ##$#
   unless new_cost_code.text_field.text_value.include?(str)
     new_cost_code.drop_down.click
     new_cost_code.selection(str)

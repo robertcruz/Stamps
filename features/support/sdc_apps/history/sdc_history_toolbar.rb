@@ -1,5 +1,4 @@
 module SdcHistory
-
   class SdcHistoryToolbarPickup < SdcPage
     page_object(:link) { {xpath: '//span[text()="Schedule Pickup"]'} }
     page_object(:all_eligible_packages) { {xpath: '//*[text()="Manage Pickups"]/../../..//*[text()="Selected Packages"]'} }

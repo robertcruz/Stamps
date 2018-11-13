@@ -12,7 +12,7 @@ Then /^set print form mail-to (?:|to )(?:|a )(?:|random )address(?: to| in| betw
   end
 
   step 'blur out on print form'
-  TestData.hash[:address] = address
+  TestData.hash[:address] = mail_to.text_area.text_value
 end
 
 Then /^select address from print form mail-to (.+), (.+)$/ do |name, company|
