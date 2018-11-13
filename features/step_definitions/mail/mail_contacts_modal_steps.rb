@@ -7,9 +7,20 @@ Then /^expect search contacts modal is not present$/ do
   expect(SdcMail.modals.search_contacts.title).not_to be_present
 end
 
+Then /^expect title on search contacts modal is (.*)$/ do |str|
+  SdcMail.modals.search_contacts.title.wait_until_present(timeout: 5)
+  expect(SdcMail.modals.search_contacts.title.text_value).to eql(str)
+  end
+
 Then /^close search contacts modal$/ do
   SdcMail.modals.search_contacts.x_btn.click
   step 'expect search contacts modal is not present'
+end
+
+Then /^expect mail-to link on print form is displayed$/ do
+  mail_to = SdcMail.print_form.mail_to
+  mail_to.link.wait_until_present(timeout: 5)
+  expect(mail_to.link.text).to eql 'Mail To:'
 end
 
 Then /^click mail-to link on print form$/ do
