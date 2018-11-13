@@ -42,10 +42,6 @@ Then /^launch the browser$/ do
   SdcTest.configure
 end
 
-Then /^close the browser$/ do
-  SdcTest.configure
-end
-
 Then /^refresh the browser$/ do
   begin
     SdcDriver.browser.refresh

@@ -425,140 +425,6 @@ module SdcFinder
 
 end
 
-class SdcPage < WatirDrops::PageObject
-
-  class << self
-    def visit(*args)
-      new.tap do |page|
-        if TestSession.env.mobile_device
-          url = page.page_url(args[0])
-          page.get(url)
-        else
-          page.goto(*args)
-        end
-        exception = Selenium::WebDriver::Error::WebDriverError
-        message = "Expected to be on #{page.class}, but conditions not met"
-        if page.page_verifiable?
-          begin
-            page.wait_until(&:on_page?)
-          rescue Watir::Wait::TimeoutError
-            raise exception, message
-          end
-        end
-      end
-    end
-
-    def get(*args)
-      browser.get page_url(*args)
-    end
-
-    def page_object(name, tag: nil, required: false, timeout: 60, &block)
-      element(name.to_sym, required: required) do
-        browser = self.class.browser
-        SdcFinder.element(browser, tag: tag, timeout: timeout, &block)
-      end
-    end
-    alias text_field page_object
-    alias button page_object
-    alias label page_object
-    alias link page_object
-
-    def page_objects(name, tag: nil, index: nil, required: false, timeout: 60)
-      list_name = index.nil? ? name : "#{name}s".to_sym
-
-      elements(list_name) do
-        browser = self.class.browser
-        SdcFinder.elements(browser, tag: tag, timeout: timeout) { yield }
-      end
-
-      if index
-        element(name, required: required) do
-          element = instance_eval(list_name.to_s, __FILE__, __LINE__)[index]
-          SdcElement.new(element)
-        end
-      end
-    end
-
-    def chooser(name, chooser, verify, property, property_name)
-      element(name.to_sym) do
-        SdcChooser.new(instance_eval(chooser.to_s, __FILE__, __LINE__),
-                       instance_eval(verify.to_s, __FILE__, __LINE__),
-                       property, property_name)
-      end
-    end
-
-    def po_with_verify(name, verify, property: nil)
-      element(name.to_sym) do
-        ElementWithVerify.new(instance_eval(element.to_s, __FILE__, __LINE__),
-                              instance_eval(verify.to_s, __FILE__, __LINE__),
-                              property)
-      end
-    end
-
-    def checker(name, element, verify, property: nil)
-      element(name.to_sym) do
-        SdcChecker(instance_eval(element.to_s, __FILE__, __LINE__),
-                   instance_eval(verify.to_s, __FILE__, __LINE__),
-                   property)
-      end
-    end
-
-    def selector(name, element, verify, property: nil)
-      element(name.to_sym) do
-        SdcSelector(instance_eval(element.to_s, __FILE__, __LINE__),
-                    instance_eval(verify.to_s, __FILE__, __LINE__),
-                    property)
-      end
-    end
-
-    def sdc_number(name, text_field, increment, decrement)
-      element(name.to_sym) do
-        SdcNumber.new(instance_eval(text_field.to_s, __FILE__, __LINE__),
-                      instance_eval(increment.to_s, __FILE__, __LINE__),
-                      instance_eval(decrement.to_s, __FILE__, __LINE__))
-      end
-    end
-
-    def sdc_param(name)
-      define_method(name) do |*args|
-        yield(*args)
-      end
-    end
-  end
-
-  define_method :sdc_number do |*args|
-    self.class.sdc_number(*args)
-
-    instance_eval(args.first.to_s, __FILE__, __LINE__)
-  end
-
-  define_method :chooser do |*args|
-    self.class.chooser(*args)
-
-    instance_eval(args.first.to_s, __FILE__, __LINE__)
-  end
-  alias checkbox chooser
-  alias radio chooser
-
-  define_method :page_objects do |*args, &block|
-    self.class.page_objects(*args, &block)
-
-    instance_eval(args.first.to_s, __FILE__, __LINE__)
-  end
-
-  define_method :page_object do |*args, &block|
-    self.class.page_object(*args, &block)
-
-    instance_eval(args.first.to_s, __FILE__, __LINE__)
-  end
-  alias text_field page_object
-  alias button page_object
-  alias label page_object
-  alias selection page_object
-  alias link page_object
-
-end
-
 class SdcDriverDecorator < BasicObject
 
   def initialize(driver)
@@ -830,94 +696,6 @@ class SdcElement < BasicObject
   end
 end
 
-class ElementWithVerify < SdcElement
-  def initialize(element, verify_element, property: nil)
-    super(element)
-    @verify = verify_element
-    @property = property || 'class'
-  end
-
-  def is_attribute?(sym)
-    result = if @verify.respond_to? :attribute_value
-               @verify.send(:attribute_value, @property)
-             else
-               @verify.send(:attribute, @property)
-             end
-
-    return result if [true, false].include? result
-
-    if result.casecmp('true').zero? || result .casecmp('false').zero?
-      return result.casecmp('true').zero?
-    end
-    result.include?(sym.to_s)
-  end
-
-  def checked?
-    is_attribute?(:checked)
-  end
-
-  def selected?
-    is_attribute?(:selected)
-  end
-
-  def enabled?
-    is_attribute?(:enabled)
-  end
-
-  def disabled?
-    is_attribute?(:selected)
-  end
-end
-
-class SdcChecker < ElementWithVerify
-  def initialize(element, verify_element, property: nil)
-    super(element, verify_element, property)
-  end
-
-  def check(iter: 2)
-    iter.times do
-      @element.click
-      break if checked?
-    end
-
-    checked?
-  end
-
-  def uncheck(iter: 2)
-    iter.times do
-      @element.click
-      break unless checked?
-    end
-
-    checked?
-  end
-end
-
-class SdcSelector < ElementWithVerify
-  def initialize(element, verify_element, property: nil)
-    super(element, verify_element, property)
-  end
-
-  def select(iter: 2)
-    iter.times do
-      @element.click
-      break if selected?
-    end
-
-    selected?
-  end
-
-
-  def unselect(iter: 2)
-    iter.times do
-      @element.click
-      break unless selected?
-    end
-
-    selected?
-  end
-end
-
 class SdcChooser < BasicObject
   include ::SdcElementHelper
 
@@ -1085,4 +863,226 @@ class SdcAppiumDriver
     caps = ::Appium.load_appium_txt(file: file, verbose: true)
     ::Appium::Driver.new(caps, false)
   end
+end
+
+class ElementWithVerify < SdcElement
+  def initialize(element, verify_element, property: nil)
+    super(element)
+    @verify = verify_element
+    @property = property || 'class'
+  end
+
+  def is_attribute?(sym)
+    result = if @verify.respond_to? :attribute_value
+               @verify.send(:attribute_value, @property)
+             else
+               @verify.send(:attribute, @property)
+             end
+
+    return result if [true, false].include? result
+
+    if result.casecmp('true').zero? || result .casecmp('false').zero?
+      return result.casecmp('true').zero?
+    end
+    result.include?(sym.to_s)
+  end
+
+  def checked?
+    is_attribute?(:checked)
+  end
+
+  def selected?
+    is_attribute?(:selected)
+  end
+
+  def enabled?
+    is_attribute?(:enabled)
+  end
+
+  def disabled?
+    is_attribute?(:selected)
+  end
+end
+
+class SdcChecker < ElementWithVerify
+  def initialize(element, verify_element, property: nil)
+    super(element, verify_element, property: property)
+  end
+
+  def check(iter: 2)
+    iter.times do
+      @element.click
+      break if checked?
+    end
+
+    checked?
+  end
+
+  def uncheck(iter: 2)
+    iter.times do
+      @element.click
+      break unless checked?
+    end
+
+    checked?
+  end
+end
+
+class SdcSelector < ElementWithVerify
+  def initialize(element, verify_element, property: nil)
+    super(element, verify_element, property: property)
+  end
+
+  def select(iter: 2)
+    iter.times do
+      @element.click
+      break if selected?
+    end
+
+    selected?
+  end
+
+
+  def unselect(iter: 2)
+    iter.times do
+      @element.click
+      break unless selected?
+    end
+
+    selected?
+  end
+end
+
+class SdcPage < WatirDrops::PageObject
+
+  class << self
+    def visit(*args)
+      new.tap do |page|
+        if TestSession.env.mobile_device
+          url = page.page_url(args[0])
+          page.get(url)
+        else
+          page.goto(*args)
+        end
+        exception = Selenium::WebDriver::Error::WebDriverError
+        message = "Expected to be on #{page.class}, but conditions not met"
+        if page.page_verifiable?
+          begin
+            page.wait_until(&:on_page?)
+          rescue Watir::Wait::TimeoutError
+            raise exception, message
+          end
+        end
+      end
+    end
+
+    def get(*args)
+      browser.get page_url(*args)
+    end
+
+    def page_object(name, tag: nil, required: false, timeout: 60, &block)
+      element(name.to_sym, required: required) do
+        browser = self.class.browser
+        SdcFinder.element(browser, tag: tag, timeout: timeout, &block)
+      end
+    end
+    alias text_field page_object
+    alias button page_object
+    alias label page_object
+    alias link page_object
+
+    def page_objects(name, tag: nil, index: nil, required: false, timeout: 60)
+      list_name = index.nil? ? name : "#{name}s".to_sym
+
+      elements(list_name) do
+        browser = self.class.browser
+        SdcFinder.elements(browser, tag: tag, timeout: timeout) { yield }
+      end
+
+      if index
+        element(name, required: required) do
+          element = instance_eval(list_name.to_s, __FILE__, __LINE__)[index]
+          SdcElement.new(element)
+        end
+      end
+    end
+
+    def chooser(name, chooser, verify, property, property_name)
+      element(name.to_sym) do
+        SdcChooser.new(instance_eval(chooser.to_s, __FILE__, __LINE__),
+                       instance_eval(verify.to_s, __FILE__, __LINE__),
+                       property, property_name)
+      end
+    end
+
+    def po_with_verify(name, verify, property: nil)
+      element(name.to_sym) do
+        ElementWithVerify.new(instance_eval(element.to_s, __FILE__, __LINE__),
+                                         instance_eval(verify.to_s, __FILE__, __LINE__),
+                              property: property)
+      end
+    end
+
+    def checker(name, element, verify, property: nil)
+      element(name.to_sym) do
+        SdcChecker(instance_eval(element.to_s, __FILE__, __LINE__),
+                   instance_eval(verify.to_s, __FILE__, __LINE__),
+                   property: property)
+      end
+    end
+
+    def selector(name, element, verify, property: nil)
+      element(name.to_sym) do
+        SdcSelector(instance_eval(element.to_s, __FILE__, __LINE__),
+                    instance_eval(verify.to_s, __FILE__, __LINE__),
+                    property: property)
+      end
+    end
+
+    def sdc_number(name, text_field, increment, decrement)
+      element(name.to_sym) do
+        SdcNumber.new(instance_eval(text_field.to_s, __FILE__, __LINE__),
+                      instance_eval(increment.to_s, __FILE__, __LINE__),
+                      instance_eval(decrement.to_s, __FILE__, __LINE__))
+      end
+    end
+
+    def sdc_param(name)
+      define_method(name) do |*args|
+        yield(*args)
+      end
+    end
+  end
+
+  define_method :sdc_number do |*args|
+    self.class.sdc_number(*args)
+
+    instance_eval(args.first.to_s, __FILE__, __LINE__)
+  end
+
+  define_method :chooser do |*args|
+    self.class.chooser(*args)
+
+    instance_eval(args.first.to_s, __FILE__, __LINE__)
+  end
+  alias checkbox chooser
+  alias radio chooser
+
+  define_method :page_objects do |*args, &block|
+    self.class.page_objects(*args, &block)
+
+    instance_eval(args.first.to_s, __FILE__, __LINE__)
+  end
+
+  define_method :page_object do |*args, &block|
+    self.class.page_object(*args, &block)
+
+    instance_eval(args.first.to_s, __FILE__, __LINE__)
+  end
+  alias text_field page_object
+  alias button page_object
+  alias label page_object
+  alias selection page_object
+  alias link page_object
+
 end
