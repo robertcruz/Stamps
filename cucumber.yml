@@ -601,7 +601,7 @@ ewwr_session_state_data_validation: --tags @ewwr_session_state_data_validation -
 ewwr_security_question_page_validation: --tags @ewwr_security_question_page_validation --guess  LOG_LEVEL=info
 ewwr_header_footer_validation: --tags @ewwr_header_footer_validation --guess  LOG_LEVEL=info
 swwr_create_your_account_page_validation: --tags @swwr_create_your_account_page_validation --guess LOG_LEVEL=info
-aloha: --tags @multiple_shipto_contacts_view URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core002 PW=password1
+aloha: --tags @transaction_address_4lines URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core002 PW=password1
 #aloha: --tags @sdc_contact_add_new_contact URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core004 PW=password1
 #aloha: --tags @sdc_contacts_show_all_columns URL=qacc LOG_LEVEL=debug HEALTHCHECK=false BROWSER=gc MAX_WINDOW=false USR=Tmaheryar PW=password1
 sdc_contacts_delete_single_from_top_navigation: --tags @sdc_contacts_delete_single_from_top_navigation --guess LOG_LEVEL=info
@@ -650,3 +650,4 @@ bug_postal_code_not_added_contact_details: --tags @bug_postal_code_not_added_con
 multiple_shipto_contacts_view: --tags @multiple_shipto_contacts_view --guess LOG_LEVEL=info
 contacts_print_postage_single_from_details: --tags @contacts_print_postage_single_from_details --guess LOG_LEVEL=info
 contacts_print_postage_multiple_from_top_nav: --tags @contacts_print_postage_multiple_from_top_nav --guess LOG_LEVEL=info
+transaction_address_4lines: --tags @transaction_address_4lines --guess LOG_LEVEL=info
