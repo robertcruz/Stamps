@@ -553,7 +553,11 @@ end
 
 Then /^close welcome modal on history$/ do
   welcome = SdcHistory.modals.welcome
-  welcome.x_btn.click if welcome.title.present?
+  begin
+    welcome.x_btn.click if welcome.title.present?
+  rescue
+    # ignore
+  end
   step 'expect welcome modal on history is not present'
 end
 

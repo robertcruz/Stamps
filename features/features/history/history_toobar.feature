@@ -75,4 +75,14 @@ Feature:  History Toolbar
     Then expect change cost code modal on history is not present
 
 
+  @history_export
+  Scenario: Verify user should is able to Export History Information
+    Then sign-in to orders
+    Then navigate to History
+    Then expect export button on history toolbar is present
+    Then click export button on history toolbar
+    Then sign out
+
+
+
 

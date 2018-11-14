@@ -1,5 +1,36 @@
 module SdcHistory
 
+  module Toolbar
+
+    class Toolbar < SdcPage
+      page_object(:export) { {xpath: '//span[contains(@class,"sdc-icon-export")]'} }
+    end
+
+    def refund
+      SdcHistoryRefund.new
+    end
+
+    def create_return_label
+      SdcHistoryCreateReturnLabel.new
+    end
+
+    def schedule_pickup
+      SdcHistoryToolbarPickup.new
+    end
+
+    def create_scan_form
+      SdcHistoryToolbarScanForm.new
+    end
+
+    def cost_codes
+      SdcHistoryToolbarCostCodes.new
+    end
+
+    def create_container_label
+      ToolbarCreateContainerLabel.new
+    end
+
+  end
   class SdcHistoryToolbarPickup < SdcPage
     page_object(:link) { {xpath: '//span[text()="Schedule Pickup"]'} }
     page_object(:all_eligible_packages) { {xpath: '//*[text()="Manage Pickups"]/../../..//*[text()="Selected Packages"]'} }
@@ -38,31 +69,4 @@ module SdcHistory
     page_object(:reprint_scan_form) { {xpath: '//*[text()="Reprint Last Label"]'} }
   end
 
-  module Toolbar
-    class << self
-      def refund
-        SdcHistoryRefund.new
-      end
-
-      def create_return_label
-        SdcHistoryCreateReturnLabel.new
-      end
-
-      def schedule_pickup
-        SdcHistoryToolbarPickup.new
-      end
-
-      def create_scan_form
-        SdcHistoryToolbarScanForm.new
-      end
-
-      def cost_codes
-        SdcHistoryToolbarCostCodes.new
-      end
-
-      def create_container_label
-        ToolbarCreateContainerLabel.new
-      end
-    end
-  end
 end
