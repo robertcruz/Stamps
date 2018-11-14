@@ -443,6 +443,8 @@ Then /^select new cost code on change cost code modal (?:to random|(.*))$/ do |s
     new_cost_code = SdcHistory.modals.change_cost_code.new_cost_code
     count=new_cost_code.costcode_list.count
     p count
+    new_cost_code.drop_down.click
+    p new_cost_code.costcode_list.count
     str||=new_cost_code.costcode_random(Random.rand(costcode_list.count))
     p str
   ##$#
@@ -558,7 +560,11 @@ end
 
 Then /^close welcome modal on history$/ do
   welcome = SdcHistory.modals.welcome
-  welcome.x_btn.click if welcome.present?
+  begin
+    welcome.x_btn.click if welcome.title.present?
+  rescue
+    # ignore
+  end
   step 'expect welcome modal on history is not present'
 end
 

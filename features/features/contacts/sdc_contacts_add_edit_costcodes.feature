@@ -4,16 +4,34 @@ Feature:  Contacts BVT - Contacts Cost Codes
     Given Start test driver
 
   @sdc_contacts_toolbar_add_existing_cost_code
-  Scenario: Add Cost Code scenario 1: Add cost code from TOP Nav ,Sent to Cost codes page, add an exsisting cost code and expect error is displayed and make sure cost codes save and visible on contacts page
+    Scenario:
     Then sign-in to orders
     Then navigate to Contacts
-    Then click on cost codes expand button of contacts left navigation
     Then click contacts toolbar cost codes dropdown
     Then on cost codes dropdown menu select Add/Edit Cost Codes
-    Then expect cost code page is displayed
-    Then on cost code page set value of new cost code textbox to existing value
-    Then on cost codes page click on add button
-    Then expect error message box is displayed
+    Then expect account settings cost code page is displayed
+    Then click add button on account settings cost codes page
+    Then expect add cost code modal is displayed
+    Then set new cost textbox to blank on add cost code modal
+    Then click add button on add cost code modal
+    Then expect error message on cost codes page is No codes found. Please enter cost codes of 30 characters or less separated by commas and click Add.
+    Then click add button on account settings cost codes page
+    Then set new cost textbox to existing value on add cost code modal
+    Then click add button on add cost code modal
+    #Then expect error message on cost codes page includes The cost code
+    Then click add button on account settings cost codes page
+    Then expect add cost code modal is displayed
+    Then set new cost textbox to random on add cost code modal
+    Then click add button on add cost code modal
+    Then expect error message box is not displayed
+    Then expect newly added cost codes included in the cost code grid
+    Then click add button on account settings cost codes page
+    Then set new cost textbox to random,random on add cost code modal
+    Then click add button on add cost code modal
+    Then navigate to Contacts
+    Then click on cost codes expand button of contacts left navigation
+    Then on left navigation expect new costcode added is avilable under costcode filter
+    Then on left navigation expect count of new costcode added is 0
 
   @sdc_contacts_toolbar_add_new_cost_code
   Scenario: Add Cost Code scenario 1: Add cost code from TOP Nav ,Sent to Cost codes page, add an new cost code and expect error is not displayed and make sure cost codes save and visible on contacts page
