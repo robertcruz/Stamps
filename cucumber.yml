@@ -653,3 +653,5 @@ bug_postal_code_not_added_contact_details: --tags @bug_postal_code_not_added_con
 multiple_shipto_contacts_view: --tags @multiple_shipto_contacts_view --guess LOG_LEVEL=info
 contacts_print_postage_single_from_details: --tags @contacts_print_postage_single_from_details --guess LOG_LEVEL=info
 contacts_print_postage_multiple_from_top_nav: --tags @contacts_print_postage_multiple_from_top_nav --guess LOG_LEVEL=info
+
+history_export:  --tags @history_export --guess LOG_LEVEL=info
