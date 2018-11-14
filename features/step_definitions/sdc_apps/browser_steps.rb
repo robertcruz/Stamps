@@ -69,8 +69,12 @@ Then /^confirm print on gif printing dialog$/ do
     browser.windows.count.eql?(2)
   end
   browser.windows.last.use
-  # browser.send_keys(:enter)
-  browser.send_keys(:escape)
-
+  browser.send_keys(:enter)
+  browser.windows.last.use
+  browser.wait_until(timeout: 5) do |browser|
+    browser.windows.count.eql?(2)
+  end
+  browser.send_keys(:a)
+  browser.send_keys(:enter)
   browser.windows.first.use
 end
