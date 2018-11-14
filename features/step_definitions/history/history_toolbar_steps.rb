@@ -49,13 +49,13 @@ Then /^hover on cost codes button tooltip on history toolbar$/ do
 end
 
 
-Then /^click create container label button on history toolbar$/ do
+Then /^click create container label on history toolbar$/ do
   create_container_label = SdcHistory.toolbar.create_container_label
   create_container_label.link.click
-  create_container_label.tooltip.safe_wait_until_present(timeout: 2)
+  create_container_label.tooltip.safe_wait_until_present(timeout: 3)
   if create_container_label.tooltip.present?
-    create_container_label.tooltip.hover
-    create_container_label.link.click if create_container_label.tooltip.present?
+    create_container_label.link.click
+    create_container_label.tooltip.safe_wait_until_present(timeout: 2)
     create_container_label.link.click
   end
 end
@@ -121,7 +121,7 @@ Then /^expect selected packages button on history toolbar create container label
   expect(SdcHistory.toolbar.create_container_label.selected_packages.class_disabled?).to be_falsy
 end
 
-Then /^click selected packages button on history toolbar create container label$/ do
+Then /^click selected packages on history toolbar create container label$/ do
   step 'expect selected packages button on history toolbar create container label is enabled'
   SdcHistory.toolbar.create_container_label.selected_packages.click
   step 'expect container label modal on history is present'

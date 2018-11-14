@@ -263,12 +263,13 @@ end
 
 # Data
 Then /^click data link on reports toolbar$/ do
-  SdcReports.toolbar.data.link.click
-  SdcReports.toolbar.data.tooltip.safe_wait_until_present(timeout: 3)
-  if SdcReports.toolbar.data.tooltip.present?
-    SdcReports.toolbar.data.link.click
-    SdcReports.toolbar.data.tooltip.safe_wait_until_present(timeout: 2)
-    SdcReports.toolbar.data.link.click
+  data = SdcReports.toolbar.data
+  data.link.click
+  data.tooltip.safe_wait_until_present(timeout: 3)
+  if data.tooltip.present?
+    data.link.click
+    data.tooltip.safe_wait_until_present(timeout: 2)
+    data.link.click
   end
   step 'expect data menu on reports toolbar has correct values'
 end
