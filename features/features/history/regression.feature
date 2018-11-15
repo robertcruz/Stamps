@@ -76,7 +76,6 @@ Feature:  History regression
     Then click print button on ready to print modal
     Then close your container label modal on history
     Then expand date printed on history filter panel
-#    Then pause for 2 seconds
     Then select today on history filter panel
     Then check row 1 on history grid
     Then expect print details on history is present
