@@ -15,6 +15,7 @@ module SdcHistory
     end
 
     class Header < SdcPage
+      #to-do Navya to change the xpaths
       page_object(:title) { { xpath: '//*[contains(@id, "singlePrintDetailsForm_header")]//*[contains(@id, "title")]//*' } }
       page_object(:toolbar_menu) { { xpath: '//*[contains(@class, "x-btn-after-title")]' } }
       page_object(:toolbar_menu_tooltip) { { xpath: '//b[text()="More"]' } }
