@@ -63,4 +63,12 @@ Then /^pause for (\d+) second(?:|s)?$/ do |seconds|
   sleep(seconds.to_i)
 end
 
-
+Then /^confirm print on gif printing dialog$/ do
+  browser = SdcPage.browser
+  browser.wait_until(timeout: 5) do |browser|
+    browser.windows.count.eql?(2)
+  end
+  browser.windows.last.use
+  browser.send_keys(:enter)
+  browser.windows.first.use
+end

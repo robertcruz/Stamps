@@ -4188,6 +4188,11 @@ Cucumber::Rake::Task.new(:history_filter_direct_url) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+Cucumber::Rake::Task.new(:container_label_reprint) do |t|
+  t.profile = 'container_label_reprint'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 #------------------- Reports ---------------------------------------------
 Cucumber::Rake::Task.new(:reports_toolbar) do |t|
   t.profile = 'reports_toolbar'

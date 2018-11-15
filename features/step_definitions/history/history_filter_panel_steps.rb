@@ -191,8 +191,10 @@ end
 
 #Eligible For
 Then /^expand eligible for on history filter panel$/ do
-  SdcHistory.filter_panel.eligible_for.after_eligible_for_tool.click
-  expect(SdcHistory.filter_panel.eligible_for.refund).to be_present
+  unless SdcHistory.filter_panel.eligible_for.refund.present?
+    SdcHistory.filter_panel.eligible_for.after_eligible_for_tool.click
+    expect(SdcHistory.filter_panel.eligible_for.refund).to be_present
+  end
 end
 
 Then /^select refund on history filter panel eligible for$/ do
@@ -213,6 +215,7 @@ Then /^expect refund on history filter panel eligible for is selected$/ do
 end
 
 Then /^select container label on history filter panel eligible for$/ do
+  step 'expand eligible for on history filter panel'
   container_label = SdcHistory.filter_panel.eligible_for.container_label
   container_label.select
   step 'wait while loading history filters grid'

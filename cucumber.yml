@@ -1,5 +1,5 @@
 
-default: --backtrace --profile aloha
+default: --backtrace --profile local_browser
 
 cuke_reports: --format json --out report.json --backtrace -f pretty -r features --format pretty --format html --out reports
 
@@ -23,7 +23,7 @@ web_apps_dev: --tags @bvt_new_order USR=default PW=pass111 URL=tcarney-win7-3.co
 eli_dev: --tags @sdc_contacts_print_to_mail --guess JENKINS=false WEB_APP=mail URL=cc BROWSER=ff USR=hal9000qa12 PW=password1 PRINTER=factory
 ray_dev: --tags @rates_parcel_select_ground --guess JENKINS=false URL=stg BROWSER=ff USR=default PW=pass111
 sap: --tags @registration_orders WEB_APP=registration URL=cc --guess BROWSER=ff MAX_WINDOW=false
-alex_history:  --tags @history_filter_direct_url_1 BROWSER=firefox URL=cc USR=abqacctest1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
+alex_history:  --tags @container_label_reprint BROWSER=gc URL=stg USR=gapstage02 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
 alex_reports:  --tags @reports_filter_panel BROWSER=gc URL=qasc USR=abqascsas1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
 alex_mail:  --tags @mail_dropdown_tooltip BROWSER=firefox URL=stg USR=abqasttest1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
 alex_regress:  --tags @bvt_shipping_address_management BROWSER=ff WEB_APP=orders URL=cc USR=abqacc10 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
@@ -642,6 +642,7 @@ sdc_contacts_left_navigation_selected_filter:  --tags @sdc_contacts_left_navigat
 sdc_contacts_print_to_mail:  --tags @sdc_contacts_print_to_mail --guess LOG_LEVEL=info
 history_toolbar:  --tags @history_toolbar --guess LOG_LEVEL=info
 history_filter_direct_url:  --tags @history_filter_direct_url --guess LOG_LEVEL=info
+container_label_reprint:  --tags @container_label_reprint --guess LOG_LEVEL=info
 container_label_return_address:  --tags @container_label_return_address --guess LOG_LEVEL=info
 reports_toolbar:  --tags @reports_toolbar --guess LOG_LEVEL=info
 reports_filter_panel:  --tags @reports_filter_panel --guess LOG_LEVEL=info

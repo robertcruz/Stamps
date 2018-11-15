@@ -9,7 +9,7 @@ module SdcHistory
     end
 
     def toolbar
-      Toolbar::Toolbar.new
+      Toolbar
     end
 
     def filter_panel
