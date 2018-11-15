@@ -23,5 +23,9 @@ module SdcHistory
     def details
       Details
     end
+
+    def multiple_details
+      MultipleDetails
+    end
   end
 end
