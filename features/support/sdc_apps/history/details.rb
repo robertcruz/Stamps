@@ -95,7 +95,25 @@ module SdcHistory
       page_object(:after_title_tool) { { xpath: '' } }
 
       def cost_code
+        HistoryDetailCostcode.new
       end
     end
+
+    class HistoryDetailCostcode <SdcPage
+      page_object(:text_field, tag: :text_field) { { xpath: '//span[text()="Cost Code:"]/following::input[1]' } }
+      page_object(:drop_down) { { xpath: '//span[text()="Cost Code:"]//following::div[contains(@class, "arrow")]' } }
+      page_objects(:costcode_list){ { xpath: '//div[contains(@id, "changeCostCode")]//following::li' } }
+
+      def costcode_random(position)
+        xpath_text = "//div[contains(@id, 'changeCostCode')]//following::li[#{position}]"
+        page_object(:costcode_text, required: true, timeout: 10) { { xpath: xpath_text } }
+      end
+
+      def selection(value)
+        page_object(:selection_obj) { { xpath: "//li[text()='#{value}']" } }
+      end
+
+    end
+
   end
 end

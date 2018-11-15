@@ -65,8 +65,12 @@ Then /^expect history grid Insured For is correct for row (\d+)$/ do |row|
   step "expect history grid column Weight is #{TestData.hash[:insure_for_cost]} for row #{row}"
 end
 
-Then /^expect history grid Cost Code is correct for row (\d+)$/ do |row|
-  step "expect history grid column Weight is #{TestData.hash[:cost_code]} for row #{row}"
+Then /^expect history grid cost code column at row (.*) is correct$/ do |row|
+  SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
+  str ||= TestData.hash[:cost_code]
+  column = SdcHistory.grid.grid_column(:cost_code)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str
 end
 
 Then /^expect history grid Ship Date is correct for row (\d+)$/ do |row|

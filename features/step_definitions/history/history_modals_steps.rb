@@ -439,26 +439,24 @@ Then /^click save button on change cost code modal$/ do
   SdcHistory.modals.change_cost_code.save.click
 end
 
-Then /^select new cost code on change cost code modal (?:to random|(.*))$/ do |str|
-    new_cost_code = SdcHistory.modals.change_cost_code.new_cost_code
-    count=new_cost_code.costcode_list.count
-    p count
-    new_cost_code.drop_down.click
-    p new_cost_code.costcode_list.count
-    str||=new_cost_code.costcode_random(Random.rand(costcode_list.count))
-    p str
-  ##$#
-  unless new_cost_code.text_field.text_value.include?(str)
-    new_cost_code.drop_down.click
-    new_cost_code.selection(str)
-    new_cost_code.drop_down.click unless selection_obj.present?
-    selection_obj.scroll_into_view unless selection_obj.present?
-    selection_obj.click if selection_obj.present?
+Then /^select new cost code on change cost code modal (?:to existing|(.*))$/ do |str|
+    cost_code = SdcHistory.modals.change_cost_code.new_cost_code
+    cost_code.drop_down.click
+    count=cost_code.costcode_list.count
+    str||=cost_code.costcode_random(Random.rand(2..count-1)).text_value
+  unless cost_code.text_field.text_value.include?(str)
+    cost_code.drop_down.click
+    cost_code.selection(str)
+    cost_code.drop_down.click unless cost_code.selection(str).present?
+    cost_code.selection(str).scroll_into_view unless cost_code.selection(str).present?
+    cost_code.selection(str).click if cost_code.selection(str).present?
+    expect(cost_code.text_field.text_value).to include(str)
   end
-  step "expect new cost code on return label modal is #{str}"
+  step "expect new cost code on change cost code modal is #{str}"
+  TestData.hash[:cost_code]=str
 end
 
-Then /^expect new cost code on return label modal is (.*)$/ do |str|
+Then /^expect new cost code on change cost code modal is (.*)$/ do |str|
   expect(SdcHistory.modals.change_cost_code.new_cost_code.text_field.text_value).to eql(str)
 end
 

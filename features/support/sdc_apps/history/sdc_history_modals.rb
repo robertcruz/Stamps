@@ -82,12 +82,12 @@ module SdcHistory
       page_objects(:costcode_list){ { xpath: '//div[contains(@id, "changeCostCode")]//following::li' } }
 
       def costcode_random(position)
-        xpath_text = "//div[contains(@id, 'changeCostCode')]//following::li[#{position}]//div[1]"
+        xpath_text = "//div[contains(@id, 'changeCostCode')]//following::li[#{position}]"
         page_object(:costcode_text, required: true, timeout: 10) { { xpath: xpath_text } }
       end
 
-      def selection(str)
-        page_object(:selection_obj) { { xpath: "//li[text()='#{str}']" } }
+      def selection(value)
+        page_object(:selection_obj) { { xpath: "//li[text()='#{value}']" } }
       end
     end
 

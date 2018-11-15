@@ -72,7 +72,7 @@ Then /^expect mail toolbar print button label is (.+)$/ do |str|
 end
 
 Then /^expect mail toolbar print is present$/ do
-  expect(SdcMail.toolbar.print).to be_present
+  expect(SdcMail.toolbar.print_button).to be_present
 end
 
 Then /^hover on mail toolbar print dropdown$/ do
