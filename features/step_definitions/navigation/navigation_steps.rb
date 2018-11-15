@@ -21,7 +21,8 @@ Then /^navigate to (.+)$/ do |str|
     step 'close welcome modal on history'
     step 'wait while loading history grid'
   when :reports
-    step 'click through tutorial modal'
+    step 'close welcome modal on reports'
+    step 'wait while loading reports grid'
   when :products
     step 'click through tutorial modal'
     SdcOrders.loading_orders.safe_wait_until_present(timeout: 7)
