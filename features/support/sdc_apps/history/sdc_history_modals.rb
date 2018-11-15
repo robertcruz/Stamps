@@ -139,7 +139,7 @@ module SdcHistory
       page_object(:drop_down) { { xpath: '//div[contains(@id, "printmediadroplist")]//div[contains(@class, "arrow")]' } }
 
       def selection_element(name: :selection, value: 'factory')
-        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+        page_object(name) { { xpath: "//li[contains(text(), '#{value}')]" } }
       end
     end
 
