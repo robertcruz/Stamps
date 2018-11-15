@@ -1025,7 +1025,7 @@ class SdcPage < WatirDrops::PageObject
 
     def checker(name, element, verify, property: nil)
       element(name.to_sym) do
-        SdcChecker(instance_eval(element.to_s, __FILE__, __LINE__),
+        SdcChecker.new(instance_eval(element.to_s, __FILE__, __LINE__),
                    instance_eval(verify.to_s, __FILE__, __LINE__),
                    property: property)
       end
@@ -1033,7 +1033,7 @@ class SdcPage < WatirDrops::PageObject
 
     def selector(name, element, verify, property: nil)
       element(name.to_sym) do
-        SdcSelector(instance_eval(element.to_s, __FILE__, __LINE__),
+        SdcSelector.new(instance_eval(element.to_s, __FILE__, __LINE__),
                     instance_eval(verify.to_s, __FILE__, __LINE__),
                     property: property)
       end
