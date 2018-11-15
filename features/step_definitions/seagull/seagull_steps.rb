@@ -4,9 +4,12 @@ Then /^an automotive enthusiast has accessed the microsite$/ do
 end
 
 Then /^the enthusiast asks to see views of the car$/ do
-  step 'go to url https://sea-gull.herokuapp.com'
+  SeaGull.visit
 end
 
 Then /^he is shown all the available photographs$/ do
-
+  expect(SeaGull.car.back.present?).to be true
+  expect(SeaGull.car.side_closed.present?).to be true
+  expect(SeaGull.car.front_above.present?).to be true
+  expect(SeaGull.car.left_rear.present?).to be true
 end

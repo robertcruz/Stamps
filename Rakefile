@@ -7,6 +7,11 @@ Cucumber::Rake::Task.new(:local_browser) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+Cucumber::Rake::Task.new(:user_access_views) do |t|
+  t.profile = 'user_access_views'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:user_identification_portal) do |t|
   t.profile = 'user_identification_portal'
   t.cucumber_opts = "-p cuke_reports"
