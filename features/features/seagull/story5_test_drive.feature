@@ -7,3 +7,5 @@ Feature: Marketing Manager maintains the photo set
   Scenario: User accesses views
     When the enthusiast asks to see views of the car
     Then he is shown all the available photographs
+
+

@@ -12,6 +12,11 @@ Cucumber::Rake::Task.new(:user_access_views) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+Cucumber::Rake::Task.new(:story5_testdrive) do |t|
+  t.profile = 'story5_testdrive'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:user_identification_portal) do |t|
   t.profile = 'user_identification_portal'
   t.cucumber_opts = "-p cuke_reports"
@@ -677,11 +682,6 @@ end
 
 Cucumber::Rake::Task.new(:mail_bvt_ship_date) do |t|
   t.profile = 'mail_bvt_ship_date'
-  t.cucumber_opts = "-p cuke_reports"
-end
-
-Cucumber::Rake::Task.new(:default) do |t|
-  t.profile = 'default'
   t.cucumber_opts = "-p cuke_reports"
 end
 

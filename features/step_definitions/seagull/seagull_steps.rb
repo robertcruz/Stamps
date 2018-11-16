@@ -23,6 +23,11 @@ Then /^I need to be able to request an appointment for a test drive at his neare
   step "set seagull test drive phone to #{TestHelper.rand_phone}"
   step 'set seagull test drive zip code to 94102'
   step 'click seagull test drive submit button'
+  step "expect ui contains Thanks for contacting us! We will get in touch with you shortly."
+end
+
+Then /^expect ui contains (.+)$/ do |str|
+  expect(SdcPage.browser.text).to include str
 end
 
 Then /^set seagull test drive first name to (.*)$/ do |str|
