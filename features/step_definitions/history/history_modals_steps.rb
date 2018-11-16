@@ -653,6 +653,8 @@ Then /^set date range drop down value to(.*)/ do |str|
   date_range.selection_date_range(value: str)
   date_range.drop_down.click unless date_range.selection.present?
   date_range.text_field.set(str)
+  date_range.selection_date_range(value: str).click
+  #date_range.selection.click
   expect(date_range.text_field.text_value).to include(str)
 end
 

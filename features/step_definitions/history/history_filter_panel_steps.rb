@@ -12,6 +12,7 @@ Then /^set search prints to (?:newly added|(.*)) tracking number on history filt
   search.search_prints.set(str)
 end
 
+#Date Printed
 Then /^expand date printed on history filter panel$/ do
   date_printed = SdcHistory.filter_panel.date_printed
   date_printed.header.click unless date_printed.today.present?
@@ -20,12 +21,12 @@ end
 
 Then /^expect date printed on history filter panel is expanded$/ do
   date_printed = SdcHistory.filter_panel.date_printed
-  expect(date_printed.collapse_button.present?).to be (true)
+  expect(date_printed.collapse_button.checked?).to be (true)
 end
 
 Then /^expect date printed on history filter panel is collapsed$/ do
   date_printed = SdcHistory.filter_panel.date_printed
-  expect(date_printed.expand_button.present?).to be (true)
+  expect(date_printed.expand_button.checked?).to be (true)
 end
 
 Then /^expect default selected value on date printed history filter panel is Past 30 Days$/ do
@@ -238,6 +239,22 @@ Then /^expand eligible for on history filter panel$/ do
   end
 end
 
+Then /^expect eligible for on history filter panel is expanded$/ do
+  eligible_for = SdcHistory.filter_panel.eligible_for
+  expect(eligible_for.collapse_button.present?).to be (true)
+end
+
+Then /^expect eligible for on history filter panel is collapsed$/ do
+  eligible_for = SdcHistory.filter_panel.eligible_for
+  expect(eligible_for.expand_button.checked?).to be (true)
+end
+
+Then /^expect default selected value on eligible for history filter panel is insurance claim$/ do
+  eligible_for = SdcHistory.filter_panel.eligible_for
+  eligible_for.insurance_claim.safe_wait_until_present(timeout: 5)
+  expect(eligible_for.insurance_claim.checked?).to be (true)
+end
+
 Then /^select refund on history filter panel eligible for$/ do
   refund = SdcHistory.filter_panel.eligible_for.refund
   refund.select
@@ -317,4 +334,8 @@ Then /^wait while loading history filters grid$/ do
   SdcHistory.filter_panel.loading.safe_wait_until_present(timeout: 8)
   SdcHistory.filter_panel.loading.wait_while_present(timeout: 240)
 end
+
+#Eligible For
+
+
 

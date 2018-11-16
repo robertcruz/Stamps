@@ -57,6 +57,9 @@ module SdcHistory
     page_object(:header) { { xpath: '//div[text()="Eligible For"]' } }
     page_object(:after_eligible_for_tool) { { xpath: '//div[text()="Eligible For"]/../../div[starts-with(@id,"tool")]/img' } }
 
+    page_object(:expand_button) { { xpath: '//div[text()="Eligible For"]//following::img[contains(@class,"x-tool-img x-tool-expand-bottom")][1]' } }
+    page_object(:collapse_button) { { xpath: '//div[text()="Eligible For"]//following::img[contains(@class,"x-tool-img x-tool-collapse-top")][1]' } }
+
     page_object(:refund_chooser) { { xpath: '//*[contains(@class,"badgebutton")]//*[text()="Refund"]' } }
     page_object(:refund_verify) { { xpath: '//*[contains(@class,"badgebutton")]//*[text()="Refund"]/../../../..' } }
     chooser(:refund, :refund_chooser, :refund_verify, :class, :selected)
