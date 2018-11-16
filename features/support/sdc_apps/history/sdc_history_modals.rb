@@ -56,6 +56,10 @@ module SdcHistory
       def welcome
         Welcome.new
       end
+
+      def advance_search
+        AdvanceSearch.new
+      end
     end
 
     class SchedulePickupState < SdcPage
@@ -359,5 +363,91 @@ module SdcHistory
       page_object(:close) { {xpath: '//*[text()="Close"]'} }
       page_object(:learn_more) { {xpath: '//*[text()="Learn More"]'} }
     end
+
+    class AdvanceSearch < SdcPage
+
+
+      page_object(:title) { { xpath: '//div[contains(@id , "advance-search-window-")]//div[text()="Advanced Search"]' } }
+      page_object(:date_printed) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "radiofield-")][text()="Date Printed"]/preceding-sibling::input[1]' } }
+      page_object(:date_delivered) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "radiofield-")][text()="Date Delivered"]/preceding-sibling::input[1]' } }
+      page_object(:ship_date) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "radiofield-")][text()="Ship Date"]/preceding-sibling::input[1]' } }
+
+      def date_range
+        DateRange.new
+      end
+
+      text_field(:from_date_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advFromDate"]' } }
+      page_object(:from_date_calender_icon) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advFromDate"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      button(:from_date_today_button_selection , tag: :button) {{xpath:'//span[contains(@id, "button-")][text()="Today"]'}}
+
+      text_field(:to_date_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advToDate"]' } }
+      page_object(:to_date_calender_icon) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advToDate"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+      button(:to_date_today_button_selection , tag: :button) {{xpath:'//span[contains(@id, "button-")][text()="Today"]'}}
+
+      text_field(:recepient_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advRecipient"]' } }
+
+      text_field(:cost_code_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advCostCode"]' } }
+      page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advCostCode"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      def selection_cost_code(name: 'selection', value: 'None')
+        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+      end
+
+      text_field(:user_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advUser"]' } }
+      page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advUser"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      def selection_user(name: 'selection', value: 'None')
+        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+      end
+
+      text_field(:print_message_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advPrintMessage"]' } }
+
+      text_field(:tracking_id_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advTracking"]' } }
+
+      text_field(:service_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advService"]' } }
+      page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advService"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      def selection_service(name: 'selection', value: 'None')
+        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+      end
+
+      text_field(:status_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advStatus"]' } }
+      page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advStatus"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      def selection_status(name: 'selection', value: 'None')
+        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+      end
+
+      text_field(:refund_type_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advRefundType"]' } }
+      page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advRefundType"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      def selection_refund_type(name: 'selection', value: 'None')
+        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+      end
+
+      text_field(:carrier_text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advCarrier"]' } }
+      page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advCarrier"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      def selection_carrier(name: 'selection', value: 'None')
+        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+      end
+
+      page_object(:search_button) { { xpath:'//div[contains(@id , "advance-search-window-")]//span[contains(@id, "button-")][text()="Search"]' } }
+      page_object(:reset_advanced_search) { { xpath:'//div[contains(@id , "advance-search-window-")]//span[contains(@id, "button-")][text()="Reset"]' } }
+
+    end
+
+    class DateRange < SdcPage
+      text_field(:text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "combo-")]//*[contains(@name, "advDateRange")]' } }
+      page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advDateRange"]/following::div[contains(@id,"-trigger-picker")][1]' } }
+
+      def selection_date_range(name: 'selection', value: 'None')
+        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+      end
+    end
+
   end
+
+
 end

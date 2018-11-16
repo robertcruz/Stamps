@@ -624,3 +624,38 @@ Then /^click through tutorial modal on history$/ do
   step 'click close button on welcome modal'
 end
 
+# Advance Search
+
+Then /^expect advance search modal is displayed$/ do
+  advanced_search = SdcHistory.modals.advance_search
+  advanced_search.title.safe_wait_until_present(timeout: 10)
+  expect(advanced_search.title.present?).to be(true)
+end
+
+Then /^expect advance search modal is not displayed$/ do
+  advanced_search = SdcHistory.modals.advance_search
+  expect(advanced_search.title.present?).to be(false)
+end
+
+Then /^expect date range drop down in advance search modal is present$/ do
+  date_range = SdcHistory.modals.advance_search.date_range
+  date_range.text_field.safe_wait_until_present(timeout: 10)
+  expect(date_range.text_field.present?).to be (true)
+end
+
+Then /^set date range drop down value to(.*)/ do |str|
+  date_range = SdcHistory.modals.advance_search.date_range
+  date_range.selection_date_range(value: str)
+  date_range.drop_down.click unless date_range.selection.present?
+  date_range.text_field.set(str)
+  expect(date_range.text_field.text_value).to include(str)
+end
+
+Then /^click search button on advance search modal$/ do
+  advance_search = SdcHistory.modals.advance_search
+  expect(advance_search.search_button.present?).to be(true)
+  advance_search.search_button.click
+end
+
+
+

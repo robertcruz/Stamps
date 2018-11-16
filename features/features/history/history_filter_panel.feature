@@ -70,3 +70,61 @@ Feature:  History Filter Panel
     Then wait while loading history filters grid
     Then expect undeliverable is selected on history filter panel status
     Then sign out
+
+  @search_prints_different_date_ranges
+  Scenario: History: Verify Date Selections generates search range of prints
+    Then sign-in to mail
+    Then navigate to History
+    Then expect date printed on history filter panel is expanded
+    Then expect default selected value on date printed history filter panel is Past 30 Days
+        #Past 7 days
+    Then click on advanced search arrow on history filter panel
+    Then expect advance search modal is displayed
+    Then expect date range drop down in advance search modal is present
+    Then set date range drop down value to Past 7 Days
+    Then click search button on advance search modal
+    Then expect advance search modal is not displayed
+    Then expect search results is available on the history filter panel
+    Then expect date printed on history filter panel is collapsed
+    Then expect prints within date range Past 7 Days for column Date Printed are retrieved in the grid
+
+         #Past 30 days
+    Then click on advanced search arrow on history filter panel
+    Then expect advance search modal is displayed
+    Then expect date range drop down in advance search modal is present
+    Then set date range drop down value to Past 30 Days
+    Then click search button on advance search modal
+    Then expect advance search modal is not displayed
+    Then expect search results is available on the history filter panel
+    Then expect date printed on history filter panel is collapsed
+    Then expect prints within date range Past 30 Days for column Date Printed are retrieved in the grid
+        #Past 6 Months
+    Then click on advanced search arrow on history filter panel
+    Then expect advance search modal is displayed
+    Then expect date range drop down in advance search modal is present
+    Then set date range drop down value to Past 6 Months
+    Then click search button on advance search modal
+    Then expect advance search modal is not displayed
+    Then expect search results is available on the history filter panel
+    Then expect date printed on history filter panel is collapsed
+    Then expect prints within date range Past 180 Days for column Date Printed are retrieved in the grid
+        #Past 12 Months
+    Then click on advanced search arrow on history filter panel
+    Then expect advance search modal is displayed
+    Then expect date range drop down in advance search modal is present
+    Then set date range drop down value to Past 12 Months
+    Then click search button on advance search modal
+    Then expect advance search modal is not displayed
+    Then expect search results is available on the history filter panel
+    Then expect date printed on history filter panel is collapsed
+    Then expect prints within date range Past 364 Days for column Date Printed are retrieved in the grid
+        #Past 2 Years
+    Then click on advanced search arrow on history filter panel
+    Then expect advance search modal is displayed
+    Then expect date range drop down in advance search modal is present
+    Then set date range drop down value to Past 2 Years
+    Then click search button on advance search modal
+    Then expect advance search modal is not displayed
+    Then expect search results is available on the history filter panel
+    Then expect date printed on history filter panel is collapsed
+    Then expect prints within date range Past 728 Days for column Date Printed are retrieved in the grid

@@ -73,7 +73,6 @@ Then /^expect past 30 days count on history filter panel is greater than (\d+)$/
   date_printed = SdcHistory.filter_panel.date_printed
   expect(date_printed.past_30_days_count.text.to_i).to be > num.to_i
 end
-
 # Past 3 Months
 Then /^select past 3 months on history filter panel$/ do
   date_printed = SdcHistory.filter_panel.date_printed
@@ -275,4 +274,34 @@ end
 Then /^wait while loading history filters grid$/ do
   SdcHistory.filter_panel.loading.safe_wait_until_present(timeout: 8)
   SdcHistory.filter_panel.loading.wait_while_present(timeout: 240)
+end
+
+#History Search
+Then /^expect date printed on history filter panel is expanded$/ do
+  date_printed = SdcHistory.filter_panel.date_printed
+  expect(date_printed.collapse_button.present?).to be (true)
+end
+
+Then /^expect date printed on history filter panel is collapsed$/ do
+  date_printed = SdcHistory.filter_panel.date_printed
+  expect(date_printed.expand_button.present?).to be (true)
+end
+
+Then /^expect default selected value on date printed history filter panel is Past 30 Days$/ do
+  date_printed = SdcHistory.filter_panel.date_printed
+  date_printed.past_30_days_chooser.safe_wait_until_present(timeout: 5)
+  expect(date_printed.past_30_days.checked?).to be (true)
+end
+
+Then /^expect search results is available on the history filter panel$/ do
+  search_results = SdcHistory.filter_panel.search_results
+  search_results.label.safe_wait_until_present(timeout: 15)
+  expect(search_results.filter.present?).to be (true)
+end
+
+Then /^click on advanced search arrow on history filter panel$/ do
+  advanced_search = SdcHistory.filter_panel.search
+  advanced_search.advanced_search_arrow.safe_wait_until_present(timeout: 10)
+  advanced_search.advanced_search_arrow.flash
+  advanced_search.advanced_search_arrow.click
 end
