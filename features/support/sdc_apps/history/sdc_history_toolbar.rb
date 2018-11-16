@@ -72,4 +72,4 @@ module SdcHistory
     page_object(:reprint_scan_form) { {xpath: '//*[text()="Reprint Last Label"]'} }
   end
 
-end
+  end

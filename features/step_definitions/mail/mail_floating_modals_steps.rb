@@ -150,14 +150,14 @@ Then /^click manage favorites delete modal delete button$/ do
   step "expect manage favorites delete modal is not present"
 end
 
-
-
 Then /^expect feedback modal is present$/ do
   expect(SdcMail.modals.feedback.title).to be_present
 end
+
 Then /^expect feedback modal is not present$/ do
   expect(SdcMail.modals.feedback.title).not_to be_present
 end
+
 Then /^close feedback modal$/ do
   SdcMail.modals.feedback.x_btn.click
   step 'expect feedback modal is not present'
@@ -174,4 +174,35 @@ Then /^close settings modal$/ do
   step 'expect settings modal is not present'
 end
 
+#your international label
+Then /^expect your international label modal is present$/ do
+  expect(SdcMail.modals.your_international_label.title).to be_present
+end
+
+Then /^expect your international label modal is not present$/ do
+  expect(SdcMail.modals.your_international_label.title).not_to be_present
+end
+
+Then /^close your international label modal$/ do
+  modal = SdcMail.modals.your_international_label
+  modal.title.safe_wait_until_present(timeout: 1)
+  modal.x_btn.click if modal.title.present?
+  step 'expect your international label modal is not present'
+end
+
+#your global post label
+Then /^expect your global post label modal is present$/ do
+  expect(SdcMail.modals.your_global_post_label.title).to be_present
+end
+
+Then /^expect your global post label modal is not present$/ do
+  expect(SdcMail.modals.your_global_post_label.title).not_to be_present
+end
+
+Then /^close your global post label modal$/ do
+  modal = SdcMail.modals.your_global_post_label
+  modal.safe_wait_until_present(timeout: 1)
+  modal.x_btn.click if modal.present?
+  step 'expect your global post label modal is not present'
+end
 

@@ -145,7 +145,7 @@ module SdcHistory
       page_object(:drop_down) { { xpath: '//div[contains(@id, "printmediadroplist")]//div[contains(@class, "arrow")]' } }
 
       def selection_element(name: :selection, value: 'factory')
-        page_object(name) { { xpath: "//li[text()='#{value}']" } }
+        page_object(name) { { xpath: "//li[contains(text(), '#{value}')]" } }
       end
     end
 
@@ -312,7 +312,7 @@ module SdcHistory
       text_field(:nc_text_field, tag: :text_field) { { xpath: '//*[contains(@id, "containerLabelModal")]//input' } }
       page_object(:nc_increment) { { xpath: '//*[contains(@id, "containerLabelModal")]//*[contains(@class, "up")]' } }
       page_object(:nc_decrement) { { xpath: '//*[contains(@id, "containerLabelModal")]//*[contains(@class, "down")]' } }
-      sdc_number(:number_container, :nc_text_field, :nc_increment, :nc_decrement)
+      sdc_number(:number_containers, :nc_text_field, :nc_increment, :nc_decrement)
     end
 
     class ReadyToPrint < SdcPage

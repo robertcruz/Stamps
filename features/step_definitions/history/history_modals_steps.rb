@@ -507,7 +507,55 @@ Then /^click print button on ready to print modal$/ do
   rescue
     # ignore
   end
-  step 'expect your container label modal on history is present'
+  step 'expect your container label modal on history is not present'
+end
+
+Then /^click printing on drop down on ready to print modal$/ do
+  SdcHistory.modals.ready_to_print.printing_on.drop_down.click
+end
+
+Then /^expect (.*) is present on printing on on ready to print modal$/ do |str|
+  printing_on = SdcHistory.modals.ready_to_print.printing_on
+  printing_on.selection_element(value: str)
+  expect(printing_on.selection).to be_present
+end
+
+Then /^expect (.*) is not present on printing on on ready to print modal$/ do |str|
+  SdcHistory.modals.ready_to_print.printing_on.selection_element(str)
+  expect(SdcHistory.modals.ready_to_print.printing_on.selection).not_to be_present
+end
+
+Then /^select (.*) on printing on drop down on ready to print modal$/ do |str|
+  printing_on = SdcHistory.modals.ready_to_print.printing_on
+  printing_on.drop_down.click
+  printing_on.selection_element(value: str)
+  expect(printing_on.selection).to be_present
+  printing_on.selection.click
+  step "expect printing on on ready to print modal is #{str}"
+end
+
+Then /^expect printing on on ready to print modal is (.*)$/ do |str|
+  expect(SdcHistory.modals.ready_to_print.printing_on.text_field.text_value).to include(str)
+end
+
+Then /^expect total cost on ready to print modal is (.*)$/ do |str|
+  total_cost = SdcHistory.modals.ready_to_print.total_cost.text_value
+  expect(TestHelper.dollar_amount_f(total_cost)).to eql(str.to_f)
+end
+
+Then /^select (.*) on printer drop down on ready to print modal$/ do |str|
+  printer = SdcHistory.modals.ready_to_print.printer
+  unless printer.text_field.text_value.inlude?(str)
+    printer.drop_down.click
+    printer.selection_element(str)
+    expect(printer.selection).to be_present
+    printer.selection.click
+    step "expect printer on ready to print modal is #{str}"
+  end
+end
+
+Then /^expect printer on ready to print modal is (.*)$/ do |str|
+  expect(SdcHistory.modals.ready_to_print.printer.text_field.text_value).to include(str)
 end
 
 #your container label

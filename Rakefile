@@ -303,6 +303,14 @@ Cucumber::Rake::Task.new(:sdc_contacts_print_to_mail) do |t|
   t.cucumber_opts = "-p cuke_reports"
 end
 
+#History
+
+#
+Cucumber::Rake::Task.new(:history_export) do |t|
+  t.profile = 'history_export'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 #BEGIN PARTNER PORTAL
 Cucumber::Rake::Task.new(:pp_log_in_page_validation) do |t|
   t.profile = 'pp_log_in_page_validation'
@@ -4186,6 +4194,11 @@ end
 
 Cucumber::Rake::Task.new(:history_filter_direct_url) do |t|
   t.profile = 'history_filter_direct_url'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:container_label_reprint) do |t|
+  t.profile = 'container_label_reprint'
   t.cucumber_opts = "-p cuke_reports"
 end
 
