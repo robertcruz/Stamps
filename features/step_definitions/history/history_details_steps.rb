@@ -12,7 +12,7 @@ Then /^wait while loading history details panel$/ do
   SdcHistory.details.loading.wait_while_present(timeout: 240)
 end
 
-Then /^expect printed status present on transaction details$/ do
+Then /^expect printed status is present on transaction details$/ do
   step 'wait while loading history details panel'
   SdcHistory.details.status.flash
   expect(SdcHistory.details.status).to be_present
