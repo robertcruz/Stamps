@@ -1,5 +1,5 @@
 
-default: --backtrace --profile aloha
+default: --backtrace --profile aloha_history
 
 cuke_reports: --format json --out report.json --backtrace -f pretty -r features --format pretty --format html --out reports
 
@@ -655,6 +655,6 @@ multiple_shipto_contacts_view: --tags @multiple_shipto_contacts_view --guess LOG
 contacts_print_postage_single_from_details: --tags @contacts_print_postage_single_from_details --guess LOG_LEVEL=info
 contacts_print_postage_multiple_from_top_nav: --tags @contacts_print_postage_multiple_from_top_nav --guess LOG_LEVEL=info
 
-aloha_contacts: --tags @history_change_costcode URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core002 PW=password1
+aloha_history: --tags @history_change_costcode URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core002 PW=password1
 history_export:  --tags @history_export --guess LOG_LEVEL=info
 history_change_costcode: --tags @history_change_costcode --guess LOG_LEVEL=info
