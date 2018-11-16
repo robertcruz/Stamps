@@ -106,7 +106,7 @@ Feature:  History Filter Panel
     Then expect advance search modal is not displayed
     Then expect search results is available on the history filter panel
     Then expect date printed on history filter panel is collapsed
-    Then expect prints within date range Past 180 Days for column Date Printed are retrieved in the grid
+    Then expect prints within date range Past 6 Months for column Date Printed are retrieved in the grid
     #Past 12 Months
     Then click on advanced search arrow on history filter panel
     Then expect advance search modal is displayed
@@ -116,7 +116,7 @@ Feature:  History Filter Panel
     Then expect advance search modal is not displayed
     Then expect search results is available on the history filter panel
     Then expect date printed on history filter panel is collapsed
-    Then expect prints within date range Past 364 Days for column Date Printed are retrieved in the grid
+    Then expect prints within date range Past 12 Months for column Date Printed are retrieved in the grid
     #Past 2 Years
     Then click on advanced search arrow on history filter panel
     Then expect advance search modal is displayed
@@ -126,4 +126,4 @@ Feature:  History Filter Panel
     Then expect advance search modal is not displayed
     Then expect search results is available on the history filter panel
     Then expect date printed on history filter panel is collapsed
-    Then expect prints within date range Past 728 Days for column Date Printed are retrieved in the grid
+    Then expect prints within date range Past 2 Years for column Date Printed are retrieved in the grid

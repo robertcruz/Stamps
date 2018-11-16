@@ -75,35 +75,33 @@ end
 
 
 
-Then /^expect prints within date range Past (.*) Days for column (.*) are retrieved in the grid$/ do |date_range,column_name|
-  SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
-  #str ||= TestData.hash[:date_printed]
-  column = SdcHistory.grid.grid_column(:date_printed)
-
+  Then /^expect prints within date range (.*) for column (.*) are retrieved in the grid$/ do |date_range,column_name|
   #Get the search counts
   search_results = SdcHistory.filter_panel.search_results
   search_count = search_results.count.text_value.to_i
 
+  case date_range
+  when 'Past 7 Days'
+    new_date=Date.today-7
+  when 'Past 30 Days'
+    new_date=Date.today-30
+  when 'Past 6 Months'
+    new_date=Date.today<<6
+  when 'Past 12 Months'
+    new_date=Date.today<<12
+  when 'Past 2 Years'
+    new_date=Date.today<<24
+  end
+
+  SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
+  column = SdcHistory.grid.grid_column(:date_printed)
+
   i =1
   while i < search_count
-    actual_date = column.text_at_row(i)
-
-    # --------- convert actual date in format for comparison ---------
-    #SdcLogger.info "actual_date is : #{actual_date}"
-    actual_date_desired_format=Date.strptime(actual_date,'%m/%d/%Y')
-    #SdcLogger.info "actual_date_desired_format : #{actual_date_desired_format}"
-    actual_convert_new_date_format = actual_date_desired_format.to_date
-    #SdcLogger.info "Convert date in format YYYY-MM-DD : #{actual_convert_new_date_format}"
-
-    #Get System date information for comparison
-    system_date_var = Date.today
-    #SdcLogger.info "system_date_var in format YYYY-MM-DD: #{system_date_var}"
-    expected_date_range = date_range.to_i
-    #p expected_date_range
-    date_var_past_7_days = system_date_var-expected_date_range
-    #SdcLogger.info "date_var_past_#{date_range}_days in format YYYY-MM-DD: #{date_var_past_7_days}"
-
-    expect(actual_convert_new_date_format.between?(date_var_past_7_days,system_date_var)).to be(true)
+    grid_date = column.text_at_row(i)
+    formated_date=Date.strptime(grid_date,'%m/%d/%Y')
+    #actual_convert_new_date_format = actual_date_desired_format.to_date
+    expect(formated_date.between?(new_date,Date.today)).to be(true)
     i=i+1
   end
 
