@@ -181,18 +181,6 @@ Then /^expect placeholder for disabled reference # on print form is (.+)$/ do |s
 end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 Then /^set print form cost code (.+)$/ do |value|
   cost_code = SdcMail.print_form.advanced_options.cost_code
   cost_code.selection_element(value: value)

@@ -4,30 +4,33 @@ module SdcHistory
 
     class Toolbar < SdcPage
       page_object(:export) { {xpath: '//span[contains(@class,"sdc-icon-export")]'} }
-    end
+      page_object(:feedback) { { xpath: 'XXX' } }
+      page_object(:settings) { { xpath: 'XXX' } }
 
-    def refund
-      SdcHistoryRefund.new
-    end
+      def refund
+        SdcHistoryRefund.new
+      end
 
-    def create_return_label
-      SdcHistoryCreateReturnLabel.new
-    end
+      def create_return_label
+        SdcHistoryCreateReturnLabel.new
+      end
 
-    def schedule_pickup
-      SdcHistoryToolbarPickup.new
-    end
+      def schedule_pickup
+        SdcHistoryToolbarPickup.new
+      end
 
-    def create_scan_form
-      SdcHistoryToolbarScanForm.new
-    end
+      def create_scan_form
+        SdcHistoryToolbarScanForm.new
+      end
 
-    def cost_codes
-      SdcHistoryToolbarCostCodes.new
-    end
+      def cost_codes
+        SdcHistoryToolbarCostCodes.new
+      end
 
-    def create_container_label
-      ToolbarCreateContainerLabel.new
+      def create_container_label
+        ToolbarCreateContainerLabel.new
+      end
+
     end
 
   end
@@ -69,4 +72,4 @@ module SdcHistory
     page_object(:reprint_scan_form) { {xpath: '//*[text()="Reprint Last Label"]'} }
   end
 
-end
+  end

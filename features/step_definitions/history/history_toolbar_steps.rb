@@ -100,10 +100,17 @@ end
 
 #cost code
 Then /^expect change cost codes button on history toolbar cost codes is enabled$/ do
-  expect(SdcHistory.toolbar.cost_codes.change_cost_code.class_disabled?).to be_falsy
+  expect(SdcHistory.toolbar.cost_codes.change_cost_code.disabled?).to be(false)
+end
+
+Then /^expect change cost codes button on history toolbar cost codes is disabled$/ do
+  SdcHistory.toolbar.cost_codes.change_cost_code.flash
+  p SdcHistory.toolbar.cost_codes.change_cost_code.disabled?
+  expect(SdcHistory.toolbar.cost_codes.change_cost_code.disabled?).to be(true)
 end
 
 Then /^click change cost codes button on history toolbar cost codes$/ do
+  SdcHistory.toolbar.cost_codes.change_cost_code.wait_until_present(timeout: 5)
   SdcHistory.toolbar.cost_codes.change_cost_code.click
 end
 

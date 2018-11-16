@@ -69,7 +69,16 @@ end
 
 #CONTACTS
 #
-#
+Cucumber::Rake::Task.new(:history_change_costcode) do |t|
+  t.profile = 'history_change_costcode'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:transaction_address_4lines) do |t|
+  t.profile = 'transaction_address_4lines'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
 Cucumber::Rake::Task.new(:contacts_print_postage_multiple_from_top_nav) do |t|
   t.profile = 'contacts_print_postage_multiple_from_top_nav'
   t.cucumber_opts = "-p cuke_reports"

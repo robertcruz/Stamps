@@ -83,9 +83,15 @@ module SdcHistory
     class NewCostCode < SdcPage
       page_object(:text_field, tag: :text_field) { { xpath: '//div[contains(@id, "changeCostCode")]//input' } }
       page_object(:drop_down) { { xpath: '//div[contains(@id, "changeCostCode")]//*[contains(@class, "arrow")]' } }
+      page_objects(:costcode_list){ { xpath: '//div[contains(@id, "changeCostCode")]//following::li' } }
 
-      def selection(str)
-        page_object(:selection_obj) { { xpath: "//li[text()='#{str}']" } }
+      def costcode_random(position)
+        xpath_text = "//div[contains(@id, 'changeCostCode')]//following::li[#{position}]"
+        page_object(:costcode_text, required: true, timeout: 10) { { xpath: xpath_text } }
+      end
+
+      def selection(value)
+        page_object(:selection_obj) { { xpath: "//li[text()='#{value}']" } }
       end
     end
 

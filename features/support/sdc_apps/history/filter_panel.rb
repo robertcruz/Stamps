@@ -135,6 +135,11 @@ module SdcHistory
     page_object(:username) { { xpath: '//div[text()="User"]/../../../../../div[contains(@id,"-body")]//div[@class="table-cell-inner sdc-badgebutton-text"]' } }
     page_object(:username_count) { { xpath: '//div[text()="User"]/../../../../../div[contains(@id,"-body")]//div[@class="sdc-badge"]' } }
   end
+  class HistorySearch < SdcPage
+    text_field(:search_prints,tag: :text_field) { { xpath: '//*[@placeholder="Search Prints"]' } }
+    page_object(:advanced_search_arrow) { { xpath: '//*[contains(@class, "search-advance-trigger")]' } }
+    page_object(:search_icon) { {xpath: '//*[contains(@class, "search-trigger-grey")]'} }
+  end
 
   class CollapsedView < SdcPage
     page_object(:expand) { { xpath: '//img[contains(@class,"x-tool-expand-right")]' } }
@@ -178,6 +183,9 @@ module SdcHistory
 
       def user
         HistoryUser.new
+      end
+      def search
+        HistorySearch.new
       end
 
       def collapse

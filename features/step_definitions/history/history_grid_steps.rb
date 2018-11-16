@@ -19,13 +19,13 @@ Then /^expect row (\d+) on history grid is checked$/ do |row|
 end
 
 Then /^check row for saved tracking number on history grid$/ do
-  TestData.hash[:tracking_number] = '9405511899561459253313'
+  #TestData.hash[:tracking_number] = '9405511899561459253313'
   expect(TestData.hash[:tracking_number]).to be_truthy
   expect(TestData.hash[:tracking_number].size).to be > 15
-  tracking = SdcHistory.grid_column(:tracking_number)
+  tracking = SdcHistory.grid.grid_column(:tracking_number)
   row_number = tracking.row_num(TestData.hash[:tracking_number])
 
-  checkbox = grid.grid_column(:checkbox)
+  checkbox = SdcHistory.grid.grid_column(:checkbox)
   row = checkbox.checkbox_row(row_number)
   row.check
 end
@@ -65,8 +65,12 @@ Then /^expect history grid Insured For is correct for row (\d+)$/ do |row|
   step "expect history grid column Weight is #{TestData.hash[:insure_for_cost]} for row #{row}"
 end
 
-Then /^expect history grid Cost Code is correct for row (\d+)$/ do |row|
-  step "expect history grid column Weight is #{TestData.hash[:cost_code]} for row #{row}"
+Then /^expect history grid cost code column at row (.*) is correct$/ do |row|
+  SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
+  str ||= TestData.hash[:cost_code]
+  column = SdcHistory.grid.grid_column(:cost_code)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str
 end
 
 Then /^expect history grid Ship Date is correct for row (\d+)$/ do |row|
