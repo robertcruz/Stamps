@@ -111,3 +111,18 @@ end
 
   end
 
+#Email
+Then /^expect email tracking info link on transaction details is present$/ do
+  email = SdcHistory.details.email_tracking_info
+  email.flash
+  expect(email).to be_present
+end
+
+Then /^click email tracking info link on transaction details$/ do
+  email = SdcHistory.details.email_tracking_info
+  email.click
+end
+
+
+
+

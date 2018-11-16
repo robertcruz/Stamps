@@ -69,6 +69,10 @@ end
 
 #CONTACTS
 #
+Cucumber::Rake::Task.new(:transaction_details_email_tracking_info) do |t|
+  t.profile = 'transaction_details_email_tracking_info'
+  t.cucumber_opts = "-p cuke_reports"
+end
 
 Cucumber::Rake::Task.new(:view_transaction_details) do |t|
   t.profile = 'view_transaction_details'
