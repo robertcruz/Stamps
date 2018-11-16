@@ -10,7 +10,7 @@ module SeaGull
     page_object(:email, tag: :text_field) { { xpath: '//input[@placeholder="Your Email"]' } }
     page_object(:phone, tag: :text_field) { { xpath: '//input[@placeholder="Phone"]' } }
     page_object(:zip_code, tag: :text_field) { { xpath: '//input[@placeholder="Zip Code"]' } }
-    page_object(:submit, tag: :text_field) { { xpath: '//input[@value="Submit"]' } }
+    page_object(:submit) { { xpath: '//input[@value="Submit"]' } }
   end
 
   class << self

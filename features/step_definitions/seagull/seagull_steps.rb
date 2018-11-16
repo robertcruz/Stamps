@@ -21,7 +21,7 @@ Then /^I need to be able to request an appointment for a test drive at his neare
   step "set seagull test drive last name to #{TestHelper.rand_alpha_str}"
   step "set seagull test drive email to #{TestHelper.rand_email}"
   step "set seagull test drive phone to #{TestHelper.rand_phone}"
-  step 'set seagull test drive phone to 94102'
+  step 'set seagull test drive zip code to 94102'
   step 'click seagull test drive submit button'
 end
 
