@@ -5,6 +5,12 @@ module SeaGull
     page_object(:front_above) { { xpath: '//img[contains(@src,"exterior_frontabove")]' } }
     page_object(:left_rear) { { xpath: '//img[contains(@src,"exterior_leftrear")]' } }
 
+    page_object(:first_name, tag: :text_field) { { xpath: '//input[@aria-label="First name"]' } }
+    page_object(:last_name, tag: :text_field) { { xpath: '//input[@aria-label="Last name"]' } }
+    page_object(:email, tag: :text_field) { { xpath: '//input[@placeholder="Your Email"]' } }
+    page_object(:phone, tag: :text_field) { { xpath: '//input[@placeholder="Phone"]' } }
+    page_object(:zip_code, tag: :text_field) { { xpath: '//input[@placeholder="Zip Code"]' } }
+    page_object(:submit, tag: :text_field) { { xpath: '//input[@value="Submit"]' } }
   end
 
   class << self
