@@ -18,10 +18,11 @@ Then /^navigate to (.+)$/ do |str|
     SdcContacts.loading_contacts.safe_wait_while_present(timeout: 45)
     SdcContacts::Grid.body.safe_wait_until_present(timeout: 20)
   when :history
-   # step 'close welcome modal on history'
+    step 'close welcome modal on history'
     step 'wait while loading history grid'
   when :reports
-    step 'click through tutorial modal'
+    step 'close welcome modal on reports'
+    step 'wait while loading reports grid'
   when :products
     step 'click through tutorial modal'
     SdcOrders.loading_orders.safe_wait_until_present(timeout: 7)
@@ -32,7 +33,9 @@ end
 
 Then /^wait while loading history grid$/ do
   SdcHistory.loading.safe_wait_until_present(timeout: 8)
+  SdcHistory.loading.safe_wait_until_present(timeout: 8)
   SdcHistory.loading.wait_while_present(timeout: 240)
+  SdcHistory::Grid.body.safe_wait_until_present(timeout: 20)
 end
 
 Then /^hover on navigation history then select (.+)$/ do |str|
@@ -40,6 +43,7 @@ Then /^hover on navigation history then select (.+)$/ do |str|
   nav_element.wait_until_present(timeout: 20)
   nav_element.hover
   SdcNavigation.history_selection(str).click
+  step 'wait while loading history grid'
 end
 
 Then /^save balance amount$/ do

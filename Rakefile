@@ -69,12 +69,16 @@ end
 
 #CONTACTS
 #
-#transaction_address_4lines
+Cucumber::Rake::Task.new(:history_change_costcode) do |t|
+  t.profile = 'history_change_costcode'
+  t.cucumber_opts = "-p cuke_reports"
+end
 
 Cucumber::Rake::Task.new(:transaction_address_4lines) do |t|
   t.profile = 'transaction_address_4lines'
   t.cucumber_opts = "-p cuke_reports"
 end
+
 Cucumber::Rake::Task.new(:contacts_print_postage_multiple_from_top_nav) do |t|
   t.profile = 'contacts_print_postage_multiple_from_top_nav'
   t.cucumber_opts = "-p cuke_reports"
@@ -296,6 +300,14 @@ end
 
 Cucumber::Rake::Task.new(:sdc_contacts_print_to_mail) do |t|
   t.profile = 'sdc_contacts_print_to_mail'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+#History
+
+#
+Cucumber::Rake::Task.new(:history_export) do |t|
+  t.profile = 'history_export'
   t.cucumber_opts = "-p cuke_reports"
 end
 
@@ -4182,5 +4194,21 @@ end
 
 Cucumber::Rake::Task.new(:history_filter_direct_url) do |t|
   t.profile = 'history_filter_direct_url'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:container_label_reprint) do |t|
+  t.profile = 'container_label_reprint'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+#------------------- Reports ---------------------------------------------
+Cucumber::Rake::Task.new(:reports_toolbar) do |t|
+  t.profile = 'reports_toolbar'
+  t.cucumber_opts = "-p cuke_reports"
+end
+
+Cucumber::Rake::Task.new(:reports_filter_panel) do |t|
+  t.profile = 'reports_filter_panel'
   t.cucumber_opts = "-p cuke_reports"
 end

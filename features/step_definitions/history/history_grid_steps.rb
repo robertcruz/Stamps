@@ -65,11 +65,49 @@ Then /^expect history grid Insured For is correct for row (\d+)$/ do |row|
   step "expect history grid column Weight is #{TestData.hash[:insure_for_cost]} for row #{row}"
 end
 
-Then /^expect history grid Cost Code is correct for row (\d+)$/ do |row|
-  step "expect history grid column Weight is #{TestData.hash[:cost_code]} for row #{row}"
+Then /^expect history grid cost code column at row (.*) is correct$/ do |row|
+  SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
+  str ||= TestData.hash[:cost_code]
+  column = SdcHistory.grid.grid_column(:cost_code)
+  actual_value = column.text_at_row(row)
+  expect(actual_value.strip).to eql str
 end
 
 Then /^expect history grid Ship Date is correct for row (\d+)$/ do |row|
   step "expect history grid column Weight is #{TestData.hash[:ship_date]} for row #{row}"
 end
+
+
+
+  Then /^expect prints within date range (.*) for column (.*) are retrieved in the grid$/ do |date_range,column_name|
+  #Get the search counts
+  search_results = SdcHistory.filter_panel.search_results
+  search_count = search_results.count.text_value.to_i
+
+  case date_range
+  when 'Past 7 Days'
+    new_date=Date.today-7
+  when 'Past 30 Days'
+    new_date=Date.today-30
+  when 'Past 6 Months'
+    new_date=Date.today<<6
+  when 'Past 12 Months'
+    new_date=Date.today<<12
+  when 'Past 2 Years'
+    new_date=Date.today<<24
+  end
+
+  SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
+  column = SdcHistory.grid.grid_column(:date_printed)
+
+  i =1
+  while i < search_count
+    grid_date = column.text_at_row(i)
+    formated_date=Date.strptime(grid_date,'%m/%d/%Y')
+    #actual_convert_new_date_format = actual_date_desired_format.to_date
+    expect(formated_date.between?(new_date,Date.today)).to be(true)
+    i=i+1
+  end
+
+  end
 

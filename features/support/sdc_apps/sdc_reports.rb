@@ -1,5 +1,4 @@
-module SdcHistory
-
+module SdcReports
   class << self
     def loading
       klass = Class.new(SdcPage) do
@@ -9,7 +8,11 @@ module SdcHistory
     end
 
     def toolbar
-      SdcHistoryToolbar.new
+      Toolbar
+    end
+
+    def modals
+      Modals
     end
 
     def filter_panel
@@ -18,18 +21,6 @@ module SdcHistory
 
     def grid
       Grid
-    end
-
-    def details
-      Details
-    end
-
-    def multiple_details
-      MultipleDetails
-    end
-
-    def modals
-      Modals
     end
   end
 end

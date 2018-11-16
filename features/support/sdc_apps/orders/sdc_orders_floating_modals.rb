@@ -1,5 +1,9 @@
 module SdcOrders
   module SdcOrdersModals
+    class VerifyingRates < SdcPage
+      page_object(:verifying_rates) { { xpath: '//*[text()="Verifying rates..."]' } }
+    end
+
     class SdcExactAddressNotFound < SdcPage
       page_object(:title) { { xpath: '//*[text()="Exact Address Not Found"]' } }
       page_object(:accept) { { xpath: '//*[text()="Accept"]' } }

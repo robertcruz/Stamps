@@ -1,5 +1,5 @@
 
-default: --backtrace --profile aloha
+default: --backtrace --profile aloha_history
 
 cuke_reports: --format json --out report.json --backtrace -f pretty -r features --format pretty --format html --out reports
 
@@ -23,7 +23,8 @@ web_apps_dev: --tags @bvt_new_order USR=default PW=pass111 URL=tcarney-win7-3.co
 eli_dev: --tags @sdc_contacts_print_to_mail --guess JENKINS=false WEB_APP=mail URL=cc BROWSER=ff USR=hal9000qa12 PW=password1 PRINTER=factory
 ray_dev: --tags @rates_parcel_select_ground --guess JENKINS=false URL=stg BROWSER=ff USR=default PW=pass111
 sap: --tags @registration_orders WEB_APP=registration URL=cc --guess BROWSER=ff MAX_WINDOW=false
-alex_history:  --tags @history_filter_direct_url_1 BROWSER=firefox URL=cc USR=abqacctest1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
+alex_history:  --tags @container_label_reprint BROWSER=gc URL=stg USR=gapstage02 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
+alex_reports:  --tags @reports_filter_panel BROWSER=gc URL=qasc USR=abqascsas1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
 alex_mail:  --tags @mail_dropdown_tooltip BROWSER=firefox URL=stg USR=abqasttest1 PW=password1 new_framework=true  --guess LOG_LEVEL=info HEALTHCHECK=true
 alex_regress:  --tags @bvt_shipping_address_management BROWSER=ff WEB_APP=orders URL=cc USR=abqacc10 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false MAX_WINDOW=false
 alex_rates:  --tags @rates_orders_pme_comm_plus_zone_5 BROWSER=ff URL=stg USR=abqast2 PW=password1  --guess LOG_LEVEL=info HEALTHCHECK=false
@@ -601,7 +602,7 @@ ewwr_session_state_data_validation: --tags @ewwr_session_state_data_validation -
 ewwr_security_question_page_validation: --tags @ewwr_security_question_page_validation --guess  LOG_LEVEL=info
 ewwr_header_footer_validation: --tags @ewwr_header_footer_validation --guess  LOG_LEVEL=info
 swwr_create_your_account_page_validation: --tags @swwr_create_your_account_page_validation --guess LOG_LEVEL=info
-aloha: --tags @transaction_address_4lines URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core002 PW=password1
+aloha_contacts: --tags @multiple_shipto_contacts_view URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core002 PW=password1
 #aloha: --tags @sdc_contact_add_new_contact URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core004 PW=password1
 #aloha: --tags @sdc_contacts_show_all_columns URL=qacc LOG_LEVEL=debug HEALTHCHECK=false BROWSER=gc MAX_WINDOW=false USR=Tmaheryar PW=password1
 sdc_contacts_delete_single_from_top_navigation: --tags @sdc_contacts_delete_single_from_top_navigation --guess LOG_LEVEL=info
@@ -641,7 +642,10 @@ sdc_contacts_left_navigation_selected_filter:  --tags @sdc_contacts_left_navigat
 sdc_contacts_print_to_mail:  --tags @sdc_contacts_print_to_mail --guess LOG_LEVEL=info
 history_toolbar:  --tags @history_toolbar --guess LOG_LEVEL=info
 history_filter_direct_url:  --tags @history_filter_direct_url --guess LOG_LEVEL=info
+container_label_reprint:  --tags @container_label_reprint --guess LOG_LEVEL=info
 container_label_return_address:  --tags @container_label_return_address --guess LOG_LEVEL=info
+reports_toolbar:  --tags @reports_toolbar --guess LOG_LEVEL=info
+reports_filter_panel:  --tags @reports_filter_panel --guess LOG_LEVEL=info
 
 sdc_contacts_pagination_navigate_different_pages: --tags @sdc_contacts_pagination_navigate_different_pages --guess LOG_LEVEL=info
 sdc_contacts_search_country_results: --tags @sdc_contacts_search_country_results --guess LOG_LEVEL=info
@@ -650,4 +654,6 @@ bug_postal_code_not_added_contact_details: --tags @bug_postal_code_not_added_con
 multiple_shipto_contacts_view: --tags @multiple_shipto_contacts_view --guess LOG_LEVEL=info
 contacts_print_postage_single_from_details: --tags @contacts_print_postage_single_from_details --guess LOG_LEVEL=info
 contacts_print_postage_multiple_from_top_nav: --tags @contacts_print_postage_multiple_from_top_nav --guess LOG_LEVEL=info
-transaction_address_4lines: --tags @transaction_address_4lines --guess LOG_LEVEL=info
+
+aloha_history: --tags @file_insurance_claim URL=stg LOG_LEVEL=info HEALTHCHECK=false BROWSER=ff MAX_WINDOW=false USR=tcs_core002 PW=password1
+history_export:  --tags @history_export --guess LOG_LEVEL=info

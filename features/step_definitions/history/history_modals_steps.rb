@@ -439,19 +439,24 @@ Then /^click save button on change cost code modal$/ do
   SdcHistory.modals.change_cost_code.save.click
 end
 
-Then /^select new cost code on change cost code modal (.*)$/ do |str|
-  new_cost_code = SdcHistory.modals.change_cost_code.new_cost_code
-  unless new_cost_code.text_field.text_value.include?(str)
-    new_cost_code.drop_down.click
-    new_cost_code.selection(str)
-    new_cost_code.drop_down.click unless selection_obj.present?
-    selection_obj.scroll_into_view unless selection_obj.present?
-    selection_obj.click if selection_obj.present?
+Then /^select new cost code on change cost code modal (?:to existing|(.*))$/ do |str|
+    cost_code = SdcHistory.modals.change_cost_code.new_cost_code
+    cost_code.drop_down.click
+    count=cost_code.costcode_list.count
+    str||=cost_code.costcode_random(Random.rand(2..count-1)).text_value
+  unless cost_code.text_field.text_value.include?(str)
+    cost_code.drop_down.click
+    cost_code.selection(str)
+    cost_code.drop_down.click unless cost_code.selection(str).present?
+    cost_code.selection(str).scroll_into_view unless cost_code.selection(str).present?
+    cost_code.selection(str).click if cost_code.selection(str).present?
+    expect(cost_code.text_field.text_value).to include(str)
   end
-  step "expect new cost code on return label modal is #{str}"
+  step "expect new cost code on change cost code modal is #{str}"
+  TestData.hash[:cost_code]=str
 end
 
-Then /^expect new cost code on return label modal is (.*)$/ do |str|
+Then /^expect new cost code on change cost code modal is (.*)$/ do |str|
   expect(SdcHistory.modals.change_cost_code.new_cost_code.text_field.text_value).to eql(str)
 end
 
@@ -502,7 +507,55 @@ Then /^click print button on ready to print modal$/ do
   rescue
     # ignore
   end
-  step 'expect your container label modal on history is present'
+  step 'expect your container label modal on history is not present'
+end
+
+Then /^click printing on drop down on ready to print modal$/ do
+  SdcHistory.modals.ready_to_print.printing_on.drop_down.click
+end
+
+Then /^expect (.*) is present on printing on on ready to print modal$/ do |str|
+  printing_on = SdcHistory.modals.ready_to_print.printing_on
+  printing_on.selection_element(value: str)
+  expect(printing_on.selection).to be_present
+end
+
+Then /^expect (.*) is not present on printing on on ready to print modal$/ do |str|
+  SdcHistory.modals.ready_to_print.printing_on.selection_element(str)
+  expect(SdcHistory.modals.ready_to_print.printing_on.selection).not_to be_present
+end
+
+Then /^select (.*) on printing on drop down on ready to print modal$/ do |str|
+  printing_on = SdcHistory.modals.ready_to_print.printing_on
+  printing_on.drop_down.click
+  printing_on.selection_element(value: str)
+  expect(printing_on.selection).to be_present
+  printing_on.selection.click
+  step "expect printing on on ready to print modal is #{str}"
+end
+
+Then /^expect printing on on ready to print modal is (.*)$/ do |str|
+  expect(SdcHistory.modals.ready_to_print.printing_on.text_field.text_value).to include(str)
+end
+
+Then /^expect total cost on ready to print modal is (.*)$/ do |str|
+  total_cost = SdcHistory.modals.ready_to_print.total_cost.text_value
+  expect(TestHelper.dollar_amount_f(total_cost)).to eql(str.to_f)
+end
+
+Then /^select (.*) on printer drop down on ready to print modal$/ do |str|
+  printer = SdcHistory.modals.ready_to_print.printer
+  unless printer.text_field.text_value.inlude?(str)
+    printer.drop_down.click
+    printer.selection_element(str)
+    expect(printer.selection).to be_present
+    printer.selection.click
+    step "expect printer on ready to print modal is #{str}"
+  end
+end
+
+Then /^expect printer on ready to print modal is (.*)$/ do |str|
+  expect(SdcHistory.modals.ready_to_print.printer.text_field.text_value).to include(str)
 end
 
 #your container label
@@ -553,7 +606,11 @@ end
 
 Then /^close welcome modal on history$/ do
   welcome = SdcHistory.modals.welcome
-  welcome.x_btn.click if welcome.present?
+  begin
+    welcome.x_btn.click if welcome.title.present?
+  rescue
+    # ignore
+  end
   step 'expect welcome modal on history is not present'
 end
 
@@ -571,4 +628,41 @@ Then /^click through tutorial modal on history$/ do
   end
   step 'click close button on welcome modal'
 end
+
+# Advance Search
+
+Then /^expect advance search modal is displayed$/ do
+  advanced_search = SdcHistory.modals.advance_search
+  advanced_search.title.safe_wait_until_present(timeout: 10)
+  expect(advanced_search.title.present?).to be(true)
+end
+
+Then /^expect advance search modal is not displayed$/ do
+  advanced_search = SdcHistory.modals.advance_search
+  expect(advanced_search.title.present?).to be(false)
+end
+
+Then /^expect date range drop down in advance search modal is present$/ do
+  date_range = SdcHistory.modals.advance_search.date_range
+  date_range.text_field.safe_wait_until_present(timeout: 10)
+  expect(date_range.text_field.present?).to be (true)
+end
+
+Then /^set date range drop down value to(.*)/ do |str|
+  date_range = SdcHistory.modals.advance_search.date_range
+  date_range.selection_date_range(value: str)
+  date_range.drop_down.click unless date_range.selection.present?
+  date_range.text_field.set(str)
+  date_range.selection_date_range(value: str).click
+  #date_range.selection.click
+  expect(date_range.text_field.text_value).to include(str)
+end
+
+Then /^click search button on advance search modal$/ do
+  advance_search = SdcHistory.modals.advance_search
+  expect(advance_search.search_button.present?).to be(true)
+  advance_search.search_button.click
+end
+
+
 
