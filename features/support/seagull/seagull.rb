@@ -40,7 +40,8 @@ module SeaGull
 
   class << self
     def visit
-      SdcPage.browser.goto 'https://sea-gull.herokuapp.com'
+      SdcDriverDecorator.new(SdcPage.browser).goto 'https://sea-gull.herokuapp.com'
+      #SdcPage.browser.goto 'https://sea-gull.herokuapp.com'
     end
 
     def car
