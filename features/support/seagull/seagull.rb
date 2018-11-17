@@ -27,6 +27,8 @@ module SeaGull
     page_object(:zip_code, tag: :text_field) { { xpath: '//input[@placeholder="Zip Code"]' } }
     page_object(:submit) { { xpath: '//input[@value="Submit"]' } }
 
+    page_object(:video) { { xpath: '//video' } }
+
     def more_info
       SeaGullMoreInfo.new
     end

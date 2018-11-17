@@ -101,3 +101,7 @@ end
 Then /^verify seagull section (.+) exist$/ do |str|
   expect(SeaGull.car.external_images.header.text).to eql str
 end
+
+Then /^he is shown a video of the car in motion$/ do
+  expect(SeaGull.car.video.present?).to be true
+end

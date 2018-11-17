@@ -12,6 +12,8 @@ gem 'measured'
 gem 'faker'
 gem 'sauce_whisk'
 gem 'watir_drops'
+gem 'overcommit'
+gem 'rubocop', require: false
 
 group :web_dev do
   gem 'tiny_tds'
