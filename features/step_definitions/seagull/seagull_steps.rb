@@ -9,7 +9,11 @@ Then /^the enthusiast asks to see views of the car$/ do
 end
 
 Then /^he is shown all the available photographs$/ do
-  SeaGull.car.back.safe_wait_until_present(timeout: 5)
+  begin
+    SeaGull.car.back.wait_until_present(timeout: 5)
+  rescue
+    # ignore
+  end
   expect(SeaGull.car.back.present?).to be true
   expect(SeaGull.car.side_closed.present?).to be true
   expect(SeaGull.car.front_above.present?).to be true
