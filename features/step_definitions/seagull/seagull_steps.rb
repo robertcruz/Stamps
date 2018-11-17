@@ -71,7 +71,7 @@ When /^the enthusiast enters his contract data to get more information$/ do
 end
 
 Then /^his contract data is stored so that he can receive the additional information he wants$/ do
-  step "expect ui contains Thanks for contacting us! We will get in touch with you shortly."
+  step 'expect ui contains Thanks for contacting us! We will get in touch with you shortly.'
 end
 
 
