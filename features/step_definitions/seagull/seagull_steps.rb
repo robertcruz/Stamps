@@ -1,6 +1,7 @@
 
 Then /^an automotive enthusiast has accessed the microsite$/ do
   step 'Start test driver'
+  SeaGull.visit
 end
 
 Then /^the enthusiast asks to see views of the car$/ do
@@ -56,4 +57,43 @@ Then /^click seagull test drive submit button$/ do
   SeaGull.car.submit.click
   SeaGull.car.submit.wait_while_present(timeout: 5)
   sleep 3
+end
+
+
+When /^the enthusiast enters his contract data to get more information$/ do
+  step "set seagull more info first name to #{TestHelper.rand_alpha_str}"
+  step "set seagull more info last name to #{TestHelper.rand_alpha_str}"
+  step "set seagull more info email to #{TestHelper.rand_email}"
+end
+
+Then /^his contract data is stored so that he can receive the additional information he wants$/ do
+  step "expect ui contains Thanks for contacting us! We will get in touch with you shortly."
+end
+
+
+Then /^set seagull more info first name to (.*)$/ do |str|
+  SeaGull.car.more_info.first_name.set str
+end
+
+Then /^set seagull more info last name to (.*)$/ do |str|
+  SeaGull.car.more_info.last_name.set str
+end
+
+Then /^set seagull more info email to (.*)$/ do |str|
+  SeaGull.car.more_info.email.set str
+end
+
+Then /^click seagull more info submit button$/ do
+  SeaGull.car.more_info.submit.click
+  #SeaGull.car.submit.more_info.wait_while_present(timeout: 5)
+  sleep 3
+end
+
+
+Then /^I need to be able to view photographs of the exterior in available colors and trims \(separate from the interior views\)$/ do
+  step "verify seagull section Exterior Images exist"
+end
+
+Then /^verify seagull section (.+) exist$/ do |str|
+  expect(SeaGull.car.external_images.header.text).to eql str
 end
