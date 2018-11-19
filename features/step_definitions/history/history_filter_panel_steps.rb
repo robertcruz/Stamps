@@ -21,12 +21,12 @@ end
 
 Then /^expect date printed on history filter panel is expanded$/ do
   date_printed = SdcHistory.filter_panel.date_printed
-  expect(date_printed.collapse_button.checked?).to be (true)
+  expect(date_printed.collapse_button.present?).to be (true)
 end
 
 Then /^expect date printed on history filter panel is collapsed$/ do
   date_printed = SdcHistory.filter_panel.date_printed
-  expect(date_printed.expand_button.checked?).to be (true)
+  expect(date_printed.expand_button.present?).to be (true)
 end
 
 Then /^expect default selected value on date printed history filter panel is Past 30 Days$/ do
