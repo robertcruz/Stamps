@@ -69,6 +69,11 @@ end
 
 #CONTACTS
 #
+#
+Cucumber::Rake::Task.new(:file_insurance_claim) do |t|
+  t.profile = 'file_insurance_claim'
+  t.cucumber_opts = "-p cuke_reports"
+end
 Cucumber::Rake::Task.new(:history_change_costcode) do |t|
   t.profile = 'history_change_costcode'
   t.cucumber_opts = "-p cuke_reports"
