@@ -643,11 +643,11 @@ Then /^expect date range drop down in advance search modal is present$/ do
   expect(date_range.text_field.present?).to be (true)
 end
 
-Then /^set date range drop down value to(.*)/ do |str|
+Then /^set date range drop down value to (.*)/ do |str|
   date_range = SdcHistory.modals.advance_search.date_range
-  date_range.selection_date_range(value: str)
-  date_range.drop_down.click unless date_range.selection.present?
-  date_range.text_field.set(str)
+  date_range.drop_down.click unless date_range.selection(str).present?
+  date_range.selection(str).scroll_into_view unless date_range.selection(str).present?
+  date_range.selection(str).click if date_range.selection(str).present?
   expect(date_range.text_field.text_value).to include(str)
 end
 

@@ -442,7 +442,7 @@ module SdcHistory
       text_field(:text_field, tag: :text_field) { { xpath: '//div[contains(@id , "advance-search-window-")]//*[contains(@id, "combo-")]//*[contains(@name, "advDateRange")]' } }
       page_object(:drop_down) { { xpath: '//div[contains(@id , "advance-search-window-")]//input[@name="advDateRange"]/following::div[contains(@id,"-trigger-picker")][1]' } }
 
-      def selection_date_range(name: 'selection', value: 'None')
+      def selection(value)
         page_object(name) { { xpath: "//li[text()='#{value}']" } }
       end
     end
