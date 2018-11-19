@@ -75,10 +75,7 @@ end
 
 
 
-  Then /^expect prints within date range (.*) for column (.*) are retrieved in the grid$/ do |date_range,column_name|
-  #Get the search counts
-  search_results = SdcHistory.filter_panel.search_results
-  search_count = search_results.count.text_value.to_i
+Then /^expect prints within date range (.*) for column (.*) are retrieved in the grid$/ do |date_range,column_name|
 
   case date_range
   when 'Past 7 Days'
@@ -95,15 +92,38 @@ end
 
   SdcHistory.grid.body.safe_wait_until_present(timeout: 60)
   column = SdcHistory.grid.grid_column(:date_printed)
+  pagination = SdcHistory.pagination
 
-  i =1
+  # if count =0
+  # No search results
+  # else
+
+ loop do
+   #Get the search counts
+   search_results = SdcHistory.filter_panel.search_results
+   search_count = search_results.count.text_value.to_i
+   p search_count
+   i =1
   while i < search_count
+    column.element(i).flash
     grid_date = column.text_at_row(i)
     formated_date=Date.strptime(grid_date,'%m/%d/%Y')
-    #actual_convert_new_date_format = actual_date_desired_format.to_date
     expect(formated_date.between?(new_date,Date.today)).to be(true)
     i=i+1
   end
 
+   if pagination.page_arrow_disabled('next').eql? ('false')
+     step 'click on the pagination next button of history page'
+   else
+     break
+   end
+
+ end
+end
+
+  Then /^click on the pagination next button of history page$/ do
+    next_button = SdcHistory.pagination
+    next_button.page_next.flash
+    next_button.page_next.click
   end
 

@@ -27,5 +27,9 @@ module SdcHistory
     def modals
       Modals
     end
+
+    def pagination
+      HistoryPagination::Pagination.new
+    end
   end
 end
